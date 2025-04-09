@@ -26,7 +26,7 @@ void MyOptionsLayer::onSecretVault(CCObject* sender) {
         dialog->animateInRandomSide();
 
         std::function<void()> secretCallback = [=]() {
-            // Mod::get()->setSavedValue<bool>("vault-unlocked", true);
+            Mod::get()->setSavedValue<bool>("vault-unlocked", true);
 			auto scene = CCTransitionFade::create(0.5f, SecretLayer::scene());
             CCDirector::sharedDirector()->pushScene(scene);
 		};
