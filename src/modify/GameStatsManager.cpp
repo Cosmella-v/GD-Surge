@@ -12,3 +12,14 @@ bool MyGameStatsManager::isItemUnlocked(UnlockType p0, int p1) {
 
     return false;
 }
+
+void MyGameStatsManager::checkCoinAchievement(GJGameLevel* level) {
+    auto GM = GameManager::sharedState();
+
+    int coinPercent = (getCollectedCoinsForLevel(level) / 3.f) * 100.f;
+    auto achievementID = fmt::format("geometry.ach.surge.levelcoin{:02}", level->m_levelID.value());
+
+    if(level->m_levelType == GJLevelType::Local) {
+        GM->reportAchievementWithID(achievementID.c_str(), coinPercent, false);
+    }
+}

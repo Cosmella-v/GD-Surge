@@ -6,8 +6,9 @@ using namespace geode::prelude;
 
 void MyAchievementManager::addManualAchievements() {
 
-    AchievementManager::addAchievement("geometry.ach.level01a", "Half-Bad", "Completed 'Badland' in Practice mode", "Complete 'Badland' in Practice mode", "icon_09", 1);
+    AchievementManager::addAchievement("geometry.ach.level01a", "Not Bad", "Completed 'Badland' in Practice mode", "Complete 'Badland' in Practice mode", "icon_09", 1);
     AchievementManager::addAchievement("geometry.ach.level01b", "All Bad", "Completed 'Badland' in Normal mode", "Complete 'Badland' in Normal mode", "icon_05", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin01", "Ultimate Badland", "Collected all 3 Secret Coins on \'Badland\'", "Collect all 3 Secret Coins on \'Badland\'", "icon_06", 0);
 
     AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_28", 0);
     AchievementManager::addAchievement("geometry.ach.surge.vault02", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_29", 0);

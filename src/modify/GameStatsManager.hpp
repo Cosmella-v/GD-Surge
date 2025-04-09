@@ -4,4 +4,5 @@
 
 class $modify(MyGameStatsManager, GameStatsManager) {
     bool isItemUnlocked(UnlockType p0, int p1);
+    void checkCoinAchievement(GJGameLevel* level);
 };
