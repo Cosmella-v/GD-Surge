@@ -25,7 +25,12 @@ void MyOptionsLayer::onSecretVault(CCObject* sender) {
         dialog->addToMainScene();
         dialog->animateInRandomSide();
 
-        std::function<void()> secretCallback = [=]() {
+        std::function<void()> secretCallback = [&]() {
+            // auto layer = this->getChildByID("main-layer");
+            // auto btn = layer->getChildByID("vault-menu")->getChildByID("vault-button");
+            // auto lock = btn->getChildByType<CCSprite*>(0);
+            // lock->setTexture(CCTextureCache::sharedTextureCache()->addImage("GJ_lock_001.png", true));
+
             Mod::get()->setSavedValue<bool>("vault-unlocked", true);
 			auto scene = CCTransitionFade::create(0.5f, SecretLayer::scene());
             CCDirector::sharedDirector()->pushScene(scene);
