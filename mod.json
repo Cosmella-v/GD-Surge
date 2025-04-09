@@ -1,0 +1,29 @@
+{
+	"geode": "4.3.1",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "omgrod.geometry-dash-surge",
+	"name": "Geometry Dash: Surge",
+	"version": "v1.0.0",
+	"developer": "OmgRod",
+	"description": "A new GD spinoff game",
+	"resources": {
+		"spritesheets": {
+			"TitleSheet": [
+				"res/TitleSheet/*.png"
+			],
+			"TowerSheet": [
+				"res/TowerSheet/*.png"
+			]
+		},
+		"files": [
+			"res/music/*.mp3",
+			"res/levels/*.txt"
+		]
+	},
+	"early-load": true
+}
