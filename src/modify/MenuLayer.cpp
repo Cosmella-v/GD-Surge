@@ -9,6 +9,25 @@ class $modify(MyMenuLayer, MenuLayer) {
 			return false;
 		}
 
+		// auto menu = this->getChildByID("bottom-menu");
+
+		// auto cameraBtn = CircleButtonSprite::create(
+		// 	CCNode::create(),
+		// 	CircleBaseColor::Green,
+		// 	CircleBaseSize::MediumAlt
+		// );
+
+		// auto chatButton = CCMenuItemSpriteExtra::create(
+		// 	cameraBtn,
+		// 	this,
+		// 	menu_selector(MyMenuLayer::onButtonClick)
+		// );
+
+		// chatButton->setID("stream-button");
+
+		// menu->addChild(chatButton);
+		// menu->updateLayout();
+
 		auto logo = this->getChildByID("main-title");
 
 		auto spriteLogo = typeinfo_cast<CCSprite*>(logo);
@@ -25,4 +44,11 @@ class $modify(MyMenuLayer, MenuLayer) {
 
 		return true;
 	}
+
+	// void onButtonClick(CCObject* sender) {
+	// 	auto gm = GameManager::sharedState();
+
+	// 	gm->reportAchievementWithID("geometry.testach", 100, false);
+	// 	log::debug("did smth..?");
+	// }
 };
