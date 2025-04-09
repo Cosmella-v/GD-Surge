@@ -10,6 +10,10 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.level01b", "All Bad", "Completed 'Badland' in Normal mode", "Complete 'Badland' in Normal mode", "icon_05", 1);
 
     AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_28", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault02", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_29", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault03", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_30", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault04", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "ship_02", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault05", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "color_17", 0);
 
     // AchievementManager::addAchievement("geometry.ach.level02a", "Thunderbolt", "Completed \'Thunderzone\' in Practice mode", "Complete \'Thunderzone\' in Practice mode", "icon_10", 1);
     // AchievementManager::addAchievement("geometry.ach.level02b", "Thunderzone!", "Completed \'Thunderzone\' in Normal mode", "Complete \'Thunderzone\' in Normal mode", "icon_06", 1);
