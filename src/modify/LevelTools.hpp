@@ -33,5 +33,5 @@ class $modify(MyLevelTools, LevelTools) {
     $override
     static GJGameLevel* getLevel(int levelID, bool _save);
 
-    static void setLevelInfo(GJGameLevel* level, int stars, GJDifficulty difficulty, int coinsRequired, int frameTime);
+    static void setLevelInfo(GJGameLevel* level, int stars, GJDifficulty difficulty, int coinsRequired);
 };

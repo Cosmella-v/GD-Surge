@@ -22,5 +22,18 @@
 			"res/levels/*.txt"
 		]
 	},
-	"early-load": true
+	"early-load": true,
+	"tags": ["content", "gameplay", "offline", "universal"],
+	"links": {
+		"community": "https://discord.gg/vK3DuqJwyW",
+		"homepage": "https://omgrod.me",
+		"source": "https://github.com/OmgRod/GD-Surge"
+	},
+	"dependencies": {
+		"geode.node-ids": ">=v1.20.1"
+	},
+	"issues": {
+		"info": "Report bugs or request features on the GitHub repository.",
+		"url": "https://github.com/OmgRod/GD-Surge/issues"
+	}
 }

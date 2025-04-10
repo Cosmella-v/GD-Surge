@@ -106,7 +106,7 @@ GJGameLevel* MyLevelTools::getLevel(int levelID, bool loaded) {
 
     switch(levelID) {
         case 1: 
-            setLevelInfo(level, 2, GJDifficulty::Hard, 0, 69696969); //active
+            setLevelInfo(level, 2, GJDifficulty::Hard, 0);
             level->m_levelName = getAudioTitle(40);
             level->m_audioTrack = 40;
             level->m_coins = 3;
@@ -126,7 +126,7 @@ GJGameLevel* MyLevelTools::getLevel(int levelID, bool loaded) {
     return level;
 }
 
-void MyLevelTools::setLevelInfo(GJGameLevel* level, int stars, GJDifficulty difficulty, int coinsRequired, int frameTime) {
+void MyLevelTools::setLevelInfo(GJGameLevel* level, int stars, GJDifficulty difficulty, int coinsRequired) {
     level->m_stars = stars;
     level->m_difficulty = difficulty;
     level->m_requiredCoins = coinsRequired;
