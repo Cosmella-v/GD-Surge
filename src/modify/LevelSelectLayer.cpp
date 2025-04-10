@@ -20,18 +20,15 @@ bool MyLevelSelectLayer::init(int pageID) {
 
     m_scrollLayer->m_dots->removeAllObjects();
 
-    for(int i = 1; i < 2; i++) {
+    for(int i = 1; i < 11; i++) {
         m_scrollLayer->m_dynamicObjects->addObject(GameLevelManager::get()->getMainLevel(i, true));
     }
     auto towerLevel = GJGameLevel::create();
     towerLevel->m_levelID = -2;
-    auto islands = GJGameLevel::create();
-    islands->m_levelID = -3;
     auto comingSoon = GJGameLevel::create();
     comingSoon->m_levelID = -1;
 
     m_scrollLayer->m_dynamicObjects->addObject(towerLevel);
-    m_scrollLayer->m_dynamicObjects->addObject(islands);
     m_scrollLayer->m_dynamicObjects->addObject(comingSoon);
 
     auto batchNode = CCSpriteBatchNode::create("smallDot.png", 29);

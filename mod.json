@@ -15,6 +15,9 @@
 		"spritesheets": {
 			"TitleSheet": [
 				"res/TitleSheet/*.png"
+			],
+			"IslandsSheet": [
+				"res/IslandsSheet/*.png"
 			]
 		},
 		"files": [

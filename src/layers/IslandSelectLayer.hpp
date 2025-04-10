@@ -1,9 +1,9 @@
 #include <Geode/Geode.hpp>
-#include "WorldSelectLayer.hpp"
+#include "WorldSelectLayer.h"
 
 using namespace geode::prelude;
 
-class IslandSelectLayer : public WorldSelectLayerR {
+class IslandSelectLayer : public ownWorldSelectLayer {
 public:
-    bool init();
+    bool init(int page);
 };

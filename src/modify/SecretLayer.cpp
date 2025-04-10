@@ -158,5 +158,11 @@ void MySecretLayer::onSubmit(CCObject* sender) {
         m_messageLabel->setString("Do I look like the Wraith?");
         gm->reportAchievementWithID("geometry.ach.surge.vault01", 100, false);
         m_messageLabel->setColor({ 0, 255, 0 });
-    }        
+    }
+    
+    if (input == "i am robtop" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault02"))) {
+        m_messageLabel->setString("no you're not...");
+        gm->reportAchievementWithID("geometry.ach.surge.vault02", 100, false);
+        m_messageLabel->setColor({ 0, 255, 0 });
+    }  
 }

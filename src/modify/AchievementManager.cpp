@@ -10,60 +10,11 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.level01b", "All Bad", "Completed 'Badland' in Normal mode", "Complete 'Badland' in Normal mode", "icon_05", 1);
     AchievementManager::addAchievement("geometry.ach.surge.levelcoin01", "Ultimate Badland", "Collected all 3 Secret Coins on \'Badland\'", "Collect all 3 Secret Coins on \'Badland\'", "icon_06", 0);
 
-    AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_28", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault02", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_29", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault03", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "icon_30", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault04", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "ship_02", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault05", "Why??", "Of all codes, why \'Badland\'??", "A secret is required...", "color_17", 0);
-
-    // AchievementManager::addAchievement("geometry.ach.level02a", "Thunderbolt", "Completed \'Thunderzone\' in Practice mode", "Complete \'Thunderzone\' in Practice mode", "icon_10", 1);
-    // AchievementManager::addAchievement("geometry.ach.level02b", "Thunderzone!", "Completed \'Thunderzone\' in Normal mode", "Complete \'Thunderzone\' in Normal mode", "icon_06", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level03a", "Earthquake", "Completed \'Earthsplitter\' in Practice mode", "Complete \'Earthsplitter\' in Practice mode", "icon_11", 1);
-    // AchievementManager::addAchievement("geometry.ach.level03b", "Earthsplitter!", "Completed \'Earthsplitter\' in Normal mode", "Complete \'Earthsplitter\' in Normal mode", "icon_07", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level04a", "Game Over", "Completed \'Space Battle\' in Practice mode", "Complete \'Space Battle\' in Practice mode", "icon_12", 1);
-    // AchievementManager::addAchievement("geometry.ach.level04b", "Space Battle!", "Completed \'Space Battle\' in Normal mode", "Complete \'Space Battle\' in Normal mode", "icon_08", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level05a", "Powering Up", "Completed \'Power Glove\' in Practice mode", "Complete \'Power Glove\' in Practice mode", "icon_18", 1);
-    // AchievementManager::addAchievement("geometry.ach.level05b", "Power Glove!", "Completed \'Power Glove\' in Normal mode", "Complete \'Power Glove\' in Normal mode", "icon_13", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level06a", "Sweet Revenge", "Completed \'Payback\' in Practice mode", "Complete \'Payback\' in Practice mode", "icon_19", 1);
-    // AchievementManager::addAchievement("geometry.ach.level06b", "Payback!", "Completed \'Payback\' in Normal mode", "Complete \'Payback\' in Normal mode", "icon_14", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level07a", "Gaining Power", "Completed \'Hypercharged\' in Practice mode", "Complete \'Hypercharged\' in Practice mode", "icon_20", 1);
-    // AchievementManager::addAchievement("geometry.ach.level07b", "Hypercharged!", "Completed \'Hypercharged\' in Normal mode", "Complete \'Hypercharged\' in Normal mode", "icon_15", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level08a", "Pleasantry", "Completed \'Reverie\' in Practice mode", "Complete \'Reverie\' in Practice mode", "icon_21", 1);
-    // AchievementManager::addAchievement("geometry.ach.level08b", "Reverie!", "Completed \'Reverie\' in Normal mode", "Complete \'Reverie\' in Normal mode", "icon_16", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level09a", "Nuclear Attack", "Completed \'Ground Zero\' in Practice mode", "Complete \'Ground Zero\' in Practice mode", "icon_22", 1);
-    // AchievementManager::addAchievement("geometry.ach.level09b", "Ground Zero!", "Completed \'Ground Zero\' in Normal mode", "Complete \'Ground Zero\' in Normal mode", "icon_17", 1);
-
-    // AchievementManager::addAchievement("geometry.ach.level10a", "Light Speed", "Completed \'Ultrasonic\' in Practice mode", "Complete \'Ultrasonic\' in Practice mode", "icon_23", 1);
-    // AchievementManager::addAchievement("geometry.ach.level10b", "Ultrasonic!", "Completed \'Ultrasonic\' in Normal mode", "Complete \'Ultrasonic\' in Normal mode", "swing_02", 1);
-    
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin01", "Ultimate Active", "Collected all 3 Secret Coins on \'Active\'", "Collect all 3 Secret Coins on \'Active\'", "color_12", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin02", "Ultimate Thunderzone", "Collected all 3 Secret Coins on \'Thunderzone\'", "Collect all 3 Secret Coins on \'Thunderzone\'", "color2_8", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin03", "Ultimate Earthsplitter", "Collected all 3 Secret Coins on \'Earthsplitter\'", "Collect all 3 Secret Coins on \'Earthsplitter\'", "color_40", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin04", "Ultimate Space Battle", "Collected all 3 Secret Coins on \'Space Battle\'", "Collect all 3 Secret Coins on \'Space Battle\'", "color2_12", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin05", "Ultimate Power Glove", "Collected all 3 Secret Coins on \'Power Glove\'", "Collect all 3 Secret Coins on \'Power Glove\'", "color_5", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin06", "Ultimate Payback", "Collected all 3 Secret Coins on \'Payback\'", "Collect all 3 Secret Coins on \'Payback\'", "color_18", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin07", "Ultimate Hypercharged", "Collected all 3 Secret Coins on \'Hypercharged\'", "Collect all 3 Secret Coins on \'Hypercharged\'", "color_20", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin08", "Ultimate Reverie", "Collected all 3 Secret Coins on \'Reverie\'", "Collect all 3 Secret Coins on \'Reverie\'", "color_21", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin09", "Ultimate Ground Zero", "Collected all 3 Secret Coins on \'Ground Zero\'", "Collect all 3 Secret Coins on \'Ground Zero\'", "special_02", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.levelcoin10", "Ultimate Ultrasonic!", "Collected all 3 Secret Coins on \'Ultrasonic\'", "Collect all 3 Secret Coins on \'Ultrasonic\'", "robot_03", 0);
-
-    // //AchievementManager::addAchievement("geometry.ach.lunar.ultimate", "Ultimate Lunar!", "Completed all levels with all 3 Secret Coins", "Complete all levels with all 3 Secret Coins", "special_02", 0);
-
-
-    // AchievementManager::addAchievement("geometry.ach.lunar.vault01", "Attention, please!", "Found the secret", "A secret is required", "icon_28", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.vault02", "Bingo!", "Found the secret", "A secret is required", "icon_29", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.vault03", "Among the stars", "Found the secret", "A secret is required", "ship_02", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.vault04", "What was that word again?", "Found the secret", "A secret is required", "icon_30", 0);
-    // AchievementManager::addAchievement("geometry.ach.lunar.vault05", "Time and Space", "Found the secret", "A secret is required", "color_17", 0);
-
-    // AchievementManager::addAchievement("geometry.ach.lunar.percent01", "Tough Luck", "Died past 60% on Ultrasonic", "Die past 60% on Ultrasonic", "color2_15", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Entered code \'Badland\' in The Vault", "A secret is required", "icon_28", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault02", "I'm not RobTop", "Entered code \'I am RobTop\' in The Vault", "A secret is required", "icon_485", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault03", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "icon_30", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault04", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "ship_02", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault05", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "color_17", 0);
 
     AchievementManager::addAchievement("geometry.ach.demon01", "Reflex Champion", "Completed a Demon difficulty level in Normal mode", "Complete a Demon difficulty level in Normal mode", "icon_35", 1);
 
