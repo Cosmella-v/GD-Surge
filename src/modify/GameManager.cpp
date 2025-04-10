@@ -15,24 +15,8 @@ using namespace geode::prelude;
 //     return ret;
 // }
 
-CCTexture2D* MyGameManager::loadIcon(int iconID, int iconType, int _idk) {
-    if(iconID == 2) {
-        if(iconType == 1 || iconType == 2 || iconType == 3 || iconType == 7 || iconType == 8) {
-            return nullptr;
-        }
-    }
-    //if(iconType == 5) {
-    //    if(iconID == 2 || iconID == 3) {
-    //        return nullptr;
-    //    }
-    //}
-
-    if(iconType == 0) {
-        if(iconID < 31 && iconID > 12) {
-            return nullptr;
-        }
-    }
-    return GameManager::loadIcon(iconID, iconType, _idk);
+void MyGameManager::unloadIcon(int request) {
+    
 }
 
 void MyGameManager::dataLoaded(DS_Dictionary* dict) {

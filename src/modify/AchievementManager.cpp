@@ -5,7 +5,6 @@
 using namespace geode::prelude;
 
 void MyAchievementManager::addManualAchievements() {
-
     AchievementManager::addAchievement("geometry.ach.level01a", "Not Bad", "Completed 'Badland' in Practice mode", "Complete 'Badland' in Practice mode", "icon_09", 1);
     AchievementManager::addAchievement("geometry.ach.level01b", "All Bad", "Completed 'Badland' in Normal mode", "Complete 'Badland' in Normal mode", "icon_05", 1);
     AchievementManager::addAchievement("geometry.ach.surge.levelcoin01", "Ultimate Badland", "Collected all 3 Secret Coins on \'Badland\'", "Collect all 3 Secret Coins on \'Badland\'", "icon_06", 0);
@@ -66,9 +65,4 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.secret03", "Godlike!", "Destroyed 200 players", "A secret is required", "icon_39", 0);
     AchievementManager::addAchievement("geometry.ach.secret03b", "Wickedsick!", "Destroyed 500 players", "A secret is required", "ball_12", 0);
     AchievementManager::addAchievement("geometry.ach.secret04", "Master Detective", "Found the hidden coin", "A hidden treasure is required", "color2_21", 0);
-
-
-    #ifdef GEODE_IS_WINDOWS
-    AchievementManager::addAchievement("geometry.ach.steam01", "Steamrolling!", "Completed level 1-3 in Normal mode (Steam Exclusive)", "Complete level 1-3 in Normal mode (Steam Exclusive)", "icon_47", 0);
-    #endif
 }

@@ -4,8 +4,11 @@
 
 class $modify(MyGameManager, GameManager) {
     // gd::string sheetNameForIcon(int iconID, int iconType);
-    cocos2d::CCTexture2D* loadIcon(int iconID, int iconType, int _idk);
-
+    // cocos2d::CCTexture2D* loadIcon(int iconID, int iconType, int _idk);
+    
     $override
     void dataLoaded(DS_Dictionary*);
+
+    $override
+    void unloadIcon(int request);
 };
