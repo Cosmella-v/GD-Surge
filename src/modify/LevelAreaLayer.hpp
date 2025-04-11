@@ -6,5 +6,5 @@ using namespace geode::prelude;
 class $modify(MyLevelAreaLayer, LevelAreaLayer) {
 public:
     bool init();
-    void onIslands(CCObject* selector);
+    void onIslands(CCObject* sender);
 };

@@ -23,7 +23,7 @@ bool MyLevelAreaLayer::init() {
     return true;
 }
 
-void MyLevelAreaLayer::onIslands(CCObject* selector) {
+void MyLevelAreaLayer::onIslands(CCObject* sender) {
     auto scene = CCTransitionFade::create(0.5f, IslandSelectLayer::scene(0));
     CCDirector::sharedDirector()->pushScene(scene);
 }
