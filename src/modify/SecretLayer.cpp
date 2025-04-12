@@ -164,5 +164,10 @@ void MySecretLayer::onSubmit(CCObject* sender) {
         m_messageLabel->setString("no you're not...");
         gm->reportAchievementWithID("geometry.ach.surge.vault02", 100, false);
         m_messageLabel->setColor({ 0, 255, 0 });
-    }  
+    }
+    if (input == "rod's basement" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03))) {
+        m_messageLabel->setString("Come in...");
+        gm->reportAchievementWithID("geometry.ach.surge.vault03", 100, false);
+        m_messageLabel->setColor({ 0, 255, 0 });
+    }
 }
