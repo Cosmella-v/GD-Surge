@@ -6,3 +6,4 @@ Edit about.md to change this
 
 OmgRod - Developer
 BitZ - GD World
+Capeling - GD Lunar code
