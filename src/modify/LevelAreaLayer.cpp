@@ -12,7 +12,7 @@ bool MyLevelAreaLayer::init() {
     menu->setContentSize({ winSize.width / 4, winSize.height });
 
     auto button = CCMenuItemSpriteExtra::create(
-        CCSprite::createWithSpriteFrameName("worldIsland_01.png"_spr),
+        CircleButtonSprite::create(CCSprite::createWithSpriteFrameName("worldIsland_01.png"_spr), CircleBaseColor::Green, CircleBaseSize::Medium),
         this,
         menu_selector(MyLevelAreaLayer::onIslands)
     );
