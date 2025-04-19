@@ -1,10 +1,16 @@
 #include "SecretLayer.hpp"
+#include <ctime>
+#include <algorithm>
 
 using namespace geode::prelude;
 
-static int lastIndex = -1;
+// Static member definitions
+int MySecretLayer::lastIndex = -1;
+int normalMessages = 0;
+bool isRiddle = false;
+MySecretLayer::VaultCode* selectedRiddle = nullptr;
 
-std::vector<std::string> messages = {
+std::vector<std::string> MySecretLayer::messages = {
     "What are you poking around for?",
     "Don't you have better things to do?",
     "There is no spoo",
@@ -137,10 +143,41 @@ std::vector<std::string> messages = {
     "Congratulations. You've unlocked... absolutely nothing."
 };
 
+std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
+    VaultCode{
+        "badland",
+        []() {
+            auto array = CCArray::create();
+            array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
+            array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+            return array;
+        },
+        []() -> bool { return true; }
+    },
+    VaultCode{
+        "i am robtop",
+        []() {
+            auto array = CCArray::create();
+            array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
+            array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+            return array;
+        },
+        []() -> bool { return true; }
+    },
+    VaultCode{
+        "rod's basement",
+        []() {
+            auto array = CCArray::create();
+            array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
+            array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+            return array;
+        },
+        []() -> bool { return true; }
+    }
+};
+
 bool MySecretLayer::init() {
     if (!SecretLayer::init()) return false;
-
-    // SecretLayer::init();
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
@@ -153,6 +190,8 @@ bool MySecretLayer::init() {
 
     m_messageLabel->setString(messages[index].c_str());
     m_messageLabel->setColor({ 255, 255, 255 });
+
+    m_searchInput->setAllowedChars(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
 
     return true;
 }
@@ -164,30 +203,48 @@ void MySecretLayer::onSubmit(CCObject* sender) {
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    int index;
-    do {
-        index = std::rand() % messages.size();
-    } while (index == lastIndex && messages.size() > 1);
+    if (normalMessages > 10) isRiddle = true;
 
-    lastIndex = index;
+    if (isRiddle) {
+        int randomIndex = std::rand() % MySecretLayer::vaultCodes.size();
+        VaultCode selectedVaultCode = MySecretLayer::vaultCodes[randomIndex];
 
-    m_messageLabel->setString(messages[index].c_str());
-    m_messageLabel->setColor({ 255, 255, 255 });
+        CCArray* riddles = selectedVaultCode.riddle();
+
+        if (riddles && riddles->count() > 0) {
+            CCString* riddleString = (CCString*)riddles->objectAtIndex(0);
+            
+            m_messageLabel->setString(riddleString->getCString());
+            m_messageLabel->setColor({ 0, 255, 255 });
+        }
+    } else {
+        normalMessages++;
+        int index;
+        do {
+            index = std::rand() % messages.size();
+        } while (index == lastIndex && messages.size() > 1);
+
+        lastIndex = index;
+
+        m_messageLabel->setString(messages[index].c_str());
+        m_messageLabel->setColor({ 255, 255, 255 });
+    }
 
     if (input == "badland" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault01"))) {
         m_messageLabel->setString("Do I look like the Wraith?");
-        gm->reportAchievementWithID("geometry.ach.surge.vault01", 100, false);
         m_messageLabel->setColor({ 0, 255, 0 });
+        gm->reportAchievementWithID("geometry.ach.surge.vault01", 100, false);
     }
     
     if (input == "i am robtop" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault02"))) {
         m_messageLabel->setString("no you're not...");
+        m_messageLabel->setColor({ 0, 255, 0 });
         gm->reportAchievementWithID("geometry.ach.surge.vault02", 100, false);
-        m_messageLabel->setColor({ 0, 255, 0 });
     }
-    if (input == "rodsbasement" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03"))) {
+    if (input == "rod's basement" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03")) && !(Mod::get()->getSavedValue<bool>("basement-unlocked"))) {
         m_messageLabel->setString("Come in...");
-        gm->reportAchievementWithID("geometry.ach.surge.vault03", 100, false);
         m_messageLabel->setColor({ 0, 255, 0 });
+        gm->reportAchievementWithID("geometry.ach.surge.vault03", 50, false);
+        Mod::get()->setSavedValue("basement-unlocked", true);
     }
 }
