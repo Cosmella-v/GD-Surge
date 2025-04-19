@@ -160,11 +160,11 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         []() {
             auto array = CCArray::create();
             array->addObject(CCString::create("Still poking around, huh?"));
-            array->addObject(CCString::create("I'm the guy who made this game, no doubt."));
-            array->addObject(CCString::create("Popcorn in hand, I watch you try,"));
+            array->addObject(CCString::create("I'm the guy who made this game."));
+            array->addObject(CCString::create("Popcorn in hand, I watch you try."));
             array->addObject(CCString::create("So here's the code - give it a sigh."));
-            array->addObject(CCString::create("It's simple, it's clear, you'll figure it out,"));
-            array->addObject(CCString::create("Just say my name, and you'll be out."));
+            array->addObject(CCString::create("It's simple, it's clear, figure it out."));
+            array->addObject(CCString::create("Just say my name, and you're out."));
             return array;
         },
         []() -> bool { return true; }
@@ -173,17 +173,17 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         "rod's basement",
         []() {
             auto array = CCArray::create();
-            array->addObject(CCString::create("Oh, you're still snooping around, huh?"));
-            array->addObject(CCString::create("Look, there's a place below where I keep stuff, it's true."));
-            array->addObject(CCString::create("The name's short, simple, yeah, that's the clue."));
-            array->addObject(CCString::create("It's not that hard, just think for a sec-"));
-            array->addObject(CCString::create("Who owns the basement? Yeah, it's a nickname check."));
-            array->addObject(CCString::create("Now, take that, slap it with what's below,"));
-            array->addObject(CCString::create("And boom, you got the code to let you go."));
+            array->addObject(CCString::create("Still snooping around, huh?"));
+            array->addObject(CCString::create("There's a place below, true."));
+            array->addObject(CCString::create("The name's short, simple, clue."));
+            array->addObject(CCString::create("It's not that hard, think a sec."));
+            array->addObject(CCString::create("Who owns the basement? Check."));
+            array->addObject(CCString::create("Now, take that, slap it below,"));
+            array->addObject(CCString::create("And boom, you got the code."));
             return array;
         },
         []() -> bool { return true; }
-    }
+    }    
 };
 
 bool MySecretLayer::init() {
