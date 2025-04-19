@@ -145,16 +145,20 @@ std::vector<std::string> MySecretLayer::messages = {
 };
 
 std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
-    // VaultCode{
-    //     "badland",
-    //     []() {
-    //         auto array = CCArray::create();
-    //         array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
-    //         array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
-    //         return array;
-    //     },
-    //     []() -> bool { return true; }
-    // },
+    VaultCode{
+        "badland",
+        []() {
+            auto array = CCArray::create();
+            // array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
+            // array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+            return array;
+        },
+        []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault01")); },
+        "Do I look like the Wraith?",
+        []() {
+            GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault01", 100, false);
+        }
+    },
     VaultCode{
         "i am robtop",
         []() {
@@ -167,7 +171,11 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
             array->addObject(CCString::create("Just say my name, and you're out."));
             return array;
         },
-        []() -> bool { return true; }
+        []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault02")); },
+        "no you're not...",
+        []() {
+            GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault02", 100, false);
+        }
     },
     VaultCode{
         "rod's basement",
@@ -182,7 +190,12 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
             array->addObject(CCString::create("And boom, you got the code."));
             return array;
         },
-        []() -> bool { return true; }
+        []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03")) && !(Mod::get()->getSavedValue<bool>("basement-unlocked")); },
+        "Come in...",
+        []() {
+            GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault03", 50, false);
+            Mod::get()->setSavedValue("basement-unlocked", true);
+        }
     }    
 };
 
@@ -209,45 +222,48 @@ bool MySecretLayer::init() {
 void MySecretLayer::onSubmit(CCObject* sender) {
     std::string input = m_searchInput->getString();
     std::transform(input.begin(), input.end(), input.begin(), ::tolower);
-    auto gm = GameManager::sharedState();
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
     if (normalMessages > 10) isRiddle = true;
 
     if (isRiddle) {
-        // Check if we are on a riddle, if not pick one.
         if (selectedRiddleIndex == -1) {
-            // Pick a random riddle only once at the start of the riddle session
             selectedRiddleIndex = std::rand() % MySecretLayer::vaultCodes.size();
-            currentRiddleIndex = 0;  // Start from the first line of the selected riddle
+            currentRiddleIndex = 0;
         }
 
-        // Get the selected vault code (riddle) based on the index
         VaultCode selectedVaultCode = MySecretLayer::vaultCodes[selectedRiddleIndex];
 
-        // Get the riddles associated with the selected vault code
         CCArray* riddles = selectedVaultCode.riddle();
 
-        // Ensure we have riddles and that we're not out of bounds
         if (riddles && riddles->count() > 0) {
             CCString* riddleString = (CCString*)riddles->objectAtIndex(currentRiddleIndex);
 
             m_messageLabel->setString(riddleString->getCString());
             m_messageLabel->setColor({ 0, 255, 255 });
 
-            // Increment the index to move to the next riddle line
             currentRiddleIndex++;
 
-            // If the riddle is complete, reset and stop riddles
             if (currentRiddleIndex >= riddles->count()) {
-                isRiddle = false;            // Stop the riddle
-                normalMessages = 1;          // Reset normal messages
-                selectedRiddleIndex = -1;    // Reset riddle selection
-                currentRiddleIndex = 0;      // Reset riddle index for the next time
+                isRiddle = false;
+                normalMessages = 1;
+                selectedRiddleIndex = -1;
+                currentRiddleIndex = 0;
             }
         }
     } else {
+        for (const VaultCode& vaultCode : MySecretLayer::vaultCodes) {
+            if (input == vaultCode.code && vaultCode.condition()) {
+                m_messageLabel->setString(vaultCode.successText);
+                m_messageLabel->setColor({ 0, 255, 0 });
+
+                vaultCode.onSuccess();
+
+                return;
+            }
+        }
+
         normalMessages++;
         int index;
         do {
@@ -258,24 +274,5 @@ void MySecretLayer::onSubmit(CCObject* sender) {
 
         m_messageLabel->setString(messages[index].c_str());
         m_messageLabel->setColor({ 255, 255, 255 });
-    }
-
-    // Check for special code inputs and trigger corresponding achievements
-    if (input == "badland" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault01"))) {
-        m_messageLabel->setString("Do I look like the Wraith?");
-        m_messageLabel->setColor({ 0, 255, 0 });
-        gm->reportAchievementWithID("geometry.ach.surge.vault01", 100, false);
-    }
-    
-    if (input == "i am robtop" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault02"))) {
-        m_messageLabel->setString("no you're not...");
-        m_messageLabel->setColor({ 0, 255, 0 });
-        gm->reportAchievementWithID("geometry.ach.surge.vault02", 100, false);
-    }
-    if (input == "rod's basement" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03")) && !(Mod::get()->getSavedValue<bool>("basement-unlocked"))) {
-        m_messageLabel->setString("Come in...");
-        m_messageLabel->setColor({ 0, 255, 0 });
-        gm->reportAchievementWithID("geometry.ach.surge.vault03", 50, false);
-        Mod::get()->setSavedValue("basement-unlocked", true);
     }
 }

@@ -16,8 +16,10 @@ class $modify(MySecretLayer, SecretLayer) {
     // Vault codes with conditions and riddles
     struct VaultCode {
         std::string code;
-        std::function<CCArray*()> riddle;   // Riddle to guide the player to guess the code
-        std::function<bool()> condition;  // Condition for showing the riddle
+        std::function<CCArray*()> riddle;
+        std::function<bool()> condition;
+        const char* successText;
+        std::function <void()> onSuccess;
     };
     static std::vector<VaultCode> vaultCodes;
     static std::unordered_map<std::string, int> riddleProgress;
