@@ -8,8 +8,8 @@ using namespace geode::prelude;
 int MySecretLayer::lastIndex = -1;
 int normalMessages = 0;
 bool isRiddle = false;
-MySecretLayer::VaultCode* selectedRiddle = nullptr;
 int currentRiddleIndex = 0;
+int selectedRiddleIndex = -1;
 
 std::vector<std::string> MySecretLayer::messages = {
     "What are you poking around for?",
@@ -216,23 +216,35 @@ void MySecretLayer::onSubmit(CCObject* sender) {
     if (normalMessages > 10) isRiddle = true;
 
     if (isRiddle) {
-        int randomIndex = std::rand() % MySecretLayer::vaultCodes.size();
-        VaultCode selectedVaultCode = MySecretLayer::vaultCodes[randomIndex];
+        // Check if we are on a riddle, if not pick one.
+        if (selectedRiddleIndex == -1) {
+            // Pick a random riddle only once at the start of the riddle session
+            selectedRiddleIndex = std::rand() % MySecretLayer::vaultCodes.size();
+            currentRiddleIndex = 0;  // Start from the first line of the selected riddle
+        }
 
+        // Get the selected vault code (riddle) based on the index
+        VaultCode selectedVaultCode = MySecretLayer::vaultCodes[selectedRiddleIndex];
+
+        // Get the riddles associated with the selected vault code
         CCArray* riddles = selectedVaultCode.riddle();
 
+        // Ensure we have riddles and that we're not out of bounds
         if (riddles && riddles->count() > 0) {
             CCString* riddleString = (CCString*)riddles->objectAtIndex(currentRiddleIndex);
-            
+
             m_messageLabel->setString(riddleString->getCString());
             m_messageLabel->setColor({ 0, 255, 255 });
 
+            // Increment the index to move to the next riddle line
             currentRiddleIndex++;
 
+            // If the riddle is complete, reset and stop riddles
             if (currentRiddleIndex >= riddles->count()) {
-                isRiddle = false;
-                normalMessages = 1;
-                currentRiddleIndex = 0;
+                isRiddle = false;            // Stop the riddle
+                normalMessages = 1;          // Reset normal messages
+                selectedRiddleIndex = -1;    // Reset riddle selection
+                currentRiddleIndex = 0;      // Reset riddle index for the next time
             }
         }
     } else {
@@ -248,6 +260,7 @@ void MySecretLayer::onSubmit(CCObject* sender) {
         m_messageLabel->setColor({ 255, 255, 255 });
     }
 
+    // Check for special code inputs and trigger corresponding achievements
     if (input == "badland" && !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault01"))) {
         m_messageLabel->setString("Do I look like the Wraith?");
         m_messageLabel->setColor({ 0, 255, 0 });
