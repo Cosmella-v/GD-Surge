@@ -20,7 +20,7 @@ bool MyLevelSelectLayer::init(int pageID) {
 
     m_scrollLayer->m_dots->removeAllObjects();
 
-    for(int i = 1; i < 11; i++) {
+    for(int i = 1; i < 7; i++) {
         m_scrollLayer->m_dynamicObjects->addObject(GameLevelManager::get()->getMainLevel(i, true));
     }
     auto towerLevel = GJGameLevel::create();

@@ -11,9 +11,9 @@ void MyAchievementManager::addManualAchievements() {
 
     AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Entered code \'Badland\' in The Vault", "A secret is required", "icon_28", 0);
     AchievementManager::addAchievement("geometry.ach.surge.vault02", "I'm not RobTop", "Entered code \'I am RobTop\' in The Vault", "A secret is required", "icon_485", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault03", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "icon_30", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault04", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "ship_02", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault05", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "color_17", 0);
+    // AchievementManager::addAchievement("geometry.ach.surge.vault03", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "icon_30", 0);
+    // AchievementManager::addAchievement("geometry.ach.surge.vault04", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "ship_02", 0);
+    // AchievementManager::addAchievement("geometry.ach.surge.vault05", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "color_17", 0);
 
     AchievementManager::addAchievement("geometry.ach.demon01", "Reflex Champion", "Completed a Demon difficulty level in Normal mode", "Complete a Demon difficulty level in Normal mode", "icon_35", 1);
 

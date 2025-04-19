@@ -5,4 +5,5 @@
 class $modify(MySecretLayer, SecretLayer) {
     $override
     void onSubmit(CCObject* sender);
+    bool init();
 };
