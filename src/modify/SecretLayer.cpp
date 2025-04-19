@@ -9,6 +9,7 @@ int MySecretLayer::lastIndex = -1;
 int normalMessages = 0;
 bool isRiddle = false;
 MySecretLayer::VaultCode* selectedRiddle = nullptr;
+int currentRiddleIndex = 0;
 
 std::vector<std::string> MySecretLayer::messages = {
     "What are you poking around for?",
@@ -212,10 +213,18 @@ void MySecretLayer::onSubmit(CCObject* sender) {
         CCArray* riddles = selectedVaultCode.riddle();
 
         if (riddles && riddles->count() > 0) {
-            CCString* riddleString = (CCString*)riddles->objectAtIndex(0);
+            CCString* riddleString = (CCString*)riddles->objectAtIndex(currentRiddleIndex);
             
             m_messageLabel->setString(riddleString->getCString());
             m_messageLabel->setColor({ 0, 255, 255 });
+
+            currentRiddleIndex++;
+
+            if (currentRiddleIndex >= riddles->count()) {
+                isRiddle = false;
+                normalMessages = 1;
+                currentRiddleIndex = 0;
+            }
         }
     } else {
         normalMessages++;
