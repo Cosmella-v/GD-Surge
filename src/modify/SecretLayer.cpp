@@ -145,22 +145,26 @@ std::vector<std::string> MySecretLayer::messages = {
 };
 
 std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
-    VaultCode{
-        "badland",
-        []() {
-            auto array = CCArray::create();
-            array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
-            array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
-            return array;
-        },
-        []() -> bool { return true; }
-    },
+    // VaultCode{
+    //     "badland",
+    //     []() {
+    //         auto array = CCArray::create();
+    //         array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
+    //         array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+    //         return array;
+    //     },
+    //     []() -> bool { return true; }
+    // },
     VaultCode{
         "i am robtop",
         []() {
             auto array = CCArray::create();
-            array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
-            array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+            array->addObject(CCString::create("Still poking around, huh?"));
+            array->addObject(CCString::create("I'm the guy who made this game, no doubt."));
+            array->addObject(CCString::create("Popcorn in hand, I watch you try,"));
+            array->addObject(CCString::create("So here's the code - give it a sigh."));
+            array->addObject(CCString::create("It's simple, it's clear, you'll figure it out,"));
+            array->addObject(CCString::create("Just say my name, and you'll be out."));
             return array;
         },
         []() -> bool { return true; }
@@ -169,8 +173,13 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         "rod's basement",
         []() {
             auto array = CCArray::create();
-            array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
-            array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+            array->addObject(CCString::create("Oh, you're still snooping around, huh?"));
+            array->addObject(CCString::create("Look, there's a place below where I keep stuff, it's true."));
+            array->addObject(CCString::create("The name's short, simple, yeah, that's the clue."));
+            array->addObject(CCString::create("It's not that hard, just think for a sec-"));
+            array->addObject(CCString::create("Who owns the basement? Yeah, it's a nickname check."));
+            array->addObject(CCString::create("Now, take that, slap it with what's below,"));
+            array->addObject(CCString::create("And boom, you got the code to let you go."));
             return array;
         },
         []() -> bool { return true; }
