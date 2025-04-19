@@ -1803,7 +1803,7 @@ void ownWorldSelectLayer::keyBackClicked() {
     Mod::get()->setSavedValue("onsubzero", back);
     Mod::get()->setSavedValue("onworldpages", back);
     //Mod::get()->getSavedValue<int>("onworldpages");
-    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, MenuLayer::scene(false)));
+    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, LevelAreaLayer::scene()));
 }
 
 void ownWorldSelectLayer::onWorldLevel(CCObject* sender) {

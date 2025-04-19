@@ -1,8 +1,16 @@
-# Template Mod
+# Geometry Dash: Surge
 
-Edit about.md to change this
+<cr>WARNING: This mod creates a new save file on install. To switch back, please disable the mod. Just in case, please back up your save before installing the mod. Thank you.</c>
+
+## Features
+
+- 6 <cb>Classic Levels</c>
+- 20 <cy>Platformer Levels</c>
+- New <cr>Vault codes</c>
+- New <cp>shopkeeper</c>
 
 ## Credits
 
-OmgRod - Developer
-BitZ - GD World
+- OmgRod - Developer
+- BitZ - GD World
+- Capeling - GD Lunar code
