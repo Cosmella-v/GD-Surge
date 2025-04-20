@@ -149,8 +149,8 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         "badland",
         []() {
             auto array = CCArray::create();
-            // array->addObject(CCString::create("I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?"));
-            // array->addObject(CCString::create("I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, and I can drown. What am I?"));
+            array->addObject(CCString::create("badland riddle test"));
+            array->addObject(CCString::create("wtf is this"));
             return array;
         },
         []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault01")); },
@@ -229,12 +229,26 @@ void MySecretLayer::onSubmit(CCObject* sender) {
 
     if (isRiddle) {
         if (selectedRiddleIndex == -1) {
-            selectedRiddleIndex = std::rand() % MySecretLayer::vaultCodes.size();
+            std::vector<int> validIndices;
+            for (int i = 0; i < MySecretLayer::vaultCodes.size(); ++i) {
+                if (MySecretLayer::vaultCodes[i].condition()) {
+                    validIndices.push_back(i);
+                }
+            }
+
+            if (validIndices.empty()) {
+                isRiddle = false;
+                selectedRiddleIndex = -1;
+                currentRiddleIndex = 0;
+                goto fallback_to_normal;
+            }
+
+            int randomPick = std::rand() % validIndices.size();
+            selectedRiddleIndex = validIndices[randomPick];
             currentRiddleIndex = 0;
         }
 
         VaultCode selectedVaultCode = MySecretLayer::vaultCodes[selectedRiddleIndex];
-
         CCArray* riddles = selectedVaultCode.riddle();
 
         if (riddles && riddles->count() > 0) {
@@ -253,6 +267,7 @@ void MySecretLayer::onSubmit(CCObject* sender) {
             }
         }
     } else {
+fallback_to_normal:
         for (const VaultCode& vaultCode : MySecretLayer::vaultCodes) {
             if (input == vaultCode.code && vaultCode.condition()) {
                 m_messageLabel->setString(vaultCode.successText);
