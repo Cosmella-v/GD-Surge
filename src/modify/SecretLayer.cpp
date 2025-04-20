@@ -225,6 +225,24 @@ void MySecretLayer::onSubmit(CCObject* sender) {
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
+    // First, always check if the input matches a valid vault code
+    for (const VaultCode& vaultCode : MySecretLayer::vaultCodes) {
+        if (input == vaultCode.code && vaultCode.condition()) {
+            m_messageLabel->setString(vaultCode.successText);
+            m_messageLabel->setColor({ 0, 255, 0 });
+
+            vaultCode.onSuccess();
+
+            // Reset riddle state in case we were in riddle mode
+            isRiddle = false;
+            selectedRiddleIndex = -1;
+            currentRiddleIndex = 0;
+            normalMessages = 0;
+
+            return;
+        }
+    }
+
     if (normalMessages > 10) isRiddle = true;
 
     if (isRiddle) {
@@ -265,29 +283,20 @@ void MySecretLayer::onSubmit(CCObject* sender) {
                 selectedRiddleIndex = -1;
                 currentRiddleIndex = 0;
             }
+
+            return; // Prevent fallback from running
         }
-    } else {
-fallback_to_normal:
-        for (const VaultCode& vaultCode : MySecretLayer::vaultCodes) {
-            if (input == vaultCode.code && vaultCode.condition()) {
-                m_messageLabel->setString(vaultCode.successText);
-                m_messageLabel->setColor({ 0, 255, 0 });
-
-                vaultCode.onSuccess();
-
-                return;
-            }
-        }
-
-        normalMessages++;
-        int index;
-        do {
-            index = std::rand() % messages.size();
-        } while (index == lastIndex && messages.size() > 1);
-
-        lastIndex = index;
-
-        m_messageLabel->setString(messages[index].c_str());
-        m_messageLabel->setColor({ 255, 255, 255 });
     }
+
+fallback_to_normal:
+    normalMessages++;
+    int index;
+    do {
+        index = std::rand() % messages.size();
+    } while (index == lastIndex && messages.size() > 1);
+
+    lastIndex = index;
+
+    m_messageLabel->setString(messages[index].c_str());
+    m_messageLabel->setColor({ 255, 255, 255 });
 }
