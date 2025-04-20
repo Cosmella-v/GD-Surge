@@ -6,8 +6,8 @@
 
 - 6 <cb>Classic Levels</c>
 - 20 <cy>Platformer Levels</c>
-- New <cr>Vault codes</c>
-- New <cp>shopkeeper</c>
+- New <cr>Vault Codes</c>
+- New <cp>Shopkeeper</c>
 
 ## Credits
 

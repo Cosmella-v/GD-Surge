@@ -10,12 +10,12 @@ bool MyLevelTools::verifyLevelIntegrity(gd::string verifyString, int levelID) {
 gd::string MyLevelTools::getAudioTitle(int audioID) {
     switch(audioID) {
         case -1: return "Stay Inside Me";
-        case 40: return "Badland";
-        case 41: return "Unstable Geometry";
-        case 42: return "Tomb";
-        case 43: return "Detour";
-        case 44: return "The Beginning of Time";
-        case 45: return "Thermodynamix";
+        case 0: return "Badland";
+        case 1: return "Unstable Geometry";
+        case 2: return "Tomb";
+        case 3: return "Detour";
+        case 4: return "The Beginning of Time";
+        case 5: return "Thermodynamix";
         default: return "";
     }
 }
@@ -23,12 +23,12 @@ gd::string MyLevelTools::getAudioTitle(int audioID) {
 gd::string MyLevelTools::getAudioFileName(int audioID) {
     switch(audioID) {
         case -1: return "StayInsideMe.mp3";
-        case 40: return "Badland.mp3"_spr;
-        case 41: return "UnstableGeometry.mp3"_spr;
-        case 42: return "Tomb.mp3"_spr;
-        case 43: return "Detour.mp3"_spr;
-        case 44: return "TheBeginningOfTime.mp3"_spr;
-        case 45: return "Thermodynamix.mp3"_spr;
+        case 0: return "Badland.mp3"_spr;
+        case 1: return "UnstableGeometry.mp3"_spr;
+        case 2: return "Tomb.mp3"_spr;
+        case 3: return "Detour.mp3"_spr;
+        case 4: return "TheBeginningOfTime.mp3"_spr;
+        case 5: return "Thermodynamix.mp3"_spr;
         default: return "";
     }
 }
@@ -46,12 +46,12 @@ gd::string MyLevelTools::nameForArtist(int artistID) {
 gd::string MyLevelTools::urlForAudio(int audioID) {
     switch(audioID) {
         case -1: return "https://www.youtube.com/watch?v=5Epc1Beme90";
-        case 40: return "https://www.youtube.com/watch?v=LfgzPpmjM0M";
-        case 41: return "https://www.youtube.com/watch?v=8S9ZpjyrP0A";
-        case 42: return "https://www.youtube.com/watch?v=k02da3gk0Yg";
-        case 43: return "https://www.youtube.com/watch?v=9Q6XICGoEaM";
-        case 44: return "https://www.youtube.com/watch?v=-66Vk9FqgMU";
-        case 45: return "https://www.youtube.com/watch?v=QUFIGUBrN3M";
+        case 0: return "https://www.youtube.com/watch?v=LfgzPpmjM0M";
+        case 1: return "https://www.youtube.com/watch?v=8S9ZpjyrP0A";
+        case 2: return "https://www.youtube.com/watch?v=k02da3gk0Yg";
+        case 3: return "https://www.youtube.com/watch?v=9Q6XICGoEaM";
+        case 4: return "https://www.youtube.com/watch?v=-66Vk9FqgMU";
+        case 5: return "https://www.youtube.com/watch?v=QUFIGUBrN3M";
         default: return "";
     }
 }
@@ -87,12 +87,12 @@ gd::string MyLevelTools::fbURLForArtist(int artistID) {
 int MyLevelTools::artistForAudio(int audioID) {
     switch(audioID) {
         case -1: return 4;
-        case 40: return 1;
-        case 41: return 2;
-        case 42: return 1;
-        case 43: return 1;
-        case 44: return 3;
-        case 45: return 3;
+        case 0: return 1;
+        case 1: return 2;
+        case 2: return 1;
+        case 3: return 1;
+        case 4: return 3;
+        case 5: return 3;
         default: return 0;
     }
 }
@@ -103,38 +103,38 @@ GJGameLevel* MyLevelTools::getLevel(int levelID, bool loaded) {
     switch(levelID) {
         case 1: 
             setLevelInfo(level, 4, GJDifficulty::Hard, 0);
-            level->m_levelName = getAudioTitle(40);
-            level->m_audioTrack = 40;
+            level->m_levelName = getAudioTitle(0);
+            level->m_audioTrack = 0;
             level->m_coins = 3;
             break;
         case 2:
             setLevelInfo(level, 6, GJDifficulty::Harder, 0);
-            level->m_levelName = getAudioTitle(41);
-            level->m_audioTrack = 41;
+            level->m_levelName = getAudioTitle(1);
+            level->m_audioTrack = 1;
             level->m_coins = 3;
             break;
         case 3:
             setLevelInfo(level, 7, GJDifficulty::Harder, 0);
-            level->m_levelName = getAudioTitle(42);
-            level->m_audioTrack = 42;
+            level->m_levelName = getAudioTitle(2);
+            level->m_audioTrack = 2;
             level->m_coins = 3;
             break;
         case 4:
             setLevelInfo(level, 8, GJDifficulty::Insane, 0);
-            level->m_levelName = getAudioTitle(43);
-            level->m_audioTrack = 43;
+            level->m_levelName = getAudioTitle(3);
+            level->m_audioTrack = 3;
             level->m_coins = 3;
             break;
         case 5:
             setLevelInfo(level, 5, GJDifficulty::Hard, 0);
-            level->m_levelName = getAudioTitle(44);
-            level->m_audioTrack = 44;
+            level->m_levelName = getAudioTitle(4);
+            level->m_audioTrack = 4;
             level->m_coins = 3;
             break;
         case 6:
             setLevelInfo(level, 10, GJDifficulty::Demon, 15);
-            level->m_levelName = getAudioTitle(45);
-            level->m_audioTrack = 45;
+            level->m_levelName = getAudioTitle(5);
+            level->m_audioTrack = 5;
             level->m_coins = 3;
             break;
     }

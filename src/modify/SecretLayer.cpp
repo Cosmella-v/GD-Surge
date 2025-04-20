@@ -6,10 +6,6 @@ using namespace geode::prelude;
 
 // Static member definitions
 int MySecretLayer::lastIndex = -1;
-int normalMessages = 0;
-bool isRiddle = false;
-int currentRiddleIndex = 0;
-int selectedRiddleIndex = -1;
 
 std::vector<std::string> MySecretLayer::messages = {
     "What are you poking around for?",
@@ -71,12 +67,12 @@ std::vector<std::string> MySecretLayer::messages = {
     "Maybe RubRub wants me to suffer...",
     "If I say the code, will you leave?",
     "I'm about to lose it, seriously.",
-    "Touch that again and I\'ll bite.",
+    "Touch that again and I'll bite.",
     "You're poking the wrong corner, buddy.",
     "No Easter Eggs here. Only regret.",
     "I've seen things... like YOU coming back again.",
     "Wanna hear a secret? Too bad.",
-    "I told you to stop, didn\'t I?",
+    "I told you to stop, didn't I?",
     "Why must you poke the void?",
     "You're opening things you shouldn't be touching.",
     "RubRub warned me about people like you.",
@@ -90,16 +86,16 @@ std::vector<std::string> MySecretLayer::messages = {
     "You're about to unlock... disappointment.",
     "If this is about the stars, I don't have them.",
     "This is why we can't have nice secret rooms.",
-    "I knew hiding it behind a fake wall wasn\'t enough.",
+    "I knew hiding it behind a fake wall wasn't enough.",
     "Do you even know what you're looking for?",
-    "Knock knock. Who\'s there? NOT YOU.",
+    "Knock knock. Who's there? NOT YOU.",
     "404: Entry denied.",
-    "This isn\'t what RubRub meant by 'exploration'.",
+    "This isn't what RubRub meant by 'exploration'.",
     "Do you feel accomplished yet?",
     "I had dreams once… then you showed up.",
-    "There\'s no treasure. Just me. And you. Unfortunately.",
+    "There's no treasure. Just me. And you. Unfortunately.",
     "Hey look, it's you again… joy.",
-    "This isn\'t a chatroom.",
+    "This isn't a chatroom.",
     "Your curiosity is... irritating.",
     "Keep pressing and see what happens. I dare you.",
     "One more press and I walk out.",
@@ -107,7 +103,7 @@ std::vector<std::string> MySecretLayer::messages = {
     "You won't find anything. Except my resentment.",
     "What if I told you this room was a fake?",
     "You're wasting your time here.",
-    "Guess who doesn\'t want you here? Me.",
+    "Guess who doesn't want you here? Me.",
     "The password is... haha no.",
     "RubRub's gonna hear about this!",
     "This is a certified no-touch zone.",
@@ -120,12 +116,12 @@ std::vector<std::string> MySecretLayer::messages = {
     "Oh sure, come in, press things, ignore warnings.",
     "Do you even know how many rules you're breaking?",
     "You press things like you're trying to get a prize.",
-    "Go away or I\'ll start rhyming.",
+    "Go away or I'll start rhyming.",
     "If you're trying to unlock something, try not being annoying.",
     "I swear, I had sanity before you arrived.",
     "Stop. Think. Then leave.",
     "This is the definition of trespassing.",
-    "You\'ve already found all the secrets. Probably.",
+    "You've already found all the secrets. Probably.",
     "What are you expecting, applause?",
     "No codes, no cookies, no hope.",
     "My patience level is lower than your star count.",
@@ -135,8 +131,8 @@ std::vector<std::string> MySecretLayer::messages = {
     "Ever heard of boundaries?",
     "I've been here since 2.0 and you're still annoying.",
     "I could be napping right now.",
-    "There\'s nothing here but disappointment.",
-    "Careful, you\'re gonna cause problems.",
+    "There's nothing here but disappointment.",
+    "Careful, you're gonna cause problems.",
     "If I had emotions, they'd be tired.",
     "Oh cool, you again. Yay.",
     "This vault is empty. Like your inbox.",
@@ -190,14 +186,19 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
             array->addObject(CCString::create("And boom, you got the code."));
             return array;
         },
-        []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03")) && !(Mod::get()->getSavedValue<bool>("basement-unlocked")); },
+        []() -> bool {
+            return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03"))
+                && !(Mod::get()->getSavedValue<bool>("basement-unlocked"));
+        },
         "Come in...",
         []() {
             GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault03", 50, false);
             Mod::get()->setSavedValue("basement-unlocked", true);
         }
-    }    
+    }
 };
+
+std::unordered_map<std::string, int> MySecretLayer::riddleProgress;
 
 bool MySecretLayer::init() {
     if (!SecretLayer::init()) return false;
@@ -225,78 +226,80 @@ void MySecretLayer::onSubmit(CCObject* sender) {
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    // First, always check if the input matches a valid vault code
-    for (const VaultCode& vaultCode : MySecretLayer::vaultCodes) {
+    for (const VaultCode& vaultCode : vaultCodes) {
         if (input == vaultCode.code && vaultCode.condition()) {
             m_messageLabel->setString(vaultCode.successText);
             m_messageLabel->setColor({ 0, 255, 0 });
 
             vaultCode.onSuccess();
 
-            // Reset riddle state in case we were in riddle mode
-            isRiddle = false;
-            selectedRiddleIndex = -1;
-            currentRiddleIndex = 0;
-            normalMessages = 0;
+            m_fields->isRiddle = false;
+            m_fields->selectedRiddleIndex = -1;
+            m_fields->currentRiddleIndex = 0;
+            m_fields->normalMessages = 0;
 
             return;
         }
     }
 
-    if (normalMessages > 10) isRiddle = true;
+    bool showedMessage = false;
 
-    if (isRiddle) {
-        if (selectedRiddleIndex == -1) {
+    if (m_fields->normalMessages > 10)
+        m_fields->isRiddle = true;
+
+    if (m_fields->isRiddle) {
+        if (m_fields->selectedRiddleIndex == -1) {
             std::vector<int> validIndices;
-            for (int i = 0; i < MySecretLayer::vaultCodes.size(); ++i) {
-                if (MySecretLayer::vaultCodes[i].condition()) {
+            for (int i = 0; i < vaultCodes.size(); ++i) {
+                if (vaultCodes[i].condition()) {
                     validIndices.push_back(i);
                 }
             }
 
-            if (validIndices.empty()) {
-                isRiddle = false;
-                selectedRiddleIndex = -1;
-                currentRiddleIndex = 0;
-                goto fallback_to_normal;
+            if (!validIndices.empty()) {
+                int randomPick = std::rand() % validIndices.size();
+                m_fields->selectedRiddleIndex = randomPick;
+                m_fields->currentRiddleIndex = 0;
+            } else {
+                m_fields->isRiddle = false;
+                m_fields->selectedRiddleIndex = -1;
+                m_fields->currentRiddleIndex = 0;
             }
-
-            int randomPick = std::rand() % validIndices.size();
-            selectedRiddleIndex = validIndices[randomPick];
-            currentRiddleIndex = 0;
         }
 
-        VaultCode selectedVaultCode = MySecretLayer::vaultCodes[selectedRiddleIndex];
-        CCArray* riddles = selectedVaultCode.riddle();
+        if (m_fields->isRiddle && m_fields->selectedRiddleIndex != -1) {
+            VaultCode& selectedVaultCode = vaultCodes[m_fields->selectedRiddleIndex];
+            CCArray* riddles = selectedVaultCode.riddle();
 
-        if (riddles && riddles->count() > 0) {
-            CCString* riddleString = (CCString*)riddles->objectAtIndex(currentRiddleIndex);
+            if (riddles && riddles->count() > 0) {
+                CCString* riddleString = (CCString*)riddles->objectAtIndex(m_fields->currentRiddleIndex);
+                m_messageLabel->setString(riddleString->getCString());
+                m_messageLabel->setColor({ 0, 255, 255 });
 
-            m_messageLabel->setString(riddleString->getCString());
-            m_messageLabel->setColor({ 0, 255, 255 });
+                m_fields->currentRiddleIndex++;
 
-            currentRiddleIndex++;
+                if (m_fields->currentRiddleIndex >= riddles->count()) {
+                    m_fields->isRiddle = false;
+                    m_fields->normalMessages = 1;
+                    m_fields->selectedRiddleIndex = -1;
+                    m_fields->currentRiddleIndex = 0;
+                }
 
-            if (currentRiddleIndex >= riddles->count()) {
-                isRiddle = false;
-                normalMessages = 1;
-                selectedRiddleIndex = -1;
-                currentRiddleIndex = 0;
+                showedMessage = true;
             }
-
-            return; // Prevent fallback from running
         }
     }
 
-fallback_to_normal:
-    normalMessages++;
-    int index;
-    do {
-        index = std::rand() % messages.size();
-    } while (index == lastIndex && messages.size() > 1);
+    if (!showedMessage) {
+        m_fields->normalMessages++;
+        int index;
+        do {
+            index = std::rand() % messages.size();
+        } while (index == lastIndex && messages.size() > 1);
 
-    lastIndex = index;
+        lastIndex = index;
 
-    m_messageLabel->setString(messages[index].c_str());
-    m_messageLabel->setColor({ 255, 255, 255 });
+        m_messageLabel->setString(messages[index].c_str());
+        m_messageLabel->setColor({ 255, 255, 255 });
+    }
 }
