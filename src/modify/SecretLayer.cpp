@@ -163,12 +163,12 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         "i am robtop",
         []() {
             auto array = CCArray::create();
-            array->addObject(CCString::create("Still poking around, huh?"));
-            array->addObject(CCString::create("I'm the guy who made this game."));
-            array->addObject(CCString::create("Popcorn in hand, I watch you try."));
-            array->addObject(CCString::create("So here's the code - give it a sigh."));
-            array->addObject(CCString::create("It's simple, it's clear, figure it out."));
-            array->addObject(CCString::create("Just say my name, and you're out."));
+            array->addObject(CCString::create("Still poking? Have some popcorn."));
+            array->addObject(CCString::create("I'm the dev, and I'm watching."));
+            array->addObject(CCString::create("Throwing popcorn, entertained."));
+            array->addObject(CCString::create("Here's the code - don't mess up."));
+            array->addObject(CCString::create("It's clear. Just think a bit."));
+            array->addObject(CCString::create("Say my name. Escape awaits."));
             return array;
         },
         []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault02")); },
