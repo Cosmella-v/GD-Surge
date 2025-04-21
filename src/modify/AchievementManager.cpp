@@ -32,6 +32,7 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Entered code 'Badland' in The Vault", "A secret is required", "dart_04", 0);
     AchievementManager::addAchievement("geometry.ach.surge.vault02", "I'm not RobTop", "Entered code 'I am RobTop' in The Vault", "A secret is required", "ball_05", 0);
     AchievementManager::addAchievement("geometry.ach.surge.vault03", "The Gauntlet", "Complete The Guard's special quest", "A secret is required", "ship_05", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault04", "Broken", "Entered code 'Shattered' in The Vault", "A secret is required", "ship_08", 0);
 
     // RobTop Achievements - Don't edit these
 

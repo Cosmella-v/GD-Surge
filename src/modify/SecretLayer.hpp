@@ -16,7 +16,7 @@ class $modify(MySecretLayer, SecretLayer) {
         std::string code;
         std::function<CCArray*()> riddle;
         std::function<bool()> condition;
-        const char* successText;
+        std::function<const char*()> successText;
         std::function<void()> onSuccess;
     };
     static std::vector<VaultCode> vaultCodes;

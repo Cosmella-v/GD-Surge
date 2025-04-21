@@ -1,4 +1,5 @@
 #include "SecretLayer.hpp"
+#include "Geode/binding/GameManager.hpp"
 #include <ctime>
 #include <algorithm>
 
@@ -145,16 +146,20 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         "badland",
         []() {
             auto array = CCArray::create();
-            array->addObject(CCString::create("badland riddle test"));
-            array->addObject(CCString::create("wtf is this"));
+            array->addObject(CCString::create("Where the journey starts anew"));
+            array->addObject(CCString::create("You think you're him? That's kinda cute."));
+            array->addObject(CCString::create("Darkness stirs, but you're no ghost"));
+            array->addObject(CCString::create("The first path, not the final boast"));
             return array;
         },
         []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault01")); },
-        "Do I look like the Wraith?",
+        []() -> const char* {
+            return "Do I look like the Wraith?";
+        },
         []() {
             GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault01", 100, false);
         }
-    },
+    },    
     VaultCode{
         "i am robtop",
         []() {
@@ -168,7 +173,9 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
             return array;
         },
         []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault02")); },
-        "no you're not...",
+        []() -> const char* {
+            return "no you're not...";
+        },
         []() {
             GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault02", 100, false);
         }
@@ -190,10 +197,32 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
             return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault03"))
                 && !(Mod::get()->getSavedValue<bool>("basement-unlocked"));
         },
-        "Come in...",
+        []() -> const char* {
+            return "Come in...";
+        },
         []() {
             GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault03", 50, false);
             Mod::get()->setSavedValue("basement-unlocked", true);
+        }
+    },
+    VaultCode{
+        "shattered",
+        []() {
+            auto array = CCArray::create();
+            array->addObject(CCString::create("A mirror once stood tall"));
+            array->addObject(CCString::create("Now cracked upon the wall"));
+            array->addObject(CCString::create("Truths break when they are said"));
+            array->addObject(CCString::create("What remains is shattered thread"));
+            return array;
+        },
+        []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04")); },
+        []() -> const char* {
+            // Store the formatted string in a temporary variable
+            std::string formatted = fmt::format("Wow, amazing work, {}", GameManager::sharedState()->m_playerName);
+            return formatted.c_str(); // Return the c_str, which is safe in this scope
+        },
+        []() {
+            GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault04", 100, false);
         }
     }
 };
@@ -228,7 +257,7 @@ void MySecretLayer::onSubmit(CCObject* sender) {
 
     for (const VaultCode& vaultCode : vaultCodes) {
         if (input == vaultCode.code && vaultCode.condition()) {
-            m_messageLabel->setString(vaultCode.successText);
+            m_messageLabel->setString(vaultCode.successText());
             m_messageLabel->setColor({ 0, 255, 0 });
 
             vaultCode.onSuccess();
