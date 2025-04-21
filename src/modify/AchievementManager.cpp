@@ -5,15 +5,35 @@
 using namespace geode::prelude;
 
 void MyAchievementManager::addManualAchievements() {
-    AchievementManager::addAchievement("geometry.ach.level01a", "Not Bad", "Completed 'Badland' in Practice mode", "Complete 'Badland' in Practice mode", "icon_09", 1);
-    AchievementManager::addAchievement("geometry.ach.level01b", "All Bad", "Completed 'Badland' in Normal mode", "Complete 'Badland' in Normal mode", "icon_05", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin01", "Ultimate Badland", "Collected all 3 Secret Coins on \'Badland\'", "Collect all 3 Secret Coins on \'Badland\'", "icon_06", 0);
+    AchievementManager::addAchievement("geometry.ach.level01a", "Not Bad", "Completed 'Badland' in Practice mode", "Complete 'Badland' in Practice mode", "ship_01", 1);
+    AchievementManager::addAchievement("geometry.ach.level01b", "All Bad", "Completed 'Badland' in Normal mode", "Complete 'Badland' in Normal mode", "ball_01", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin01", "Ultimate Badland", "Collected all 3 Secret Coins on \'Badland\'", "Collect all 3 Secret Coins on \'Badland\'", "ufo_01", 1);
 
-    AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Entered code \'Badland\' in The Vault", "A secret is required", "icon_28", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault02", "I'm not RobTop", "Entered code \'I am RobTop\' in The Vault", "A secret is required", "icon_485", 0);
-    AchievementManager::addAchievement("geometry.ach.surge.vault03", "The Gauntlet", "Complete The Guard's special quest", "A secret is required", "icon_30", 0);
-    // AchievementManager::addAchievement("geometry.ach.surge.vault04", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "ship_02", 0);
-    // AchievementManager::addAchievement("geometry.ach.surge.vault05", "Why??", "Of all codes, why \'Badland\'??", "A secret is required", "color_17", 0);
+    AchievementManager::addAchievement("geometry.ach.level02a", "Rising Star", "Completed 'Unstable Geometry' in Practice mode", "Complete 'Unstable Geometry' in Practice mode", "dart_01", 1);
+    AchievementManager::addAchievement("geometry.ach.level02b", "Steady Hand", "Completed 'Unstable Geometry' in Normal mode", "Complete 'Unstable Geometry' in Normal mode", "ship_02", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin02", "Ultimate Unstable Geometry", "Collected all 3 Secret Coins on \'Unstable Geometry\'", "Collect all 3 Secret Coins on \'Unstable Geometry\'", "robot_01", 1);
+
+    AchievementManager::addAchievement("geometry.ach.level03a", "Tomb Raider", "Completed 'Tomb' in Practice mode", "Complete 'Tomb' in Practice mode", "spider_01", 1);
+    AchievementManager::addAchievement("geometry.ach.level03b", "Grave Digger", "Completed 'Tomb' in Normal mode", "Complete 'Tomb' in Normal mode", "wave_01", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin03", "Ultimate Tomb", "Collected all 3 Secret Coins on \'Tomb\'", "Collect all 3 Secret Coins on \'Tomb\'", "swing_01", 1);
+
+    AchievementManager::addAchievement("geometry.ach.level04a", "Pathfinder", "Completed 'Detour' in Practice mode", "Complete 'Detour' in Practice mode", "ball_02", 1);
+    AchievementManager::addAchievement("geometry.ach.level04b", "Road Warrior", "Completed 'Detour' in Normal mode", "Complete 'Detour' in Normal mode", "ship_03", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin04", "Ultimate Detour", "Collected all 3 Secret Coins on \'Detour\'", "Collect all 3 Secret Coins on \'Detour\'", "robot_02", 1);
+
+    AchievementManager::addAchievement("geometry.ach.level05a", "Time Traveler", "Completed 'The Beginning of Time' in Practice mode", "Complete 'The Beginning of Time' in Practice mode", "wave_02", 1);
+    AchievementManager::addAchievement("geometry.ach.level05b", "Chrono Conqueror", "Completed 'The Beginning of Time' in Normal mode", "Complete 'The Beginning of Time' in Normal mode", "dart_02", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin05", "Ultimate Beginning", "Collected all 3 Secret Coins on \'The Beginning of Time\'", "Collect all 3 Secret Coins on \'The Beginning of Time\'", "swing_02", 1);
+
+    AchievementManager::addAchievement("geometry.ach.level06a", "Heat Seeker", "Completed 'Thermodynamix' in Practice mode", "Complete 'Thermodynamix' in Practice mode", "ball_06", 1);
+    AchievementManager::addAchievement("geometry.ach.level06b", "Thermo Master", "Completed 'Thermodynamix' in Normal mode", "Complete 'Thermodynamix' in Normal mode", "ship_04", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin06", "Ultimate Thermodynamix", "Collected all 3 Secret Coins on \'Thermodynamix\'", "Collect all 3 Secret Coins on \'Thermodynamix\'", "robot_03", 1);
+
+    AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Entered code 'Badland' in The Vault", "A secret is required", "dart_04", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault02", "I'm not RobTop", "Entered code 'I am RobTop' in The Vault", "A secret is required", "ball_05", 0);
+    AchievementManager::addAchievement("geometry.ach.surge.vault03", "The Gauntlet", "Complete The Guard's special quest", "A secret is required", "ship_05", 0);
+
+    // RobTop Achievements - Don't edit these
 
     AchievementManager::addAchievement("geometry.ach.demon01", "Reflex Champion", "Completed a Demon difficulty level in Normal mode", "Complete a Demon difficulty level in Normal mode", "icon_35", 1);
 

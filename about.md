@@ -11,6 +11,18 @@
 
 ## Credits
 
+### Development
+
 - OmgRod - Developer
 - BitZ - GD World
 - Capeling - GD Lunar code
+
+### Levels
+
+- OmgRod - Badland
+
+### Songs
+
+- Boom Kitty - Badland, Tomb, Detour
+- Waterflame - Unstable Geometry
+- dj-Nate - The Beginning of Time, Thermodynamix
