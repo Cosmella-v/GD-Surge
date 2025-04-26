@@ -4,7 +4,7 @@
 using namespace geode::prelude;
 
 void MyOptionsLayer::onAccount(CCObject* sender) {
-    FLAlertLayer::create("Geometry Dash: Surge", "This feature is currently <cr>unavailable</c> due to the possibility of getting <cy>leaderboard banned</c>. Sorry for the inconvenience.", "OK")->show();
+    FLAlertLayer::create("Geometry Dash: Surge", "This feature is currently <cr>unavailable</c> due to the possibility of getting <cy>leaderboard banned</c> and to prevent <ca>cheating</c>. Sorry for the inconvenience.", "OK")->show();
 }
 
 void MyOptionsLayer::onSecretVault(CCObject* sender) {

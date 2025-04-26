@@ -7,4 +7,5 @@ class $modify(MyLevelPage, LevelPage) {
 public:
     $override
     void onInfo(CCObject* sender);
+    bool init(GJGameLevel* level);
 };

@@ -53,9 +53,13 @@ ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
 
     auto GM = GameManager::sharedState();
     
-	int colIDs[12] = { 5, 7, 8, 9, 10, 11, 1, 3, 4, 5, 94, 8 };
-    if(colIDs[page % 12] == 94)
-        return {37, 44, 52};
+	int colIDs[8] = { 
+        5, 7, 8, 9, 10, 11, 1, 
+        AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04") ? 15 : 3 
+    };
+    
+    if (colIDs[page % 8] == 94)
+        return { 37, 44, 52 };    
 
-    return GM->colorForIdx(colIDs[page % 12]);
+    return GM->colorForIdx(colIDs[page % 8]);
 }
