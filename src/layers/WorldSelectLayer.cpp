@@ -7,7 +7,7 @@
 #include <Geode/modify/GJGameLevel.hpp>
 #include <Geode/Enums.hpp>
 #include <Surge/layers/GJWorldNodeDecomp.h>
-#include <Surge/layers/WorldLevel.hpp>
+#include "WorldLevel.cpp"
 
 using namespace geode::prelude;
 
