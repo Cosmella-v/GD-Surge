@@ -1,5 +1,7 @@
 #include <Surge/modify/LevelPage.hpp>
 
+using namespace geode::prelude;
+
 void MyLevelPage::onInfo(CCObject* sender) {
     if(m_level->m_levelID.value() == -1) {
         if (AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04")) {
@@ -11,14 +13,28 @@ void MyLevelPage::onInfo(CCObject* sender) {
     LevelPage::onInfo(sender);
 }
 
-bool MyLevelPage::init(GJGameLevel* level) {
-    if (!LevelPage::init(level)) {
-        return false;
-    }
+// void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
+//     LevelPage::updateDynamicPage(level);
 
-    // if (level->m_levelID.value() == -1) {
-    //     // something here..?
-    // }
-
-    return true;
-}
+//     queueInMainThread([this, level]() {
+//         if (auto scene = CCDirector::sharedDirector()->getRunningScene()) {
+//             if (auto layer = scene->getChildByType<LevelSelectLayer*>(0)) {
+//                 if (level->m_levelID == -1) {
+//                     if (auto bg = typeinfo_cast<CCSprite*>(layer->getChildByID("background"))) {
+//                         bg->setColor(GameManager::sharedState()->colorForIdx(15));
+//                     }
+//                     if (auto ground = layer->getChildByID("ground-layer")) {
+//                         ground->setVisible(false);
+//                     }
+//                     if (auto buttonMenu = layer->getChildByID("button-menu")) {
+//                         buttonMenu->removeFromParent();
+//                     }
+//                 } else {
+//                     if (auto ground = layer->getChildByID("ground-layer")) {
+//                         ground->setVisible(true);
+//                     }
+//                 }
+//             }
+//         }
+//     });
+// }

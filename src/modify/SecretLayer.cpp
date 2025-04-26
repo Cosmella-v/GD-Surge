@@ -208,21 +208,21 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         "shattered",
         []() {
             auto array = CCArray::create();
-            array->addObject(CCString::create("A mirror once stood tall"));
-            array->addObject(CCString::create("Now cracked upon the wall"));
-            array->addObject(CCString::create("Truths break when they are said"));
-            array->addObject(CCString::create("What remains is shattered thread"));
+            array->addObject(CCString::create("Once a page stood, a future untold"));
+            array->addObject(CCString::create("But cracks began, the story unfolds"));
+            array->addObject(CCString::create("Beneath the surface, secrets break free"));
+            array->addObject(CCString::create("What remains is a vision lost, shattered to be"));
             return array;
         },
         []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04")); },
         []() -> const char* {
-            std::string formatted = fmt::format("Wow, amazing work, {}", GameManager::sharedState()->m_playerName);
+            std::string formatted = fmt::format("The final truth, only for you to see, {}", GameManager::sharedState()->m_playerName);
             return formatted.c_str();
         },
         []() {
             GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault04", 100, false);
         }
-    }
+    }    
 };
 
 std::unordered_map<std::string, int> MySecretLayer::riddleProgress;

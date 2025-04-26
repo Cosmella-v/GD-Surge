@@ -5,6 +5,8 @@ using namespace geode::prelude;
 bool MyLevelSelectLayer::init(int pageID) {
     if(!LevelSelectLayer::init(pageID))
         return false;
+
+    int levelCount = 3;
     
     auto GSM = GameStatsManager::sharedState();
     auto GM = GameManager::sharedState();
@@ -19,7 +21,7 @@ bool MyLevelSelectLayer::init(int pageID) {
 
     m_scrollLayer->m_dots->removeAllObjects();
 
-    for(int i = 1; i < 7; i++) {
+    for(int i = 1; i <= levelCount; i++) {
         m_scrollLayer->m_dynamicObjects->addObject(GameLevelManager::get()->getMainLevel(i, true));
     }
     auto towerLevel = GJGameLevel::create();
@@ -53,13 +55,12 @@ ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
 
     auto GM = GameManager::sharedState();
     
-	int colIDs[8] = { 
-        5, 7, 8, 9, 10, 11, 1, 
-        AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04") ? 15 : 3 
+	int colIDs[5] = { 
+        5, 7, 8, 9, AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04") ? 15 : 10
     };
     
-    if (colIDs[page % 8] == 94)
+    if (colIDs[page % 5] == 94)
         return { 37, 44, 52 };    
 
-    return GM->colorForIdx(colIDs[page % 8]);
+    return GM->colorForIdx(colIDs[page % 5]);
 }
