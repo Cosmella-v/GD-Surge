@@ -1,4 +1,4 @@
-#include <Surge/layers/WorldSelectLayer.hpp>
+#include <Surge/layers/WorldSelectLayer.h>
 #include <Geode/Geode.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/LevelSelectLayer.hpp>
