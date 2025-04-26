@@ -38,5 +38,11 @@
 	"issues": {
 		"info": "Report bugs or request features on the GitHub repository.",
 		"url": "https://github.com/OmgRod/GD-Surge/issues"
+	},
+	"incompatibilities": {
+		"km7dev.gdps-switcher": {
+			"version": "*",
+			"importance": "conflicting"
+		}
 	}
 }

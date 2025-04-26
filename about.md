@@ -9,6 +9,14 @@
 - New <cr>Vault Codes</c>
 - New <cp>Shopkeeper</c>
 
+## Issues
+
+If you find any bugs or would like to request new features, please send them on our [issue tracker](https://github.com/OmgRod/GD-Surge/issues).
+
+### Incompatibilities
+
+- GDPS Switcher - Changes save file every time you switch GDPS
+
 ## Credits
 
 ### Development
