@@ -1,7 +1,4 @@
-#include "SecretLayer.hpp"
-#include "Geode/binding/GameManager.hpp"
-#include <ctime>
-#include <algorithm>
+#include <Surge/modify/SecretLayer.hpp>
 
 using namespace geode::prelude;
 

@@ -1,4 +1,4 @@
-#include "GameStatsManager.hpp"
+#include <Surge/modify/GameStatsManager.hpp>
 
 using namespace geode::prelude;
 

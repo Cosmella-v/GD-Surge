@@ -1,6 +1,5 @@
-#include <Geode/Geode.hpp>
-#include "LevelAreaLayer.hpp"
-#include "../layers/IslandSelectLayer.hpp"
+#include <Surge/modify/LevelAreaLayer.hpp>
+#include <Surge/layers/IslandSelectLayer.hpp>
 
 bool MyLevelAreaLayer::init() {
     if (!LevelAreaLayer::init()) return false;

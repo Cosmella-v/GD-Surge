@@ -1,4 +1,4 @@
-#include "LoadingLayer.hpp"
+#include <Surge/modify/LoadingLayer.hpp>
 
 using namespace geode::prelude;
 

@@ -1,4 +1,4 @@
-#include "GJWorldNodeDecomp.h"
+#include <Surge/layers/GJWorldNodeDecomp.h>
 
 using namespace geode::prelude;
 

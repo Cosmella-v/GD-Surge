@@ -1,5 +1,4 @@
-#include <Geode/Geode.hpp>
-#include "GManager.hpp"
+#include <Surge/modify/GManager.hpp>
 
 using namespace geode::prelude;
 

@@ -1,6 +1,4 @@
-#include "WorldSelectLayer.h"
-//#include "NewLevelPage.h"
-#include <Geode/Geode.hpp>
+#include <Surge/layers/WorldSelectLayer.hpp>
 #include <Geode/Geode.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/LevelSelectLayer.hpp>
@@ -8,10 +6,8 @@
 #include <Geode/modify/LevelPage.hpp>
 #include <Geode/modify/GJGameLevel.hpp>
 #include <Geode/Enums.hpp>
-#include <iostream>
-#include "GJWorldNodeDecomp.h"
-#include "WorldLevel.hpp"
-#include "WorldLevel.cpp"
+#include <Surge/layers/GJWorldNodeDecomp.h>
+#include <Surge/layers/WorldLevel.hpp>
 
 using namespace geode::prelude;
 

@@ -1,6 +1,4 @@
-#include <Geode/Geode.hpp>
-#include "AchievementManager.hpp"
-#include "Geode/modify/AchievementManager.hpp"
+#include <Surge/modify/AchievementManager.hpp>
 
 using namespace geode::prelude;
 

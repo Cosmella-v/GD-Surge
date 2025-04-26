@@ -10,14 +10,12 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 project(GeometryDashSurge VERSION 1.0.0)
 
-# Recursively find all .cpp files in the src directory
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_library(${PROJECT_NAME} SHARED
     ${SOURCES}
 )
 
-# Add include/ as an include directory
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 if (NOT DEFINED ENV{GEODE_SDK})

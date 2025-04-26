@@ -1,6 +1,5 @@
-#include <Geode/Geode.hpp>
 #include <DialogCallback.hpp>
-#include "OptionsLayer.hpp"
+#include <Surge/modify/OptionsLayer.hpp>
 
 using namespace geode::prelude;
 

@@ -1,4 +1,4 @@
-#include "SongsLayer.hpp"
+#include <Surge/modify/SongsLayer.hpp>
 
 void MySongsLayer::customSetup() {
     CCArray* songObjectArray = CCArray::create();
