@@ -7,4 +7,5 @@ public:
     $override
     void onAccount(CCObject* sender);
     void onSecretVault(CCObject* sender);
+    virtual void customSetup();
 };

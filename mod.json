@@ -43,6 +43,18 @@
 		"km7dev.gdps-switcher": {
 			"version": "*",
 			"importance": "conflicting"
+		},
+		"teamtcm.geometry-dash-odyssey": {
+			"version": "*",
+			"importance": "breaking"
+		},
+		"capeling.geometry-dash-lunar": {
+			"version": "*",
+			"importance": "breaking"
+		},
+		"chumiiu.geometry_dash_time_reborn": {
+			"version": "*",
+			"importance": "breaking"
 		}
 	}
 }

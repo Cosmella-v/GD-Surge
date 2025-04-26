@@ -42,3 +42,56 @@ void MyOptionsLayer::onSecretVault(CCObject* sender) {
 		dialog->m_delegate = del;
     }
 }
+
+void MyOptionsLayer::customSetup() {
+    OptionsLayer::customSetup();
+
+    auto layer = this->getChildByID("main-layer");
+    if (!layer) {
+        log::warn("main-layer not found!");
+        return;
+    }
+
+    auto menu = layer->getChildByID("vault-menu");
+    if (!menu) {
+        log::warn("vault-menu not found!");
+        return;
+    }
+
+    CCMenuItemSpriteExtra* oldBtn = typeinfo_cast<CCMenuItemSpriteExtra*>(this->getChildByIDRecursive("vault-button"));
+    if (!oldBtn) {
+        log::warn("vault-button not found!");
+        return;
+    }
+
+    auto newBtn = CCMenuItemSpriteExtra::create(
+        CCSprite::createWithSpriteFrameName("GJ_lock_open_001.png"),
+        this,
+        menu_selector(MyOptionsLayer::onSecretVault)
+    );
+    if (!newBtn) {
+        log::warn("Failed to create new vault button!");
+        return;
+    }
+
+    if (Mod::get()->getSavedValue<bool>("vault-unlocked")) {
+        oldBtn->m_pfnSelector = nullptr;
+
+        newBtn->setPosition(oldBtn->getPosition());
+        newBtn->setScale(oldBtn->getScale());
+        newBtn->setAnchorPoint(oldBtn->getAnchorPoint());
+
+        oldBtn->setVisible(false);
+        menu->addChild(newBtn);
+
+        log::warn("Vault button successfully replaced!");
+    } else {
+        if (auto sprite = oldBtn->getChildByType<CCSprite*>(0)) {
+            if (auto coin = sprite->getChildByType<CCSprite*>(0)) coin->setVisible(false);
+            if (auto text = sprite->getChildByType<CCLabelBMFont*>(0)) {
+                text->setString("??");
+                text->setPositionX(11.5f);
+            }
+        }
+    }
+}

@@ -1,3 +1,5 @@
+#include "Geode/cocos/layers_scenes_transitions_nodes/CCLayer.h"
+#include <DialogCallback.hpp>
 #include <Surge/modify/SecretLayer.hpp>
 
 using namespace geode::prelude;
@@ -214,9 +216,8 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         },
         []() -> bool { return !(AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04")); },
         []() -> const char* {
-            // Store the formatted string in a temporary variable
             std::string formatted = fmt::format("Wow, amazing work, {}", GameManager::sharedState()->m_playerName);
-            return formatted.c_str(); // Return the c_str, which is safe in this scope
+            return formatted.c_str();
         },
         []() {
             GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault04", 100, false);
@@ -228,6 +229,18 @@ std::unordered_map<std::string, int> MySecretLayer::riddleProgress;
 
 bool MySecretLayer::init() {
     if (!SecretLayer::init()) return false;
+
+    if (!Mod::get()->getSavedValue<bool>("vault-open-message")) {
+        m_searchInput->setTouchEnabled(false);
+        m_submitButton->setEnabled(false);
+        this->runAction(
+            cocos2d::CCSequence::create(
+                cocos2d::CCDelayTime::create(1.5f),
+                cocos2d::CCCallFunc::create(this, callfunc_selector(MySecretLayer::showEntryDialog)),
+                nullptr
+            )
+        );               
+    }
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
@@ -328,4 +341,30 @@ void MySecretLayer::onSubmit(CCObject* sender) {
         m_messageLabel->setString(messages[index].c_str());
         m_messageLabel->setColor({ 255, 255, 255 });
     }
+}
+
+void MySecretLayer::showEntryDialog() {
+    CCArray* objects = CCArray::create();
+    objects->addObject(DialogObject::create("The Guard", "Wait a minute<d020>.<d020>.<d100> When did <cr>I</c> allow visitors?", 1, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "This <cg>hidden vault</c> is not for the curious...", 1, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "You've <co>ignored</c> the warnings<d050>...<d050> I should <cy>throw</c> you out.", 1, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "<cl>Rules</c> exist for a reason...", 1, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "But perhaps<d050>...<d050> you have earned a glimpse.", 1, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "Tread carefully<d030>.<d030>.<d030> I will be watching.", 1, 1.0f, true, cocos2d::ccWHITE));
+
+    auto dialog = DialogLayer::createWithObjects(objects, 1);
+    dialog->addToMainScene();
+    dialog->animateInRandomSide();
+
+    std::function<void()> secretCallback = [&]() {
+        Mod::get()->setSavedValue<bool>("vault-open-message", true);
+        m_searchInput->setTouchEnabled(true);
+        m_submitButton->setEnabled(true);
+    };
+
+    auto* del = new DialogCallback();
+    dialog->addChild(del);
+    del->autorelease();
+    del->m_callback = secretCallback;
+    dialog->m_delegate = del;
 }

@@ -8,6 +8,7 @@ class $modify(MySecretLayer, SecretLayer) {
     $override
     void onSubmit(CCObject* sender);
     bool init();
+    void showEntryDialog();
 
     static int lastIndex;
     static std::vector<std::string> messages;
