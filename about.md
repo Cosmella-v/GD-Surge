@@ -23,10 +23,16 @@ If you find any bugs or would like to request new features, please send them on 
 - OmgRod - Developer
 - BitZ - GD World
 - Capeling - GD Lunar code
+- Alphalaneous - Mod Logo
 
 ### Levels
 
-- OmgRod - Badland
+- Badland by OmgRod
+- Unstable Geometry by ___
+- Tomb by OmgRod
+- Detour by ___
+- The Beginning of Time by ___
+- Thermodynamix by ___
 
 ### Songs
 
