@@ -22,7 +22,7 @@ gd::string MyLevelTools::getAudioTitle(int audioID) {
 gd::string MyLevelTools::getAudioFileName(int audioID) {
     auto saveDir = Mod::get()->getSaveDir();
     switch(audioID) {
-        case -1: return (const char*)((saveDir / "StayInsideMe.mp3").u8string().c_str());
+        case -1: return "StayInsideMe.mp3";
         case 0: return (const char*)((saveDir / "Badland.mp3").u8string().c_str());
         case 1: return (const char*)((saveDir / "UnstableGeometry.mp3").u8string().c_str());
         case 2: return (const char*)((saveDir / "Tomb.mp3").u8string().c_str());
