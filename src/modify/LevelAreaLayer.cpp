@@ -6,18 +6,18 @@ bool MyLevelAreaLayer::init() {
 
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
-    auto menu = CCMenu::create();
-    menu->setPosition({ winSize.width / 4 * 3, 0.f });
-    menu->setContentSize({ winSize.width / 4, winSize.height });
+    // auto menu = CCMenu::create();
+    // menu->setPosition({ winSize.width / 4 * 3, 0.f });
+    // menu->setContentSize({ winSize.width / 4, winSize.height });
 
-    auto button = CCMenuItemSpriteExtra::create(
-        CircleButtonSprite::create(CCSprite::createWithSpriteFrameName("worldIsland_01.png"_spr), CircleBaseColor::Green, CircleBaseSize::Medium),
-        this,
-        menu_selector(MyLevelAreaLayer::onIslands)
-    );
+    // auto button = CCMenuItemSpriteExtra::create(
+    //     CircleButtonSprite::create(CCSprite::createWithSpriteFrameName("worldIsland_01.png"_spr), CircleBaseColor::Green, CircleBaseSize::Medium),
+    //     this,
+    //     menu_selector(MyLevelAreaLayer::onIslands)
+    // );
 
-    menu->addChild(button);
-    this->addChild(menu);
+    // menu->addChild(button);
+    // this->addChild(menu);
 
     return true;
 }

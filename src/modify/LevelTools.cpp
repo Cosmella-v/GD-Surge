@@ -20,15 +20,16 @@ gd::string MyLevelTools::getAudioTitle(int audioID) {
 }
 
 gd::string MyLevelTools::getAudioFileName(int audioID) {
+    auto saveDir = Mod::get()->getSaveDir();
     switch(audioID) {
-        case -1: return "StayInsideMe.mp3";
-        case 0: return "Badland.mp3"_spr;
-        case 1: return "UnstableGeometry.mp3"_spr;
-        case 2: return "Tomb.mp3"_spr;
-        case 3: return "Detour.mp3"_spr;
-        case 4: return "TheBeginningOfTime.mp3"_spr;
-        case 5: return "Thermodynamix.mp3"_spr;
-        default: return "";
+        case -1: return (const char*)((saveDir / "StayInsideMe.mp3").u8string().c_str());
+        case 0: return (const char*)((saveDir / "Badland.mp3").u8string().c_str());
+        case 1: return (const char*)((saveDir / "UnstableGeometry.mp3").u8string().c_str());
+        case 2: return (const char*)((saveDir / "Tomb.mp3").u8string().c_str());
+        case 3: return (const char*)((saveDir / "Detour.mp3").u8string().c_str());
+        case 4: return (const char*)((saveDir / "TheBeginningOfTime.mp3").u8string().c_str());
+        case 5: return (const char*)((saveDir / "Thermodynamix.mp3").u8string().c_str());
+        default: return (const char*)((saveDir / fmt::format("{}.ogg", audioID)).u8string().c_str());
     }
 }
 
