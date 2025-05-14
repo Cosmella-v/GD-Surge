@@ -7,5 +7,5 @@ class $modify(MyLevelPage, LevelPage) {
 public:
     $override
     void onInfo(CCObject* sender);
-    // void updateDynamicPage(GJGameLevel* level);
+    void updateDynamicPage(GJGameLevel* level);
 };

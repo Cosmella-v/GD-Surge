@@ -42,7 +42,7 @@
 	"incompatibilities": {
 		"km7dev.gdps-switcher": {
 			"version": "*",
-			"importance": "conflicting"
+			"importance": "breaking"
 		},
 		"teamtcm.geometry-dash-odyssey": {
 			"version": "*",
