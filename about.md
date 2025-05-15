@@ -15,6 +15,7 @@ If you find any bugs or would like to request new features, please send them on 
 ### Incompatibilities
 
 - GDPS Switcher - Changes save file every time you switch GDPS
+- Other Fangame Mods - Self-explanatory
 
 ## Credits
 
@@ -31,8 +32,8 @@ If you find any bugs or would like to request new features, please send them on 
 - Unstable Geometry by ___
 - Tomb by OmgRod
 - Detour by ___
-- The Beginning of Time by ___
-- Thermodynamix by ___
+- The Beginning of Time by flingus
+- Thermodynamix by OmgRod
 
 ### Songs
 

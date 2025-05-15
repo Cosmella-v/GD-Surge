@@ -53,5 +53,18 @@
 			"version": "*",
 			"importance": "breaking"
 		}
+	},
+	"settings": {
+		"secrets-title": {
+			"type": "title",
+			"name": "Secrets",
+			"description": "Vault codes, etc."
+		},
+		"shattered-code": {
+			"type": "bool",
+			"name": "Shattered Vault Code",
+			"description": "Toggle visual effect for the vault code - the coming soon screen change.",
+			"default": true
+		}
 	}
 }
