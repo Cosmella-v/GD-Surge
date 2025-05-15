@@ -3,5 +3,5 @@
 using namespace geode::prelude;
 
 void MyGJGarageLayer::showUnlockPopup(int p0, UnlockType p1) {
-    // literally do nothing
+    ItemInfoPopup::create(p0, p1);
 }
