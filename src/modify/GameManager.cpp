@@ -2,23 +2,13 @@
 
 using namespace geode::prelude;
 
-// gd::string MyGameManager::sheetNameForIcon(int iconID, int iconType) {
-//     if(iconType == 5) {
-//         if(iconID == 2) {
-//         return "robot_02"_spr;
-//         }
-//         if(iconID == 3) {
-//         return "robot_03"_spr;
-//         }
-//     }
-//     auto ret = GameManager::sheetNameForIcon(iconID, iconType);
-//     return ret;
-// }
-
-void MyGameManager::unloadIcon(int request) {
-    
+bool MyGameManager::isIconUnlocked(int _id, IconType _type) {
+    if (_id <= 0) return false;
+    if (_id <= 485) return true;
+    return false;
 }
-
-void MyGameManager::dataLoaded(DS_Dictionary* dict) {
-    GameManager::dataLoaded(dict);
+bool MyGameManager::isColorUnlocked(int _id, UnlockType _type) {
+    if (_id == 0) return true;
+    if (_id <= 8) return false;
+    return true;
 }
