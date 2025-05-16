@@ -18,8 +18,7 @@
 			]
 		},
 		"files": [
-			"res/levels/*.txt",
-			"res/music.zip"
+			"res/levels/*.txt"
 		]
 	},
 	"early-load": true,
