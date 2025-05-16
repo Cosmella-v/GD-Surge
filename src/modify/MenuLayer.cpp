@@ -10,6 +10,8 @@ float addtlDuration = 0.0f;
 bool stopLooping = false;
 bool jumpedAlready = false;
 
+bool downloadStarted = false;
+
 bool MyMenuLayer::init() {
     if (!MenuLayer::init()) {
         return false;
@@ -45,12 +47,11 @@ bool MyMenuLayer::init() {
         }
     }
 
-	static bool downloadStarted = false;
     if (!downloadStarted) {
         downloadStarted = true;
 
         static EventListener<web::WebTask> s_listener;
-        auto musicDownloadURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/refs/heads/master/music.zip";
+        auto musicDownloadURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/master/music.zip";
 
         web::WebRequest request;
         auto task = request.get(musicDownloadURL);
