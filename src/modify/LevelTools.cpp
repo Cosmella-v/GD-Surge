@@ -137,12 +137,6 @@ GJGameLevel* MyLevelTools::getLevel(int levelID, bool loaded) {
             level->m_audioTrack = 5;
             level->m_coins = 3;
             break;
-        case 5001:
-            setLevelInfo(level, 3, GJDifficulty::Normal, 0);
-            level->m_levelName = getAudioTitle(-2);
-            level->m_audioTrack = 5;
-            level->m_coins = 3;
-            break;
     }
     if (!loaded) {
         level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(levelID);
