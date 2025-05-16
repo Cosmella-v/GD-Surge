@@ -1,3 +1,4 @@
+#include "Geode/binding/FLAlertLayer.hpp"
 #include <Surge/modify/LevelPage.hpp>
 
 using namespace geode::prelude;
@@ -16,7 +17,9 @@ void MyLevelPage::onInfo(CCObject* sender) {
 void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
     LevelPage::updateDynamicPage(level);
 
-    queueInMainThread([this, level]() {
+    auto winSize = CCDirector::sharedDirector()->getWinSize();
+
+    queueInMainThread([this, level, winSize]() {
         if (auto scene = CCDirector::sharedDirector()->getRunningScene()) {
             if (auto layer = scene->getChildByType<LevelSelectLayer*>(0)) {
                 if (level->m_levelID == -1) {
@@ -29,8 +32,38 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
                         label->setAnchorPoint({0.5f, 0.5f});
                         label->setPositionX(layer->getContentSize().width / 2);
                     }
+                } else if (level->m_levelID == -3) {
+                    if (auto label = typeinfo_cast<CCLabelBMFont*>(this->getChildByID("coming-soon-label"))) {
+                        label->removeFromParent();
+                    }
+
+                    auto logo = CCSprite::createWithSpriteFrameName("islandsLogo.png"_spr);
+                    logo->setScale(0.75f);
+
+                    if (!this->getChildByID("islands-menu"_spr)) {
+                        auto logoBtn = CCMenuItemSpriteExtra::create(
+                            logo,
+                            this,
+                            menu_selector(MyLevelPage::onIslands)
+                        );
+                        logoBtn->setPosition({ winSize.width / 2.f, winSize.height / 3.f * 2.f });
+
+                        auto menu = CCMenu::create();
+                        menu->addChild(logoBtn);
+                        menu->setPosition({0, 0});
+                        menu->setID("islands-menu"_spr);
+                        this->addChild(menu);
+                    }
                 }
             }
         }
     });
+}
+
+void MyLevelPage::onIslands(CCObject*) {
+    FLAlertLayer::create(
+        "Islands",
+        "This <cg>feature</c> is a <cb>work in progress</c> and is not yet available. Sorry for the inconvenience.",
+        "OK"
+    )->show();
 }

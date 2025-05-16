@@ -24,13 +24,14 @@ bool MyLevelSelectLayer::init(int pageID) {
     for(int i = 1; i <= levelCount; i++) {
         m_scrollLayer->m_dynamicObjects->addObject(GameLevelManager::get()->getMainLevel(i, true));
     }
-    // auto towerLevel = GJGameLevel::create();
-    // towerLevel->m_levelID = -2;
+    auto islandsLevel = GJGameLevel::create();
+    islandsLevel->m_levelID = -3;
+    islandsLevel->m_levelName = "The Islands";
     auto comingSoon = GJGameLevel::create();
     comingSoon->m_levelID = -1;
     comingSoon->m_levelName = "The Shattering...";
 
-    // m_scrollLayer->m_dynamicObjects->addObject(towerLevel);
+    m_scrollLayer->m_dynamicObjects->addObject(islandsLevel);
     m_scrollLayer->m_dynamicObjects->addObject(comingSoon);
 
     auto batchNode = CCSpriteBatchNode::create("smallDot.png", 29);
@@ -56,18 +57,19 @@ ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
 
     auto GM = GameManager::sharedState();
     
-	int colIDs[7] = { 
+	int colIDs[8] = { 
         5,
         7,
         8,
         9,
         3,
         27,
+        34,
         (AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04") && Mod::get()->getSettingValue<bool>("shattered-code")) ? 15 : 10
     };
     
-    if (colIDs[page % 7] == 94)
+    if (colIDs[page % 8] == 94)
         return { 37, 44, 52 };    
 
-    return GM->colorForIdx(colIDs[page % 7]);
+    return GM->colorForIdx(colIDs[page % 8]);
 }

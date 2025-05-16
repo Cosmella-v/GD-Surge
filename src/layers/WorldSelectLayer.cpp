@@ -2222,7 +2222,7 @@ void ownWorldSelectLayer::updatePageWithObject(CCObject* page, CCObject* object)
     GJGameLevel* level = static_cast<GJGameLevel*>(object);
   
 
-    LevelPage* levelPage = dynamic_cast<LevelPage*>(page);
+    LevelPage* levelPage = typeinfo_cast<LevelPage*>(page);
 
     if (!levelPage) {
 
