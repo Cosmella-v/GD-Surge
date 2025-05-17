@@ -76,9 +76,13 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
 }
 
 void MyLevelPage::onIslands(CCObject*) {
+    #ifdef GITHUB_ACTIONS
     FLAlertLayer::create(
         "The Islands",
         "This <cg>feature</c> is a <cb>work in progress</c> and is not yet available. Sorry for the inconvenience.",
         "OK"
     )->show();
+    #else
+    
+    #endif
 }

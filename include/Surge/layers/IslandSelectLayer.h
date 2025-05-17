@@ -2,7 +2,7 @@
 #include <Geode/Geode.hpp>
 
 
-class ownWorldSelectLayer : public cocos2d::CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate {
+class IslandSelectLayer : public cocos2d::CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate {
 public:
     GJGroundLayer* m_ground;
     cocos2d::CCSprite* m_background;
@@ -28,7 +28,7 @@ public:
 	void onBack(cocos2d::CCObject*);
 	void keyBackClicked();
 	void createStars(GJGameLevel* level, CCLayer* layer);
-	void onWorldLevel(cocos2d::CCObject* sender);
+	void onIslandLevel(cocos2d::CCObject* sender);
 	void onGarage(cocos2d::CCObject* sender);
 	void importSheet();
 	void runScroll();
@@ -40,7 +40,7 @@ public:
 	void keyDown(int);
 	void updateColors();
 	/*void instantPage(cocos2d::CCObject*,int);*/
-	static ownWorldSelectLayer* create(int page);
+	static IslandSelectLayer* create(int page);
 	static cocos2d::CCScene* scene(int page);
 	void updatePageWithObject(CCObject* page, CCObject* object);
 	

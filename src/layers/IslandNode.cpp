@@ -1,16 +1,16 @@
-#include <Surge/layers/GJWorldNodeDecomp.h>
+#include <Surge/layers/IslandNode.h>
 
 using namespace geode::prelude;
 
 namespace more {
 
-GJWorldNodeDecomp* GJWorldNodeDecomp::create(
+IslandNode* IslandNode::create(
     int index,
-    ownWorldSelectLayer* worldSelectLayer
+    IslandSelectLayer* islandSelectLayer
 ) {
-    GJWorldNodeDecomp* ret = new GJWorldNodeDecomp();
+    IslandNode* ret = new IslandNode();
 
-    if (ret && ret->init(index, worldSelectLayer)) {
+    if (ret && ret->init(index, islandSelectLayer)) {
         ret->autorelease();
     } else {
         CC_SAFE_DELETE(ret);
@@ -19,9 +19,9 @@ GJWorldNodeDecomp* GJWorldNodeDecomp::create(
     return ret;
 }
 
-bool GJWorldNodeDecomp::init(
+bool IslandNode::init(
     int index,
-    ownWorldSelectLayer* worldSelectLayer
+    IslandSelectLayer* islandSelectLayer
 ) {
     if (!CCNode::init()) {
         return false;
@@ -30,15 +30,15 @@ bool GJWorldNodeDecomp::init(
     m_index = index;
 
   /*  std::cout << index << std::endl;*/
-    m_worldSelectLayer = worldSelectLayer;
+    m_islandSelectLayer = islandSelectLayer;
    
 
     return true;
 }
 
-CCSprite* GJWorldNodeDecomp::createIsland() {
+CCSprite* IslandNode::createIsland() {
     CCString* path = CCString::createWithFormat(
-        "worldIsland_%02d.png"_spr,
+        "island_%02d.png"_spr,
         m_index
     );
 

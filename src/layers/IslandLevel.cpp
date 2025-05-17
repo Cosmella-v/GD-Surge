@@ -1,13 +1,13 @@
-#include <Surge/layers/WorldLevel.hpp>
+#include <Surge/layers/IslandLevel.hpp>
 
 using namespace geode::prelude;
 
 
-class WorldLevelPopup : public geode::Popup<std::string const&> {
+class IslandLevelPopup : public geode::Popup<std::string const&> {
 protected:
     bool setup(std::string const& value) override {
         auto winSize = CCDirector::sharedDirector()->getWinSize();
-        this->setID("worldLevelPopup"_spr);
+        this->setID("IslandLevelPopup"_spr);
     
         this->setTitle("");
 
@@ -19,8 +19,8 @@ protected:
     }
 
 public:
-    static WorldLevelPopup* create(std::string const& text) {
-        auto ret = new WorldLevelPopup();
+    static IslandLevelPopup* create(std::string const& text) {
+        auto ret = new IslandLevelPopup();
 
         
         if (ret && ret->initAnchored(300.f, 260.f, text)) {
