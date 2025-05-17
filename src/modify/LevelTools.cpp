@@ -137,6 +137,12 @@ GJGameLevel* MyLevelTools::getLevel(int levelID, bool loaded) {
             level->m_audioTrack = 5;
             level->m_coins = 3;
             break;
+        case 1001:
+            setLevelInfo(level, 6, GJDifficulty::Harder, 0);
+            level->m_levelName = "The Gauntlet";
+            level->m_audioTrack = 1000;
+            level->m_coins = 0;
+            break;
     }
     if (!loaded) {
         level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(levelID);

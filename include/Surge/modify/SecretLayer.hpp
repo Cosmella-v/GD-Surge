@@ -18,7 +18,7 @@ class $modify(MySecretLayer, SecretLayer) {
         std::function<CCArray*()> riddle;
         std::function<bool()> condition;
         std::function<const char*()> successText;
-        std::function<void()> onSuccess;
+        std::function<void(MySecretLayer*)> onSuccess;
     };
     static std::vector<VaultCode> vaultCodes;
     static std::unordered_map<std::string, int> riddleProgress;
@@ -29,4 +29,6 @@ class $modify(MySecretLayer, SecretLayer) {
         int currentRiddleIndex = 0;
         int selectedRiddleIndex = -1;
     };
+
+    void onGauntlet(CCObject* sender);
 };
