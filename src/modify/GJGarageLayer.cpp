@@ -2,7 +2,7 @@
 
 using namespace geode::prelude;
 
-bool init() {
+bool MyGJGarageLayer::init() {
     auto menu = this->getChildByID("top-left-menu");
     menu->getChildByID("shop-button")->setVisible(false);
 }
