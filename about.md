@@ -26,8 +26,10 @@ If you find any bugs or would like to request new features, please send them on 
 ### Development
 
 - OmgRod - Developer
+- MobMasterMind - Custom Icons
 - BitZ - GD World
 - Capeling - GD Lunar code
+- Chumiu - Loading screen code
 - Alphalaneous - Mod Logo
 
 ### Levels
@@ -38,6 +40,7 @@ If you find any bugs or would like to request new features, please send them on 
 - Detour by ___
 - The Beginning of Time by flingus
 - Thermodynamix by OmgRod
+- The Islands (all levels) by MobMasterMind
 
 ### Songs
 

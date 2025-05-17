@@ -412,7 +412,7 @@ void MySecretLayer::onGauntlet(CCObject* sender) {
     auto level = GJGameLevel::create();
     level->m_levelID = 1001;
     level->m_levelName = "The Gauntlet";
-    level->m_audioTrack = 1001;
+    level->m_audioTrack = 1000;
     level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(1001);
     level->m_stars = 8;
     level->m_difficulty = GJDifficulty::Insane;
