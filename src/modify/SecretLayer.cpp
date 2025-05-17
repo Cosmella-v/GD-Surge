@@ -1,9 +1,3 @@
-#include "Geode/Enums.hpp"
-#include "Geode/binding/CCMenuItemSpriteExtra.hpp"
-#include "Geode/binding/GJGameLevel.hpp"
-#include "Geode/binding/PlayLayer.hpp"
-#include "Geode/cocos/layers_scenes_transitions_nodes/CCLayer.h"
-#include "Surge/modify/OptionsLayer.hpp"
 #include <DialogCallback.hpp>
 #include <Surge/modify/SecretLayer.hpp>
 
@@ -209,16 +203,12 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
             Mod::get()->setSavedValue("basement-unlocked", true);
             auto menu = self->getChildByID("gauntlet-menu");
             if (menu) {
-                auto icon = CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png");
-                icon->setScale(0.5f);
-                auto btn = CCMenuItemSpriteExtra::create(
-                    icon,
-                    menu,
-                    menu_selector(MySecretLayer::onGauntlet)
-                );
-                CCEaseInOut* ease = CCEaseInOut::create(CCScaleTo::create(0.5f, 1.f), 0.5f);
-                menu->addChild(btn);
+                auto btn = menu->getChildByID("gauntlet-button");
+                CCEaseIn* ease = CCEaseIn::create(CCScaleTo::create(0.2f, 1.f), 0.5f);
+                btn->setScale(0.f);
+                btn->setVisible(true);
                 btn->runAction(ease);
+                menu->updateLayout();
             }
         }
     },
@@ -248,21 +238,36 @@ std::unordered_map<std::string, int> MySecretLayer::riddleProgress;
 bool MySecretLayer::init() {
     if (!SecretLayer::init()) return false;
 
+    auto winSize = CCDirector::sharedDirector()->getWinSize();
+
     auto menu = CCMenu::create();
-    menu->setPosition({ 0, 0 });
+    menu->setPosition({ winSize.width * 0.9f, winSize.height * 0.5f });
+    menu->setContentSize({ winSize.width * 0.f, winSize.height * 0.8f });
     menu->setID("gauntlet-menu");
+
+    auto layout = SimpleAxisLayout::create(Axis::Column);
+    // layout->setAutoScale(false);
+    // layout->setAxisAlignment(AxisAlignment::Center);
+    menu->setLayout(layout);
+
     this->addChild(menu);
 
+    auto gauntletIcon = CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png");
+    gauntletIcon->setScale(0.5f);
+    auto gauntletBtn = CCMenuItemSpriteExtra::create(
+        gauntletIcon,
+        menu,
+        menu_selector(MySecretLayer::onGauntlet)
+    );
+    gauntletBtn->setVisible(false);
+    gauntletBtn->setID("gauntlet-button");
+    menu->addChild(gauntletBtn);
+
     if (Mod::get()->getSavedValue<bool>("basement-unlocked")) {
-        auto icon = CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png");
-        icon->setScale(0.5f);
-        auto btn = CCMenuItemSpriteExtra::create(
-            icon,
-            menu,
-            menu_selector(MySecretLayer::onGauntlet)
-        );
-        menu->addChild(btn);
+        gauntletBtn->setVisible(true);
     }
+
+    menu->updateLayout();
 
     if (!Mod::get()->getSavedValue<bool>("vault-open-message")) {
         m_searchInput->setTouchEnabled(false);
