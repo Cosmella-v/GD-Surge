@@ -185,7 +185,6 @@ void MyMenuLayer::onDiscord(CCObject* sender) {
 }
 
 void MyMenuLayer::onFacebook(CCObject* sender) {
-    // CCApplication::sharedApplication()->openURL("https://www.twitch.tv/omgrod1000");
     FLAlertLayer::create("nope", "i'm not a boomer", "OK")->show();
 }
 
