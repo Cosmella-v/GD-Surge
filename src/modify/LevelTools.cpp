@@ -23,13 +23,13 @@ gd::string MyLevelTools::getAudioFileName(int audioID) {
     auto saveDir = Mod::get()->getSaveDir();
     switch(audioID) {
         case -1: return "StayInsideMe.mp3";
-        case 0: return (const char*)((saveDir / "Badland.mp3").u8string().c_str());
-        case 1: return (const char*)((saveDir / "UnstableGeometry.mp3").u8string().c_str());
-        case 2: return (const char*)((saveDir / "Tomb.mp3").u8string().c_str());
-        case 3: return (const char*)((saveDir / "Detour.mp3").u8string().c_str());
-        case 4: return (const char*)((saveDir / "TheBeginningOfTime.mp3").u8string().c_str());
-        case 5: return (const char*)((saveDir / "Thermodynamix.mp3").u8string().c_str());
-        default: return (const char*)((saveDir / fmt::format("{}.ogg", audioID)).u8string().c_str());
+        case 0: return (const char*)((saveDir / "music" / "Badland.mp3").u8string().c_str());
+        case 1: return (const char*)((saveDir / "music" / "UnstableGeometry.mp3").u8string().c_str());
+        case 2: return (const char*)((saveDir / "music" / "Tomb.mp3").u8string().c_str());
+        case 3: return (const char*)((saveDir / "music" / "Detour.mp3").u8string().c_str());
+        case 4: return (const char*)((saveDir / "music" / "TheBeginningOfTime.mp3").u8string().c_str());
+        case 5: return (const char*)((saveDir / "music" / "Thermodynamix.mp3").u8string().c_str());
+        default: return (const char*)((saveDir / "music" / fmt::format("{}.ogg", audioID)).u8string().c_str());
     }
 }
 

@@ -1,23 +1,17 @@
-#include <Surge/modify/MusicDownloadManager.h>
+#include <Surge/modify/MusicDownloadManager.hpp>
 
 using namespace geode::prelude;
 
 gd::string MusicDownloadManager::pathForSFXFolder(int sfxID) {
-    return ""_spr;
-    std::string original = MusicDownloadManager::pathForSFXFolder(sfxID);
-    log::debug("sfx: {}", original);
-    if(original == "sfx/") original = ""_spr;
-    log::debug("sfx2: {}", original);
-
-    return original;
+    std::filesystem::path saveDir = Mod::get()->getSaveDir();
+    std::string path = (saveDir / "sfx").string();
+    log::debug("sfx path: {}", path);
+    return gd::string(path);
 }
 
 gd::string MusicDownloadManager::pathForSongFolder(int songID) {
-    return ""_spr;
-    std::string original = MusicDownloadManager::pathForSongFolder(songID);
-    log::debug("songs: {}", original);
-    if(original == "songs/") original = ""_spr;
-    log::debug("songs2: {}", original);
-
-    return original;
+    std::filesystem::path saveDir = Mod::get()->getSaveDir();
+    std::string path = (saveDir / "songs").string();
+    log::debug("song path: {}", path);
+    return gd::string(path);
 }
