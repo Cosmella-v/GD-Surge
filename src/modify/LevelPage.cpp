@@ -1,4 +1,4 @@
-#include "Geode/binding/FLAlertLayer.hpp"
+#include <Surge/layers/IslandSelectLayer.h>
 #include <Surge/modify/LevelPage.hpp>
 
 using namespace geode::prelude;
@@ -83,6 +83,8 @@ void MyLevelPage::onIslands(CCObject*) {
         "OK"
     )->show();
     #else
-    
+    auto scene = IslandSelectLayer::scene(0);
+    auto transition = CCTransitionFade::create(0.5f, scene);
+    CCDirector::sharedDirector()->pushScene(transition);
     #endif
 }

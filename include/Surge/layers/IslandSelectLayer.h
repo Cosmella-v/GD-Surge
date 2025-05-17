@@ -12,7 +12,6 @@ public:
 	float m_fWindowWidth;
     int m_level;
 	GJGameLevel* level;
-	cocos2d::CCMenu* menu3;
 public:
 	cocos2d::ccColor3B colorForPage(int);
 	cocos2d::ccColor3B getColorValue(int, int, float);
@@ -29,9 +28,7 @@ public:
 	void keyBackClicked();
 	void createStars(GJGameLevel* level, CCLayer* layer);
 	void onIslandLevel(cocos2d::CCObject* sender);
-	void onGarage(cocos2d::CCObject* sender);
-	void importSheet();
-	void runScroll();
+	// void importSheet();
 	void runParticle();
 	void scrollLayerMoved(cocos2d::CCPoint) override;
 	/*void pageNumberForPosition(cocos2d::CCPoint);*/
@@ -42,6 +39,6 @@ public:
 	/*void instantPage(cocos2d::CCObject*,int);*/
 	static IslandSelectLayer* create(int page);
 	static cocos2d::CCScene* scene(int page);
-	void updatePageWithObject(CCObject* page, CCObject* object);
+	void updatePageWithObject(CCObject* page, CCObject* object) override;
 	
 };

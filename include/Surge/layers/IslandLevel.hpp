@@ -9,15 +9,10 @@ protected:
 public:
     static IslandLevel* create(std::string const& text);
     static cocos2d::CCScene* scene(std::string const& text);
+    bool setup(std::string const& value);
 
 private:
-    
-
-
-  
-    virtual void keyBackClicked();
     void updatePageWithObject(CCObject* page, CCObject* object);
-    void onClose(CCObject*);
     int m_level;
 };
 

@@ -7,7 +7,7 @@
 #include <Geode/modify/GJGameLevel.hpp>
 #include <Geode/Enums.hpp>
 #include <Surge/layers/IslandNode.h>
-#include "IslandLevel.cpp"
+#include <Surge/layers/IslandLevel.hpp>
 
 using namespace geode::prelude;
 
@@ -36,14 +36,6 @@ CCScene* IslandSelectLayer::scene(int page) {
     return scene;
 }
 
-void IslandSelectLayer::importSheet() {
-    auto* textureCache = CCTextureCache::sharedTextureCache();
-    auto* spriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-
-    textureCache->addImage("IslandsSheet.png"_spr, false);
-    spriteFrameCache->addSpriteFramesWithFile("IslandsSheet.plist"_spr);
-}
-
 bool IslandSelectLayer::init(int page) {
     if (!CCLayer::init()) return false;
 
@@ -54,16 +46,11 @@ bool IslandSelectLayer::init(int page) {
       auto node2 = more::IslandNode::create(1, this);
       auto node3 = more::IslandNode::create(1, this);
 
-    //auto node = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
-    //auto node2 = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
-    //auto node3 = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
     auto GM = GameManager::sharedState();
     auto GLM = GameLevelManager::sharedState();
-    /*addChild(node,2);*/
-    importSheet();
    
      CCString* path = CCString::createWithFormat(
-         "island_%02d.png",
+         "island_%02d.png"_spr,
          1
      );
 
@@ -72,7 +59,7 @@ bool IslandSelectLayer::init(int page) {
      );
 
      CCString* path2 = CCString::createWithFormat(
-         "island_%02d.png",
+         "island_%02d.png"_spr,
          2
      );
 
@@ -82,7 +69,7 @@ bool IslandSelectLayer::init(int page) {
 
 
      CCString* path3 = CCString::createWithFormat(
-         "island_%02d.png",
+         "island_%02d.png"_spr,
          3
      );
 
@@ -111,11 +98,11 @@ bool IslandSelectLayer::init(int page) {
     ///*  SongInfoLayer::create(10)->show();*/
     //  /*addChild(songinfo);*/
     //  /*songinfo->show();*/
-      CCSprite* Dashlands = CCSprite::createWithSpriteFrameName("islandLabel_01_001.png");
+      CCSprite* Dashlands = CCSprite::createWithSpriteFrameName("islandLabel_01_001.png"_spr);
 
-      CCSprite* ToxicFactory = CCSprite::createWithSpriteFrameName("islandLabel_02_001.png");
+      CCSprite* ToxicFactory = CCSprite::createWithSpriteFrameName("islandLabel_02_001.png"_spr);
 
-      auto CommingSoon = CCLabelBMFont::create("Coming Soon","bigFont.fnt");
+      auto ComingSoon = CCLabelBMFont::create("Coming Soon","bigFont.fnt");
     
       auto director = CCDirector::sharedDirector();
       auto winSize = director->getWinSize();
@@ -125,29 +112,29 @@ bool IslandSelectLayer::init(int page) {
       CCMenu* dashlandsmenu = CCMenu::create();
 
 
-      CCSprite* unkspr = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr1 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr2 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr3 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr4 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr5 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
+      CCSprite* unkspr = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr1 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr2 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr3 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr4 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr5 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
 
-      CCSprite* unkspr6 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr7 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unksp8 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr9 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
-      CCSprite* unkspr10 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png");
+      CCSprite* unkspr6 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr7 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unksp8 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr9 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
+      CCSprite* unkspr10 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
 
       //locked sprites
-      CCSprite* level2 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level3 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level4 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level5 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level6 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level7 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level8 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level9 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
-      CCSprite* level10 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png");
+      CCSprite* level2 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level3 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level4 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level5 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level6 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level7 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level8 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level9 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
+      CCSprite* level10 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
 
 
       //pointers animation 1
@@ -1372,7 +1359,7 @@ bool IslandSelectLayer::init(int page) {
       ToxicFactoryMenu->setPositionY(ToxicFactoryMenu->getPositionY());
 
       node3->addChild(sprite3);
-      node3->addChild(CommingSoon);
+      node3->addChild(ComingSoon);
       node3->setTag(23);
 
 
@@ -1387,21 +1374,6 @@ m_level = 0;
 m_levelPages->addObject(node);
 m_levelPages->addObject(node2);
 m_levelPages->addObject(node3);
-
-//
-//m_background->setID("bg-meltdown");
-//m_ground->setID("ground-meltdown");
-/* for(int i = 1; i < 23; i++)
-     m_mainLevels->addObject(GLM->getMainLevel(i, true));*/
-
-//for (size_t i = 0; i < 3; i++)
-//    m_levelPages->addObject(LevelPage::create(nullptr));
-
-//GJGameLevel* theTower = GJGameLevel::create();
-//theTower->m_levelID = -2;
-//m_mainLevels->addObject(theTower);
-
-
 
 m_scrollLayer = BoomScrollLayer::create(m_levelPages, 0, false, nullptr, static_cast<DynamicScrollDelegate*>(this));
 
@@ -1418,7 +1390,6 @@ else
     scrollLayerMoved(m_scrollLayer->m_extendedLayer->getPosition()); //
 }
 
-addChild(m_scrollLayer);
 auto pointer = (CCSpriteBatchNode*)m_scrollLayer->getChildren()->objectAtIndex(1);
 /*pointer->setVisible(false);*/
 pointer->setPositionY(director->getScreenBottom() - 45);
@@ -1492,9 +1463,9 @@ addChild(m_scrollLayer);
       ToxicFactory->setPositionY(sprite2->getPositionY() + 150);
       ToxicFactory->setScale(0.8);
 
-      CommingSoon->setPositionX(sprite3->getPositionX());
-      CommingSoon->setPositionY(sprite3->getPositionY() + 150);
-      CommingSoon->setScale(0.8);
+      ComingSoon->setPositionX(sprite3->getPositionX());
+      ComingSoon->setPositionY(sprite3->getPositionY() + 150);
+      ComingSoon->setScale(0.8);
       
 
       //start arrow animation
@@ -1568,94 +1539,27 @@ addChild(m_scrollLayer);
 
       pointer->setPositionY(CCDirector::sharedDirector()->getScreenBottom() - 45);*/
 
-      m_background = CCSprite::create("GJ_gradientBG.png");
-      m_background->setAnchorPoint({ 0.f, 0.f });
-      addChild(m_background, -4);
+    m_background = CCSprite::create("GJ_gradientBG.png");
+    m_background->setAnchorPoint({ 0.f, 0.f });
+    addChild(m_background, -4);
 
-      m_background->setScaleX((winSize.width + 10.f) / m_background->getTextureRect().size.width);
-      m_background->setScaleY((winSize.height + 10.f) / m_background->getTextureRect().size.height);
-      m_background->setPosition(ccp(-5, -5));
-      m_background->setColor(GM->colorForIdx(4));
-      m_background->setTag(120);
-      auto mm_background = CCSprite::create("GJ_gradientBG.png");
-      mm_background->setAnchorPoint({ 0.f, 0.f });
-     addChild(mm_background, -1);
+    m_background->setScaleX((winSize.width + 10.f) / m_background->getTextureRect().size.width);
+    m_background->setScaleY((winSize.height + 10.f) / m_background->getTextureRect().size.height);
+    m_background->setPosition(ccp(-5, -5));
+    m_background->setColor(GM->colorForIdx(4));
 
-      mm_background->setScaleX((winSize.width + 10.f) / mm_background->getTextureRect().size.width);
-      mm_background->setScaleY((winSize.height + 10.f) / mm_background->getTextureRect().size.height);
-      mm_background->setPosition(ccp(-5, -5));
-      mm_background->setColor(GM->colorForIdx(4));
-      mm_background->setTag(121);
+    m_background->setZOrder(-4);
+    sprite3->setColor(ccBLACK);
+    sprite3->setOpacity(40);
 
-      mm_background->setVisible(false);
+    m_background->setColor({ 0, 125, 255 });
+    CCNode* sideArt = createSideArt();
 
-      auto mm_background2 = CCSprite::create("GJ_gradientBG.png");
-      mm_background2->setAnchorPoint({ 0.f, 0.f });
-      addChild(mm_background2, -2);
-
-      mm_background2->setScaleX((winSize.width + 10.f) / mm_background2->getTextureRect().size.width);
-      mm_background2->setScaleY((winSize.height + 10.f) / mm_background2->getTextureRect().size.height);
-      mm_background2->setPosition(ccp(-5, -5));
-      mm_background2->setColor(GM->colorForIdx(17));
-      mm_background2->setTag(122);
-
-      auto mm_background3 = CCSprite::create("GJ_gradientBG.png");
-      mm_background3->setAnchorPoint({ 0.f, 0.f });
-      addChild(mm_background3, -3);
-      mm_background2->setVisible(false);
-
-      m_background->setZOrder(-4);
-      mm_background3->setScaleX((winSize.width + 10.f) / mm_background3->getTextureRect().size.width);
-      mm_background3->setScaleY((winSize.height + 10.f) / mm_background3->getTextureRect().size.height);
-      mm_background3->setPosition(ccp(-5, -5));
-      mm_background3->setColor(GM->colorForIdx(6));
-      mm_background3->setVisible(false);
-      mm_background3->setTag(123);
-      sprite3->setColor(ccBLACK);
-      sprite3->setOpacity(40);
-    menu3 = CCMenu::create();
-    menu3->setPosition(CCDirector::sharedDirector()->getScreenRight() - 50,
-        CCDirector::sharedDirector()->getScreenTop() - 30);
-    auto btn3 = CCSprite::createWithSpriteFrameName("garageRope_001.png");
-    btn3->setScale(1);
-    auto myButton3 = CCMenuItemSpriteExtra::create(
-        btn3,
-        this,
-        menu_selector(IslandSelectLayer::onGarage));
-    menu3->setTouchEnabled(false);
-    auto delay = CCDelayTime::create(0.6f); // Crear una acci�n de retraso de 2 segundos
-    auto callFunc = CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runScroll)); // Crear una acci�n que llame a la funci�n deseada
-  
-    auto sequence = CCSequence::create(delay, callFunc,nullptr); // Crear una secuencia de acciones
-
-
-    this->runAction(sequence); // Ejecutar la secuencia en un nodo o capa apropiada
-    myButton3->setSizeMult(1);
-    myButton3->m_animationType = MenuAnimationType{ 1 };
-    myButton3->m_startPosition = btn3->getPosition();
-    myButton3->m_offset = CCPoint{ 0, -5.f };
-   /* myButton3->m_animationType = MenuAnimationType::Move;*/
-    menu3->addChild(myButton3);
-    addChild(menu3,2);
-      m_background->setColor({ 0, 125, 255 });
-        CCNode* sideArt = createSideArt();
-    
-
-        addChild(menu3,2);
-
-
-        addChild(m_background, -1);
-        addChild(sideArt);
-        /*addChild(arrows, 5);*/
+    addChild(sideArt);
 
     return true;
 }
 
-void IslandSelectLayer::runScroll()
-{
-    Mod::get()->setSavedValue("onsubzero", 3);
-     menu3->setTouchEnabled(true);
-}
 void IslandSelectLayer::runParticle()
 {
     auto winSize = CCDirector::sharedDirector()->getWinSize();
@@ -1799,14 +1703,14 @@ void IslandSelectLayer::keyBackClicked() {
     Mod::get()->setSavedValue("onsubzero", back);
     Mod::get()->setSavedValue("onislandpages", back);
     //Mod::get()->getSavedValue<int>("onislandpages");
-    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, LevelAreaLayer::scene()));
+    CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
 }
 
 void IslandSelectLayer::onIslandLevel(CCObject* sender) {
 
     CCMenuItemSpriteExtra* button = (CCMenuItemSpriteExtra*)sender;
     auto GLM = GameLevelManager::sharedState();
-    auto level1popup = IslandLevelPopup::create("");
+    auto level1popup = IslandLevel::create("level name");
     auto Layer = (CCLayer*)level1popup->getChildren()->objectAtIndex(0);
 
     auto BG = (CCScale9Sprite*)Layer->getChildren()->objectAtIndex(0);
@@ -2073,7 +1977,7 @@ void IslandSelectLayer::onPlay(CCObject* sender) {
    /* std::cout << "level string:" << level->m_levelString.c_str() << std::endl;*/
     
 
-    CCDirector::get()->replaceScene(CCTransitionFade::create(0.5f, playLayer));
+    CCDirector::get()->pushScene(CCTransitionFade::create(0.5f, playLayer));
 
 }
 
@@ -2152,15 +2056,6 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
     }
 }
 
-void IslandSelectLayer::onGarage(CCObject* sender) {
-
-    auto transition = CCTransitionMoveInT::create(0.5f, GJGarageLayer::scene());
-
-    Mod::get()->setSavedValue("onsubzero", 10);
-    Mod::get()->setSavedValue("onislandpages", this->m_scrollLayer->m_page+1);
-    CCDirector::sharedDirector()->pushScene(transition);
-
-}
 void IslandSelectLayer::createStars(GJGameLevel* level, CCLayer* layer) {
     int totalstars = level->m_stars;
     float screenWidth = CCDirector::sharedDirector()->getWinSize().width;
