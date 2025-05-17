@@ -5,7 +5,6 @@ void MyPlayLayer::levelComplete() {
 
     if (levelID == 1001 && !m_isPracticeMode) {
         GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault03", 100, false);
-        return;
     }
 
     PlayLayer::levelComplete();
