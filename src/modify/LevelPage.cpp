@@ -69,7 +69,9 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
         }
 
         m_isBusy = level->m_levelID < 0;
-        label->setVisible(level->m_levelID == -1);
+        if (label) {
+            label->setVisible(level->m_levelID == -1);
+        }
     });
 }
 
