@@ -1,4 +1,5 @@
 #include "Geode/binding/MenuLayer.hpp"
+#include "Geode/cocos/cocoa/CCObject.h"
 #include "Geode/ui/Notification.hpp"
 #include <Surge/modify/MenuLayer.hpp>
 #include <Geode/utils/file.hpp>
@@ -48,6 +49,11 @@ bool MyMenuLayer::init() {
             surgeLogo->runAction(titleSequence);
         }
     }
+
+    if (!Mod::get()->getSettingValue<bool>("disable-warning-popup")) {
+        this->scheduleOnce(SEL_SCHEDULE(&MyMenuLayer::onStartupPopup), 0.1f);
+    }
+    
 
     if (!downloadStarted) {
         downloadStarted = true;
@@ -113,7 +119,7 @@ bool MyMenuLayer::init() {
 				geode::Notification::create("Music successfully downloaded!", NotificationIcon::Success)->show();
             }
             else if (web::WebProgress* progress = e->getProgress()) {
-                log::info("Download progress: {:.1f}%", progress->downloadProgress().value_or(0.0f) * 100.f);
+                // log::info("Download progress: {:.1f}%", progress->downloadProgress().value_or(0.0f) * 100.f);
             }
             else {
                 log::warn("Unknown web::WebTask::Event state");
@@ -130,4 +136,38 @@ void MyMenuLayer::onCreator(CCObject* sender) {
     #else
     MenuLayer::onCreator(sender);
     #endif
+}
+
+void MyMenuLayer::onStartupPopup(float dt) {
+    auto mod = Mod::get();
+    auto tag = mod->getVersion().getTag();
+    // log::debug("Version tag isAlpha: {}", tag && tag == VersionTag::Alpha ? "true" : "false");
+    // log::debug("Version tag isBeta: {}", tag && tag == VersionTag::Beta ? "true" : "false");
+    // log::debug("Version tag isPrerelease: {}", tag && tag == VersionTag::Prerelease ? "true" : "false");
+    // if (tag) {
+    //     log::debug("Version tag number: {}", tag->number);
+    // } else {
+    //     log::debug("Version tag number: (none)");
+    // }
+    bool isAlpha = mod->getVersion().toVString(true).find("alpha") != std::string::npos;
+
+    std::string message;
+    if (isAlpha) {
+        message =
+            "1. This mod is currently in <co>alpha</c>. Bugs and instability are expected. "
+            "Please report any issues on our <cy>[GitHub issue tracker](https://github.com/OmgRod/GD-Surge/issues)</c>.\n\n"
+            "2. Surge uses a separate save file, so your original data is safe. "
+            "However, we recommend backing up your original save just in case. "
+            "To restore your original save, simply disable this mod.\n\n"
+            "You may disable this popup in the mod settings.\n\n"
+            "Thank you for trying Surge!";
+    } else {
+        message =
+            "Surge uses a separate save file, so your original data is safe. "
+            "However, we recommend backing up your original save just in case. "
+            "To restore your original save, simply disable this mod.\n\n"
+            "You may disable this popup in the mod settings.\n\n"
+            "Thank you for trying Surge!";
+    }
+    MDPopup::create("Warning", message, "OK")->show();
 }

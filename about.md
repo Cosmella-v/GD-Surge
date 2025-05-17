@@ -8,6 +8,10 @@
 - New <cr>Vault Codes</c>
 - New <cp>Shopkeeper</c>
 
+### To-Do
+
+A full to-do list is available [here](https://www.notion.so/omgrod/Geometry-Dash-Surge-1f3e014e65e38004a013d4329ac255d6?pvs=4).
+
 ## Issues
 
 If you find any bugs or would like to request new features, please send them on our [issue tracker](https://github.com/OmgRod/GD-Surge/issues).
