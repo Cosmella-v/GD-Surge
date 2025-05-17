@@ -192,3 +192,7 @@ void MyMenuLayer::onFacebook(CCObject* sender) {
 void MyMenuLayer::onRobTop(CCObject* sender) {
     CCApplication::sharedApplication()->openURL("https://omgrod.me");
 }
+
+void MyMenuLayer::onYouTube(CCObject* sender) {
+    CCApplication::sharedApplication()->openURL("https://www.youtube.com/@OmgRodYT");
+}
