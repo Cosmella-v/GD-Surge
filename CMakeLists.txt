@@ -8,6 +8,11 @@ else()
 endif()
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
+if (DEFINED ENV{GITHUB_ACTIONS})
+    message("Github Actions Build")
+    add_definitions(-DGITHUB_ACTIONS)
+endif()
+
 project(GeometryDashSurge VERSION 1.0.0)
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
