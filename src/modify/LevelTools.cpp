@@ -15,6 +15,7 @@ gd::string MyLevelTools::getAudioTitle(int audioID) {
         case 3: return "Detour";
         case 4: return "The Beginning of Time";
         case 5: return "Thermodynamix";
+        case 1000: return "Action Theme 07";
         default: return "";
     }
 }
@@ -29,6 +30,7 @@ gd::string MyLevelTools::getAudioFileName(int audioID) {
         case 3: return (const char*)((saveDir / "songs" / "Detour.mp3").u8string().c_str());
         case 4: return (const char*)((saveDir / "songs" / "TheBeginningOfTime.mp3").u8string().c_str());
         case 5: return (const char*)((saveDir / "songs" / "Thermodynamix.mp3").u8string().c_str());
+        case 1000: return (const char*)((saveDir / "songs" / "ActionTheme07.ogg").u8string().c_str());
         default: return (const char*)((saveDir / "songs" / fmt::format("{}.ogg", audioID)).u8string().c_str());
     }
 }
@@ -39,6 +41,7 @@ gd::string MyLevelTools::nameForArtist(int artistID) {
         case 2: return "Waterflame";
         case 3: return "dj-Nate";
         case 4: return "OcularNebula";
+        case 5: return "Daniel Carl";
         default: return "";
     }
 }
@@ -52,6 +55,7 @@ gd::string MyLevelTools::urlForAudio(int audioID) {
         case 3: return "https://www.youtube.com/watch?v=9Q6XICGoEaM";
         case 4: return "https://www.youtube.com/watch?v=-66Vk9FqgMU";
         case 5: return "https://www.youtube.com/watch?v=QUFIGUBrN3M";
+        case 1000: return "https://soundcloud.com/danny-colen/action-theme-07";
         default: return "";
     }
 }
@@ -93,6 +97,7 @@ int MyLevelTools::artistForAudio(int audioID) {
         case 3: return 1;
         case 4: return 3;
         case 5: return 3;
+        case 1000: return 5;
         default: return 0;
     }
 }
@@ -139,7 +144,7 @@ GJGameLevel* MyLevelTools::getLevel(int levelID, bool loaded) {
             break;
         case 1001:
             setLevelInfo(level, 6, GJDifficulty::Harder, 0);
-            level->m_levelName = "The Gauntlet";
+            level->m_levelName = getAudioTitle(1000);
             level->m_audioTrack = 1000;
             level->m_coins = 0;
             break;
