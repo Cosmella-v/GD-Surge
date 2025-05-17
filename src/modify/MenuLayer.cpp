@@ -22,6 +22,18 @@ bool MyMenuLayer::init() {
         return false;
     }
 
+    auto socialMenu = this->getChildByID("social-media-menu");
+    if (socialMenu) {
+        auto button = socialMenu->getChildByID("robtop-logo-button");
+        if (button) {
+            auto sprite = button->getChildByType<CCSprite*>(0);
+            if (sprite) {
+                sprite->setDisplayFrame(CCSpriteFrameCache::get()->spriteFrameByName("omgrodLogo_01.png"_spr));
+                sprite->setScale(0.55f);
+            }
+        }
+    }
+
     auto logo = this->getChildByID("main-title");
     auto spriteLogo = typeinfo_cast<CCSprite*>(logo);
     if (spriteLogo && !(Loader::get()->getLoadedMod("ninxout.redash"))) {
@@ -158,4 +170,25 @@ void MyMenuLayer::onStartupPopup(float dt) {
             "Thank you for trying Surge!";
     }
     MDPopup::create("Warning", message, "OK")->show();
+}
+
+void MyMenuLayer::onTwitch(CCObject* sender) {
+    CCApplication::sharedApplication()->openURL("https://www.twitch.tv/omgrod1000");
+}
+
+void MyMenuLayer::onTwitter(CCObject* sender) {
+    CCApplication::sharedApplication()->openURL("https://x.com/0mgrod");
+}
+
+void MyMenuLayer::onDiscord(CCObject* sender) {
+    CCApplication::sharedApplication()->openURL("https://discord.gg/vK3DuqJwyW");
+}
+
+void MyMenuLayer::onFacebook(CCObject* sender) {
+    // CCApplication::sharedApplication()->openURL("https://www.twitch.tv/omgrod1000");
+    FLAlertLayer::create("nope", "i'm not a boomer", "OK")->show();
+}
+
+void MyMenuLayer::onRobTop(CCObject* sender) {
+    CCApplication::sharedApplication()->openURL("https://omgrod.me");
 }
