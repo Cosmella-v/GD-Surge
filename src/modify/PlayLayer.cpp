@@ -1,6 +1,6 @@
 #include <Surge/modify/PlayLayer.hpp>
 
-void PlayLayer::levelComplete() {
+void MyPlayLayer::levelComplete() {
     auto levelID = this->m_level->m_levelID;
 
     if (levelID == 1001 && !m_isPracticeMode) {
