@@ -28,8 +28,7 @@ If you find any bugs or would like to request new features, please send them on 
 - OmgRod - Developer
 - MobMasterMind - Custom Icons
 - BitZ - GD World
-- Capeling - GD Lunar code
-- Chumiu - Loading screen code
+- Capeling - GD Lunar code & Loading screen code
 - Alphalaneous - Mod Logo
 
 ### Levels

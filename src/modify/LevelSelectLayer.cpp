@@ -58,11 +58,11 @@ ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
     auto GM = GameManager::sharedState();
     
 	int colIDs[8] = { 
-        5,
+        55,
         7,
-        8,
+        93,
         9,
-        3,
+        5,
         27,
         34,
         (AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04") && Mod::get()->getSettingValue<bool>("shattered-code")) ? 15 : 10
