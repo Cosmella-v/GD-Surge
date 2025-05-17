@@ -15,6 +15,8 @@ bool jumpedAlready = false;
 
 bool downloadStarted = false;
 
+bool startup = false;
+
 bool MyMenuLayer::init() {
     if (!MenuLayer::init()) {
         return false;
@@ -50,7 +52,7 @@ bool MyMenuLayer::init() {
         }
     }
 
-    if (!Mod::get()->getSettingValue<bool>("disable-warning-popup")) {
+    if (!Mod::get()->getSettingValue<bool>("disable-warning-popup") && !startup) {
         this->scheduleOnce(SEL_SCHEDULE(&MyMenuLayer::onStartupPopup), 0.1f);
     }
     
@@ -80,7 +82,7 @@ bool MyMenuLayer::init() {
             if (web::WebResponse* res = e->getValue()) {
                 if (!res->ok()) {
                     // FLAlertLayer::create("Error", "Failed to download music.zip (bad response).", "OK")->show();
-					geode::Notification::create("Failed to download music.zip (bad response).", NotificationIcon::Error)->show();
+					geode::Notification::create("Failed to download music.zip. Levels may not have music.", NotificationIcon::Error)->show();
                     return;
                 }
 
@@ -126,6 +128,8 @@ bool MyMenuLayer::init() {
             }
         });
     }
+
+    startup = true;
 
     return true;
 }

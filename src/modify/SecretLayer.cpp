@@ -185,16 +185,16 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         }
     },
     VaultCode{
-        "rod's basement",
+        "the gauntlet",
         []() {
             auto array = CCArray::create();
             array->addObject(CCString::create("Still snooping around, huh?"));
-            array->addObject(CCString::create("There's a place below, true."));
-            array->addObject(CCString::create("The name's short, simple, clue."));
-            array->addObject(CCString::create("It's not that hard, think a sec."));
-            array->addObject(CCString::create("Who owns the basement? Check."));
-            array->addObject(CCString::create("Now, take that, slap it below,"));
-            array->addObject(CCString::create("And boom, you got the code."));
+            array->addObject(CCString::create("There's a challenge ahead, that's true."));
+            array->addObject(CCString::create("The name is fierce, a trial for you."));
+            array->addObject(CCString::create("It's not that hard, just think of the test."));
+            array->addObject(CCString::create("Who dares to run it? Only the best."));
+            array->addObject(CCString::create("Now, say its name, the trial renowned,"));
+            array->addObject(CCString::create("And boom, you got the code - it's going down."));
             return array;
         },
         []() -> bool {
