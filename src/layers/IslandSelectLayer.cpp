@@ -1710,7 +1710,43 @@ void IslandSelectLayer::onIslandLevel(CCObject* sender) {
 
     CCMenuItemSpriteExtra* button = (CCMenuItemSpriteExtra*)sender;
     auto GLM = GameLevelManager::sharedState();
-    auto level1popup = IslandLevel::create("level name");
+    auto levelName = "";
+    switch(button->getTag()) {
+        case 30:
+            levelName = "The Factory";
+            break;
+        case 31:
+            levelName = "The Woods";
+            break;
+        case 32:
+            levelName = "The Complex";
+            break;
+        case 33:
+            levelName = "The Storage";
+            break;
+        case 34:
+            levelName = "The Ship";
+            break;
+        // case 35:
+        //     levelName = "IslandLevel6";
+        //     break;
+        // case 36:
+        //     levelName = "IslandLevel7";
+        //     break;
+        // case 37:
+        //     levelName = "IslandLevel8";
+        //     break;
+        // case 38:
+        //     levelName = "IslandLevel9";
+        //     break;
+        // case 39:
+        //     levelName = "IslandLevel10";
+        //     break;
+        default:
+            levelName = "";
+            break;
+    }
+    auto level1popup = IslandLevel::create(levelName);
     auto Layer = (CCLayer*)level1popup->getChildren()->objectAtIndex(0);
 
     auto BG = (CCScale9Sprite*)Layer->getChildren()->objectAtIndex(0);

@@ -4,12 +4,10 @@ using namespace geode::prelude;
 
 bool IslandLevel::setup(std::string const& value) {
     this->setID("IslandLevel"_spr);
-    // this->setTitle(value);
+    this->setTitle(value);
 
-    auto winSize = CCDirector::sharedDirector()->getWinSize();
-
-    auto label = CCLabelBMFont::create(value.c_str(), "bigFont.fnt");
-    m_mainLayer->addChildAtPosition(label, Anchor::Top, ccp(0, -15.f));
+    // auto label = CCLabelBMFont::create(value.c_str(), "bigFont.fnt");
+    // m_mainLayer->addChildAtPosition(label, Anchor::Top, ccp(0, -15.f));
 
     return true;
 }
@@ -30,8 +28,4 @@ cocos2d::CCScene* IslandLevel::scene(std::string const& text) {
     if (popup)
         scene->addChild(popup);
     return scene;
-}
-
-void IslandLevel::updatePageWithObject(CCObject* page, CCObject* object) {
-    // Optional logic
 }

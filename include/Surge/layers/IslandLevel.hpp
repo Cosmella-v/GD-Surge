@@ -12,7 +12,6 @@ public:
     bool setup(std::string const& value);
 
 private:
-    void updatePageWithObject(CCObject* page, CCObject* object);
     int m_level;
 };
 
