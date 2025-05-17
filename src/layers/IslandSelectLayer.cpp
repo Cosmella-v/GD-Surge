@@ -39,6 +39,9 @@ CCScene* IslandSelectLayer::scene(int page) {
 bool IslandSelectLayer::init(int page) {
     if (!CCLayer::init()) return false;
 
+    setKeypadEnabled(true);
+    setTouchEnabled(true);
+    setKeyboardEnabled(true);
 
     this->setID("IslandSelectLayer"_spr);
     setKeypadEnabled(true);
@@ -1556,6 +1559,35 @@ addChild(m_scrollLayer);
     CCNode* sideArt = createSideArt();
 
     addChild(sideArt);
+
+    auto pageBtnsMenu = CCMenu::create();
+    pageBtnsMenu->setPosition({ 0, 0 });
+    pageBtnsMenu->setZOrder(2);
+
+    auto nextPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
+    nextPageIcon->setFlipX(false);
+
+    auto nextPageBtn = CCMenuItemSpriteExtra::create(
+        nextPageIcon,
+        this,
+        menu_selector(IslandSelectLayer::onNext)
+    );
+    nextPageBtn->setPosition({ winSize.width * 0.95f, winSize.height * 0.5f });
+
+    auto prevPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
+    prevPageIcon->setFlipX(true);
+    
+    auto prevPageBtn = CCMenuItemSpriteExtra::create(
+        prevPageIcon,
+        this,
+        menu_selector(IslandSelectLayer::onPrev)
+    );
+    prevPageBtn->setPosition({ winSize.width * 0.05f, winSize.height * 0.5f });
+
+    pageBtnsMenu->addChild(nextPageBtn);
+    pageBtnsMenu->addChild(prevPageBtn);
+
+    this->addChild(pageBtnsMenu);
 
     return true;
 }
