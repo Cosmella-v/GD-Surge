@@ -5,5 +5,6 @@
 class $modify(MyGJGarageLayer, GJGarageLayer) {
 public:
     $override
+    bool init();
     void showUnlockPopup(int p0, UnlockType p1);
 };
