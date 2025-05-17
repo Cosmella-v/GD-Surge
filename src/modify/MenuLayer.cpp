@@ -66,23 +66,15 @@ bool MyMenuLayer::init() {
         web::WebRequest request;
         auto task = request.get(musicDownloadURL);
         s_listener.setFilter(task);
-
-        s_listener.bind([=](web::WebTask::Event* e) {
-            if (!e) {
-                log::error("Event is null");
-                return;
-            }
-
-            if (e->isCancelled()) {
-                // FLAlertLayer::create("Error", "Download was cancelled.", "OK")->show();
-				geode::Notification::create("Download was cancelled", NotificationIcon::Error)->show();
+        s_listener.bind([&](web::WebTask::Event* e) {
+            if (!e || e->isCancelled()) {
+                geode::Notification::create("Download was cancelled", NotificationIcon::Error)->show();
                 return;
             }
 
             if (web::WebResponse* res = e->getValue()) {
                 if (!res->ok()) {
-                    // FLAlertLayer::create("Error", "Failed to download music.zip (bad response).", "OK")->show();
-					geode::Notification::create("Failed to download music.zip. Levels may not have music.", NotificationIcon::Error)->show();
+                    geode::Notification::create("Failed to download music.zip.", NotificationIcon::Error)->show();
                     return;
                 }
 
@@ -93,38 +85,30 @@ bool MyMenuLayer::init() {
                     return;
                 }
 
-                auto saveDir = mod->getSaveDir();
-                auto zipPath = saveDir / "music.zip";
-
+                auto zipPath = mod->getSaveDir() / "music.zip";
                 if (!geode::utils::file::writeBinary(zipPath, data)) {
-                    // FLAlertLayer::create("Error", "Failed to save music.zip to disk.", "OK")->show();
-					geode::Notification::create("Failed to save music.zip to disk.", NotificationIcon::Error)->show();
+                    geode::Notification::create("Failed to save music.zip to disk.", NotificationIcon::Error)->show();
                     return;
                 }
 
                 auto unzip = geode::utils::file::Unzip::create(zipPath);
                 if (unzip.isErr()) {
-                    // FLAlertLayer::create("Error", "Failed to unzip music.zip.", "OK")->show();
-					geode::Notification::create("Failed to unzip music.zip.", NotificationIcon::Error)->show();
+                    geode::Notification::create("Failed to unzip music.zip.", NotificationIcon::Error)->show();
                     return;
                 }
 
                 auto& archive = unzip.unwrap();
-                auto result = archive.extractAllTo(saveDir);
-                if (!result.isOk()) {
-                    FLAlertLayer::create("Error", "Failed to extract music files.", "OK")->show();
-					geode::Notification::create("Failed to extract music files.", NotificationIcon::Error)->show();
+                if (!archive.extractAllTo(mod->getSaveDir()).isOk()) {
+                    geode::Notification::create("Failed to extract music files.", NotificationIcon::Error)->show();
                     return;
                 }
 
                 log::info("music.zip downloaded and extracted successfully.");
-				geode::Notification::create("Music successfully downloaded!", NotificationIcon::Success)->show();
-            }
-            else if (web::WebProgress* progress = e->getProgress()) {
-                // log::info("Download progress: {:.1f}%", progress->downloadProgress().value_or(0.0f) * 100.f);
-            }
-            else {
-                log::warn("Unknown web::WebTask::Event state");
+                geode::Notification::create("Music successfully downloaded!", NotificationIcon::Success)->show();
+
+                queueInMainThread([&]() {
+                    std::filesystem::remove(zipPath);
+                });
             }
         });
     }
