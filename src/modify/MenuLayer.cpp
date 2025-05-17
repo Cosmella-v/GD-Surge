@@ -1,3 +1,4 @@
+#include "Geode/binding/MenuLayer.hpp"
 #include "Geode/ui/Notification.hpp"
 #include <Surge/modify/MenuLayer.hpp>
 #include <Geode/utils/file.hpp>
@@ -121,4 +122,12 @@ bool MyMenuLayer::init() {
     }
 
     return true;
+}
+
+void MyMenuLayer::onCreator(CCObject* sender) {
+    #ifdef GITHUB_ACTIONS
+    FLAlertLayer::create("Creator", "This feature is <cr>disabled</c>. To <cg>enable</c> it, please disable this mod. Sorry for the inconvenience.", "OK")->show();
+    #else
+    MenuLayer::onCreator(sender);
+    #endif
 }

@@ -5,4 +5,5 @@ using namespace geode::prelude;
 
 class $modify(MyMenuLayer, MenuLayer) {
 	bool init();
+	void onCreator(CCObject* sender);
 };
