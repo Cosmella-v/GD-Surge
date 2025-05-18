@@ -12,6 +12,7 @@ void MyLevelPage::onInfo(CCObject* sender) {
         }
     } else if (m_level->m_levelID.value() == -3) {
         return FLAlertLayer::create("The Islands", "<cb>The Islands</c> are not what they seem. Silence walks there, not sound. <co>Heed this warning</c>: Those who seek them <cj>rarely</c> speak again.", "OK")->show();
+    }
     LevelPage::onInfo(sender);
 }
 
