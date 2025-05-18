@@ -69,7 +69,6 @@ bool MyMenuLayer::init() {
     }
     
 
-    /*
     if (!downloadStarted) {
         downloadStarted = true;
 
@@ -125,7 +124,7 @@ bool MyMenuLayer::init() {
             }
         });
     }
-*/
+
     startup = true;
 
     return true;
