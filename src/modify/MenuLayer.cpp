@@ -1,6 +1,3 @@
-#include "Geode/binding/MenuLayer.hpp"
-#include "Geode/cocos/cocoa/CCObject.h"
-#include "Geode/ui/Notification.hpp"
 #include <Surge/modify/MenuLayer.hpp>
 #include <Geode/utils/file.hpp>
 #include <Geode/utils/web.hpp>
@@ -67,9 +64,6 @@ bool MyMenuLayer::init() {
     if (!Mod::get()->getSettingValue<bool>("disable-warning-popup") && !startup) {
         this->scheduleOnce(SEL_SCHEDULE(&MyMenuLayer::onStartupPopup), 0.1f);
     }
-    
-
-/*
 
     if (!downloadStarted) {
         downloadStarted = true;
@@ -100,19 +94,24 @@ bool MyMenuLayer::init() {
                 }
 
                 auto zipPath = mod->getSaveDir() / "music.zip";
-                if (!geode::utils::file::writeBinary(zipPath, data)) {
+                std::error_code ec;
+
+                if (!geode::utils::file::writeBinary(zipPath, data, ec)) {
+                    log::error("Failed to write music.zip to disk: {}", ec.message());
                     geode::Notification::create("Failed to save music.zip to disk.", NotificationIcon::Error)->show();
                     return;
                 }
 
                 auto unzip = geode::utils::file::Unzip::create(zipPath);
                 if (unzip.isErr()) {
+                    log::error("Unzip creation failed: {}", unzip.unwrapErr());
                     geode::Notification::create("Failed to unzip music.zip.", NotificationIcon::Error)->show();
                     return;
                 }
 
                 auto& archive = unzip.unwrap();
-                if (!archive.extractAllTo(mod->getSaveDir()).isOk()) {
+                if (!archive.extractAllTo(mod->getSaveDir(), ec).isOk()) {
+                    log::error("Extraction failed: {}", ec.message());
                     geode::Notification::create("Failed to extract music files.", NotificationIcon::Error)->show();
                     return;
                 }
@@ -120,14 +119,15 @@ bool MyMenuLayer::init() {
                 log::info("music.zip downloaded and extracted successfully.");
                 geode::Notification::create("Music successfully downloaded!", NotificationIcon::Success)->show();
 
-                queueInMainThread([&]() {
-                    std::filesystem::remove(zipPath);
+                queueInMainThread([=]() {
+                    std::error_code removeEc;
+                    if (!std::filesystem::remove(zipPath, removeEc)) {
+                        log::warn("Failed to remove music.zip: {}", removeEc.message());
+                    }
                 });
             }
         });
     }
-
-*/
 
     startup = true;
 
@@ -145,14 +145,6 @@ void MyMenuLayer::onCreator(CCObject* sender) {
 void MyMenuLayer::onStartupPopup(float dt) {
     auto mod = Mod::get();
     auto tag = mod->getVersion().getTag();
-    // log::debug("Version tag isAlpha: {}", tag && tag == VersionTag::Alpha ? "true" : "false");
-    // log::debug("Version tag isBeta: {}", tag && tag == VersionTag::Beta ? "true" : "false");
-    // log::debug("Version tag isPrerelease: {}", tag && tag == VersionTag::Prerelease ? "true" : "false");
-    // if (tag) {
-    //     log::debug("Version tag number: {}", tag->number);
-    // } else {
-    //     log::debug("Version tag number: (none)");
-    // }
     bool isAlpha = mod->getVersion().toVString(true).find("alpha") != std::string::npos;
 
     std::string message;
