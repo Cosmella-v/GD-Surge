@@ -40,8 +40,8 @@ bool IslandSelectLayer::init(int page) {
     this->setID("IslandSelectLayer"_spr);
     setKeypadEnabled(true);
     auto node = more::IslandNode::create(1,this);
-    auto node2 = more::IslandNode::create(1, this);
-    auto node3 = more::IslandNode::create(1, this);
+    // auto node2 = more::IslandNode::create(1, this);
+    // auto node3 = more::IslandNode::create(1, this);
 
     auto GM = GameManager::sharedState();
     auto GLM = GameLevelManager::sharedState();
@@ -85,7 +85,7 @@ bool IslandSelectLayer::init(int page) {
 
     CCSprite* Dashlands = CCSprite::createWithSpriteFrameName("islandLabel_01_001.png"_spr);
 
-    CCSprite* ToxicFactory = CCSprite::createWithSpriteFrameName("islandLabel_02_001.png"_spr);
+    // CCSprite* ToxicFactory = CCSprite::createWithSpriteFrameName("islandLabel_02_001.png"_spr);
 
     auto ComingSoon = CCLabelBMFont::create("Coming Soon","bigFont.fnt");
 
@@ -95,7 +95,6 @@ bool IslandSelectLayer::init(int page) {
     m_fWindowWidth = winSize.width;
 
     CCMenu* dashlandsmenu = CCMenu::create();
-
 
     CCSprite* unkspr = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
     CCSprite* unkspr1 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
@@ -685,7 +684,7 @@ bool IslandSelectLayer::init(int page) {
         }
     }
 
-    auto ToxicFactoryMenu = CCMenu::create();
+    // auto ToxicFactoryMenu = CCMenu::create();
     CCMenuItemSpriteExtra* level6Btn = CCMenuItemSpriteExtra::create(unkspr5, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level6Btn->setTag(35);
@@ -693,6 +692,7 @@ bool IslandSelectLayer::init(int page) {
     level6Btn->setVisible(false);
     level6->setPosition(level6Btn->getPosition());
 
+    /*
     //LEVEL 6 POINTS
     // point 1
     SPpoint1->setPosition(level6Btn->getPosition());
@@ -726,11 +726,11 @@ bool IslandSelectLayer::init(int page) {
     SPpoint5->setScaleX(1);
 
 
-    ToxicFactoryMenu->addChild(SPpoint1,2);
-    ToxicFactoryMenu->addChild(SPpoint2, 2);
-    ToxicFactoryMenu->addChild(SPpoint3, 2);
-    ToxicFactoryMenu->addChild(SPpoint4, 2);
-    ToxicFactoryMenu->addChild(SPpoint5, 2);
+    // ToxicFactoryMenu->addChild(SPpoint1,2);
+    // ToxicFactoryMenu->addChild(SPpoint2, 2);
+    // ToxicFactoryMenu->addChild(SPpoint3, 2);
+    // ToxicFactoryMenu->addChild(SPpoint4, 2);
+    // ToxicFactoryMenu->addChild(SPpoint5, 2);
 
 
     CCMenuItemSpriteExtra* level7Btn = CCMenuItemSpriteExtra::create(unkspr6, this, menu_selector(IslandSelectLayer::onIslandLevel));
@@ -766,10 +766,10 @@ bool IslandSelectLayer::init(int page) {
     Spoint4->setScale(0.5);
     Spoint4->setScaleX(1);
 
-    ToxicFactoryMenu->addChild(Spoint1, 2);
-    ToxicFactoryMenu->addChild(Spoint2, 2);
-    ToxicFactoryMenu->addChild(Spoint3, 2);
-    ToxicFactoryMenu->addChild(Spoint4, 2);
+    // ToxicFactoryMenu->addChild(Spoint1, 2);
+    // ToxicFactoryMenu->addChild(Spoint2, 2);
+    // ToxicFactoryMenu->addChild(Spoint3, 2);
+    // ToxicFactoryMenu->addChild(Spoint4, 2);
 
     if (wlevel6->m_normalPercent != 100)
     {
@@ -890,14 +890,14 @@ bool IslandSelectLayer::init(int page) {
     Epoint8->setScaleX(1);
 
 
-    ToxicFactoryMenu->addChild(Epoint1, 2);
-    ToxicFactoryMenu->addChild(Epoint2, 2);
-    ToxicFactoryMenu->addChild(Epoint3, 2);
-    ToxicFactoryMenu->addChild(Epoint4, 2);
-    ToxicFactoryMenu->addChild(Epoint5, 2);
-    ToxicFactoryMenu->addChild(Epoint6, 2);
-    ToxicFactoryMenu->addChild(Epoint7, 2);
-    ToxicFactoryMenu->addChild(Epoint8, 2);
+    // ToxicFactoryMenu->addChild(Epoint1, 2);
+    // ToxicFactoryMenu->addChild(Epoint2, 2);
+    // ToxicFactoryMenu->addChild(Epoint3, 2);
+    // ToxicFactoryMenu->addChild(Epoint4, 2);
+    // ToxicFactoryMenu->addChild(Epoint5, 2);
+    // ToxicFactoryMenu->addChild(Epoint6, 2);
+    // ToxicFactoryMenu->addChild(Epoint7, 2);
+    // ToxicFactoryMenu->addChild(Epoint8, 2);
     if (wlevel7->m_normalPercent != 100)
     {
         Mod::get()->setSavedValue("islandlevel7complete", 0);
@@ -1000,11 +1000,11 @@ bool IslandSelectLayer::init(int page) {
     Rpoint5->setScaleX(1);
 
 
-    ToxicFactoryMenu->addChild(Rpoint1, 2);
-    ToxicFactoryMenu->addChild(Rpoint2, 2);
-    ToxicFactoryMenu->addChild(Rpoint3, 2);
-    ToxicFactoryMenu->addChild(Rpoint4, 2);
-    ToxicFactoryMenu->addChild(Rpoint5, 2);
+    // ToxicFactoryMenu->addChild(Rpoint1, 2);
+    // ToxicFactoryMenu->addChild(Rpoint2, 2);
+    // ToxicFactoryMenu->addChild(Rpoint3, 2);
+    // ToxicFactoryMenu->addChild(Rpoint4, 2);
+    // ToxicFactoryMenu->addChild(Rpoint5, 2);
 
     if (wlevel8->m_normalPercent != 100)
     {
@@ -1058,7 +1058,7 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("wlevelunlocked", 8);
         level9Btn->runAction(CCSequence::create(
             CCDelayTime::create(2.7),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)), // Utilizamos CCCallFunc para llamar a la funci�n runParticle
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
             CCEaseBounceOut::create(scaleWithBounce2),
             nullptr
@@ -1132,7 +1132,7 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("wlevelunlocked", 9);
         level10Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.8),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)), // Utilizamos CCCallFunc para llamar a la funci�n runParticle
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
             CCEaseBounceOut::create(scaleWithBounce2),
             nullptr
@@ -1155,23 +1155,21 @@ bool IslandSelectLayer::init(int page) {
         }
     }
 
-    if (wlevel10->m_normalPercent != 100)
-    {
+    if (wlevel10->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel10complete", 0);
     }
-    //final dialogue
-    if (wlevel10->m_normalPercent == 100 && level10complete == 0)
-    {
+
+    if (wlevel10->m_normalPercent == 100 && level10complete == 0) {
         CCArray* arr = CCArray::create();
-        int colour = 2; //gjsquare thingy
+        int colour = 2;
 
-        auto dialog1 = DialogObject::create("The Keymaster", "Well, well, well...<d020> I see you have <cg>completed</c> the <cl>first two</c> islands.", 2 /*dialog icon*/, 1, false, { 255,255,255 });
+        auto dialog1 = DialogObject::create("The Keymaster", "Well, well, well...<d020> I see you have <cg>completed</c> the <cl>first two</c> islands.", 2, 1, false, { 255,255,255 });
 
-        auto dialog2 = DialogObject::create("The Keymaster", "Not bad,<d030> not bad at all.\n<d030>I have <co>unlocked</c> <cg>online levels</c> for you.", 2 /*dialog icon*/, 1, false, { 255,255,255 });
+        auto dialog2 = DialogObject::create("The Keymaster", "Not bad,<d030> not bad at all.\n<d030>I have <co>unlocked</c> <cg>online levels</c> for you.", 2, 1, false, { 255,255,255 });
 
-        auto dialog3 = DialogObject::create("The Keymaster", "Or maybe, if you were in <cy>Geometry Dash Island game</c>, LOL.", 2 /*dialog icon*/, 1, false, { 255,255,255 });
+        auto dialog3 = DialogObject::create("The Keymaster", "Or maybe, if you were in <cy>Geometry Dash Island game</c>, LOL.", 2, 1, false, { 255,255,255 });
 
-        auto dialog4 = DialogObject::create("The Keymaster", "<cl>Let's see what more you can do<d010>.<d010>.<d010>.</c>", 2 /*dialog icon*/, 1, false, { 255,255,255 });
+        auto dialog4 = DialogObject::create("The Keymaster", "<cl>Let's see what more you can do<d010>.<d010>.<d010>.</c>", 2, 1, false, { 255,255,255 });
         arr->addObject(dialog1);
 
         arr->addObject(dialog2);
@@ -1198,19 +1196,19 @@ bool IslandSelectLayer::init(int page) {
         }
       
     }
-    ToxicFactoryMenu->addChild(level6Btn,2);
-    ToxicFactoryMenu->addChild(level7Btn, 2);
-    ToxicFactoryMenu->addChild(level8Btn,2);
-    ToxicFactoryMenu->addChild(level9Btn, 2);
-    ToxicFactoryMenu->addChild(level10Btn,2);
+    // ToxicFactoryMenu->addChild(level6Btn,2);
+    // ToxicFactoryMenu->addChild(level7Btn, 2);
+    // ToxicFactoryMenu->addChild(level8Btn,2);
+    // ToxicFactoryMenu->addChild(level9Btn, 2);
+    // ToxicFactoryMenu->addChild(level10Btn,2);
 
-    ToxicFactoryMenu->addChild(level6);
-    ToxicFactoryMenu->addChild(level7);
-    ToxicFactoryMenu->addChild(level8);
-    ToxicFactoryMenu->addChild(level9);
-    ToxicFactoryMenu->addChild(level10);
+    // ToxicFactoryMenu->addChild(level6);
+    // ToxicFactoryMenu->addChild(level7);
+    // ToxicFactoryMenu->addChild(level8);
+    // ToxicFactoryMenu->addChild(level9);
+    // ToxicFactoryMenu->addChild(level10);
 
-    
+    */
     
     //LEVEL 5 POINTS
     //point 1
@@ -1265,17 +1263,17 @@ bool IslandSelectLayer::init(int page) {
     node->addChild(Dashlands);
     node->setTag(20);
 
-    node2->addChild(sprite2);
-    node2->addChild(ToxicFactory);
-    node2->addChild(ToxicFactoryMenu);
-    node2->setTag(22);
+    // node2->addChild(sprite2);
+    // node2->addChild(ToxicFactory);
+    // node2->addChild(ToxicFactoryMenu);
+    // node2->setTag(22);
 
-    ToxicFactoryMenu->setPosition(winSize / 2);
-    ToxicFactoryMenu->setPositionY(ToxicFactoryMenu->getPositionY());
+    // ToxicFactoryMenu->setPosition(winSize / 2);
+    // ToxicFactoryMenu->setPositionY(ToxicFactoryMenu->getPositionY());
 
-    node3->addChild(sprite3);
-    node3->addChild(ComingSoon);
-    node3->setTag(23);
+    // node3->addChild(sprite3);
+    // node3->addChild(ComingSoon);
+    // node3->setTag(23);
 
         m_mainLevels = CCArray::create();
         m_levelPages = CCArray::create();
@@ -1283,39 +1281,30 @@ bool IslandSelectLayer::init(int page) {
         m_level = 0;
 
         m_levelPages->addObject(node);
-        m_levelPages->addObject(node2);
-        m_levelPages->addObject(node3);
+        // m_levelPages->addObject(node2);
+        // m_levelPages->addObject(node3);
 
         m_scrollLayer = BoomScrollLayer::create(m_levelPages, 0, false, nullptr, static_cast<DynamicScrollDelegate*>(this));
 
         m_scrollLayer->m_extendedLayer->m_delegate = static_cast<BoomScrollLayerDelegate*>(this);
 
-        if (page)
-        {
+        if (page) {
             if (page == 21)
                 m_scrollLayer->instantMoveToPage(20);
             m_scrollLayer->instantMoveToPage(page);
-        }
-        else
-        {
+        } else {
             scrollLayerMoved(m_scrollLayer->m_extendedLayer->getPosition()); //
         }
 
         auto pointer = (CCSpriteBatchNode*)m_scrollLayer->getChildren()->objectAtIndex(1);
-        /*pointer->setVisible(false);*/
         pointer->setPositionY(director->getScreenBottom() - 45);
         addChild(m_scrollLayer);
 
-
         //level 5 to level 6 animation
-        if (wlevel5->m_normalPercent != 100)
-        {
+        if (wlevel5->m_normalPercent != 100) {
             Mod::get()->setSavedValue("islandlevel5complete", 0);
         }
-        if (wlevel5->m_normalPercent == 100 && wlevel6->m_normalPercent == 0 && level5complete == 0)
-        {
-            //opacty
-
+        if (wlevel5->m_normalPercent == 100 && wlevel6->m_normalPercent == 0 && level5complete == 0) {
             level6Btn->setOpacity(0);
 
             level6Btn->setScale(1.5);
@@ -1326,7 +1315,7 @@ bool IslandSelectLayer::init(int page) {
             m_scrollLayer->moveToPage(1);
             level6Btn->runAction(CCSequence::create(
                 CCDelayTime::create(1.2),
-                CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)), // Utilizamos CCCallFunc para llamar a la funci�n runParticle
+                CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
                 CCFadeIn::create(0.1),
                 CCEaseBounceOut::create(scaleWithBounce2),
                 nullptr
@@ -1359,23 +1348,20 @@ bool IslandSelectLayer::init(int page) {
         Dashlands->setPositionY(sprite->getPositionY() + 150);
         Dashlands->setScale(0.8);
 
-
-
         sprite2->setPosition(winSize / 2);
         sprite2->setPositionY(sprite2->getPositionY() - 30);
 
         sprite3->setPosition(winSize / 2);
         sprite3->setPositionY(sprite3->getPositionY() - 30);
 
-        ToxicFactory->setPositionX(sprite2->getPositionX());
-        ToxicFactory->setPositionY(sprite2->getPositionY() + 150);
-        ToxicFactory->setScale(0.8);
+        // ToxicFactory->setPositionX(sprite2->getPositionX());
+        // ToxicFactory->setPositionY(sprite2->getPositionY() + 150);
+        // ToxicFactory->setScale(0.8);
 
         ComingSoon->setPositionX(sprite3->getPositionX());
         ComingSoon->setPositionY(sprite3->getPositionY() + 150);
         ComingSoon->setScale(0.8);
       
-
         //start arrow animation
         auto moveUp = CCMoveBy::create(0.5f, ccp(0, 5)); 
         auto moveDown = CCMoveBy::create(0.5f, ccp(0, -5));
@@ -1404,24 +1390,24 @@ bool IslandSelectLayer::init(int page) {
 
         auto repeatAction21 = CCRepeatForever::create(moveSequence21);
         //island 2 loop
-        auto moveUp2 = CCMoveBy::create(1.0f, ccp(0, 1)); 
-        auto moveDown2 = moveUp2->reverse(); 
+        // auto moveUp2 = CCMoveBy::create(1.0f, ccp(0, 1)); 
+        // auto moveDown2 = moveUp2->reverse(); 
 
-        auto moveUp12 = CCMoveBy::create(1.0f, ccp(0, 1)); 
-        auto moveDown12 = moveUp2->reverse();
+        // auto moveUp12 = CCMoveBy::create(1.0f, ccp(0, 1)); 
+        // auto moveDown12 = moveUp2->reverse();
 
-        auto easeOutUp2 = CCEaseOut::create(moveUp2, 1.5f); 
-        auto easeInDown2 = CCEaseIn::create(moveDown2, 1.5f); 
+        // auto easeOutUp2 = CCEaseOut::create(moveUp2, 1.5f); 
+        // auto easeInDown2 = CCEaseIn::create(moveDown2, 1.5f); 
 
-        auto easeOutDown2 = CCEaseOut::create(moveDown12, 1.5f); 
-        auto easeInUp2 = CCEaseIn::create(moveUp12, 1.5f); 
-        auto moveSequence2 = CCSequence::create(easeOutUp2, easeInDown2, easeOutDown2, easeInUp2, nullptr);
+        // auto easeOutDown2 = CCEaseOut::create(moveDown12, 1.5f); 
+        // auto easeInUp2 = CCEaseIn::create(moveUp12, 1.5f); 
+        // auto moveSequence2 = CCSequence::create(easeOutUp2, easeInDown2, easeOutDown2, easeInUp2, nullptr);
 
-        auto repeatAction2 = CCRepeatForever::create(moveSequence2);
+        // auto repeatAction2 = CCRepeatForever::create(moveSequence2);
 
         node->runAction(repeatAction21);
 
-        node2->runAction(repeatAction2);
+        // node2->runAction(repeatAction2);
 
 
         
@@ -1494,24 +1480,24 @@ bool IslandSelectLayer::init(int page) {
         if (level4complete == 1) {
             level4->setVisible(false);
         }
-        if (level5complete == 1) {
-            level5->setVisible(false);
-        }
-        if (level6complete == 1) {
-            level6->setVisible(false);
-        }
-        if (level7complete == 1) {
-            level7->setVisible(false);
-        }
-        if (level8complete == 1) {
-            level8->setVisible(false);
-        }
-        if (level9complete == 1) {
-            level9->setVisible(false);
-        }
-        if (level10complete == 1) {
-            level10->setVisible(false);
-        }
+        // if (level5complete == 1) {
+        //     level5->setVisible(false);
+        // }
+        // if (level6complete == 1) {
+        //     level6->setVisible(false);
+        // }
+        // if (level7complete == 1) {
+        //     level7->setVisible(false);
+        // }
+        // if (level8complete == 1) {
+        //     level8->setVisible(false);
+        // }
+        // if (level9complete == 1) {
+        //     level9->setVisible(false);
+        // }
+        // if (level10complete == 1) {
+        //     level10->setVisible(false);
+        // }
     
         return true;
 }
@@ -1529,9 +1515,9 @@ void IslandSelectLayer::runParticle()
 
     auto levelsmenu1 = (CCMenu*)levelsnode1->getChildren()->objectAtIndex(2);
 
-    auto levelsnode2 = (more::IslandNode*)extendedLayer->getChildren()->objectAtIndex(1);
+    // auto levelsnode2 = (more::IslandNode*)extendedLayer->getChildren()->objectAtIndex(1);
 
-    auto levelsmenu2 = (CCMenu*)levelsnode2->getChildren()->objectAtIndex(2);
+    // auto levelsmenu2 = (CCMenu*)levelsnode2->getChildren()->objectAtIndex(2);
 
     particles->setAnchorPoint({ 0.5f, 0.5f });
     particles->setScale(0.5f);
@@ -1582,9 +1568,9 @@ void IslandSelectLayer::runParticle()
         levelsmenu1->addChild(particles, 2);
    
     }
-    else if (levelunlocked >= 5 && levelunlocked <= 9) {
-        levelsmenu2->addChild(particles, 2);
-    }
+    // else if (levelunlocked >= 5 && levelunlocked <= 9) {
+    //     levelsmenu2->addChild(particles, 2);
+    // }
     particles->addChild(circlewave, 2);
     particles->addChild(circlewave2, 2);
 }
@@ -1755,11 +1741,20 @@ void IslandSelectLayer::createStars(GJGameLevel* level, CCLayer* layer) {
 
     std::string starspr = "";
 
-    if (level->m_normalPercent == 100) {
-        starspr = "GJ_starsIcon_001.png";
+    if (level->isPlatformer()) {
+        if (level->m_normalPercent == 100) {
+            starspr = "GJ_starsIcon_001.png";
+        } else {
+            starspr = "GJ_starsIcon_gray_001.png";
+        }
     } else {
-        starspr = "GJ_starsIcon_gray_001.png";
+        if (level->m_normalPercent == 100) {
+            starspr = "GJ_moonsIcon_001.png";
+        } else {
+            starspr = "GJ_moonsIcon_gray_001.png"_spr;
+        }
     }
+    
 
     float starWidth = 0;
     float spaceBetweenStars = 35.0f;
