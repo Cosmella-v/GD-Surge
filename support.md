@@ -1,1 +1,6 @@
-Edit this file to change your mod's support info, or delete it if you don't need it.
+### Support the mod's creators!
+
+- [OmgRod](https://ko-fi.com/omgrod) (Lead Developer)
+- [MobMasterMind](https://ko-fi.com/mobmastermind) (Icons and Islands levels)
+
+more people to add
