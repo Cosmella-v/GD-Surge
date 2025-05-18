@@ -11,13 +11,10 @@ bool stopLooping = false;
 bool jumpedAlready = false;
 
 bool downloadStarted = false;
-
 bool startup = false;
 
 bool MyMenuLayer::init() {
-    if (!MenuLayer::init()) {
-        return false;
-    }
+    if (!MenuLayer::init()) return false;
 
     auto socialMenu = this->getChildByID("social-media-menu");
     if (socialMenu) {
@@ -69,77 +66,107 @@ bool MyMenuLayer::init() {
         downloadStarted = true;
 
         static EventListener<web::WebTask> s_listener;
-        auto musicDownloadURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/master/music.zip";
+        auto listURL = "https://github.com/OmgRod/GD-Surge/raw/refs/heads/master/music/download.txt";
+
+        log::debug("Starting fetch of music download list from {}", listURL);
 
         web::WebRequest request;
-        auto task = request.get(musicDownloadURL);
-        s_listener.setFilter(task);
-        s_listener.bind([&](web::WebTask::Event* e) {
+        auto listTask = request.get(listURL);
+
+        s_listener.setFilter(listTask);
+        s_listener.bind([=](web::WebTask::Event* e) {
             if (!e || e->isCancelled()) {
+                log::warn("Music list download task was cancelled or null");
                 geode::Notification::create("Download was cancelled", NotificationIcon::Error)->show();
                 return;
             }
 
             if (web::WebResponse* res = e->getValue()) {
-                if (!res->ok()) {
-                    geode::Notification::create("Failed to download music.zip.", NotificationIcon::Error)->show();
+                log::debug("Received response for music list. Status code: {}", res->code());
+
+                if (res->code() != 200) {
+                    log::warn("Failed to fetch download list. Status: {}", res->code());
+                    geode::Notification::create("Failed to fetch download list.", NotificationIcon::Error)->show();
                     return;
                 }
 
-                auto data = res->data();
+                auto listContent = res->string();
+                std::istringstream stream(listContent.unwrap());
+                std::string line;
+
                 auto mod = Mod::get();
                 if (!mod) {
                     log::error("Mod instance is null");
                     return;
                 }
 
-                auto zipPath = mod->getSaveDir() / "music.zip";
-                std::error_code ec;
+                auto baseURL = "https://github.com/OmgRod/GD-Surge/raw/refs/heads/master/music/";
+                auto saveDir = mod->getSaveDir();
 
-                if (!geode::utils::file::writeBinary(zipPath, data)) {
-                    log::error("Failed to write music.zip to disk: {}", ec.message());
-                    geode::Notification::create("Failed to save music.zip to disk.", NotificationIcon::Error)->show();
-                    return;
-                }
+                log::debug("Parsed download list. Base URL: {}, Save Dir: {}", baseURL, saveDir.string());
 
-                auto unzip = geode::utils::file::Unzip::create(zipPath);
-                if (unzip.isErr()) {
-                    log::error("Unzip creation failed: {}", unzip.unwrapErr());
-                    geode::Notification::create("Failed to unzip music.zip.", NotificationIcon::Error)->show();
-                    return;
-                }
+                while (std::getline(stream, line)) {
+                    if (line.empty()) continue;
 
-                auto& archive = unzip.unwrap();
-                if (!archive.extractAllTo(mod->getSaveDir()).isOk()) {
-                    log::error("Extraction failed.");
-                    geode::Notification::create("Failed to extract music files.", NotificationIcon::Error)->show();
-                    return;
-                }
+                    std::string fullURL = baseURL + line;
+                    auto savePath = saveDir / line;
 
-                log::info("music.zip downloaded and extracted successfully.");
-                geode::Notification::create("Music successfully downloaded!", NotificationIcon::Success)->show();
-
-                queueInMainThread([=]() {
-                    std::error_code removeEc;
-                    if (!std::filesystem::remove(zipPath, removeEc)) {
-                        log::warn("Failed to remove music.zip: {}", removeEc.message());
+                    std::error_code ec;
+                    std::filesystem::create_directories(savePath.parent_path(), ec);
+                    if (ec) {
+                        log::warn("Failed to create directory for {}: {}", line, ec.message());
+                        continue;
                     }
-                });
+
+                    web::WebRequest fileRequest;
+                    auto fileTask = fileRequest.get(fullURL);
+
+                    static EventListener<web::WebTask> fileListener;
+                    fileListener.setFilter(fileTask);
+                    fileListener.bind([=](web::WebTask::Event* fe) {
+                        if (!fe || fe->isCancelled()) {
+                            log::warn("Download cancelled: {}", line);
+                            return;
+                        }
+
+                        if (web::WebResponse* fres = fe->getValue()) {
+                            log::debug("Download completed for {}. Status: {}", line, fres->code());
+
+                            if (fres->code() != 200) {
+                                log::warn("Failed to download {}: status code {}", line, fres->code());
+                                return;
+                            }
+
+                            auto data = fres->data();
+                            if (!geode::utils::file::writeBinary(savePath, data)) {
+                                log::warn("Failed to write file {}", savePath.string());
+                            } else {
+                                log::info("Downloaded and saved: {}", line);
+                            }
+                        } else {
+                            log::warn("No response received for file: {}", line);
+                        }
+                    });
+                }
+
+                geode::Notification::create("Music and SFX download started!", NotificationIcon::Success)->show();
+                log::debug("All file download tasks scheduled.");
+            } else {
+                log::error("List response event had no response value");
             }
         });
     }
 
     startup = true;
-
     return true;
 }
 
 void MyMenuLayer::onCreator(CCObject* sender) {
-    #ifdef GITHUB_ACTIONS
+#ifdef GITHUB_ACTIONS
     FLAlertLayer::create("Creator", "This feature is <cr>disabled</c>. To <cg>enable</c> it, please disable this mod. Sorry for the inconvenience.", "OK")->show();
-    #else
+#else
     MenuLayer::onCreator(sender);
-    #endif
+#endif
 }
 
 void MyMenuLayer::onStartupPopup(float dt) {
@@ -165,6 +192,7 @@ void MyMenuLayer::onStartupPopup(float dt) {
             "You may disable this popup in the mod settings.\n\n"
             "Thank you for trying Surge!";
     }
+
     MDPopup::create("Warning", message, "OK")->show();
 }
 
