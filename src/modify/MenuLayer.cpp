@@ -96,7 +96,7 @@ bool MyMenuLayer::init() {
                 auto zipPath = mod->getSaveDir() / "music.zip";
                 std::error_code ec;
 
-                if (!geode::utils::file::writeBinary(zipPath, data, ec)) {
+                if (!geode::utils::file::writeBinary(zipPath, data)) {
                     log::error("Failed to write music.zip to disk: {}", ec.message());
                     geode::Notification::create("Failed to save music.zip to disk.", NotificationIcon::Error)->show();
                     return;
@@ -110,8 +110,8 @@ bool MyMenuLayer::init() {
                 }
 
                 auto& archive = unzip.unwrap();
-                if (!archive.extractAllTo(mod->getSaveDir(), ec).isOk()) {
-                    log::error("Extraction failed: {}", ec.message());
+                if (!archive.extractAllTo(mod->getSaveDir()).isOk()) {
+                    log::error("Extraction failed.");
                     geode::Notification::create("Failed to extract music files.", NotificationIcon::Error)->show();
                     return;
                 }
