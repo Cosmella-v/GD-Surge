@@ -1,11 +1,5 @@
-#include <Surge/layers/IslandSelectLayer.h>
 #include <Geode/Geode.hpp>
-#include <Geode/modify/MenuLayer.hpp>
-#include <Geode/modify/LevelSelectLayer.hpp>
-#include <Geode/modify/LevelInfoLayer.hpp>
-#include <Geode/modify/LevelPage.hpp>
-#include <Geode/modify/GJGameLevel.hpp>
-#include <Geode/Enums.hpp>
+#include <Surge/layers/IslandSelectLayer.h>
 #include <Surge/layers/IslandNode.h>
 #include <Surge/layers/IslandLevel.hpp>
 
@@ -1555,41 +1549,32 @@ void IslandSelectLayer::runParticle()
     circlewave2->setAnchorPoint({ 0.5f, 0.5f });
     circlewave2->setScale(0.5f);
     circlewave->setZOrder(3);
-    if (levelunlocked == 1)
-    {
+    if (levelunlocked == 1) {
         particles->setPosition({ -80, -30 });
     }
 
-    if (levelunlocked == 2)
-    {
+    if (levelunlocked == 2) {
         particles->setPosition({ -10, 10 });
     }
-    if (levelunlocked == 3)
-    {
+    if (levelunlocked == 3) {
         particles->setPosition({ 50, -25 });
     }
-    if (levelunlocked == 4)
-    {
+    if (levelunlocked == 4) {
         particles->setPosition({ 155, -10 });
     }
-    if (levelunlocked == 5)
-    {
+    if (levelunlocked == 5) {
         particles->setPosition({ -175, -12 });
     }
-    if (levelunlocked == 6)
-    {
+    if (levelunlocked == 6) {
         particles->setPosition({ -73, -28 });
     }
-    if (levelunlocked == 7)
-    {
+    if (levelunlocked == 7) {
         particles->setPosition({ -10, 15 });
     }
-    if (levelunlocked == 8)
-    {
+    if (levelunlocked == 8) {
         particles->setPosition({ 80, -38 });
     }
-    if (levelunlocked == 9)
-    {
+    if (levelunlocked == 9) {
         particles->setPosition({ 170, -10 });
     }
 
@@ -1629,10 +1614,7 @@ CCNode* IslandSelectLayer::createSideArt() {
     right->setFlipX(true);
     sideArt->addChild(right);
 
-
     return sideArt;
-
-
 }
 
 void IslandSelectLayer::keyBackClicked() {
@@ -1641,7 +1623,7 @@ void IslandSelectLayer::keyBackClicked() {
 
 void IslandSelectLayer::onIslandLevel(CCObject* sender) {
 
-    CCMenuItemSpriteExtra* button = (CCMenuItemSpriteExtra*)sender;
+    CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
     auto GLM = GameLevelManager::sharedState();
     auto levelName = "";
     switch(button->getTag()) {
@@ -1679,251 +1661,7 @@ void IslandSelectLayer::onIslandLevel(CCObject* sender) {
             levelName = "";
             break;
     }
-    auto level1popup = IslandLevel::create(levelName);
-    auto Layer = (CCLayer*)level1popup->getChildren()->objectAtIndex(0);
-
-    auto BG = (CCScale9Sprite*)Layer->getChildren()->objectAtIndex(0);
-    auto m_buttonMenu = CCMenu::create();
-    auto corner1 = CCSprite::createWithSpriteFrameName("dailyLevelCorner_001.png");
-    auto director = CCDirector::sharedDirector();
-    auto winSize = director->getWinSize();
-    corner1->setPosition(BG->getPosition());
-    corner1->setRotation(180);
-    Layer->addChild(corner1);
-
-    auto corner2 = CCSprite::createWithSpriteFrameName("dailyLevelCorner_001.png");
-    corner2->setPosition(BG->getPosition());
-    corner2->setRotation(90);
-    Layer->addChild(corner2);
-
-    auto corner3 = CCSprite::createWithSpriteFrameName("dailyLevelCorner_001.png");
-    corner3->setPosition(BG->getPosition());
-    corner3->setRotation(270);
-    Layer->addChild(corner3);
-
-    auto corner4 = CCSprite::createWithSpriteFrameName("dailyLevelCorner_001.png");
-    corner4->setPosition(BG->getPosition());
-    
-    corner1->setPositionX(corner1->getPositionX() + 125.45);
-    corner1->setPositionY(corner1->getPositionY() + 105.1);
-    
-    corner2->setPositionX(corner2->getPositionX() - 125.45);
-    corner2->setPositionY(corner2->getPositionY() + 105.1);
-    
-    corner3->setPositionX(corner3->getPositionX() + 125.45);
-    corner3->setPositionY(corner3->getPositionY() - 105.1);
-    
-    corner4->setPositionX(corner4->getPositionX() - 125.45);
-    corner4->setPositionY(corner4->getPositionY() - 105.1);
-
-    cocos2d::CCMenu* infoMenu = cocos2d::CCMenu::create();
-    cocos2d::CCSprite* info = cocos2d::CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
-    CCMenuItemSpriteExtra* infoBtn = CCMenuItemSpriteExtra::create(info, this, menu_selector(IslandSelectLayer::onInfo));
-
-    infoBtn->setTag(button->getTag());
-    infoMenu->addChild(infoBtn);
-    infoMenu->setPosition(BG->getPosition());
-    infoMenu->setPositionX(infoMenu->getPositionX() + 146.5);
-    infoMenu->setPositionY(infoMenu->getPositionY() + 126.1);
-    info->setTag(button->getTag());
-    infoMenu->setTag(button->getTag());
-    Layer->addChild(infoMenu, 2);
-    Layer->addChild(corner4);
-
-    Layer->addChild(m_buttonMenu);
-
-
-   
-    if (button->getTag() == 30)
-    {
-        level = GLM->getMainLevel(2001, true);
-		level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2001);
-    }
-    if (button->getTag() == 31)
-    {
-        level = GLM->getMainLevel(2002, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2002);
-    }
-    if (button->getTag() == 32)
-    {
-        level = GLM->getMainLevel(2003, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2003);
-    }
-    if (button->getTag() == 33)
-    {
-        level = GLM->getMainLevel(2004, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2004);
-      
-    }
-    if (button->getTag() == 34)
-    {
-        level = GLM->getMainLevel(2005, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2005);
-      
-    }
-    if (button->getTag() == 35)
-    {
-        level = GLM->getMainLevel(2006, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2006);
-       
-    }
-    if (button->getTag() == 36)
-    {
-        level = GLM->getMainLevel(2007, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2007);
-       
-    }
-    if (button->getTag() == 37)
-    {
-        level = GLM->getMainLevel(2008, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2008);
-    }
-    if (button->getTag() == 38)
-    {
-        level = GLM->getMainLevel(2009, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2009);
-    }
-    if (button->getTag() == 39)
-    {
-        level = GLM->getMainLevel(2010, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2010);
-    }
-
-    auto playBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png"), this, menu_selector(IslandSelectLayer::onPlay));
-    
-    m_buttonMenu->addChild(playBtn);
-    m_buttonMenu->setPositionX(BG->getPositionX());
-    m_buttonMenu->setPositionY(BG->getPositionY()+35);
-    Mod::get()->setSavedValue("islandpopuptag", button->getTag());
-    std::string title = level->m_levelName;
-
-    const char* font = "goldFont.fnt";
-    float scale = .7f;
-    float offset = 80.f;
-    auto m_title = cocos2d::CCLabelBMFont::create(title.c_str(), font);
-    m_title->setScale(0.9);
-
-    //Normal mode progress bar
-    int per = 100;
-    std::vector<int> normalPer(per, 0);
-
-    std::vector<int> completePer(level->m_normalPercent, 100);
-
-    auto levelVector = normalPer;
-    auto completedVector = completePer;
-
-    //progress bar
-    auto bar = CCSprite::create("GJ_progressBar_001.png");
-    bar->setScale(0.7f);
-    bar->setPosition(BG->getPosition());
-    bar->setPositionX(bar->getPositionX());
-    bar->setPositionY(bar->getPositionY() - 153.5);
-    bar->setColor({ 0, 0, 0 });
-    bar->setOpacity(125);
-    bar->setZOrder(1);
-    bar->setID("progress-bar-normal"_spr);
-
-    Layer->addChild(bar);
-
-    float size = (float)completedVector.size() / (float)levelVector.size();
-
-    auto status = CCLabelBMFont::create(fmt::format("{}%", completedVector.size(), levelVector.size()).c_str(), "bigFont.fnt");
-    status->setPosition({ bar->getPosition() });
-    status->limitLabelWidth(170, .7f, .3f);
-    status->setScale(0.4f);
-    status->setZOrder(2);
-    status->setID("status"_spr);
-    status->setPositionY(status->getPositionY() + 108);
-    Layer->addChild(status);
-
-
-    auto normal = CCLabelBMFont::create("Normal Mode", "bigFont.fnt");
-    normal->setPosition(status->getPosition());
-    normal->setID("normal"_spr);
-
-    normal->setPositionY(normal->getPositionY() + 20);
-    normal->setScale(0.4f);
-    Layer->addChild(normal);
-
-    auto progress = CCSprite::create("GJ_progressBar_001.png");
-    progress->setColor({ 0,255,0 });
-    progress->setScaleX(0.985f);
-    progress->setScaleY(0.860f);
-    progress->setOpacity(255);
-    bar->addChild(progress);
-    bar->setPositionY(bar->getPositionY() + 108);
-    progress->setAnchorPoint({ 0.f,0.5f });
-    progress->setPosition({ 2.5f, 10.f });
-    progress->setID("progress-bar-internal"_spr);
-
-    CCRect progressRect = progress->getTextureRect();
-    progressRect.size.width *= size;
-    progress->setTextureRect(progressRect);
-
-    //practice progress bar
-
-    int pper = 100;
-    std::vector<int> pnormalPer(pper, 0);
-
-    std::vector<int> pcompletePer(level->m_practicePercent, 100);
-
-    auto plevelVector = pnormalPer;
-    auto pcompletedVector = pcompletePer;
-
-    //progress bar
-    auto pbar = CCSprite::create("GJ_progressBar_001.png");
-    pbar->setScale(0.7f);
-    pbar->setPosition(BG->getPosition());
-
-    pbar->setPositionX(pbar->getPositionX());
-    pbar->setPositionY(pbar->getPositionY() - 150.5);
-    pbar->setColor({ 0, 0, 0 });
-    pbar->setOpacity(125);
-    pbar->setZOrder(1);
-    pbar->setID("progress-bar"_spr);
-
-    Layer->addChild(pbar);
-
-    float psize = (float)pcompletedVector.size() / (float)plevelVector.size();
-
-    auto pstatus = CCLabelBMFont::create(fmt::format("{}%", pcompletedVector.size(), plevelVector.size()).c_str(), "bigFont.fnt");
-    pstatus->setPosition({ pbar->getPosition() });
-    pstatus->limitLabelWidth(170, .7f, .3f);
-    pstatus->setScale(0.4f);
-    pstatus->setZOrder(2);
-    pstatus->setID("practice status"_spr);
-    pstatus->setPositionY(pstatus->getPositionY() + 58);
-    Layer->addChild(pstatus);
-
-
-    auto practice = CCLabelBMFont::create("Practice Mode", "bigFont.fnt");
-    practice->setPosition(pstatus->getPosition());
-    practice->setID("practice"_spr);
-
-    practice->setPositionY(practice->getPositionY() + 20);
-    practice->setScale(0.4f);
-    Layer->addChild(practice);
-
-    auto pprogress = CCSprite::create("GJ_progressBar_001.png");
-    pprogress->setColor({ 0,255,255 });
-    pprogress->setScaleX(0.985f);
-    pprogress->setScaleY(0.860f);
-    pprogress->setOpacity(255);
-    pbar->addChild(pprogress);
-    pbar->setPositionY(pbar->getPositionY() + 58);
-    pprogress->setAnchorPoint({ 0.f,0.5f });
-    pprogress->setPosition({ 2.5f, 10.f });
-    pprogress->setID("progress-bar-internal"_spr);
-
-    CCRect pprogressRect = pprogress->getTextureRect();
-    pprogressRect.size.width *= psize;
-    pprogress->setTextureRect(pprogressRect);
-    m_title->setPosition(BG->getPosition());
-    m_title->setPositionY(m_title->getPositionY() + 110);
-    Layer->addChild(m_title);
-
-    createStars(level, Layer);
-    level1popup->show();
+    IslandLevel::create(levelName, level, button)->show();
 
 }
 
@@ -1941,18 +1679,15 @@ void IslandSelectLayer::onPlay(CCObject* sender) {
 
 
 
-cocos2d::ccColor3B IslandSelectLayer::colorForPage(int page)
-{
+cocos2d::ccColor3B IslandSelectLayer::colorForPage(int page) {
     auto GM = GameManager::sharedState();
     int colIDs[9] = { 6 ,17, 4, 9, 3, 11, 1, 3, 4 };
 
     return GM->colorForIdx(colIDs[page % 5]);
 }
 
-cocos2d::ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3)
-{
-
-    float mod = (a3 * (2 / 3)) - 0.2f;
+cocos2d::ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3) {
+    float mod = (a3 * (2.f / 3)) - 0.2f;
     if (mod < 1.0f)
     {
         if (mod <= 0.0f)

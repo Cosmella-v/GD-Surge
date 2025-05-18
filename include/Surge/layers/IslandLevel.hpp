@@ -1,15 +1,15 @@
 #pragma once
 #include <Geode/Bindings.hpp>
 #include <Geode/Geode.hpp>
-class IslandLevel : public geode::Popup<std::string const&> {
+class IslandLevel : public geode::Popup<std::string const&, GJGameLevel*, CCMenuItemSpriteExtra*> {
 
 protected:
-    bool init(std::string const& value);
+    bool init(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
 
 public:
-    static IslandLevel* create(std::string const& text);
-    static cocos2d::CCScene* scene(std::string const& text);
-    bool setup(std::string const& value);
+    static IslandLevel* create(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
+    static cocos2d::CCScene* scene(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
+    bool setup(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
 
 private:
     int m_level;

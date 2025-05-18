@@ -27,7 +27,7 @@ If you find any bugs or would like to request new features, please send them on 
 
 - OmgRod - Developer
 - MobMasterMind - Custom Icons
-- BitZ - GD World
+- BitZ - Original GD World code
 - Capeling - GD Lunar code & Loading screen code
 - Alphalaneous - Mod Logo
 
