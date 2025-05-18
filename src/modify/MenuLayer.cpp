@@ -66,7 +66,7 @@ bool MyMenuLayer::init() {
         downloadStarted = true;
 
         static EventListener<web::WebTask> s_listener;
-        auto listURL = "https://github.com/OmgRod/GD-Surge/raw/refs/heads/master/music/download.txt";
+        auto listURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/refs/heads/master/music/download.txt";
 
         log::debug("Starting fetch of music download list from {}", listURL);
 
@@ -100,7 +100,7 @@ bool MyMenuLayer::init() {
                     return;
                 }
 
-                auto baseURL = "https://github.com/OmgRod/GD-Surge/raw/refs/heads/master/music/";
+                auto baseURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/refs/heads/master/music/";
                 auto saveDir = mod->getSaveDir();
 
                 log::debug("Parsed download list. Base URL: {}, Save Dir: {}", baseURL, saveDir.string());
@@ -118,12 +118,16 @@ bool MyMenuLayer::init() {
                         continue;
                     }
 
-                    web::WebRequest fileRequest;
-                    auto fileTask = fileRequest.get(fullURL);
+                    // Create a new WebRequest and Task for each file
+                    web::WebRequest* fileRequest = new web::WebRequest();  // allocated dynamically to keep alive
+                    auto fileTask = fileRequest->get(fullURL);
 
-                    static EventListener<web::WebTask> fileListener;
-                    fileListener.setFilter(fileTask);
-                    fileListener.bind([=](web::WebTask::Event* fe) {
+                    // Create a unique listener for this download
+                    auto fileListener = std::make_shared<EventListener<web::WebTask>>();
+                    fileListener->setFilter(fileTask);
+
+                    // Capture fileListener, savePath, and line by value in the lambda
+                    fileListener->bind([fileListener, savePath, line](web::WebTask::Event* fe) {
                         if (!fe || fe->isCancelled()) {
                             log::warn("Download cancelled: {}", line);
                             return;
