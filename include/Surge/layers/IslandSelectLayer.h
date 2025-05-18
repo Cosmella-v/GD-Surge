@@ -16,17 +16,14 @@ public:
 	ccColor3B colorForPage(int);
 	ccColor3B getColorValue(int, int, float);
 	bool init(int page);
-	bool tryShowAd();
 	void onClose(CCObject*);
 	void onPrev(CCObject*);
 	void onNext(CCObject*);
 	void onDownload(CCObject*);
 	void onSoundtracks(CCObject*);
 	void onInfo(CCObject*);
-	void onPlay(CCObject*);
 	void onBack(CCObject*);
 	void keyBackClicked() override;
-	void createStars(GJGameLevel* level, CCLayer* layer);
 	void onIslandLevel(CCObject* sender);
 	void runParticle();
 	void scrollLayerMoved(CCPoint) override;

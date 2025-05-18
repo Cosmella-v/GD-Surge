@@ -3,9 +3,10 @@
 
 using namespace geode::prelude;
 
-bool IslandLevel::setup(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button) {
+bool IslandLevel::setup(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
+    this->m_level = level;
     this->setID("IslandLevel"_spr);
-    this->setTitle(title);
+    this->setTitle(m_level->m_levelName);
 
     auto GLM = GameLevelManager::sharedState();
 
@@ -60,51 +61,51 @@ bool IslandLevel::setup(std::string const& title, GJGameLevel* level, CCMenuItem
     m_mainLayer->addChild(m_buttonMenu);
 
     if (button->getTag() == 30) {
-        level = GLM->getMainLevel(2001, true);
-		level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2001);
+        m_level = GLM->getMainLevel(2001, true);
+		m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2001);
     }
     if (button->getTag() == 31) {
-        level = GLM->getMainLevel(2002, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2002);
+        m_level = GLM->getMainLevel(2002, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2002);
     }
     if (button->getTag() == 32) {
-        level = GLM->getMainLevel(2003, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2003);
+        m_level = GLM->getMainLevel(2003, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2003);
     }
     if (button->getTag() == 33) {
-        level = GLM->getMainLevel(2004, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2004);
+        m_level = GLM->getMainLevel(2004, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2004);
       
     }
     if (button->getTag() == 34) {
-        level = GLM->getMainLevel(2005, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2005);
+        m_level = GLM->getMainLevel(2005, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2005);
       
     }
     if (button->getTag() == 35) {
-        level = GLM->getMainLevel(2006, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2006);
+        m_level = GLM->getMainLevel(2006, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2006);
        
     }
     if (button->getTag() == 36) {
-        level = GLM->getMainLevel(2007, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2007);
+        m_level = GLM->getMainLevel(2007, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2007);
        
     }
     if (button->getTag() == 37) {
-        level = GLM->getMainLevel(2008, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2008);
+        m_level = GLM->getMainLevel(2008, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2008);
     }
     if (button->getTag() == 38) {
-        level = GLM->getMainLevel(2009, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2009);
+        m_level = GLM->getMainLevel(2009, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2009);
     }
     if (button->getTag() == 39) {
-        level = GLM->getMainLevel(2010, true);
-        level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2010);
+        m_level = GLM->getMainLevel(2010, true);
+        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2010);
     }
 
-    auto playBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png"), this, menu_selector(IslandSelectLayer::onPlay));
+    auto playBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png"), this, menu_selector(IslandLevel::onPlay));
     
     m_buttonMenu->addChild(playBtn);
     m_buttonMenu->setPositionX(BG->getPositionX());
@@ -115,7 +116,7 @@ bool IslandLevel::setup(std::string const& title, GJGameLevel* level, CCMenuItem
     int per = 100;
     std::vector<int> normalPer(per, 0);
 
-    std::vector<int> completePer(level->m_normalPercent, 100);
+    std::vector<int> completePer(m_level->m_normalPercent, 100);
 
     auto levelVector = normalPer;
     auto completedVector = completePer;
@@ -173,7 +174,7 @@ bool IslandLevel::setup(std::string const& title, GJGameLevel* level, CCMenuItem
     int pper = 100;
     std::vector<int> pnormalPer(pper, 0);
 
-    std::vector<int> pcompletePer(level->m_practicePercent, 100);
+    std::vector<int> pcompletePer(m_level->m_practicePercent, 100);
 
     auto plevelVector = pnormalPer;
     auto pcompletedVector = pcompletePer;
@@ -227,16 +228,52 @@ bool IslandLevel::setup(std::string const& title, GJGameLevel* level, CCMenuItem
     pprogressRect.size.width *= psize;
     pprogress->setTextureRect(pprogressRect);
 
-    IslandSelectLayer selectLayer;
+    std::string starspr = "";
 
-    selectLayer.createStars(level, m_mainLayer);
+    if (m_level->isPlatformer()) {
+        if (m_level->m_normalPercent == 100) {
+            starspr = "GJ_starsIcon_001.png";
+        } else {
+            starspr = "GJ_starsIcon_gray_001.png";
+        }
+    } else {
+        if (m_level->m_normalPercent == 100) {
+            starspr = "GJ_moonsIcon_001.png";
+        } else {
+            starspr = "GJ_moonsIcon_gray_001.png"_spr;
+        }
+    }
+
+    float starWidth = 0;
+    float spaceBetweenStars = 35.0f;
+
+    float totalWidth = m_level->m_stars * (starWidth * 0.65) + (m_level->m_stars - 1) * spaceBetweenStars;
+
+    float startX = BG->getPositionX() - totalWidth / 2;
+
+    float startY = (BG->getPositionY()) - 113;
+
+    float currentX = startX;
+
+    for (int i = 0; i < m_level->m_stars; ++i) {
+        auto star = CCSprite::createWithSpriteFrameName(starspr.c_str());
+
+        star->setPosition({ currentX, startY });
+        star->setScale(0.65);
+
+        m_mainLayer->addChild(star);
+
+        currentX += (starWidth * 0.65) + spaceBetweenStars;
+    }
+
+    log::debug("Stars: {}", m_level->m_stars);
 
     return true;
 }
 
-IslandLevel* IslandLevel::create(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button) {
+IslandLevel* IslandLevel::create(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
     auto ret = new IslandLevel();
-    if (ret && ret->initAnchored(300.f, 260.f, title, level, button)) {
+    if (ret && ret->initAnchored(300.f, 260.f, level, button)) {
         ret->autorelease();
         return ret;
     }
@@ -244,10 +281,27 @@ IslandLevel* IslandLevel::create(std::string const& title, GJGameLevel* level, C
     return nullptr;
 }
 
-CCScene* IslandLevel::scene(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button) {
+CCScene* IslandLevel::scene(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
     auto scene = CCScene::create();
-    auto popup = IslandLevel::create(title, level, button);
+    auto popup = IslandLevel::create(level, button);
     if (popup)
         scene->addChild(popup);
     return scene;
+}
+
+void IslandLevel::onPlay(CCObject* sender) {
+    if (!m_level) {
+        log::debug("Error: m_level is null!");
+        return;
+    }
+
+	auto currentScene = CCDirector::sharedDirector()->getRunningScene();
+
+    CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
+    if (button) button->setEnabled(false);
+    auto GLM = GameLevelManager::sharedState();
+    auto playLayer = PlayLayer::scene(m_level, false, false);
+    FMODAudioEngine::sharedEngine()->playEffect("playSound_01.ogg");
+
+    CCDirector::get()->pushScene(CCTransitionFade::create(0.5f, playLayer));
 }

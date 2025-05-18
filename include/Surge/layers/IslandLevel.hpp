@@ -4,17 +4,17 @@
 
 using namespace geode::prelude;
 
-class IslandLevel : public geode::Popup<std::string const&, GJGameLevel*, CCMenuItemSpriteExtra*> {
+class IslandLevel : public geode::Popup<GJGameLevel*, CCMenuItemSpriteExtra*> {
 
 protected:
-    bool init(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
+    bool init(GJGameLevel* level, CCMenuItemSpriteExtra* button);
 
 public:
-    static IslandLevel* create(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
-    static CCScene* scene(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
-    bool setup(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button);
+    static IslandLevel* create(GJGameLevel* level, CCMenuItemSpriteExtra* button);
+    static CCScene* scene(GJGameLevel* level, CCMenuItemSpriteExtra* button);
+    bool setup(GJGameLevel* level, CCMenuItemSpriteExtra* button);
+    void onPlay(CCObject* sender);
 
-private:
-    int m_level;
+    GJGameLevel* m_level;
 };
 

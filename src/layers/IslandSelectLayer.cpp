@@ -1608,59 +1608,8 @@ void IslandSelectLayer::keyBackClicked() {
 void IslandSelectLayer::onIslandLevel(CCObject* sender) {
     CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
     auto GLM = GameLevelManager::sharedState();
-    auto levelName = "";
-    switch(button->getTag()) {
-        case 30:
-            levelName = "The Factory";
-            break;
-        case 31:
-            levelName = "The Woods";
-            break;
-        case 32:
-            levelName = "The Complex";
-            break;
-        case 33:
-            levelName = "The Storage";
-            break;
-        case 34:
-            levelName = "The Ship";
-            break;
-        // case 35:
-        //     levelName = "IslandLevel6";
-        //     break;
-        // case 36:
-        //     levelName = "IslandLevel7";
-        //     break;
-        // case 37:
-        //     levelName = "IslandLevel8";
-        //     break;
-        // case 38:
-        //     levelName = "IslandLevel9";
-        //     break;
-        // case 39:
-        //     levelName = "IslandLevel10";
-        //     break;
-        default:
-            levelName = "";
-            break;
-    }
-    IslandLevel::create(levelName, level, button)->show();
-
+    IslandLevel::create(level, button)->show();
 }
-
-void IslandSelectLayer::onPlay(CCObject* sender) {
-	auto currentScene = CCDirector::sharedDirector()->getRunningScene();
-
-    CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
-    button->setEnabled(false);
-    auto GLM = GameLevelManager::sharedState();
-    auto playLayer = PlayLayer::scene(level, false, false);
-    FMODAudioEngine::sharedEngine()->playEffect("playSound_01.ogg");
-
-    CCDirector::get()->pushScene(CCTransitionFade::create(0.5f, playLayer));
-}
-
-
 
 ccColor3B IslandSelectLayer::colorForPage(int page) {
     auto GM = GameManager::sharedState();
@@ -1729,53 +1678,6 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
         Color2.b = color.b * 0.9;
 
 
-    }
-}
-
-void IslandSelectLayer::createStars(GJGameLevel* level, CCLayer* layer) {
-    int totalstars = level->m_stars;
-    float screenWidth = CCDirector::sharedDirector()->getWinSize().width;
-    auto BG = typeinfo_cast<CCScale9Sprite*>(layer->getChildren()->objectAtIndex(0));
-    auto director = CCDirector::sharedDirector();
-    auto winSize = director->getWinSize();
-
-    std::string starspr = "";
-
-    if (level->isPlatformer()) {
-        if (level->m_normalPercent == 100) {
-            starspr = "GJ_starsIcon_001.png";
-        } else {
-            starspr = "GJ_starsIcon_gray_001.png";
-        }
-    } else {
-        if (level->m_normalPercent == 100) {
-            starspr = "GJ_moonsIcon_001.png";
-        } else {
-            starspr = "GJ_moonsIcon_gray_001.png"_spr;
-        }
-    }
-    
-
-    float starWidth = 0;
-    float spaceBetweenStars = 35.0f;
-
-    float totalWidth = totalstars * (starWidth * 0.65) + (totalstars - 1) * spaceBetweenStars;
-
-    float startX = BG->getPositionX() - totalWidth / 2;
-
-    float startY = (BG->getPositionY()) - 113;
-
-    float currentX = startX;
-
-    for (int i = 0; i < totalstars; ++i) {
-        auto star = CCSprite::createWithSpriteFrameName(starspr.c_str());
-
-        star->setPosition({ currentX, startY });
-        star->setScale(0.65);
-
-        layer->addChild(star);
-
-        currentX += (starWidth * 0.65) + spaceBetweenStars;
     }
 }
 
