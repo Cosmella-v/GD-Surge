@@ -10,7 +10,8 @@ void MyLevelPage::onInfo(CCObject* sender) {
         } else {
             return FLAlertLayer::create(nullptr, "It's a secret...", "<cl>Something</c> lies beneath the <cg>surface</c>... a <co>fracture</c> waiting to <cj>happen</c>.", "OK", nullptr, 360)->show();
         }
-    }
+    } else if (m_level->m_levelID.value() == -3) {
+        return FLAlertLayer::create("The Islands", "<cb>The Islands</c> are not what they seem. Silence walks there, not sound. <co>Heed this warning</c>: Those who seek them <cj>rarely</c> speak again.", "OK")->show();
     LevelPage::onInfo(sender);
 }
 
