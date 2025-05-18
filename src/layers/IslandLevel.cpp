@@ -9,7 +9,7 @@ bool IslandLevel::setup(std::string const& title, GJGameLevel* level, CCMenuItem
 
     auto GLM = GameLevelManager::sharedState();
 
-    auto BG = (CCScale9Sprite*)m_mainLayer->getChildren()->objectAtIndex(0);
+    auto BG = typeinfo_cast<CCScale9Sprite*>(m_mainLayer->getChildren()->objectAtIndex(0));
     auto m_buttonMenu = CCMenu::create();
     auto corner1 = CCSprite::createWithSpriteFrameName("dailyLevelCorner_001.png");
     auto director = CCDirector::sharedDirector();
@@ -43,8 +43,8 @@ bool IslandLevel::setup(std::string const& title, GJGameLevel* level, CCMenuItem
     corner4->setPositionX(corner4->getPositionX() - 125.45);
     corner4->setPositionY(corner4->getPositionY() - 105.1);
 
-    cocos2d::CCMenu* infoMenu = cocos2d::CCMenu::create();
-    cocos2d::CCSprite* info = cocos2d::CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
+    CCMenu* infoMenu = CCMenu::create();
+    CCSprite* info = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
     CCMenuItemSpriteExtra* infoBtn = CCMenuItemSpriteExtra::create(info, this, menu_selector(IslandSelectLayer::onInfo));
 
     infoBtn->setTag(button->getTag());
@@ -244,8 +244,8 @@ IslandLevel* IslandLevel::create(std::string const& title, GJGameLevel* level, C
     return nullptr;
 }
 
-cocos2d::CCScene* IslandLevel::scene(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button) {
-    auto scene = cocos2d::CCScene::create();
+CCScene* IslandLevel::scene(std::string const& title, GJGameLevel* level, CCMenuItemSpriteExtra* button) {
+    auto scene = CCScene::create();
     auto popup = IslandLevel::create(title, level, button);
     if (popup)
         scene->addChild(popup);

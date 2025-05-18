@@ -1,44 +1,40 @@
 #pragma once
 #include <Geode/Geode.hpp>
 
-
-class IslandSelectLayer : public cocos2d::CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate {
+using namespace geode::prelude;
+class IslandSelectLayer : public CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate {
 public:
     GJGroundLayer* m_ground;
-    cocos2d::CCSprite* m_background;
-    cocos2d::CCArray* m_mainLevels;
-    cocos2d::CCArray* m_levelPages;
+    CCSprite* m_background;
+    CCArray* m_mainLevels;
+    CCArray* m_levelPages;
     BoomScrollLayer* m_scrollLayer;
 	float m_fWindowWidth;
     int m_level;
 	GJGameLevel* level;
 public:
-	cocos2d::ccColor3B colorForPage(int);
-	cocos2d::ccColor3B getColorValue(int, int, float);
+	ccColor3B colorForPage(int);
+	ccColor3B getColorValue(int, int, float);
 	bool init(int page);
 	bool tryShowAd();
 	void onClose(CCObject*);
-	void onPrev(cocos2d::CCObject*);
-	void onNext(cocos2d::CCObject*);
-	void onDownload(cocos2d::CCObject*);
+	void onPrev(CCObject*);
+	void onNext(CCObject*);
+	void onDownload(CCObject*);
 	void onSoundtracks(CCObject*);
-	void onInfo(cocos2d::CCObject*);
-	void onPlay(cocos2d::CCObject*);
-	void onBack(cocos2d::CCObject*);
+	void onInfo(CCObject*);
+	void onPlay(CCObject*);
+	void onBack(CCObject*);
 	void keyBackClicked() override;
 	void createStars(GJGameLevel* level, CCLayer* layer);
-	void onIslandLevel(cocos2d::CCObject* sender);
-	// void importSheet();
+	void onIslandLevel(CCObject* sender);
 	void runParticle();
-	void scrollLayerMoved(cocos2d::CCPoint) override;
-	/*void pageNumberForPosition(cocos2d::CCPoint);*/
+	void scrollLayerMoved(CCPoint) override;
 	CCNode* createSideArt();
-	//CCSprite* createBackground();
 	void keyDown(int);
 	void updateColors();
-	/*void instantPage(cocos2d::CCObject*,int);*/
 	static IslandSelectLayer* create(int page);
-	static cocos2d::CCScene* scene(int page);
+	static CCScene* scene(int page);
 	void updatePageWithObject(CCObject* page, CCObject* object) override;
 	
 };

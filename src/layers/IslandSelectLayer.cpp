@@ -1529,12 +1529,10 @@ void IslandSelectLayer::runParticle()
 
     auto levelsmenu1 = (CCMenu*)levelsnode1->getChildren()->objectAtIndex(2);
 
-
     auto levelsnode2 = (more::IslandNode*)extendedLayer->getChildren()->objectAtIndex(1);
 
     auto levelsmenu2 = (CCMenu*)levelsnode2->getChildren()->objectAtIndex(2);
 
-   /* particles->setPosition({ ((winSize.width / 2) - 118) + 100, 136 });*/
     particles->setAnchorPoint({ 0.5f, 0.5f });
     particles->setScale(0.5f);
     particles->setZOrder(3);
@@ -1622,7 +1620,6 @@ void IslandSelectLayer::keyBackClicked() {
 }
 
 void IslandSelectLayer::onIslandLevel(CCObject* sender) {
-
     CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
     auto GLM = GameLevelManager::sharedState();
     auto levelName = "";
@@ -1668,7 +1665,7 @@ void IslandSelectLayer::onIslandLevel(CCObject* sender) {
 void IslandSelectLayer::onPlay(CCObject* sender) {
 	auto currentScene = CCDirector::sharedDirector()->getRunningScene();
 
-    CCMenuItemSpriteExtra* button = (CCMenuItemSpriteExtra*)sender;
+    CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
     button->setEnabled(false);
     auto GLM = GameLevelManager::sharedState();
     auto playLayer = PlayLayer::scene(level, false, false);
@@ -1679,14 +1676,14 @@ void IslandSelectLayer::onPlay(CCObject* sender) {
 
 
 
-cocos2d::ccColor3B IslandSelectLayer::colorForPage(int page) {
+ccColor3B IslandSelectLayer::colorForPage(int page) {
     auto GM = GameManager::sharedState();
     int colIDs[9] = { 6 ,17, 4, 9, 3, 11, 1, 3, 4 };
 
     return GM->colorForIdx(colIDs[page % 5]);
 }
 
-cocos2d::ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3) {
+ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3) {
     float mod = (a3 * (2.f / 3)) - 0.2f;
     if (mod < 1.0f)
     {
@@ -1752,38 +1749,28 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
 void IslandSelectLayer::createStars(GJGameLevel* level, CCLayer* layer) {
     int totalstars = level->m_stars;
     float screenWidth = CCDirector::sharedDirector()->getWinSize().width;
-    auto BG = (CCScale9Sprite*)layer->getChildren()->objectAtIndex(0);
+    auto BG = typeinfo_cast<CCScale9Sprite*>(layer->getChildren()->objectAtIndex(0));
     auto director = CCDirector::sharedDirector();
     auto winSize = director->getWinSize();
 
     std::string starspr = "";
 
-    if (level->m_normalPercent == 100)
-    {
+    if (level->m_normalPercent == 100) {
         starspr = "GJ_starsIcon_001.png";
-    }
-    else
-    {
+    } else {
         starspr = "GJ_starsIcon_gray_001.png";
     }
-
-
 
     float starWidth = 0;
     float spaceBetweenStars = 35.0f;
 
-
     float totalWidth = totalstars * (starWidth * 0.65) + (totalstars - 1) * spaceBetweenStars;
 
-  
     float startX = BG->getPositionX() - totalWidth / 2;
 
-   
     float startY = (BG->getPositionY()) - 113;
 
-   
     float currentX = startX;
-
 
     for (int i = 0; i < totalstars; ++i) {
         auto star = CCSprite::createWithSpriteFrameName(starspr.c_str());
@@ -1862,47 +1849,34 @@ void IslandSelectLayer::onInfo(CCObject* sender) {
 
     auto level21 = GJGameLevel::create();
     int levellol = 0;
-    if (lol == 30)
-    {
+    if (lol == 30) {
         level21 = GLM->getMainLevel(2001, true);
     }
-
-    if (lol == 31)
-    {
+    if (lol == 31) {
         level21 = GLM->getMainLevel(2002, true);
     }
-
-    if (lol == 32)
-    {
+    if (lol == 32) {
         level21 = GLM->getMainLevel(2003, true);
     }
-
-    if (lol == 33)
-    {
+    if (lol == 33) {
         level21 = GLM->getMainLevel(2004, true);
     }
-    if (lol == 34)
-    {
+    if (lol == 34) {
         level21 = GLM->getMainLevel(2005, true);
     }
-    if (lol == 35)
-    {
+    if (lol == 35) {
         level21 = GLM->getMainLevel(2006, true);
     }
-    if (lol == 36)
-    {
+    if (lol == 36) {
         level21 = GLM->getMainLevel(2007, true);
     }
-    if (lol == 37)
-    {
+    if (lol == 37) {
         level21 = GLM->getMainLevel(2008, true);
     }
-    if (lol == 38)
-    {
+    if (lol == 38) {
         level21 = GLM->getMainLevel(2009, true);
     }
-    if (lol == 39)
-    {
+    if (lol == 39) {
         level21 = GLM->getMainLevel(2010, true);
     }
 
