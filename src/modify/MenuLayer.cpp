@@ -69,6 +69,8 @@ bool MyMenuLayer::init() {
     }
     
 
+/*
+
     if (!downloadStarted) {
         downloadStarted = true;
 
@@ -118,12 +120,14 @@ bool MyMenuLayer::init() {
                 log::info("music.zip downloaded and extracted successfully.");
                 geode::Notification::create("Music successfully downloaded!", NotificationIcon::Success)->show();
 
-                // queueInMainThread([&]() {
-                    // std::filesystem::remove(zipPath);
-                // });
+                queueInMainThread([&]() {
+                    std::filesystem::remove(zipPath);
+                });
             }
         });
     }
+
+*/
 
     startup = true;
 
