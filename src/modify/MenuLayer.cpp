@@ -146,6 +146,9 @@ bool MyMenuLayer::init() {
                                 log::warn("Failed to write file {}", savePath.string());
                             } else {
                                 log::info("Downloaded and saved: {}", line);
+
+                                std::string filename = std::filesystem::path(line).stem().string();
+                                geode::Notification::create(fmt::format("{} finished downloading.", filename), NotificationIcon::Success, 0.25f)->show();
                             }
                         } else {
                             log::warn("No response received for file: {}", line);

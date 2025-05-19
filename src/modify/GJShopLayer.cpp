@@ -1,0 +1,27 @@
+#include <Surge/modify/GJShopLayer.hpp>
+
+using namespace geode::prelude;
+
+bool MyGJShopLayer::init(ShopType p0) {
+	if (!GJShopLayer::init(ShopType{6}))
+		return false;
+	FMODAudioEngine::sharedEngine()->playMusic(std::filesystem::path(Mod::get()->getSaveDir() / "songs" / "SneakyAdventure.mp3").string(), true, 0.1f, 0);
+	auto extraMenu = CCMenu::create();
+	extraMenu->setID("shop-tv-menu"_spr);
+	extraMenu->setPosition({0, 0});
+	auto infoButton = InfoAlertButton::create("Warning", "Be aware to check your <cy>Icon kit</c>, icons you already unlocked might show here as not bought.", 1);
+	infoButton->setPosition({30, 30});
+	extraMenu->addChild(infoButton);
+	this->addChild(extraMenu);
+	auto particle = static_cast<CCParticleSystemQuad *>(getChildren()->objectAtIndex(7));
+	particle->setStartColor({193, 122, 5, 255});
+	particle->setEndColor({255, 122, 0, 0});
+	return true;
+}
+
+void MyGJShopLayer::onBack(CCObject* sender) {
+    auto scene = GJGarageLayer::scene();
+    auto transition = CCTransitionFade::create(0.5f, scene);
+    CCDirector::sharedDirector()->replaceScene(transition);
+	FMODAudioEngine::sharedEngine()->playMusic("menuLoop.mp3", true, 0.1f, 0);
+}

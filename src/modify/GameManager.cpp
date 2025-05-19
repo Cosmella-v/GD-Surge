@@ -39,3 +39,36 @@ bool MyGameManager::isColorUnlocked(int _id, UnlockType _type) {
     if (_id == 0 || _id > 8) return true;
     return GameManager::isColorUnlocked(_id, _type);
 }
+
+int MyGameManager::countForType(IconType icon) {
+    switch (icon) {
+    case IconType::Cube:
+        return 514;
+    case IconType::Ship:
+        return 177;
+    case IconType::Ball:
+        return 126;
+    case IconType::Ufo:
+        return 154;
+    case IconType::Wave:
+        return 100;
+    case IconType::Robot:
+        return 68;
+    case IconType::Spider:
+        return 69;
+    case IconType::Swing:
+        return 47;
+    case IconType::Jetpack:
+        return 9;
+    case IconType::Special:
+        return 7;
+    case IconType::DeathEffect:
+        return 20;
+    case IconType::ShipFire:
+        return 6;
+    case IconType::Item:
+        return 21;
+    default:
+        return GameManager::countForType(icon);
+    }
+}

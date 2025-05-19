@@ -7,3 +7,4 @@ songs/TheBeginningOfTime.mp3
 songs/Thermodynamix.mp3
 songs/Tomb.mp3
 songs/UnstableGeometry.mp3
+songs/SneakyAdventure.mp3
