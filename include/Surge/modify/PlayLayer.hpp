@@ -7,4 +7,5 @@ using namespace geode::prelude;
 class $modify(MyPlayLayer, PlayLayer) {
     $override
     void levelComplete();
+    void onQuit();
 };
