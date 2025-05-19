@@ -5,7 +5,9 @@ using namespace geode::prelude;
 bool MyGJShopLayer::init(ShopType p0) {
 	if (!GJShopLayer::init(ShopType{6}))
 		return false;
-	FMODAudioEngine::sharedEngine()->playMusic(std::filesystem::path(Mod::get()->getSaveDir() / "songs" / "SneakyAdventure.mp3").string(), true, 0.1f, 0);
+    auto musicPath = (Mod::get()->getSaveDir() / "songs" / "RandomSong03.mp3").string();
+    log::debug("Trying to play: {}", musicPath);
+	FMODAudioEngine::sharedEngine()->playMusic(musicPath, true, 0.1f, 0);
 	auto extraMenu = CCMenu::create();
 	extraMenu->setID("shop-tv-menu"_spr);
 	extraMenu->setPosition({0, 0});

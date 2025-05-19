@@ -1,5 +1,6 @@
 sfx/s6314.ogg
 sfx/s7791.ogg
+songs/RandomSong03.mp3
 songs/ActionTheme07.ogg
 songs/Badland.mp3
 songs/Detour.mp3
@@ -7,4 +8,3 @@ songs/TheBeginningOfTime.mp3
 songs/Thermodynamix.mp3
 songs/Tomb.mp3
 songs/UnstableGeometry.mp3
-songs/SneakyAdventure.mp3
