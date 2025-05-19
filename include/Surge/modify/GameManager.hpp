@@ -8,4 +8,6 @@ class $modify(MyGameManager, GameManager) {
 
     // UnlockType convertIconTypeToUnlockType(IconType iconType);
     int countForType(IconType icon);
+
+    void returnToLastScene(GJGameLevel* p0);
 };

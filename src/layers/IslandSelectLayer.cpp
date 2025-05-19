@@ -1501,7 +1501,7 @@ bool IslandSelectLayer::init(int page) {
     // if (level9complete == 1) {
     //     level9->setVisible(false);
     // }
-    
+
     // if (level10complete == 1) {
     //     level10->setVisible(false);
     // }

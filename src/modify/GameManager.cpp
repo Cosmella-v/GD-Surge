@@ -141,3 +141,11 @@ int MyGameManager::countForType(IconType icon) {
             return GameManager::countForType(icon);
     }
 }
+
+void MyGameManager::returnToLastScene(GJGameLevel* p0) {
+    if (GameManager::sharedState()->m_sceneEnum == 9) {
+        GameManager::returnToLastScene(p0);
+    } else {
+        CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
+    }
+}
