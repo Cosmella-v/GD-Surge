@@ -105,53 +105,60 @@ bool MyMenuLayer::init() {
 
                 log::debug("Parsed download list. Base URL: {}, Save Dir: {}", baseURL, saveDir.string());
 
+                std::vector<std::string> filesToDownload;
                 while (std::getline(stream, line)) {
-                    if (line.empty()) continue;
+                    if (!line.empty()) filesToDownload.push_back(line);
+                }
 
-                    std::string fullURL = baseURL + line;
-                    auto savePath = saveDir / line;
+                if (filesToDownload.empty()) {
+                    geode::Notification::create("No files to download.", NotificationIcon::Info)->show();
+                    return;
+                }
+
+                auto remaining = std::make_shared<std::atomic<int>>(filesToDownload.size());
+
+                for (const auto& fileLine : filesToDownload) {
+                    std::string fullURL = baseURL + fileLine;
+                    auto savePath = saveDir / fileLine;
 
                     std::error_code ec;
                     std::filesystem::create_directories(savePath.parent_path(), ec);
                     if (ec) {
-                        log::warn("Failed to create directory for {}: {}", line, ec.message());
+                        log::warn("Failed to create directory for {}: {}", fileLine, ec.message());
+                        if (--(*remaining) == 0) {
+                            geode::Notification::create("All songs downloaded!", NotificationIcon::Success)->show();
+                        }
                         continue;
                     }
 
-                    // Create a new WebRequest and Task for each file
-                    web::WebRequest* fileRequest = new web::WebRequest();  // allocated dynamically to keep alive
+                    web::WebRequest* fileRequest = new web::WebRequest();
                     auto fileTask = fileRequest->get(fullURL);
 
-                    // Create a unique listener for this download
                     auto fileListener = std::make_shared<EventListener<web::WebTask>>();
                     fileListener->setFilter(fileTask);
 
-                    // Capture fileListener, savePath, and line by value in the lambda
-                    fileListener->bind([fileListener, savePath, line](web::WebTask::Event* fe) {
+                    fileListener->bind([fileListener, savePath, fileLine, remaining](web::WebTask::Event* fe) {
                         if (!fe || fe->isCancelled()) {
-                            log::warn("Download cancelled: {}", line);
-                            return;
-                        }
-
-                        if (web::WebResponse* fres = fe->getValue()) {
-                            log::debug("Download completed for {}. Status: {}", line, fres->code());
+                            log::warn("Download cancelled: {}", fileLine);
+                        } else if (web::WebResponse* fres = fe->getValue()) {
+                            log::debug("Download completed for {}. Status: {}", fileLine, fres->code());
 
                             if (fres->code() != 200) {
-                                log::warn("Failed to download {}: status code {}", line, fres->code());
-                                return;
-                            }
-
-                            auto data = fres->data();
-                            if (!geode::utils::file::writeBinary(savePath, data)) {
-                                log::warn("Failed to write file {}", savePath.string());
+                                log::warn("Failed to download {}: status code {}", fileLine, fres->code());
                             } else {
-                                log::info("Downloaded and saved: {}", line);
-
-                                std::string filename = std::filesystem::path(line).stem().string();
-                                geode::Notification::create(fmt::format("{} finished downloading.", filename), NotificationIcon::Success, 0.1f)->show();
+                                auto data = fres->data();
+                                if (!geode::utils::file::writeBinary(savePath, data)) {
+                                    log::warn("Failed to write file {}", savePath.string());
+                                } else {
+                                    log::info("Downloaded and saved: {}", fileLine);
+                                }
                             }
                         } else {
-                            log::warn("No response received for file: {}", line);
+                            log::warn("No response received for file: {}", fileLine);
+                        }
+
+                        if (--(*remaining) == 0) {
+                            geode::Notification::create("All songs downloaded!", NotificationIcon::Success)->show();
                         }
                     });
                 }
