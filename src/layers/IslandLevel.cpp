@@ -308,17 +308,7 @@ void IslandLevel::onPlay(CCObject* sender) {
 void sLOLwshow2(GJGameLevel* level212) {
     if (level212 == nullptr) return;
 
-    if (level212->m_levelID == -1) {
-        FLAlertLayer::create(nullptr, "It's a secret...", "<cr>Roses are red</c>\n<cl>Violets are blue</c>\n<cg>Welcome to</c>\n<cy>2.2</c>", "OK", nullptr, 360)->show();
-        return;
-    }
-
-    if (level212->m_levelID == -2) {
-        FLAlertLayer::create(nullptr, "The Tower", "The path leads to an <cr>old tower</c>. It's been left alone for <cg>years</c>, with little reason to <co>explore</c>.", "OK", nullptr, 360)->show();
-        return;
-    }
-
-    if (level212->m_levelID != -1 && level212->m_levelID != -2) {
+    if (level212->m_levelID <= 0) {
         std::string name = level212->m_levelName;
         std::string contentStream =
             "<cy>" + name + "</c>" +
@@ -329,6 +319,8 @@ void sLOLwshow2(GJGameLevel* level212) {
 
         FLAlertLayer::create(nullptr, "Level Stats", contentStream, "OK", nullptr, 360)->show();
         return;
+    } else {
+        FLAlertLayer::create("hmm..", "something seems <cr>SUS</c> here...", "ikr")->show();
     }
 }
 

@@ -17,7 +17,7 @@ void MyGJGarageLayer::showUnlockPopup(int p0, UnlockType p1) {
 }
 
 void MyGJGarageLayer::onShop(CCObject* sender) {
-    auto shop = GJShopLayer::scene(ShopType{6});
+    auto shop = GJShopLayer::scene(ShopType{5});
     auto transition = CCTransitionMoveInT::create(0.5f, shop);
     CCDirector::sharedDirector()->replaceScene(transition);
 }
