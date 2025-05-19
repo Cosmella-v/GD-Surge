@@ -18,6 +18,9 @@
 			],
 			"IslandsSheet": [
 				"res/IslandsSheet/*.png"
+			],
+			"ShopSheet": [
+				"res/ShopSheet/*.png"
 			]
 		},
 		"files": [

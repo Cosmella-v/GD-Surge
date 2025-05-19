@@ -9,7 +9,6 @@ bool MyGJShopLayer::init(ShopType p0) {
     log::debug("Trying to play: {}", musicPath);
 	FMODAudioEngine::sharedEngine()->playMusic(musicPath, true, 0.1f, 0);
 	auto extraMenu = CCMenu::create();
-	extraMenu->setID("shop-tv-menu"_spr);
 	extraMenu->setPosition({0, 0});
 	auto infoButton = InfoAlertButton::create("Warning", "Be aware to check your <cy>Icon kit</c>, icons you already unlocked might show here as not bought.", 1);
 	infoButton->setPosition({30, 30});
@@ -18,6 +17,16 @@ bool MyGJShopLayer::init(ShopType p0) {
 	auto particle = static_cast<CCParticleSystemQuad *>(getChildren()->objectAtIndex(7));
 	particle->setStartColor({193, 122, 5, 255});
 	particle->setEndColor({255, 122, 0, 0});
+
+    auto bg = this->getChildByType<CCSprite*>(0);
+    if (bg) {
+        bg->setDisplayFrame(CCSpriteFrameCache::get()->spriteFrameByName("GDS_shopBG.png"_spr));
+    }
+
+    auto desk = this->getChildByType<CCSprite*>(2);
+    if (desk) {
+        desk->setDisplayFrame(CCSpriteFrameCache::get()->spriteFrameByName("GDS_shopDesk.png"_spr));
+    }
 	return true;
 }
 
