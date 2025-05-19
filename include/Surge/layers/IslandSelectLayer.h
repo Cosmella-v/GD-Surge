@@ -21,7 +21,6 @@ public:
 	void onNext(CCObject*);
 	void onDownload(CCObject*);
 	void onSoundtracks(CCObject*);
-	void onInfo(CCObject*);
 	void onBack(CCObject*);
 	void keyBackClicked() override;
 	void onIslandLevel(CCObject* sender);

@@ -14,6 +14,7 @@ public:
     static CCScene* scene(GJGameLevel* level, CCMenuItemSpriteExtra* button);
     bool setup(GJGameLevel* level, CCMenuItemSpriteExtra* button);
     void onPlay(CCObject* sender);
+    void onInfo(CCObject*);
 
     GJGameLevel* m_level;
 };

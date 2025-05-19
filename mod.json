@@ -21,6 +21,9 @@
 			],
 			"ShopSheet": [
 				"res/ShopSheet/*.png"
+			],
+			"MiscSheet": [
+				"res/MiscSheet/*.png"
 			]
 		},
 		"files": [

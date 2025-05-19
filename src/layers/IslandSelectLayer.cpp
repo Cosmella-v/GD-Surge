@@ -257,7 +257,7 @@ bool IslandSelectLayer::init(int page) {
     CCMenuItemSpriteExtra* level2Btn = CCMenuItemSpriteExtra::create(unkspr1, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level2Btn->setTag(31);
-    level2Btn->setPosition(-80, -30);
+    level2Btn->setPosition(-83, -25);
     level2Btn->setVisible(false);
     level2->setPosition({ -80, -30 });
 
@@ -296,7 +296,7 @@ bool IslandSelectLayer::init(int page) {
     CCMenuItemSpriteExtra* level3Btn = CCMenuItemSpriteExtra::create(unkspr2, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level3Btn->setTag(32);
-    level3Btn->setPosition(-10, 10);
+    level3Btn->setPosition(-7, 15);
     level3Btn->setVisible(false);
     level3->setPosition({ -10, 10 });
 
@@ -377,15 +377,15 @@ bool IslandSelectLayer::init(int page) {
 
     auto level5complete = Mod::get()->getSavedValue<int>("islandlevel5complete");
 
-    auto level6complete = Mod::get()->getSavedValue<int>("islandlevel6complete");
+    // auto level6complete = Mod::get()->getSavedValue<int>("islandlevel6complete");
 
-    auto level7complete = Mod::get()->getSavedValue<int>("islandlevel7complete");
+    // auto level7complete = Mod::get()->getSavedValue<int>("islandlevel7complete");
 
-    auto level8complete = Mod::get()->getSavedValue<int>("islandlevel8complete");
+    // auto level8complete = Mod::get()->getSavedValue<int>("islandlevel8complete");
 
-    auto level9complete = Mod::get()->getSavedValue<int>("islandlevel9complete");
+    // auto level9complete = Mod::get()->getSavedValue<int>("islandlevel9complete");
     
-    auto level10complete = Mod::get()->getSavedValue<int>("islandlevel10complete");
+    // auto level10complete = Mod::get()->getSavedValue<int>("islandlevel10complete");
 
 
     //level 1 to level 2 animation
@@ -517,7 +517,7 @@ bool IslandSelectLayer::init(int page) {
     CCMenuItemSpriteExtra* level4Btn = CCMenuItemSpriteExtra::create(unkspr3, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level4Btn->setTag(33);
-    level4Btn->setPosition(50, -25);
+    level4Btn->setPosition(47, -20);
     level4Btn->setVisible(false);
     level4->setPosition({ 50, -25 });
 
@@ -618,7 +618,7 @@ bool IslandSelectLayer::init(int page) {
     CCMenuItemSpriteExtra* level5Btn = CCMenuItemSpriteExtra::create(unkspr4, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level5Btn->setTag(34);
-    level5Btn->setPosition(155, -10);
+    level5Btn->setPosition(152, -5);
     level5Btn->setVisible(false);
     level5->setPosition({ 155, -10 });
 
@@ -1275,231 +1275,238 @@ bool IslandSelectLayer::init(int page) {
     // node3->addChild(ComingSoon);
     // node3->setTag(23);
 
-        m_mainLevels = CCArray::create();
-        m_levelPages = CCArray::create();
+    m_mainLevels = CCArray::create();
+    m_levelPages = CCArray::create();
 
-        m_level = 0;
+    m_level = 0;
 
-        m_levelPages->addObject(node);
-        // m_levelPages->addObject(node2);
-        // m_levelPages->addObject(node3);
+    m_levelPages->addObject(node);
+    // m_levelPages->addObject(node2);
+    // m_levelPages->addObject(node3);
 
-        m_scrollLayer = BoomScrollLayer::create(m_levelPages, 0, false, nullptr, static_cast<DynamicScrollDelegate*>(this));
+    m_scrollLayer = BoomScrollLayer::create(m_levelPages, 0, false, nullptr, static_cast<DynamicScrollDelegate*>(this));
 
-        m_scrollLayer->m_extendedLayer->m_delegate = static_cast<BoomScrollLayerDelegate*>(this);
+    m_scrollLayer->m_extendedLayer->m_delegate = static_cast<BoomScrollLayerDelegate*>(this);
 
-        if (page) {
-            if (page == 21)
-                m_scrollLayer->instantMoveToPage(20);
-            m_scrollLayer->instantMoveToPage(page);
-        } else {
-            scrollLayerMoved(m_scrollLayer->m_extendedLayer->getPosition()); //
-        }
+    if (page) {
+        if (page == 21)
+            m_scrollLayer->instantMoveToPage(20);
+        m_scrollLayer->instantMoveToPage(page);
+    } else {
+        scrollLayerMoved(m_scrollLayer->m_extendedLayer->getPosition()); //
+    }
 
-        auto pointer = (CCSpriteBatchNode*)m_scrollLayer->getChildren()->objectAtIndex(1);
-        pointer->setPositionY(director->getScreenBottom() - 45);
-        addChild(m_scrollLayer);
+    auto pointer = (CCSpriteBatchNode*)m_scrollLayer->getChildren()->objectAtIndex(1);
+    pointer->setPositionY(director->getScreenBottom() - 45);
+    addChild(m_scrollLayer);
 
-        //level 5 to level 6 animation
-        if (wlevel5->m_normalPercent != 100) {
-            Mod::get()->setSavedValue("islandlevel5complete", 0);
-        }
-        if (wlevel5->m_normalPercent == 100 && wlevel6->m_normalPercent == 0 && level5complete == 0) {
-            level6Btn->setOpacity(0);
+    //level 5 to level 6 animation
+    if (wlevel5->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel5complete", 0);
+    }
+    if (wlevel5->m_normalPercent == 100 && wlevel6->m_normalPercent == 0 && level5complete == 0) {
+        level6Btn->setOpacity(0);
 
-            level6Btn->setScale(1.5);
+        level6Btn->setScale(1.5);
+        level6Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("wlevelunlocked", 5);
+
+        m_scrollLayer->moveToPage(1);
+        level6Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.2),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(scaleWithBounce2),
+            nullptr
+        ));
+
+        Mod::get()->setSavedValue("islandlevel5complete", 1);
+    }
+    else
+    {
+        if (wlevel5->m_normalPercent == 100)
+        {
             level6Btn->setVisible(true);
-
-            Mod::get()->setSavedValue("wlevelunlocked", 5);
-
-            m_scrollLayer->moveToPage(1);
-            level6Btn->runAction(CCSequence::create(
-                CCDelayTime::create(1.2),
-                CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-                CCFadeIn::create(0.1),
-                CCEaseBounceOut::create(scaleWithBounce2),
-                nullptr
-            ));
-
-            Mod::get()->setSavedValue("islandlevel5complete", 1);
         }
         else
         {
-            if (wlevel5->m_normalPercent == 100)
-            {
-                level6Btn->setVisible(true);
-            }
-            else
-            {
-                Fpoint1->setOpacity(0);
-                Fpoint2->setOpacity(0);
-                Fpoint3->setOpacity(0);
-                Fpoint4->setOpacity(0);
-                Fpoint5->setOpacity(0);
-            }
-
+            Fpoint1->setOpacity(0);
+            Fpoint2->setOpacity(0);
+            Fpoint3->setOpacity(0);
+            Fpoint4->setOpacity(0);
+            Fpoint5->setOpacity(0);
         }
 
-      
-        sprite->setPosition(winSize / 2);
-        sprite->setPositionY(sprite->getPositionY() - 30);
+    }
 
-        Dashlands->setPositionX(sprite->getPositionX());
-        Dashlands->setPositionY(sprite->getPositionY() + 150);
-        Dashlands->setScale(0.8);
-
-        sprite2->setPosition(winSize / 2);
-        sprite2->setPositionY(sprite2->getPositionY() - 30);
-
-        sprite3->setPosition(winSize / 2);
-        sprite3->setPositionY(sprite3->getPositionY() - 30);
-
-        // ToxicFactory->setPositionX(sprite2->getPositionX());
-        // ToxicFactory->setPositionY(sprite2->getPositionY() + 150);
-        // ToxicFactory->setScale(0.8);
-
-        ComingSoon->setPositionX(sprite3->getPositionX());
-        ComingSoon->setPositionY(sprite3->getPositionY() + 150);
-        ComingSoon->setScale(0.8);
-      
-        //start arrow animation
-        auto moveUp = CCMoveBy::create(0.5f, ccp(0, 5)); 
-        auto moveDown = CCMoveBy::create(0.5f, ccp(0, -5));
-
-        auto easeOutUp = CCEaseInOut::create(moveUp,1.5f);   
-        auto easeInDown = CCEaseInOut::create(moveDown, 1.5f);
-
-        auto moveSequence = CCSequence::create(easeOutUp, easeInDown, nullptr);
-
-        auto repeatAction = CCRepeatForever::create(moveSequence);
-
-        //island 1 loop
-        
-        auto moveUp21 = CCMoveBy::create(1.0f, ccp(0, 1));
-        auto moveDown21 = moveUp21->reverse();
-
-        auto moveUp121 = CCMoveBy::create(1.0f, ccp(0, 1));
-        auto moveDown121 = moveUp121->reverse();
-
-        auto easeOutUp21 = CCEaseOut::create(moveUp21, 1.5f);
-        auto easeInDown21 = CCEaseIn::create(moveDown21, 1.5f);
-
-        auto easeOutDown21 = CCEaseOut::create(moveDown121, 1.5f);
-        auto easeInUp21 = CCEaseIn::create(moveUp121, 1.5f);
-        auto moveSequence21 = CCSequence::create(easeOutUp21, easeInDown21, easeOutDown21, easeInUp21, nullptr);
-
-        auto repeatAction21 = CCRepeatForever::create(moveSequence21);
-        //island 2 loop
-        // auto moveUp2 = CCMoveBy::create(1.0f, ccp(0, 1)); 
-        // auto moveDown2 = moveUp2->reverse(); 
-
-        // auto moveUp12 = CCMoveBy::create(1.0f, ccp(0, 1)); 
-        // auto moveDown12 = moveUp2->reverse();
-
-        // auto easeOutUp2 = CCEaseOut::create(moveUp2, 1.5f); 
-        // auto easeInDown2 = CCEaseIn::create(moveDown2, 1.5f); 
-
-        // auto easeOutDown2 = CCEaseOut::create(moveDown12, 1.5f); 
-        // auto easeInUp2 = CCEaseIn::create(moveUp12, 1.5f); 
-        // auto moveSequence2 = CCSequence::create(easeOutUp2, easeInDown2, easeOutDown2, easeInUp2, nullptr);
-
-        // auto repeatAction2 = CCRepeatForever::create(moveSequence2);
-
-        node->runAction(repeatAction21);
-
-        // node2->runAction(repeatAction2);
-
-
-        
-        if (wlevel1->m_normalPercent != 100)
-        {
-            auto level1arrow = CCSprite::createWithSpriteFrameName("GJ_arrow_02_001.png");
-
-            level1arrow->setPosition(level1Btn->getPosition());
-
-            level1arrow->setPositionY(level1arrow->getPositionY() + 40);
-            level1arrow->setRotation(-90);
-            level1arrow->setScale(0.6);
-            dashlandsmenu->addChild(level1arrow);
-            level1arrow->runAction(repeatAction);
-        }
-
-        m_background = CCSprite::create("GJ_gradientBG.png");
-        m_background->setAnchorPoint({ 0.f, 0.f });
-        addChild(m_background, -4);
-        
-        m_background->setScaleX((winSize.width + 10.f) / m_background->getTextureRect().size.width);
-        m_background->setScaleY((winSize.height + 10.f) / m_background->getTextureRect().size.height);
-        m_background->setPosition(ccp(-5, -5));
-        m_background->setColor(GM->colorForIdx(4));
-        
-        m_background->setZOrder(-4);
-        sprite3->setColor(ccBLACK);
-        sprite3->setOpacity(40);
-        
-        m_background->setColor({ 0, 125, 255 });
-        CCNode* sideArt = createSideArt();
-        
-        addChild(sideArt);
-        
-        auto pageBtnsMenu = CCMenu::create();
-        pageBtnsMenu->setPosition({ 0, 0 });
-        pageBtnsMenu->setZOrder(2);
-        
-        auto nextPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
-        nextPageIcon->setFlipX(false);
-        
-        auto nextPageBtn = CCMenuItemSpriteExtra::create(
-            nextPageIcon,
-            this,
-            menu_selector(IslandSelectLayer::onNext)
-        );
-        nextPageBtn->setPosition({ winSize.width * 0.95f, winSize.height * 0.5f });
     
-        auto prevPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
-        prevPageIcon->setFlipX(true);
-        
-        auto prevPageBtn = CCMenuItemSpriteExtra::create(
-            prevPageIcon,
-            this,
-            menu_selector(IslandSelectLayer::onPrev)
-        );
-        prevPageBtn->setPosition({ winSize.width * 0.05f, winSize.height * 0.5f });
-    
-        pageBtnsMenu->addChild(nextPageBtn);
-        pageBtnsMenu->addChild(prevPageBtn);
-    
-        this->addChild(pageBtnsMenu);
+    sprite->setPosition(winSize / 2);
+    sprite->setPositionY(sprite->getPositionY() - 30);
 
-        if (level2complete == 1) {
-            level2->setVisible(false);
-        }
-        if (level3complete == 1) {
-            level3->setVisible(false);
-        }
-        if (level4complete == 1) {
-            level4->setVisible(false);
-        }
-        // if (level5complete == 1) {
-        //     level5->setVisible(false);
-        // }
-        // if (level6complete == 1) {
-        //     level6->setVisible(false);
-        // }
-        // if (level7complete == 1) {
-        //     level7->setVisible(false);
-        // }
-        // if (level8complete == 1) {
-        //     level8->setVisible(false);
-        // }
-        // if (level9complete == 1) {
-        //     level9->setVisible(false);
-        // }
-        // if (level10complete == 1) {
-        //     level10->setVisible(false);
-        // }
+    Dashlands->setPositionX(sprite->getPositionX());
+    Dashlands->setPositionY(sprite->getPositionY() + 150);
+    Dashlands->setScale(0.8);
+
+    sprite2->setPosition(winSize / 2);
+    sprite2->setPositionY(sprite2->getPositionY() - 30);
+
+    sprite3->setPosition(winSize / 2);
+    sprite3->setPositionY(sprite3->getPositionY() - 30);
+
+    // ToxicFactory->setPositionX(sprite2->getPositionX());
+    // ToxicFactory->setPositionY(sprite2->getPositionY() + 150);
+    // ToxicFactory->setScale(0.8);
+
+    ComingSoon->setPositionX(sprite3->getPositionX());
+    ComingSoon->setPositionY(sprite3->getPositionY() + 150);
+    ComingSoon->setScale(0.8);
     
-        return true;
+    //start arrow animation
+    auto moveUp = CCMoveBy::create(0.5f, ccp(0, 5)); 
+    auto moveDown = CCMoveBy::create(0.5f, ccp(0, -5));
+
+    auto easeOutUp = CCEaseInOut::create(moveUp,1.5f);   
+    auto easeInDown = CCEaseInOut::create(moveDown, 1.5f);
+
+    auto moveSequence = CCSequence::create(easeOutUp, easeInDown, nullptr);
+
+    auto repeatAction = CCRepeatForever::create(moveSequence);
+
+    //island 1 loop
+    
+    auto moveUp21 = CCMoveBy::create(1.0f, ccp(0, 1));
+    auto moveDown21 = moveUp21->reverse();
+
+    auto moveUp121 = CCMoveBy::create(1.0f, ccp(0, 1));
+    auto moveDown121 = moveUp121->reverse();
+
+    auto easeOutUp21 = CCEaseOut::create(moveUp21, 1.5f);
+    auto easeInDown21 = CCEaseIn::create(moveDown21, 1.5f);
+
+    auto easeOutDown21 = CCEaseOut::create(moveDown121, 1.5f);
+    auto easeInUp21 = CCEaseIn::create(moveUp121, 1.5f);
+    auto moveSequence21 = CCSequence::create(easeOutUp21, easeInDown21, easeOutDown21, easeInUp21, nullptr);
+
+    auto repeatAction21 = CCRepeatForever::create(moveSequence21);
+    //island 2 loop
+    // auto moveUp2 = CCMoveBy::create(1.0f, ccp(0, 1)); 
+    // auto moveDown2 = moveUp2->reverse(); 
+
+    // auto moveUp12 = CCMoveBy::create(1.0f, ccp(0, 1)); 
+    // auto moveDown12 = moveUp2->reverse();
+
+    // auto easeOutUp2 = CCEaseOut::create(moveUp2, 1.5f); 
+    // auto easeInDown2 = CCEaseIn::create(moveDown2, 1.5f); 
+
+    // auto easeOutDown2 = CCEaseOut::create(moveDown12, 1.5f); 
+    // auto easeInUp2 = CCEaseIn::create(moveUp12, 1.5f); 
+    // auto moveSequence2 = CCSequence::create(easeOutUp2, easeInDown2, easeOutDown2, easeInUp2, nullptr);
+
+    // auto repeatAction2 = CCRepeatForever::create(moveSequence2);
+
+    node->runAction(repeatAction21);
+
+    // node2->runAction(repeatAction2);
+
+
+    
+    if (wlevel1->m_normalPercent != 100)
+    {
+        auto level1arrow = CCSprite::createWithSpriteFrameName("GJ_arrow_02_001.png");
+
+        level1arrow->setPosition(level1Btn->getPosition());
+
+        level1arrow->setPositionY(level1arrow->getPositionY() + 40);
+        level1arrow->setRotation(-90);
+        level1arrow->setScale(0.6);
+        dashlandsmenu->addChild(level1arrow);
+        level1arrow->runAction(repeatAction);
+    }
+
+    m_background = CCSprite::create("GJ_gradientBG.png");
+    m_background->setAnchorPoint({ 0.f, 0.f });
+    addChild(m_background, -4);
+    
+    m_background->setScaleX((winSize.width + 10.f) / m_background->getTextureRect().size.width);
+    m_background->setScaleY((winSize.height + 10.f) / m_background->getTextureRect().size.height);
+    m_background->setPosition(ccp(-5, -5));
+    m_background->setColor(GM->colorForIdx(4));
+    
+    m_background->setZOrder(-4);
+    sprite3->setColor(ccBLACK);
+    sprite3->setOpacity(40);
+    
+    m_background->setColor({ 0, 125, 255 });
+    CCNode* sideArt = createSideArt();
+    
+    addChild(sideArt);
+    
+    auto pageBtnsMenu = CCMenu::create();
+    pageBtnsMenu->setPosition({ 0, 0 });
+    pageBtnsMenu->setZOrder(2);
+    
+    auto nextPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
+    nextPageIcon->setFlipX(false);
+    
+    auto nextPageBtn = CCMenuItemSpriteExtra::create(
+        nextPageIcon,
+        this,
+        menu_selector(IslandSelectLayer::onNext)
+    );
+    nextPageBtn->setPosition({ winSize.width * 0.95f, winSize.height * 0.5f });
+
+    auto prevPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
+    prevPageIcon->setFlipX(true);
+    
+    auto prevPageBtn = CCMenuItemSpriteExtra::create(
+        prevPageIcon,
+        this,
+        menu_selector(IslandSelectLayer::onPrev)
+    );
+    prevPageBtn->setPosition({ winSize.width * 0.05f, winSize.height * 0.5f });
+
+    pageBtnsMenu->addChild(nextPageBtn);
+    pageBtnsMenu->addChild(prevPageBtn);
+
+    this->addChild(pageBtnsMenu);
+
+    if (level2complete == 1) {
+        level2->setVisible(false);
+    }
+
+    if (level3complete == 1) {
+        level3->setVisible(false);
+    }
+    
+    if (level4complete == 1) {
+        level4->setVisible(false);
+    }
+
+    if (level5complete == 1) {
+        level5->setVisible(false);
+    }
+
+    // if (level6complete == 1) {
+    //     level6->setVisible(false);
+    // }
+
+    // if (level7complete == 1) {
+    //     level7->setVisible(false);
+    // }
+
+    // if (level8complete == 1) {
+    //     level8->setVisible(false);
+    // }
+    // if (level9complete == 1) {
+    //     level9->setVisible(false);
+    // }
+    
+    // if (level10complete == 1) {
+    //     level10->setVisible(false);
+    // }
+
+    return true;
 }
 
 void IslandSelectLayer::runParticle()
@@ -1711,71 +1718,4 @@ void IslandSelectLayer::onNext(CCObject*) {
 void IslandSelectLayer::onPrev(CCObject*) {
     m_scrollLayer->quickUpdate();
     m_scrollLayer->moveToPage(m_level - 1);
-}
-
-void sLOLwshow2(GJGameLevel* level212) {
-    if (level212 == nullptr) return;
-
-    if (level212->m_levelID == -1) {
-        FLAlertLayer::create(nullptr, "It's a secret...", "<cr>Roses are red</c>\n<cl>Violets are blue</c>\n<cg>Welcome to</c>\n<cy>2.2</c>", "OK", nullptr, 360)->show();
-        return;
-    }
-
-    if (level212->m_levelID == -2) {
-        FLAlertLayer::create(nullptr, "The Tower", "The path leads to an <cr>old tower</c>. It's been left alone for <cg>years</c>, with little reason to <co>explore</c>.", "OK", nullptr, 360)->show();
-        return;
-    }
-
-    if (level212->m_levelID != -1 && level212->m_levelID != -2) {
-        std::string name = level212->m_levelName;
-        std::string contentStream =
-            "<cy>" + name + "</c>" +
-            "\n<cg>Total Attempts</c>: " + std::to_string(level212->m_attempts) +
-            "\n<cl>Total Jumps</c>: " + std::to_string(level212->m_jumps) +
-            "\n<cp>Normal</c>: " + std::to_string(level212->m_normalPercent) + "%" +
-            "\n<co>Practice</c>: " + std::to_string(level212->m_practicePercent) + "%";
-
-        FLAlertLayer::create(nullptr, "Level Stats", contentStream, "OK", nullptr, 360)->show();
-        return;
-    }
-}
-
-void IslandSelectLayer::onInfo(CCObject* sender) {
-    auto lol = Mod::get()->getSavedValue<int>("islandpopuptag");
-    auto GLM = GameLevelManager::sharedState();
-
-    auto level21 = GJGameLevel::create();
-    int levellol = 0;
-    if (lol == 30) {
-        level21 = GLM->getMainLevel(2001, true);
-    }
-    if (lol == 31) {
-        level21 = GLM->getMainLevel(2002, true);
-    }
-    if (lol == 32) {
-        level21 = GLM->getMainLevel(2003, true);
-    }
-    if (lol == 33) {
-        level21 = GLM->getMainLevel(2004, true);
-    }
-    if (lol == 34) {
-        level21 = GLM->getMainLevel(2005, true);
-    }
-    if (lol == 35) {
-        level21 = GLM->getMainLevel(2006, true);
-    }
-    if (lol == 36) {
-        level21 = GLM->getMainLevel(2007, true);
-    }
-    if (lol == 37) {
-        level21 = GLM->getMainLevel(2008, true);
-    }
-    if (lol == 38) {
-        level21 = GLM->getMainLevel(2009, true);
-    }
-    if (lol == 39) {
-        level21 = GLM->getMainLevel(2010, true);
-    }
-
-    sLOLwshow2(level21);
 }

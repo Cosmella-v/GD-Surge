@@ -45,7 +45,7 @@ bool IslandLevel::setup(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
 
     CCMenu* infoMenu = CCMenu::create();
     CCSprite* info = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
-    CCMenuItemSpriteExtra* infoBtn = CCMenuItemSpriteExtra::create(info, this, menu_selector(IslandSelectLayer::onInfo));
+    CCMenuItemSpriteExtra* infoBtn = CCMenuItemSpriteExtra::create(info, this, menu_selector(IslandLevel::onInfo));
 
     infoBtn->setTag(button->getTag());
     infoMenu->addChild(infoBtn);
@@ -109,7 +109,6 @@ bool IslandLevel::setup(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
     m_buttonMenu->addChild(playBtn);
     m_buttonMenu->setPositionX(BG->getPositionX());
     m_buttonMenu->setPositionY(BG->getPositionY()+35);
-    Mod::get()->setSavedValue("islandpopuptag", button->getTag());
 
     //Normal mode progress bar
     int per = 100;
@@ -305,4 +304,37 @@ void IslandLevel::onPlay(CCObject* sender) {
     FMODAudioEngine::sharedEngine()->playEffect("playSound_01.ogg");
 
     CCDirector::get()->pushScene(CCTransitionFade::create(0.5f, playLayer));
+}
+
+void sLOLwshow2(GJGameLevel* level212) {
+    if (level212 == nullptr) return;
+
+    if (level212->m_levelID == -1) {
+        FLAlertLayer::create(nullptr, "It's a secret...", "<cr>Roses are red</c>\n<cl>Violets are blue</c>\n<cg>Welcome to</c>\n<cy>2.2</c>", "OK", nullptr, 360)->show();
+        return;
+    }
+
+    if (level212->m_levelID == -2) {
+        FLAlertLayer::create(nullptr, "The Tower", "The path leads to an <cr>old tower</c>. It's been left alone for <cg>years</c>, with little reason to <co>explore</c>.", "OK", nullptr, 360)->show();
+        return;
+    }
+
+    if (level212->m_levelID != -1 && level212->m_levelID != -2) {
+        std::string name = level212->m_levelName;
+        std::string contentStream =
+            "<cy>" + name + "</c>" +
+            "\n<cg>Total Attempts</c>: " + std::to_string(level212->m_attempts) +
+            "\n<cl>Total Jumps</c>: " + std::to_string(level212->m_jumps) +
+            "\n<cp>Normal</c>: " + std::to_string(level212->m_normalPercent) + "%" +
+            "\n<co>Practice</c>: " + std::to_string(level212->m_practicePercent) + "%";
+
+        FLAlertLayer::create(nullptr, "Level Stats", contentStream, "OK", nullptr, 360)->show();
+        return;
+    }
+}
+
+void IslandLevel::onInfo(CCObject* sender) {
+    auto GLM = GameLevelManager::sharedState();
+    auto level = GLM->getMainLevel(this->m_level->m_levelID, true);
+    sLOLwshow2(level);
 }
