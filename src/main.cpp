@@ -3,5 +3,11 @@
 using namespace geode::prelude;
 
 $on_mod(Loaded) {
-    GameStatsManager::sharedState()->m_accountIDForIcon.insert(std::make_pair({485, UnlockType::Cube}, 16));
+    auto GSM = GameStatsManager::sharedState();
+    GSM->m_usernameForAccountID.insert(
+        std::make_pair(19081577, "MobMasterMind")
+    );
+    GSM->m_accountIDForIcon.insert(
+        std::make_pair(std::make_pair(485, UnlockType::Cube), 19081577)
+    );
 }

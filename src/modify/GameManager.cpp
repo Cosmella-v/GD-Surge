@@ -81,30 +81,24 @@ bool MyGameManager::isIconUnlocked(int _id, IconType _type) {
             } else {
                 return GameManager::isIconUnlocked(_id, _type);
             }
-        case IconType::DeathEffect:
-            if (_id <= 20) {
-                return true;
-            } else {
-                return GameManager::isIconUnlocked(_id, _type);
-            }
-        case IconType::ShipFire:
-            if (_id <= 6) {
-                return true;
-            } else {
-                return GameManager::isIconUnlocked(_id, _type);
-            }
-        case IconType::Special:
-            if (_id <= 7) {
-                return true;
-            } else {
-                return GameManager::isIconUnlocked(_id, _type);
-            }
-        case IconType::Item:
-            if (_id <= 485) {
-                return true;
-            } else {
-                return GameManager::isIconUnlocked(_id, _type);
-            }
+        // case IconType::DeathEffect:
+        //     if (_id <= 20) {
+        //         return true;
+        //     } else {
+        //         return GameManager::isIconUnlocked(_id, _type);
+        //     }
+        // case IconType::ShipFire:
+        //     if (_id <= 6) {
+        //         return true;
+        //     } else {
+        //         return GameManager::isIconUnlocked(_id, _type);
+        //     }
+        // case IconType::Special:
+        //     if (_id <= 7) {
+        //         return true;
+        //     } else {
+        //         return GameManager::isIconUnlocked(_id, _type);
+        //     }
         default:
             return GameManager::isIconUnlocked(_id, _type);
     }
@@ -119,32 +113,30 @@ bool MyGameManager::isColorUnlocked(int _id, UnlockType _type) {
 
 int MyGameManager::countForType(IconType icon) {
     switch (icon) {
-        // case IconType::Cube:
-        //     return 514;
-        // case IconType::Ship:
-        //     return 177;
-        // case IconType::Ball:
-        //     return 126;
-        // case IconType::Ufo:
-        //     return 154;
-        // case IconType::Wave:
-        //     return 100;
-        // case IconType::Robot:
-        //     return 68;
-        // case IconType::Spider:
-        //     return 69;
-        // case IconType::Swing:
-        //     return 47;
-        // case IconType::Jetpack:
-        //     return 9;
+        case IconType::Cube:
+            return 495;
+        case IconType::Ship:
+            return 177;
+        case IconType::Ball:
+            return 126;
+        case IconType::Ufo:
+            return 151;
+        case IconType::Wave:
+            return 104;
+        case IconType::Robot:
+            return 71;
+        case IconType::Spider:
+            return 70;
+        case IconType::Swing:
+            return 47;
+        case IconType::Jetpack:
+            return 8;
         // case IconType::Special:
         //     return 7;
         // case IconType::DeathEffect:
         //     return 20;
         // case IconType::ShipFire:
         //     return 6;
-        // case IconType::Item:
-        //     return 21;
         default:
             return GameManager::countForType(icon);
     }
