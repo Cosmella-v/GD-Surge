@@ -9,4 +9,5 @@ public:
     static CreditsLayer* create();
     void keyBackClicked();
     void backWrapper(CCObject* sender);
+    void stopMusic(float);
 };

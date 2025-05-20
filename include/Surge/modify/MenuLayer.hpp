@@ -15,4 +15,6 @@ class $modify(MyMenuLayer, MenuLayer) {
 	void onDiscord(CCObject* sender);
 	void onFacebook(CCObject* sender);
 	void onRobTop(CCObject* sender);
+
+	void onMoreGames(CCObject* sender);
 };

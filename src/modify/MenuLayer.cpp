@@ -2,6 +2,7 @@
 #include <Geode/utils/file.hpp>
 #include <Geode/utils/web.hpp>
 #include <Geode/loader/Event.hpp>
+#include <Surge/layers/CreditsLayer.hpp>
 
 float speed = 1.0f;
 float delaySetting = 0.0f;
@@ -15,6 +16,8 @@ bool startup = false;
 
 bool MyMenuLayer::init() {
     if (!MenuLayer::init()) return false;
+
+    FMODAudioEngine::sharedEngine()->playMusic("menuLoop.mp3", true, 0.1f, 0);
 
     auto socialMenu = this->getChildByID("social-media-menu");
     if (socialMenu) {
@@ -154,7 +157,7 @@ bool MyMenuLayer::init() {
                                 }
                             }
                         } else {
-                            log::warn("No response received for file: {}", fileLine);
+                            // log::warn("No response received for file: {}", fileLine);
                         }
 
                         if (--(*remaining) == 0) {
@@ -232,4 +235,9 @@ void MyMenuLayer::onRobTop(CCObject* sender) {
 
 void MyMenuLayer::onYouTube(CCObject* sender) {
     CCApplication::sharedApplication()->openURL("https://www.youtube.com/@OmgRodYT");
+}
+
+void MyMenuLayer::onMoreGames(CCObject* sender) {
+    auto scene = CreditsLayer::scene();
+    CCDirector::sharedDirector()->pushScene(scene);
 }

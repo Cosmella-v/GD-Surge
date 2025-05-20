@@ -2,7 +2,6 @@
 
 void CreditsLayer::keyBackClicked() {
     CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
-    FMODAudioEngine::sharedEngine()->playMusic("secretLoop.mp3", true, 0.1f, 0);
 }
 
 bool CreditsLayer::init() {
@@ -12,7 +11,8 @@ bool CreditsLayer::init() {
 
     auto musicPath = (Mod::get()->getSaveDir() / "songs" / "CreditsTheme.ogg").string();
     log::debug("Trying to play: {}", musicPath);
-	FMODAudioEngine::sharedEngine()->playMusic(musicPath, false, 0.1f, 0);
+    FMODAudioEngine::sharedEngine()->stopMusic(0);
+	FMODAudioEngine::sharedEngine()->playMusic(musicPath, false, 0.1f, 1);
 
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 

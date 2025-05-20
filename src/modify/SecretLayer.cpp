@@ -1,7 +1,6 @@
 #include <DialogCallback.hpp>
 #include <Surge/modify/SecretLayer.hpp>
 #include <Surge/layers/BasementLayer.hpp>
-#include <Surge/layers/CreditsLayer.hpp>
 
 using namespace geode::prelude;
 
@@ -240,6 +239,8 @@ std::unordered_map<std::string, int> MySecretLayer::riddleProgress;
 bool MySecretLayer::init() {
     if (!SecretLayer::init()) return false;
 
+    FMODAudioEngine::sharedEngine()->playMusic("secretLoop.mp3", true, 0.1f, 0);
+
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
     auto menu = CCMenu::create();
@@ -424,8 +425,7 @@ void MySecretLayer::onBasement(CCObject* sender) {
     // auto transition = CCTransitionFade::create(0.5f, scene);
     // CCDirector::sharedDirector()->pushScene(transition);
 
-    // auto scene = BasementLayer::scene();
-    auto scene = CreditsLayer::scene();
+    auto scene = BasementLayer::scene();
     auto transition = CCTransitionFade::create(0.5f, scene);
     CCDirector::sharedDirector()->pushScene(transition);
 }
