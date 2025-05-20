@@ -1,5 +1,7 @@
+#include "Geode/ui/SimpleAxisLayout.hpp"
 #include <DialogCallback.hpp>
 #include <Surge/modify/SecretLayer.hpp>
+#include <Surge/layers/BasementLayer.hpp>
 
 using namespace geode::prelude;
 
@@ -179,7 +181,7 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         }
     },
     VaultCode{
-        "the gauntlet",
+        "the basement",
         []() {
             auto array = CCArray::create();
             array->addObject(CCString::create("Still snooping around, huh?"));
@@ -201,9 +203,9 @@ std::vector<MySecretLayer::VaultCode> MySecretLayer::vaultCodes = {
         [](MySecretLayer* self) {
             GameManager::sharedState()->reportAchievementWithID("geometry.ach.surge.vault03", 50, false);
             Mod::get()->setSavedValue("basement-unlocked", true);
-            auto menu = self->getChildByID("gauntlet-menu");
+            auto menu = self->getChildByID("basement-menu");
             if (menu) {
-                auto btn = menu->getChildByID("gauntlet-button");
+                auto btn = menu->getChildByID("basement-button");
                 CCEaseIn* ease = CCEaseIn::create(CCScaleTo::create(0.2f, 1.f), 0.5f);
                 btn->setScale(0.f);
                 btn->setVisible(true);
@@ -241,30 +243,32 @@ bool MySecretLayer::init() {
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
     auto menu = CCMenu::create();
-    menu->setPosition({ winSize.width * 0.9f, winSize.height * 0.5f });
-    menu->setContentSize({ winSize.width * 0.f, winSize.height * 0.8f });
-    menu->setID("gauntlet-menu");
+    menu->setPosition({ winSize.width * 0.95f, winSize.height * 0.5f });
+    menu->setContentSize({ winSize.width * 0.1f, winSize.height * 0.95f });
+    menu->setID("basement-menu");
 
     auto layout = SimpleAxisLayout::create(Axis::Column);
+    layout->setMainAxisAlignment(MainAxisAlignment::End);
+    layout->setMainAxisScaling(AxisScaling::None);
     // layout->setAutoScale(false);
     // layout->setAxisAlignment(AxisAlignment::Center);
     menu->setLayout(layout);
 
     this->addChild(menu);
 
-    auto gauntletIcon = CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png");
-    gauntletIcon->setScale(0.5f);
-    auto gauntletBtn = CCMenuItemSpriteExtra::create(
-        gauntletIcon,
+    auto basementIcon = CCSprite::createWithSpriteFrameName("secretDoorBtn2_open_001.png");
+    basementIcon->setScale(0.5f);
+    auto basementBtn = CCMenuItemSpriteExtra::create(
+        basementIcon,
         menu,
-        menu_selector(MySecretLayer::onGauntlet)
+        menu_selector(MySecretLayer::onBasement)
     );
-    gauntletBtn->setVisible(false);
-    gauntletBtn->setID("gauntlet-button");
-    menu->addChild(gauntletBtn);
+    basementBtn->setVisible(false);
+    basementBtn->setID("basement-button");
+    menu->addChild(basementBtn);
 
     if (Mod::get()->getSavedValue<bool>("basement-unlocked")) {
-        gauntletBtn->setVisible(true);
+        basementBtn->setVisible(true);
     }
 
     menu->updateLayout();
@@ -408,15 +412,19 @@ void MySecretLayer::showEntryDialog() {
     dialog->m_delegate = del;
 }
 
-void MySecretLayer::onGauntlet(CCObject* sender) {
-    auto level = GJGameLevel::create();
-    level->m_levelID = 1001;
-    level->m_levelName = "The Gauntlet";
-    level->m_audioTrack = 1000;
-    level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(1001);
-    level->m_stars = 8;
-    level->m_difficulty = GJDifficulty::Insane;
-    auto scene = PlayLayer::scene(level, false, false);
+void MySecretLayer::onBasement(CCObject* sender) {
+    // auto level = GJGameLevel::create();
+    // level->m_levelID = 1001;
+    // level->m_levelName = "The basement";
+    // level->m_audioTrack = 1000;
+    // level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(1001);
+    // level->m_stars = 8;
+    // level->m_difficulty = GJDifficulty::Insane;
+    // auto scene = PlayLayer::scene(level, false, false);
+    // auto transition = CCTransitionFade::create(0.5f, scene);
+    // CCDirector::sharedDirector()->pushScene(transition);
+
+    auto scene = BasementLayer::scene();
     auto transition = CCTransitionFade::create(0.5f, scene);
     CCDirector::sharedDirector()->pushScene(transition);
 }

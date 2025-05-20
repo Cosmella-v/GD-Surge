@@ -30,5 +30,5 @@ class $modify(MySecretLayer, SecretLayer) {
         int selectedRiddleIndex = -1;
     };
 
-    void onGauntlet(CCObject* sender);
+    void onBasement(CCObject* sender);
 };

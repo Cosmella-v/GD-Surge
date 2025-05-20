@@ -9,3 +9,4 @@ songs/Thermodynamix.mp3
 songs/Tomb.mp3
 songs/UnstableGeometry.mp3
 sfx/playSound_01.ogg
+songs/CreditsTheme.ogg
