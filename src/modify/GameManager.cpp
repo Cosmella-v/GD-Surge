@@ -114,13 +114,13 @@ bool MyGameManager::isColorUnlocked(int _id, UnlockType _type) {
 int MyGameManager::countForType(IconType icon) {
     switch (icon) {
         case IconType::Cube:
-            return 495;
+            return 500;
         case IconType::Ship:
-            return 177;
+            return 180;
         case IconType::Ball:
-            return 126;
+            return 130;
         case IconType::Ufo:
-            return 151;
+            return 155;
         case IconType::Wave:
             return 104;
         case IconType::Robot:

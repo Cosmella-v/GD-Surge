@@ -4,4 +4,5 @@
 class $modify(MyGJShopLayer, GJShopLayer) {
     bool init(ShopType p0);
     void onBack(CCObject* sender);
+    void showEntryDialog();
 };

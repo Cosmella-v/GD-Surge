@@ -6,8 +6,8 @@ bool MyGJGarageLayer::init() {
     if (!GJGarageLayer::init())
         return false;
     
-    // auto menu = this->getChildByID("top-left-menu");
-    // menu->getChildByID("shop-button")->setVisible(false);
+    auto menu = this->getChildByID("top-left-menu");
+    menu->getChildByID("shop-button")->getChildByType<CCSprite*>(0)->setDisplayFrame(CCSpriteFrameCache::get()->spriteFrameByName("GDS_shopRope.png"_spr));
 
     return true;
 }

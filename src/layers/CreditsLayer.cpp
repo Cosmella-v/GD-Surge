@@ -12,7 +12,7 @@ bool CreditsLayer::init() {
     auto musicPath = (Mod::get()->getSaveDir() / "songs" / "CreditsTheme.ogg").string();
     log::debug("Trying to play: {}", musicPath);
     FMODAudioEngine::sharedEngine()->stopMusic(0);
-	FMODAudioEngine::sharedEngine()->playMusic(musicPath, false, 0.1f, 1);
+    FMODAudioEngine::sharedEngine()->playMusic(musicPath, false, 0.1f, 1);
 
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
@@ -47,68 +47,76 @@ bool CreditsLayer::init() {
 
     auto surgeLogo = CCSprite::createWithSpriteFrameName("surgeLogo_001.png"_spr);
     CCRect logoBounds = gdLogo->boundingBox();
-    surgeLogo->setAnchorPoint({1.0f, 1.0f});
+    surgeLogo->setAnchorPoint({ 1.0f, 1.0f });
     surgeLogo->setPosition(ccp(logoBounds.getMaxX() - 2.f, logoBounds.getMinY() - 1.5f));
     containerNode->addChild(surgeLogo);
 
-    std::vector<std::string> lines = {
-        "Development Team", "OmgRod",
-        "Art Design", "OmgRod", "Alphalaneous",
-        "Icons", "MobMasterMind",
-        "Levels", "Badland by OmgRod", "Unstable Geometry by OmgRod", "Tomb by OmgRod", "Detour by ____", "Beginning of Time by flingus", "Thermodynamix by OmgRod",
-        "Songs", "Badland by Boom Kitty", "Unstable Geometry by Waterflame", "Tomb by Boom Kitty", "Detour by Boom Kitty", "The Beginning of Time by dj-Nate", "Thermodynamix by dj-Nate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-        "Special thanks to RobTop for creating Geometry Dash!"
+    struct CreditEntry {
+        std::string text;
+        bool isTitle;
     };
 
-    std::unordered_set<std::string> titles = {
-        "Development Team", "Art Design", "Icons", "Levels", "Songs"
+    std::vector<CreditEntry> credits = {
+        {"Development Team", true}, {"OmgRod", false},
+        {"Art Design", true}, {"OmgRod", false}, {"Alphalaneous", false},
+        {"Icons", true}, {"MobMasterMind", false},
+        {"Levels", true},
+        {"Badland by OmgRod", false},
+        {"Unstable Geometry by OmgRod", false},
+        {"Tomb by OmgRod", false},
+        {"Detour by ____", false},
+        {"Beginning of Time by flingus", false},
+        {"Thermodynamix by OmgRod", false},
+        {"Songs", true},
+        {"Badland by Boom Kitty", false},
+        {"Unstable Geometry by Waterflame", false},
+        {"Tomb by Boom Kitty", false},
+        {"Detour by Boom Kitty", false},
+        {"The Beginning of Time by dj-Nate", false},
+        {"Thermodynamix by dj-Nate", false},
+        {"", false}, {"", false}, {"", false}, {"", false}, // Spacer lines
+        {"Special thanks to RobTop for creating Geometry Dash!", true}
     };
 
     float labelY = winSize.height * 0.5f;
 
-    for (size_t i = 0; i < lines.size(); ++i) {
-        const auto& line = lines[i];
-        bool isTitle = titles.count(line);
-        bool nextIsTitle = (i + 1 < lines.size()) && titles.count(lines[i + 1]);
+    for (const auto& entry : credits) {
+        if (entry.text.empty()) {
+            labelY -= 20.f; // Spacer
+            continue;
+        }
 
-        auto label = CCLabelBMFont::create(line.c_str(), "bigFont.fnt");
+        auto label = CCLabelBMFont::create(entry.text.c_str(), "bigFont.fnt");
         label->setAnchorPoint({ 0.5f, 1.f });
         label->setAlignment(CCTextAlignment::kCCTextAlignmentCenter);
         label->setPosition({ winSize.width / 2.f, labelY });
 
-        if (!isTitle) {
-            label->setScale(0.5f);
-        }
-
+        float scale = entry.isTitle ? 1.f : 0.5f;
+        label->setScale(scale);
         containerNode->addChild(label);
 
-        float spacing = 5.f;
-        if (isTitle) {
-            spacing = label->getContentSize().height + 16.0f;
-        } else {
-            spacing = label->getContentSize().height * 0.5f + 4.0f;
-            if (nextIsTitle) {
-                spacing += 10.0f;
-            }
-        }
+        float spacing = entry.isTitle
+            ? (label->getContentSize().height + 16.0f)
+            : (label->getContentSize().height * 0.5f + 4.0f);
 
         labelY -= spacing;
     }
 
     float totalHeight = 0.f;
 
-    for (size_t i = 0; i < lines.size(); ++i) {
-        const auto& line = lines[i];
-        bool isTitle = titles.count(line);
-        bool nextIsTitle = (i + 1 < lines.size()) && titles.count(lines[i + 1]);
+    for (const auto& entry : credits) {
+        if (entry.text.empty()) {
+            totalHeight += 20.f;
+            continue;
+        }
 
-        float scale = isTitle ? 1.f : 0.5f;
+        float scale = entry.isTitle ? 1.f : 0.5f;
 
-        auto tempLabel = CCLabelBMFont::create(line.c_str(), "bigFont.fnt");
+        auto tempLabel = CCLabelBMFont::create(entry.text.c_str(), "bigFont.fnt");
         float labelHeight = tempLabel->getContentSize().height * scale;
-        float spacing = isTitle ? (labelHeight + 16.0f) : (labelHeight + 4.0f);
-        if (!isTitle && nextIsTitle)
-            spacing += 10.0f;
+        float spacing = entry.isTitle
+            ? (labelHeight + 16.0f)
+            : (labelHeight + 4.0f);
 
         totalHeight += spacing;
     }

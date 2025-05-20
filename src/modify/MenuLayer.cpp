@@ -239,5 +239,6 @@ void MyMenuLayer::onYouTube(CCObject* sender) {
 
 void MyMenuLayer::onMoreGames(CCObject* sender) {
     auto scene = CreditsLayer::scene();
-    CCDirector::sharedDirector()->pushScene(scene);
+    auto transition = CCTransitionFade::create(0.5f, scene);
+    CCDirector::sharedDirector()->pushScene(transition);
 }
