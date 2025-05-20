@@ -64,8 +64,8 @@ void MyGameStatsManager::createStoreItems() {
         addStoreItem(15, 154,6, 100, newShop); // 1200
         addStoreItem(16, 155, 6, 100, newShop); // 1300
 
-        addStoreItem(17, 18, 12, 50, newShop); // ANIMACION
-        addStoreItem(18, 19, 12, 50, newShop); // ANIMACION
-        addStoreItem(19, 20, 12, 50, newShop); // ANIMACION
+        addStoreItem(17, 18, 12, 50, newShop); // 1350
+        addStoreItem(18, 19, 12, 50, newShop); // 1400
+        addStoreItem(19, 20, 12, 50, newShop); // 1450
     }
 }
