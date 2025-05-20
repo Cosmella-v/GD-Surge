@@ -1,7 +1,7 @@
-#include "Geode/ui/SimpleAxisLayout.hpp"
 #include <DialogCallback.hpp>
 #include <Surge/modify/SecretLayer.hpp>
 #include <Surge/layers/BasementLayer.hpp>
+#include <Surge/layers/CreditsLayer.hpp>
 
 using namespace geode::prelude;
 
@@ -424,7 +424,8 @@ void MySecretLayer::onBasement(CCObject* sender) {
     // auto transition = CCTransitionFade::create(0.5f, scene);
     // CCDirector::sharedDirector()->pushScene(transition);
 
-    auto scene = BasementLayer::scene();
+    // auto scene = BasementLayer::scene();
+    auto scene = CreditsLayer::scene();
     auto transition = CCTransitionFade::create(0.5f, scene);
     CCDirector::sharedDirector()->pushScene(transition);
 }
