@@ -56,7 +56,7 @@ bool CreditsLayer::init() {
         "Art Design", "OmgRod", "Alphalaneous",
         "Icons", "MobMasterMind",
         "Levels", "Badland by OmgRod", "Unstable Geometry by OmgRod", "Tomb by OmgRod", "Detour by ____", "Beginning of Time by flingus", "Thermodynamix by OmgRod",
-        "Songs", "Badland by Boom Kitty", "Unstable Geometry by Waterflame", "Tomb by Boom Kitty", "Detour by Boom Kitty", "The Beginning of Time by dj-Nate", "Thermodynamix by dj-Nate\n\n",
+        "Songs", "Badland by Boom Kitty", "Unstable Geometry by Waterflame", "Tomb by Boom Kitty", "Detour by Boom Kitty", "The Beginning of Time by dj-Nate", "Thermodynamix by dj-Nate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
         "Special thanks to RobTop for creating Geometry Dash!"
     };
 
@@ -95,7 +95,25 @@ bool CreditsLayer::init() {
         labelY -= spacing;
     }
 
-    auto moveAction = CCMoveTo::create(97.75f, { 0.f, winSize.height * 5 });
+    float totalHeight = 0.f;
+
+    for (size_t i = 0; i < lines.size(); ++i) {
+        const auto& line = lines[i];
+        bool isTitle = titles.count(line);
+        bool nextIsTitle = (i + 1 < lines.size()) && titles.count(lines[i + 1]);
+
+        float scale = isTitle ? 1.f : 0.5f;
+
+        auto tempLabel = CCLabelBMFont::create(line.c_str(), "bigFont.fnt");
+        float labelHeight = tempLabel->getContentSize().height * scale;
+        float spacing = isTitle ? (labelHeight + 16.0f) : (labelHeight + 4.0f);
+        if (!isTitle && nextIsTitle)
+            spacing += 10.0f;
+
+        totalHeight += spacing;
+    }
+
+    auto moveAction = CCMoveTo::create(100.f, { 0.f, winSize.height + totalHeight });
     containerNode->runAction(moveAction);
 
     return true;
