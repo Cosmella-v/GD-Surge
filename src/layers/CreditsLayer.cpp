@@ -1,7 +1,15 @@
 #include <Surge/layers/CreditsLayer.hpp>
 
 void CreditsLayer::keyBackClicked() {
-    FMODAudioEngine::sharedEngine()->stopMusic(1);
+    FMODAudioEngine::sharedEngine()->stopMusic(0);
+    queueInMainThread([=]() {
+        FMODAudioEngine::sharedEngine()->playMusic(
+            "menuLoop.mp3",
+            true,
+            0.f,
+            0
+        );
+    });
     CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
 }
 
@@ -12,8 +20,7 @@ bool CreditsLayer::init() {
 
     auto musicPath = (Mod::get()->getSaveDir() / "songs" / "CreditsTheme.ogg").string();
     log::debug("Trying to play: {}", musicPath);
-    FMODAudioEngine::sharedEngine()->stopMusic(0);
-    FMODAudioEngine::sharedEngine()->playMusic(musicPath, false, 0.1f, 1);
+    FMODAudioEngine::sharedEngine()->playMusic(musicPath, false, 0.1f, 0);
 
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
@@ -75,7 +82,7 @@ bool CreditsLayer::init() {
         {"Detour by Boom Kitty", false},
         {"The Beginning of Time by dj-Nate", false},
         {"Thermodynamix by dj-Nate", false},
-        {"", false}, {"", false}, {"", false}, {"", false}, // Spacer lines
+        {"", false}, {"", false}, {"", false}, {"", false}, {"", false}, {"", false}, {"", false}, {"", false},
         {"Special thanks to RobTop for creating Geometry Dash!", false}
     };
 
@@ -83,7 +90,7 @@ bool CreditsLayer::init() {
 
     for (const auto& entry : credits) {
         if (entry.text.empty()) {
-            labelY -= 20.f; // Spacer
+            labelY -= 40.f; // Spacer
             continue;
         }
 
@@ -105,7 +112,8 @@ bool CreditsLayer::init() {
 
     float totalHeight = 0.f;
 
-    for (const auto& entry : credits) {
+    for (size_t i = 0; i < credits.size(); ++i) {
+        const auto& entry = credits[i];
         if (entry.text.empty()) {
             totalHeight += 20.f;
             continue;
@@ -115,15 +123,25 @@ bool CreditsLayer::init() {
 
         auto tempLabel = CCLabelBMFont::create(entry.text.c_str(), "bigFont.fnt");
         float labelHeight = tempLabel->getContentSize().height * scale;
-        float spacing = entry.isTitle
-            ? (labelHeight + 16.0f)
-            : (labelHeight + 4.0f);
+
+        float spacing = 0.f;
+        if (entry.isTitle) {
+            spacing = labelHeight + 16.0f;
+        } else {
+            if (i + 1 < credits.size() && credits[i + 1].isTitle) {
+                spacing = labelHeight + 32.0f;
+            } else {
+                spacing = labelHeight + 6.0f;
+            }
+        }
 
         totalHeight += spacing;
     }
 
     auto moveAction = CCMoveTo::create(100.f, { 0.f, winSize.height + totalHeight });
-    containerNode->runAction(moveAction);
+    auto callBack = CCCallFunc::create(this, callfunc_selector(CreditsLayer::keyBackClicked));
+    auto sequence = CCSequence::create(moveAction, callBack, NULL); // callback won't work - known issue
+    containerNode->runAction(sequence);
 
     return true;
 }
@@ -147,4 +165,8 @@ CCScene* CreditsLayer::scene() {
 
 void CreditsLayer::backWrapper(CCObject* sender) {
     keyBackClicked();
+}
+
+void CreditsLayer::onExit() {
+    CCLayer::onExit();
 }

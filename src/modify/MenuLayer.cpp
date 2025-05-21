@@ -1,3 +1,4 @@
+#include "Geode/binding/FMODSound.hpp"
 #include <Surge/modify/MenuLayer.hpp>
 #include <Geode/utils/file.hpp>
 #include <Geode/utils/web.hpp>
@@ -16,8 +17,6 @@ bool startup = false;
 
 bool MyMenuLayer::init() {
     if (!MenuLayer::init()) return false;
-
-    FMODAudioEngine::sharedEngine()->playMusic("menuLoop.mp3", true, 0.1f, 0);
 
     auto socialMenu = this->getChildByID("social-media-menu");
     if (socialMenu) {
@@ -182,6 +181,19 @@ bool MyMenuLayer::init() {
     }
 
     startup = true;
+
+    std::string currentPath = FMODAudioEngine::sharedEngine()->m_fmodMusic[1].m_filePath;
+    if (currentPath.find("menuLoop.mp3") == std::string::npos) {
+        queueInMainThread([=]() {
+            FMODAudioEngine::sharedEngine()->playMusic(
+                "menuLoop.mp3",
+                true,
+                0.f,
+                0
+            );
+        });
+    }
+
     return true;
 }
 
