@@ -1,6 +1,7 @@
 #include <Surge/layers/CreditsLayer.hpp>
 
 void CreditsLayer::keyBackClicked() {
+    FMODAudioEngine::sharedEngine()->stopMusic(1);
     CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
 }
 
@@ -75,7 +76,7 @@ bool CreditsLayer::init() {
         {"The Beginning of Time by dj-Nate", false},
         {"Thermodynamix by dj-Nate", false},
         {"", false}, {"", false}, {"", false}, {"", false}, // Spacer lines
-        {"Special thanks to RobTop for creating Geometry Dash!", true}
+        {"Special thanks to RobTop for creating Geometry Dash!", false}
     };
 
     float labelY = winSize.height * 0.5f;
