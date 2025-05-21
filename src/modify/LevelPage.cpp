@@ -4,14 +4,28 @@
 using namespace geode::prelude;
 
 void MyLevelPage::onInfo(CCObject* sender) {
-    if(m_level->m_levelID.value() == -1) {
+    if (m_level->m_levelID.value() == -1) {
         if (AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04")) {
-            return FLAlertLayer::create(nullptr, "It was a secret...", "<cr>You shattered</c> what was meant to endure.<d050> <cg>No silence</c> remains,<d050> only <co>ashes</c> of a hidden world.\n\n'Tis to be released anon.", "OK", nullptr, 360)->show();            
+            return FLAlertLayer::create(
+                nullptr,
+                "It was a secret...",
+                "<cr>You shattered</c> what was meant to endure.<d050> <cg>No silence</c> remains,<d050> only <co>ashes</c> of a hidden world.\n\n'Tis to be released anon.",
+                "OK", nullptr, 360
+            )->show();
         } else {
-            return FLAlertLayer::create(nullptr, "It's a secret...", "<cl>Something</c> lies beneath the <cg>surface</c>... a <co>fracture</c> waiting to <cj>happen</c>.", "OK", nullptr, 360)->show();
+            return FLAlertLayer::create(
+                nullptr,
+                "It's a secret...",
+                "<cl>Something</c> lies beneath the <cg>surface</c>... a <co>fracture</c> waiting to <cj>happen</c>.",
+                "OK", nullptr, 360
+            )->show();
         }
     } else if (m_level->m_levelID.value() == -3) {
-        return FLAlertLayer::create("The Islands", "<cb>The Islands</c> are not what they seem. Silence walks there, not sound. <co>Heed this warning</c>: Those who seek them <cj>rarely</c> speak again.", "OK")->show();
+        return FLAlertLayer::create(
+            "The Islands",
+            "<cb>The Islands</c> are not what they seem. Silence walks there, not sound. <co>Heed this warning</c>: Those who seek them <cj>rarely</c> speak again.",
+            "OK"
+        )->show();
     }
     LevelPage::onInfo(sender);
 }
@@ -30,17 +44,55 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
 
         auto label = typeinfo_cast<CCLabelBMFont*>(this->getChildByID("coming-soon-label"));
 
+        if (label) {
+            label->setVisible(false);
+        }
+
+        // Clean up previously added custom nodes
+        if (auto oldNode = this->getChildByID("coming-never-node")) {
+            oldNode->removeFromParent();
+        }
+
         switch (level->m_levelID) {
-            case -1:
-                if (label) {
-                    bool hasAch = AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04");
-                    label->setString(hasAch ? "Coming Never..." : "Coming Soon!");
-                    label->setAnchorPoint({0.5f, 0.5f});
-                    label->setPositionX(layer->getContentSize().width / 2);
+            case -1: {
+                bool hasAch = AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04");
+
+                if (hasAch && Mod::get()->getSettingValue<bool>("shattered-code") && label) {
+                    auto comingNeverNode = CCNode::create();
+                    comingNeverNode->setID("coming-never-node");
+                    comingNeverNode->setPosition(label->getPosition());
+
+                    auto comingText = CCLabelBMFont::create("Coming", "bigFont.fnt");
+                    comingText->setPosition({ -winSize.width * 0.3f, 0.f });
+
+                    auto neverText = CCLabelBMFont::create("Never...", "bigFont.fnt");
+                    neverText->setPosition({ winSize.width * 0.3f, -winSize.height * 0.2f });
+                    neverText->setRotation(65.f);
+
+                    auto zigzag1 = CCSprite::createWithSpriteFrameName("GDS_zigzag.png"_spr);
+                    float scale1 = winSize.height / zigzag1->getContentSize().height;
+                    zigzag1->setScale(scale1);
+                    float zigzag1X = comingText->getPositionX() + (zigzag1->getContentSize().width * scale1) / 2.f;
+                    zigzag1->setPosition({ zigzag1X + 40.f, 0.f });
+
+                    auto zigzag2 = CCSprite::createWithSpriteFrameName("GDS_zigzag.png"_spr);
+                    float scale2 = winSize.height / zigzag2->getContentSize().height;
+                    zigzag2->setScale(scale2);
+                    zigzag2->setFlipY(true);
+                    float zigzag2X = neverText->getPositionX() - (zigzag2->getContentSize().width * scale2) / 2.f;
+                    zigzag2->setPosition({ zigzag2X - 40.f, 0.f });
+
+                    comingNeverNode->addChild(comingText);
+                    comingNeverNode->addChild(neverText);
+                    comingNeverNode->addChild(zigzag1);
+                    comingNeverNode->addChild(zigzag2);
+
+                    this->addChild(comingNeverNode);
                 }
                 break;
+            }
 
-            case -3:
+            case -3: {
                 if (!this->getChildByID("islands-menu"_spr)) {
                     auto logo = CCSprite::createWithSpriteFrameName("islandsLogo.png"_spr);
                     logo->setScale(0.75f);
@@ -54,39 +106,31 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
 
                     auto menu = CCMenu::create();
                     menu->addChild(logoBtn);
-                    menu->setPosition({0, 0});
+                    menu->setPosition({ 0, 0 });
                     menu->setID("islands-menu"_spr);
                     this->addChild(menu);
                 }
                 break;
+            }
 
             default:
                 break;
         }
 
+        // Clean up island menu if not on -3
         if (level->m_levelID != -3) {
             if (auto menu = this->getChildByID("islands-menu"_spr)) {
                 menu->removeFromParent();
             }
         }
 
+        // Set busy if special level
         m_isBusy = level->m_levelID < 0;
-        if (label) {
-            label->setVisible(level->m_levelID == -1);
-        }
     });
 }
 
 void MyLevelPage::onIslands(CCObject*) {
-    //#ifdef GITHUB_ACTIONS
-    /*FLAlertLayer::create(
-        "The Islands",
-        "This <cg>feature</c> is a <cb>work in progress</c> and is not yet available. Sorry for the inconvenience.",
-        "OK"
-    )->show();*/
-    //#else
     auto scene = IslandSelectLayer::scene(0);
     auto transition = CCTransitionFade::create(0.5f, scene);
     CCDirector::sharedDirector()->pushScene(transition);
-    //#endif
 }

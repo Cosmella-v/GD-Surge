@@ -30,6 +30,7 @@ If you find any bugs or would like to request new features, please send them on 
 - BitZ - Original GD World code
 - Capeling - Loading screen, shops, icons, and other features from GD Lunar/Odyssey
 - Alphalaneous - Mod Logo
+- hiimjasmine00 - Bindings help
 
 ### Levels
 
