@@ -1,7 +1,7 @@
 #include <Surge/layers/CreditsLayer.hpp>
 
 void CreditsLayer::keyBackClicked() {
-    FMODAudioEngine::sharedEngine()->stopMusic(0);
+    FMODAudioEngine::sharedEngine()->stopAllMusic(true);
     queueInMainThread([=]() {
         FMODAudioEngine::sharedEngine()->playMusic(
             "menuLoop.mp3",
