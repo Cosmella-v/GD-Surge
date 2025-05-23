@@ -9,7 +9,7 @@ void MyLevelPage::onInfo(CCObject* sender) {
             return FLAlertLayer::create(
                 nullptr,
                 "It was a secret...",
-                "<cr>You shattered</c> what was meant to endure.<d050> <cg>No silence</c> remains,<d050> only <co>ashes</c> of a hidden world.\n\n'Tis to be released anon.",
+                "<cr>You shattered</c> what was meant to endure. <cg>No silence</c> remains, only <co>ashes</c> of a hidden world.\n\n'Tis to be released anon.",
                 "OK", nullptr, 360
             )->show();
         } else {
