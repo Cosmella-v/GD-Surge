@@ -1,15 +1,7 @@
 #include <Surge/layers/CreditsLayer.hpp>
 
 void CreditsLayer::keyBackClicked() {
-    FMODAudioEngine::sharedEngine()->stopAllMusic(true);
-    queueInMainThread([=]() {
-        FMODAudioEngine::sharedEngine()->playMusic(
-            "menuLoop.mp3",
-            true,
-            0.f,
-            0
-        );
-    });
+    GameManager::sharedState()->fadeInMenuMusic();
     CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
 }
 
