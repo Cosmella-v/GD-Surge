@@ -9,7 +9,7 @@ void MyLevelPage::onInfo(CCObject* sender) {
             return FLAlertLayer::create(
                 nullptr,
                 "It was a secret...",
-                "<cr>You shattered</c> what was meant to endure.<d050> <cg>No silence</c> remains,<d050> only <co>ashes</c> of a hidden world.\n\n'Tis to be released anon.",
+                "<cr>You shattered</c> what was meant to endure. <cg>No silence</c> remains, only <co>ashes</c> of a hidden world.\n\n'Tis to be released anon.",
                 "OK", nullptr, 360
             )->show();
         } else {
@@ -39,8 +39,6 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
         auto scene = CCDirector::sharedDirector()->getRunningScene();
         if (!scene) return;
 
-        bool hasAch = AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04");
-
         auto layer = scene->getChildByType<LevelSelectLayer*>(0);
         if (!layer) return;
 
@@ -55,21 +53,10 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
             oldNode->removeFromParent();
         }
 
-        bool visible = (m_level->m_levelID.value() == -1) 
-            && (Mod::get()->getSettingValue<bool>("shattered-code")) 
-            && hasAch;
-
-        auto menu = this->getChildByID("button-menu");
-        if (menu) {
-            menu->setVisible(visible);
-            auto secretDoorButton = menu->getChildByID("secret-door-button");
-            if (secretDoorButton) {
-                secretDoorButton->setVisible(visible);
-            }
-        }
-
         switch (level->m_levelID) {
             case -1: {
+                bool hasAch = AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04");
+
                 if (hasAch && Mod::get()->getSettingValue<bool>("shattered-code") && label) {
                     auto comingNeverNode = CCNode::create();
                     comingNeverNode->setID("coming-never-node");
@@ -101,10 +88,6 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
                     comingNeverNode->addChild(zigzag2);
 
                     this->addChild(comingNeverNode);
-                } else {
-                    if (label) {
-                        label->setVisible(true);
-                    }
                 }
                 break;
             }
