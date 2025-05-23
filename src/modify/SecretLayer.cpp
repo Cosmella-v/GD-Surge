@@ -278,9 +278,9 @@ bool MySecretLayer::init() {
         m_searchInput->setTouchEnabled(false);
         m_submitButton->setEnabled(false);
         this->runAction(
-            cocos2d::CCSequence::create(
-                cocos2d::CCDelayTime::create(1.5f),
-                cocos2d::CCCallFunc::create(this, callfunc_selector(MySecretLayer::showEntryDialog)),
+            CCSequence::create(
+                CCDelayTime::create(1.5f),
+                CCCallFunc::create(this, callfunc_selector(MySecretLayer::showEntryDialog)),
                 nullptr
             )
         );               
@@ -389,12 +389,12 @@ void MySecretLayer::onSubmit(CCObject* sender) {
 
 void MySecretLayer::showEntryDialog() {
     CCArray* objects = CCArray::create();
-    objects->addObject(DialogObject::create("The Guard", "Wait a minute<d020>.<d020>.<d100> When did <cr>I</c> allow visitors?", 1, 1.0f, false, cocos2d::ccWHITE));
-    objects->addObject(DialogObject::create("The Guard", "This <cg>hidden vault</c> is not for the curious...", 1, 1.0f, false, cocos2d::ccWHITE));
-    objects->addObject(DialogObject::create("The Guard", "You've <co>ignored</c> the warnings<d050>...<d050> I should <cy>throw</c> you out.", 1, 1.0f, false, cocos2d::ccWHITE));
-    objects->addObject(DialogObject::create("The Guard", "<cl>Rules</c> exist for a reason...", 1, 1.0f, false, cocos2d::ccWHITE));
-    objects->addObject(DialogObject::create("The Guard", "But perhaps<d050>...<d050> you have earned a glimpse.", 1, 1.0f, false, cocos2d::ccWHITE));
-    objects->addObject(DialogObject::create("The Guard", "Tread carefully<d030>.<d030>.<d030> I will be watching.", 1, 1.0f, true, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "Wait a minute<d020>.<d020>.<d100> When did <cr>I</c> allow visitors?", 1, 1.0f, false, ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "This <cg>hidden vault</c> is not for the curious...", 1, 1.0f, false, ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "You've <co>ignored</c> the warnings<d050>...<d050> I should <cy>throw</c> you out.", 1, 1.0f, false, ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "<cl>Rules</c> exist for a reason...", 1, 1.0f, false, ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "But perhaps<d050>...<d050> you have earned a glimpse.", 1, 1.0f, false, ccWHITE));
+    objects->addObject(DialogObject::create("The Guard", "Tread carefully<d030>.<d030>.<d030> I will be watching.", 1, 1.0f, true, ccWHITE));
 
     auto dialog = DialogLayer::createWithObjects(objects, 1);
     dialog->addToMainScene();

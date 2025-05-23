@@ -2,11 +2,13 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/LevelSelectLayer.hpp>
 
+using namespace geode::prelude;
+
 class $modify(MyLevelSelectLayer, LevelSelectLayer) {
 public:
     $override
     bool init(int pageID);
 
     $override
-    cocos2d::ccColor3B colorForPage(int pageID);
+    ccColor3B colorForPage(int pageID);
 };

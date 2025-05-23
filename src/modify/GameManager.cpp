@@ -143,7 +143,7 @@ int MyGameManager::countForType(IconType icon) {
 }
 
 void MyGameManager::returnToLastScene(GJGameLevel* p0) {
-    if (GameManager::sharedState()->m_sceneEnum == 9) {
+    if (auto scene = GameManager::sharedState()->m_sceneEnum; scene == 9 || scene == 3) {
         GameManager::returnToLastScene(p0);
     } else {
         CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);

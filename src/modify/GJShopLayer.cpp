@@ -57,13 +57,15 @@ bool MyGJShopLayer::init(ShopType p0) {
         }
     }
 
-	this->runAction(
-        cocos2d::CCSequence::create(
-            cocos2d::CCDelayTime::create(1.5f),
-            cocos2d::CCCallFunc::create(this, callfunc_selector(MyGJShopLayer::showEntryDialog)),
-            nullptr
-        )
-    ); 
+	// if (Mod::get()->getSettingValue<bool>("shop-yap")) {
+		this->runAction(
+			CCSequence::create(
+				CCDelayTime::create(1.5f),
+				CCCallFunc::create(this, callfunc_selector(MyGJShopLayer::showEntryDialog)),
+				nullptr
+			)
+		);
+	// }
 
 	return true;
 }
@@ -77,41 +79,58 @@ void MyGJShopLayer::onBack(CCObject* sender) {
 
 void MyGJShopLayer::showEntryDialog() {
     CCArray* objects = CCArray::create();
-	objects->addObject(DialogObject::create("Scratch", 
-		fmt::format("Oh... uh... <d030>Hello <co>{}</c>!", GameManager::sharedState()->m_playerName), 
-		8, 1.0f, false, cocos2d::ccWHITE));
+    
+    objects->addObject(DialogObject::create("Scratch", 
+        fmt::format("<d030>Hello <co>{}</c>!", GameManager::sharedState()->m_playerName), 
+        8, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("Scratch", 
-		"I'm here because <co>The Shopkeeper</c> asked me to take care of his shop for a while.", 
-		9, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("Scratch", 
+        "<co>The Shopkeeper</c> asked me to take care of the shop.", 
+        9, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("The Shopkeeper", 
-		"<s100>HEY!</s> What are <cr>you</c> doing here?!", 
-		30, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Shopkeeper", 
+        "<s100>HEY!</s> What are <cr>you</c> doing here?!", 
+        30, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("Scratch", 
-		"Uhm... I'm just here to <cg>buy</c> something.", 
-		26, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("Scratch", 
+        "I'm just here to <cg>buy</c> something.", 
+        26, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("The Shopkeeper", 
-		"Oh, okay. I've got something to deal with.<d030> You lot better not <cr>mess around</c>!", 
-		5, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Shopkeeper", 
+        "Oh, okay. I've got something to deal with.", 
+        5, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("Scratch", 
-		"Don't worry! We won't do anything <cg>bad</c>!", 
-		10, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("The Shopkeeper", 
+        "<d030>You lot better not <cr>mess around</c>!", 
+        5, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("Scratch", 
-		fmt::format("Alright, so, <co>{}</c>... <d030>don't tell anyone, but I'm actually here to <cr>steal</c> some stuff from <co>The Shopkeeper</c>.", GameManager::sharedState()->m_playerName), 
-		13, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("Scratch", 
+        "Don't worry! We won't do anything <cg>bad</c>!", 
+        10, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("Scratch",
-		"Wanna join me?", 
-		13, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("Scratch", 
+        fmt::format("<co>{}</c>, keep this between us.", GameManager::sharedState()->m_playerName), 
+        13, 1.0f, false, ccWHITE));
+    
+    objects->addObject(DialogObject::create("Scratch", 
+        "I'm actually here to <cr>steal</c> some stuff.", 
+        13, 1.0f, false, ccWHITE));
 
-	objects->addObject(DialogObject::create("Scratch", 
-		"No? <d040>You scared or something?<d030> Nevermind... I'll just <co>do it myself</c>.", 
-		13, 1.0f, false, cocos2d::ccWHITE));
+    objects->addObject(DialogObject::create("Scratch", 
+        "From <co>The Shopkeeper</c>.", 
+        13, 1.0f, false, ccWHITE));
+
+    objects->addObject(DialogObject::create("Scratch",
+        "Wanna join me?", 
+        13, 1.0f, false, ccWHITE));
+
+    objects->addObject(DialogObject::create("Scratch", 
+        "No? <d040>You scared or something?", 
+        14, 1.0f, false, ccWHITE));
+
+    objects->addObject(DialogObject::create("Scratch", 
+        "<d030>Nevermind. I'll <co>do it myself</c>.", 
+        13, 1.0f, false, ccWHITE));
 
     auto dialog = DialogLayer::createWithObjects(objects, 2);
     dialog->addToMainScene();

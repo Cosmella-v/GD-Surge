@@ -48,7 +48,6 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
             label->setVisible(false);
         }
 
-        // Clean up previously added custom nodes
         if (auto oldNode = this->getChildByID("coming-never-node")) {
             oldNode->removeFromParent();
         }
@@ -117,14 +116,12 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
                 break;
         }
 
-        // Clean up island menu if not on -3
         if (level->m_levelID != -3) {
             if (auto menu = this->getChildByID("islands-menu"_spr)) {
                 menu->removeFromParent();
             }
         }
 
-        // Set busy if special level
         m_isBusy = level->m_levelID < 0;
     });
 }

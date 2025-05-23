@@ -1,11 +1,13 @@
 #pragma once
 
-#include <Geode/Bindings.hpp>
+#include <Geode/Geode.hpp>
 #include "IslandSelectLayer.h"
+
+using namespace geode::prelude;
 
 namespace more {
 
-class IslandNode : public cocos2d::CCNode {
+class IslandNode : public CCNode {
 public:
     static IslandNode* create(
         int index,
@@ -17,7 +19,7 @@ public:
         IslandSelectLayer* islandSelectlayer
     );
 
-    cocos2d::CCSprite* createIsland();
+    CCSprite* createIsland();
 
     int m_index;
     IslandSelectLayer* m_islandSelectLayer;

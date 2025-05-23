@@ -13,12 +13,12 @@ void MyOptionsLayer::onSecretVault(CCObject* sender) {
         CCDirector::sharedDirector()->pushScene(scene);
     } else {
         CCArray* objects = CCArray::create();
-        objects->addObject(DialogObject::create("The Guard", "zZzZZZzZzZzZZzZzzzZZzZzZz", 1, 1.0f, false, cocos2d::ccWHITE));
-        objects->addObject(DialogObject::create("The Guard", "You need...", 1, 1.0f, false, cocos2d::ccWHITE));
-        objects->addObject(DialogObject::create("The Guard", "ZzZzzzzZZZZZzZZzzZZZZzZ", 1, 1.0f, false, cocos2d::ccWHITE));
-        objects->addObject(DialogObject::create("The Guard", "I like coins..", 1, 1.0f, false, cocos2d::ccWHITE));
-        objects->addObject(DialogObject::create("The Guard", "ZzZZZzzzZzZZZzZzZz thank you!", 1, 1.0f, false, cocos2d::ccWHITE));
-        objects->addObject(DialogObject::create("The Guard", "come in<d025>.<d025>.<d025>.", 1, 1.0f, true, cocos2d::ccWHITE));
+        objects->addObject(DialogObject::create("The Guard", "zZzZZZzZzZzZZzZzzzZZzZzZz", 1, 1.0f, false, ccWHITE));
+        objects->addObject(DialogObject::create("The Guard", "You need...", 1, 1.0f, false, ccWHITE));
+        objects->addObject(DialogObject::create("The Guard", "ZzZzzzzZZZZZzZZzzZZZZzZ", 1, 1.0f, false, ccWHITE));
+        objects->addObject(DialogObject::create("The Guard", "I like coins..", 1, 1.0f, false, ccWHITE));
+        objects->addObject(DialogObject::create("The Guard", "ZzZZZzzzZzZZZzZzZz thank you!", 1, 1.0f, false, ccWHITE));
+        objects->addObject(DialogObject::create("The Guard", "come in<d025>.<d025>.<d025>.", 1, 1.0f, true, ccWHITE));
 
         auto dialog = DialogLayer::createWithObjects(objects, 1);
         dialog->addToMainScene();
