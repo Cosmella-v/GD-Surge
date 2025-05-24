@@ -63,3 +63,96 @@ void MyFollowRewardPage::FLAlert_Clicked(FLAlertLayer* alert, bool confirmed) {
             break;
     }
 }
+
+void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
+    auto item = dynamic_cast<CCMenuItemSpriteExtra*>(sender);
+    if (!item) return;
+
+    int specialItemID = sender->getTag();
+
+    std::string chestTypeStr;
+    std::string serviceName;
+    std::string unlockMessage;
+    std::string actionButtonText;
+
+    if (specialItemID <= 0 || specialItemID > 6) {
+        return;
+    }
+
+    GameManager* gameMgr = GameManager::sharedState();
+
+    bool isUnlocked = false;
+    switch (specialItemID) {
+        case 1:
+            chestTypeStr = "YouTube";
+            serviceName = "YouTube";
+            unlockMessage = "Subscribe to OmgRod on <c> YouTube</c> to unlock this chest!";
+            actionButtonText = "Follow!";
+            isUnlocked = gameMgr->getUGV("22") != 0;
+            break;
+
+        case 2:
+            chestTypeStr = "Twitter";
+            serviceName = "Twitter";
+            unlockMessage = "Follow OmgRod on <cj>Twitter</c> to unlock this chest!";
+            actionButtonText = "Follow!";
+            isUnlocked = gameMgr->getUGV("24") != 0;
+            break;
+
+        case 3:
+            chestTypeStr = "Facebook";
+            serviceName = "Facebook";
+            unlockMessage = "Like OmgRod on <cb>Facebook</c> to unlock this chest!";
+            actionButtonText = "Like!";
+            isUnlocked = gameMgr->getUGV("23") != 0;
+            break;
+
+        case 4:
+            chestTypeStr = "Twitch";
+            serviceName = "Twitch";
+            unlockMessage = "Follow OmgRod on <ca>Twitch</c> to unlock this chest!";
+            actionButtonText = "Follow!";
+            isUnlocked = gameMgr->getUGV("26") != 0;
+            break;
+
+        case 5:
+            chestTypeStr = "Discord";
+            serviceName = "Discord";
+            unlockMessage = "Join OmgRod on <ca>Discord</c> to unlock this chest!";
+            actionButtonText = "Join!";
+            isUnlocked = gameMgr->getUGV("27") != 0;
+            break;
+
+        case 6:
+            chestTypeStr = "Reddit";
+            serviceName = "Reddit";
+            unlockMessage = "Join OmgRod on <cr>Reddit</c> to unlock this chest!";
+            actionButtonText = "Join!";
+            isUnlocked = gameMgr->getUGV("32") != 0;
+            break;
+    }
+
+    if (!isUnlocked) {
+        FLAlertLayer* alert = FLAlertLayer::create(
+            this,
+            chestTypeStr.c_str(),
+            unlockMessage,
+            "Cancel",
+            actionButtonText.c_str()
+        );
+
+        alert->show();
+    } else {
+        GameStatsManager* statsMgr = GameStatsManager::sharedState();
+
+        GJRewardItem* reward = statsMgr->unlockSpecialChest(chestTypeStr);
+
+        if (reward != nullptr) {
+            switchToOpenedState(item);
+
+            RewardUnlockLayer* rewardLayer = RewardUnlockLayer::create(reward->m_uID, typeinfo_cast<RewardsPage*>(this->getParent()));
+            this->addChild(rewardLayer, 100);
+            rewardLayer->showCollectReward(reward);
+        }
+    }
+}
