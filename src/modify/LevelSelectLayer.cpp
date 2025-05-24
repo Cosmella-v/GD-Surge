@@ -45,7 +45,16 @@ bool MyLevelSelectLayer::init(int pageID) {
 
     m_scrollLayer->updateDots(0.f);
     m_scrollLayer->updatePages();
-    this->updatePageWithObject(m_scrollLayer->m_pages->objectAtIndex(pageID % 3), m_scrollLayer->m_dynamicObjects->objectAtIndex(pageID));
+    if (pageID < 0 || pageID >= m_scrollLayer->m_dynamicObjects->count())
+        pageID = 0;
+
+    if (pageID % 3 >= m_scrollLayer->m_pages->count())
+        pageID = 0;
+
+    this->updatePageWithObject(
+        m_scrollLayer->m_pages->objectAtIndex(pageID % 3),
+        m_scrollLayer->m_dynamicObjects->objectAtIndex(pageID)
+    );
     this->m_scrollLayer->repositionPagesLooped();
 
     return true;
