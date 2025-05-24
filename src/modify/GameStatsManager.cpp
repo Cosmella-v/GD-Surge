@@ -6,10 +6,6 @@ bool MyGameStatsManager::isItemUnlocked(UnlockType p0, int p1) {
     if (GameStatsManager::isItemUnlocked(p0, p1))
             return true;
 
-    // if (p0 == UnlockType::GJItem && p1 >= 1 && p1 <= 4) {
-    //     return true;
-    // }
-
     return false;
 }
 
@@ -63,9 +59,11 @@ void MyGameStatsManager::createStoreItems() {
         addStoreItem(14, 153, 6, 75, newShop); // 1100
         addStoreItem(15, 154,6, 100, newShop); // 1200
         addStoreItem(16, 155, 6, 100, newShop); // 1300
-
+        
         addStoreItem(17, 18, 12, 50, newShop); // 1350
         addStoreItem(18, 19, 12, 50, newShop); // 1400
         addStoreItem(19, 20, 12, 50, newShop); // 1450
+
+        addStoreItem(20, 105, 7, 250, newShop); // 1700
     }
 }

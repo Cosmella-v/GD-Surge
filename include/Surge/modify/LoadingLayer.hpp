@@ -5,4 +5,5 @@
 class $modify(MyLoadingLayer, LoadingLayer) {
     $override
     bool init(bool fromReload);
+    const char* getLoadingString();
 };

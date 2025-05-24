@@ -48,3 +48,11 @@ bool MyLoadingLayer::init(bool fromReload) {
 
     return true;
 }
+
+const char* MyLoadingLayer::getLoadingString() {
+    std::vector<std::string> messages = {
+        "Remember to open your daily chests!\nYou can unlock more stuff in the shop.",
+        "Don't enter the vault.\nThe Guard is angry.",
+    };
+    return messages.at(rand() % (messages.size() - 1)).c_str();
+};
