@@ -89,7 +89,7 @@ void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
     }
 
     if (!isUnlocked) {
-        auto alert = createQuickPopup(
+        createQuickPopup(
             chestTypeStr.c_str(),
             unlockMessage,
             "Cancel",
@@ -101,8 +101,6 @@ void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
                 }
             }
         );
-
-        alert->show();
 
         if (isUnlocked) {
             switchToOpenedState(item);
