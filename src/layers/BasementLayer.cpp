@@ -1,5 +1,6 @@
 #include <Surge/layers/BasementLayer.hpp>
 #include <Surge/layers/CreditsLayer.hpp>
+#include <DialogCallback.hpp>
 
 void BasementLayer::keyBackClicked() {
     BasementLayer::onExit(nullptr);
@@ -41,14 +42,9 @@ bool BasementLayer::init() {
 	title->setScale(1.2f);
 	this->addChild(title);
 
-	this->addButton("GJ_chatBtn_001.png", "Secret Level", menu_selector(BasementLayer::onSecretLevel));
-	this->addButton("GDS_questBtn.png"_spr, "Credits", menu_selector(BasementLayer::onCredits));
-	// this->addButton("GJ_reportBtn_001.png", "Comment Ban");
-	// this->addButton("GJ_musicOnBtn_001.png", "Whitelist Artist");
-    // this->addButton("GJ_levelLeaderboardBtn_001.png", "Unfreeze Leaderboards");
-
-    // this->addButton(CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png"), "Secret Level");
-	// this->addButton(CircleButtonSprite::create(CCSprite::create("questIcon.png"_spr), CircleBaseColor::Green, CircleBaseSize::MediumAlt), "Credits");
+	this->addButton("GDS_playBtn_001.png"_spr, "Secret Level", menu_selector(BasementLayer::onSecretLevel));
+	this->addButton("GDS_homeBtn_001.png"_spr, "Home..?", menu_selector(BasementLayer::onScratchDialog));
+	this->addButton("GDS_questBtn_001.png"_spr, "Credits", menu_selector(BasementLayer::onCredits));
 
 	m_bButtonsEntered = false;
 
@@ -84,9 +80,7 @@ void BasementLayer::onExit(CCObject*) {
 void BasementLayer::addButton(const char* node, const char* text, SEL_MenuHandler callback) {
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
-    // if (auto rgba = dynamic_cast<CCRGBAProtocol*>(node)) {
-    //     rgba->setOpacity(0);
-    // }
+    float padding = 1.25f;
 
     auto btn = CCMenuItemSpriteExtra::create(
         CCSprite::createWithSpriteFrameName(node),
@@ -107,7 +101,7 @@ void BasementLayer::addButton(const char* node, const char* text, SEL_MenuHandle
     m_pButtonMenu->addChild(label);
 
     m_vButtonLabelPairs.push_back({ btn, label });
-    m_obNext.y -= 45.0f;
+    m_obNext.y -= 45.0f * padding;
 }
 
 void BasementLayer::runSequentialFadeIn() {
@@ -150,4 +144,43 @@ void BasementLayer::onCredits(CCObject*) {
     auto scene = CreditsLayer::scene();
     auto transition = CCTransitionFade::create(0.5f, scene);
     CCDirector::sharedDirector()->pushScene(transition);
+}
+
+static size_t dialogIndex = 0;
+
+void BasementLayer::onScratchDialog(CCObject*) {
+    static std::vector<std::pair<std::string, int>> dialogLines = {
+        { "Uhh... hello?", 13 },
+        { "What are you doing <cr>here</c>..?", 26 },
+        { "Erm.. <s50> HELLO..?</s>", 11 },
+        { "Are you even listening to me?", 14 },
+        { "Seriously, stop clicking.", 14 },
+        { "I'm warning you.", 11 },
+        { "<cr>Stop it.</c>", 14 },
+        { "<cr><s100>GET OUT OF HERE!</s></c>", 14 },
+        { "This is my place, you know.", 12 },
+        { "Why are you in my house?", 13 },
+        { "Did you get lost or something?", 11 },
+        { "You can't just walk in here!", 11 },
+        { "Please, just leave my house.", 14 },
+        { "I'm not kidding. Go away.", 14 },
+        { "Fine, stay if you want... But it's still <cp>my</c> house.", 10 }
+    };
+
+    const auto& [line, frame] = dialogLines[dialogIndex];
+
+    CCArray* objects = CCArray::create();
+    objects->addObject(DialogObject::create("Scratch", line.c_str(), frame, 1.0f, false, ccWHITE));
+
+    dialogIndex = (dialogIndex + 1) % dialogLines.size();
+
+    auto dialog = DialogLayer::createWithObjects(objects, 2);
+    dialog->addToMainScene();
+    dialog->animateInRandomSide();
+
+    auto* del = new DialogCallback();
+    dialog->addChild(del);
+    del->autorelease();
+    del->m_callback = []() {};
+    dialog->m_delegate = del;
 }

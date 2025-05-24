@@ -23,4 +23,6 @@ public:
 
     void onSecretLevel(CCObject* sender);
     void onCredits(CCObject* sender);
+
+    void onScratchDialog(CCObject* sender);
 };

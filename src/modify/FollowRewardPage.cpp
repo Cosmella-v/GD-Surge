@@ -86,7 +86,7 @@ void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
         case 1:
             chestTypeStr = "YouTube";
             serviceName = "YouTube";
-            unlockMessage = "Subscribe to OmgRod on <c> YouTube</c> to unlock this chest!";
+            unlockMessage = "Subscribe to OmgRod on <c> YouTube</c> to unlock this chest!"; // the space is intentional
             actionButtonText = "Follow!";
             isUnlocked = gameMgr->getUGV("22") != 0;
             break;

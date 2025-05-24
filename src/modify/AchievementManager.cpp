@@ -5,27 +5,27 @@ using namespace geode::prelude;
 void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.level01a", "Not Bad", "Completed 'Badland' in Practice mode", "Complete 'Badland' in Practice mode", "ship_170", 1);
     AchievementManager::addAchievement("geometry.ach.level01b", "All Bad", "Completed 'Badland' in Normal mode", "Complete 'Badland' in Normal mode", "ball_119", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin01", "Ultimate Badland", "Collected all 3 Secret Coins on \'Badland\'", "Collect all 3 Secret Coins on \'Badland\'", "ufo_150", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin01", "Ultimate Badland", "Collected all 3 Secret Coins on 'Badland'", "Collect all 3 Secret Coins on 'Badland'", "ufo_150", 1);
 
     AchievementManager::addAchievement("geometry.ach.level02a", "Rising Star", "Completed 'Unstable Geometry' in Practice mode", "Complete 'Unstable Geometry' in Practice mode", "dart_97", 1);
     AchievementManager::addAchievement("geometry.ach.level02b", "Steady Hand", "Completed 'Unstable Geometry' in Normal mode", "Complete 'Unstable Geometry' in Normal mode", "ship_171", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin02", "Ultimate Unstable Geometry", "Collected all 3 Secret Coins on \'Unstable Geometry\'", "Collect all 3 Secret Coins on \'Unstable Geometry\'", "robot_69", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin02", "Ultimate Unstable Geometry", "Collected all 3 Secret Coins on 'Unstable Geometry'", "Collect all 3 Secret Coins on 'Unstable Geometry'", "robot_69", 1);
 
     AchievementManager::addAchievement("geometry.ach.level03a", "Tomb Raider", "Completed 'Tomb' in Practice mode", "Complete 'Tomb' in Practice mode", "spider_70", 1);
     AchievementManager::addAchievement("geometry.ach.level03b", "Grave Digger", "Completed 'Tomb' in Normal mode", "Complete 'Tomb' in Normal mode", "dart_98", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin03", "Ultimate Tomb", "Collected all 3 Secret Coins on \'Tomb\'", "Collect all 3 Secret Coins on \'Tomb\'", "swing_44", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin03", "Ultimate Tomb", "Collected all 3 Secret Coins on 'Tomb'", "Collect all 3 Secret Coins on 'Tomb'", "swing_44", 1);
 
     AchievementManager::addAchievement("geometry.ach.level04a", "Pathfinder", "Completed 'Detour' in Practice mode", "Complete 'Detour' in Practice mode", "ball_120", 1);
     AchievementManager::addAchievement("geometry.ach.level04b", "Road Warrior", "Completed 'Detour' in Normal mode", "Complete 'Detour' in Normal mode", "ship_172", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin04", "Ultimate Detour", "Collected all 3 Secret Coins on \'Detour\'", "Collect all 3 Secret Coins on \'Detour\'", "robot_70", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin04", "Ultimate Detour", "Collected all 3 Secret Coins on 'Detour'", "Collect all 3 Secret Coins on 'Detour'", "robot_70", 1);
 
-    AchievementManager::addAchievement("geometry.ach.level05a", "Time Traveler", "Completed 'The Beginning of Time' in Practice mode", "Complete 'The Beginning of Time' in Practice mode", "dart_99", 1);
-    AchievementManager::addAchievement("geometry.ach.level05b", "Chrono Conqueror", "Completed 'The Beginning of Time' in Normal mode", "Complete 'The Beginning of Time' in Normal mode", "dart_100", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin05", "Ultimate Beginning", "Collected all 3 Secret Coins on \'The Beginning of Time\'", "Collect all 3 Secret Coins on \'The Beginning of Time\'", "swing_45", 1);
+    AchievementManager::addAchievement("geometry.ach.level05a", "Time Traveler", "Completed 'Beginning of Time' in Practice mode", "Complete 'Beginning of Time' in Practice mode", "dart_99", 1);
+    AchievementManager::addAchievement("geometry.ach.level05b", "Chrono Conqueror", "Completed 'Beginning of Time' in Normal mode", "Complete 'Beginning of Time' in Normal mode", "dart_100", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin05", "Ultimate Beginning", "Collected all 3 Secret Coins on 'Beginning of Time'", "Collect all 3 Secret Coins on 'Beginning of Time'", "swing_45", 1);
 
     AchievementManager::addAchievement("geometry.ach.level06a", "Heat Seeker", "Completed 'Thermodynamix' in Practice mode", "Complete 'Thermodynamix' in Practice mode", "ball_121", 1);
     AchievementManager::addAchievement("geometry.ach.level06b", "Thermo Master", "Completed 'Thermodynamix' in Normal mode", "Complete 'Thermodynamix' in Normal mode", "ship_173", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin06", "Ultimate Thermodynamix", "Collected all 3 Secret Coins on \'Thermodynamix\'", "Collect all 3 Secret Coins on \'Thermodynamix\'", "robot_71", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin06", "Ultimate Thermodynamix", "Collected all 3 Secret Coins on 'Thermodynamix'", "Collect all 3 Secret Coins on 'Thermodynamix'", "robot_71", 1);
 
     AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Entered code 'Badland' in The Vault", "A secret is required", "dart_101", 0);
     AchievementManager::addAchievement("geometry.ach.surge.vault02", "I'm not RobTop", "Entered code 'I am RobTop' in The Vault", "A secret is required", "icon_486", 0);
@@ -49,7 +49,7 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.jump02", "I like jumping", "Jumped 10000 times", "Jump 10000 times", "color2_04", 0);
     AchievementManager::addAchievement("geometry.ach.jump03", "You jump like a pro!", "Jumped 20000 times", "Jump 20000 times", "color2_05", 0);
     AchievementManager::addAchievement("geometry.ach.jump04", "Hop Hop Hop", "Jumped 50000 times", "Jump 50000 times", "ufo_151", 0);
-    AchievementManager::addAchievement("geometry.ach.jump05", "Can\'t stop jumping!!!", "Jumped 100000 times", "Jump 100000 times", "ball_123", 0);
+    AchievementManager::addAchievement("geometry.ach.jump05", "Can't stop jumping!!!", "Jumped 100000 times", "Jump 100000 times", "ball_123", 0);
     AchievementManager::addAchievement("geometry.ach.jump06", "Jumper", "Jumped 200000 times", "Jump 200000 times", "color_03", 0);
     AchievementManager::addAchievement("geometry.ach.jump07", "You need to rest...", "Jumped 300000 times", "Jump 300000 times", "icon_489", 0);
     AchievementManager::addAchievement("geometry.ach.jump08", "Jumpman", "Jumped 400000 times", "Jump 400000 times", "dart_102", 0);
@@ -64,8 +64,8 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.attempt05", "That hurts!", "Did 20000 attempts", "Do 20000 attempts", "dart_104", 0);
     AchievementManager::addAchievement("geometry.ach.attempt06", "Never Give Up", "Did 30000 attempts", "Do 30000 attempts", "icon_491", 0);
     AchievementManager::addAchievement("geometry.ach.attempt07", "Never Surrender", "Did 40000 attempts", "Do 40000 attempts", "color_06", 0);
-    AchievementManager::addAchievement("geometry.ach.attempt08", "Mom said it\'s my turn", "Did 60000 attempts", "Do 60000 attempts", "ship_176", 0);
-    AchievementManager::addAchievement("geometry.ach.attempt09", "If at first you don\'t succeed", "Did 80000 attempts", "Do 80000 attempts", "icon_492", 0);
+    AchievementManager::addAchievement("geometry.ach.attempt08", "Mom said it's my turn", "Did 60000 attempts", "Do 60000 attempts", "ship_176", 0);
+    AchievementManager::addAchievement("geometry.ach.attempt09", "If at first you don't succeed", "Did 80000 attempts", "Do 80000 attempts", "icon_492", 0);
     AchievementManager::addAchievement("geometry.ach.attempt10", "Stop Trying", "Did 100000 attempts", "Do 100000 attempts", "swing_47", 0);
     AchievementManager::addAchievement("geometry.ach.attempt11", "This could become a meme", "Did 135000 attempts", "Do 135000 attempts", "ball_124", 0);
     AchievementManager::addAchievement("geometry.ach.attempt12", "Take a break!", "Did 185000 attempts", "Do 185000 attempts", "ball_125", 0);
