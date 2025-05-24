@@ -51,8 +51,26 @@ bool MyLoadingLayer::init(bool fromReload) {
 
 const char* MyLoadingLayer::getLoadingString() {
     std::vector<std::string> messages = {
-        "Remember to open your daily chests!\nYou can unlock more stuff in the shop.",
-        "Don't enter the vault.\nThe Guard is angry.",
+        "Check your daily chests!",
+        "Stay out of the vault.",
+        "Tap fast to avoid dying.",
+        "Try practice mode!",
+        "Secret coins unlock secrets.",
+        "Use checkpoints wisely.",
+        "Customize your icon!",
+        "Some spikes are fake...",
+        "Timing is everything.",
+        "Try jumping later.",
+        "Watch out for gravity flips.",
+        "Stay calm. Stay focused.",
+        "Don't trust every platform.",
+        "The key? Look closer.",
+        "Beware of portals.",
+        "Music helps with timing.",
+        "Hold to jump higher.",
+        "Not all paths are safe.",
+        "Retry. Retry. Retry.",
+        "Some levels hide secrets.",
     };
-    return messages.at(rand() % (messages.size() - 1)).c_str();
-};
+    return messages.at(rand() % messages.size()).c_str();
+}
