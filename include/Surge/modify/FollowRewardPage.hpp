@@ -6,6 +6,10 @@ using namespace geode::prelude;
 class $modify(MyFollowRewardPage, FollowRewardPage) {
 public:
     bool init();
-    void FLAlert_Clicked(FLAlertLayer* alert, bool confirmed);
     void onSpecialItem(CCObject* sender);
+    void onSpecialItemConfirm();
+
+    struct Fields {
+        int m_specialID;
+    };
 };
