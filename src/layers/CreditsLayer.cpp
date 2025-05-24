@@ -60,7 +60,7 @@ bool CreditsLayer::init() {
         {"Programmers", true},
         {"Lead Developer - OmgRod", false},
         {"GD Lunar and Odyssey code - Capeling", false},
-        {"Bindings - hiimjasmine00", false},
+        {"Bindings - hiimjasmine00, OmgRod & TimeStepYT", false},
         {"Original GD World code - BitZ", false},
         {"Art Design", true},
         {"OmgRod", false},
