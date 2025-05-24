@@ -63,6 +63,10 @@
 		"chumiiu.geometry_dash_time_reborn": {
 			"version": "*",
 			"importance": "breaking"
+		},
+		"limegradient.betterachievements": {
+			"version": "*",
+			"importance": "conflicting"
 		}
 	},
 	"settings": {

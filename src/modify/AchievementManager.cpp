@@ -72,13 +72,16 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.attempt13", "Made an attempt", "Did 250000 attempts", "Do 250000 attempts", "ship_177", 0);
     AchievementManager::addAchievement("geometry.ach.attempt14", "This is the one", "Did 300000 attempts", "Do 300000 attempts", "icon_493", 0);
 
-    AchievementManager::addAchievement("geometry.ach.facebook", "Number one fan!", "Liked Geometry Dash on Facebook", "Like Geometry Dash on Facebook", "color2_07", 0);
-    AchievementManager::addAchievement("geometry.ach.youtube", "GeometryTube", "Subscribed to RobTop Games on YouTube", "Subscribe to RobTop Games on YouTube", "color2_08", 0);
-    AchievementManager::addAchievement("geometry.ach.twitter", "Geometry Bird!", "Followed RobTop Games on Twitter", "Follow RobTop Games on Twitter", "color_07", 0);
+    AchievementManager::addAchievement("geometry.ach.youtube", "GeometryTube", "Subscribed to OmgRod on YouTube", "Subscribe to OmgRod on YouTube", "color2_20", 0);
+    AchievementManager::addAchievement("geometry.ach.twitter", "Geometry Bird!", "Followed OmgRod on Twitter", "Follow OmgRod on Twitter", "color2_31", 0);
+    AchievementManager::addAchievement("geometry.ach.facebook", "Number one fan!", "Attempted to like OmgRod on Facebook", "Attempt to like OmgRod on Facebook", "ball_41", 0);
+    AchievementManager::addAchievement("geometry.ach.twitch", "Streaming Star!", "Followed OmgRod on Twitch", "Follow OmgRod on Twitch", "icon_149", 0);
+    AchievementManager::addAchievement("geometry.ach.discord", "Join the Surge!", "Joined the OmgRod Discord server", "Join the OmgRod Discord server", "icon_150", 0);
+    AchievementManager::addAchievement("geometry.ach.reddit", "Redditor!", "Joined the OmgRod subreddit", "Join the OmgRod subreddit", "cube_483", 0);
 
-    AchievementManager::addAchievement("geometry.ach.special01", "So close", "Crashed at over 95% on a main level in normal mode", "Crash at over 95% on a main level in normal mode", "color2_09", 0);
+    AchievementManager::addAchievement("geometry.ach.special01", "So close", "Crashed at over 95% on a main level in normal mode", "Crash at over 95% on a main level in normal mode", "color2_08", 0);
 
-    AchievementManager::addAchievement("geometry.ach.secret01", "Rampage!", "Destroyed a player", "A secret is required", "color2_10", 0);
+    AchievementManager::addAchievement("geometry.ach.secret01", "Rampage!", "Destroyed a player", "A secret is required", "color2_07", 0);
     AchievementManager::addAchievement("geometry.ach.secret02", "Dominating!", "Destroyed 50 players", "A secret is required", "icon_494", 0);
     AchievementManager::addAchievement("geometry.ach.secret02b", "Ultrakill!", "Destroyed 100 players", "A secret is required", "color_08", 0);
     AchievementManager::addAchievement("geometry.ach.secret03", "Godlike!", "Destroyed 200 players", "A secret is required", "icon_495", 0);

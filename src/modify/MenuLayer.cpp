@@ -1,9 +1,9 @@
-#include "Geode/binding/FMODSound.hpp"
 #include <Surge/modify/MenuLayer.hpp>
 #include <Geode/utils/file.hpp>
 #include <Geode/utils/web.hpp>
 #include <Geode/loader/Event.hpp>
 #include <Surge/layers/CreditsLayer.hpp>
+#include <Utils.hpp>
 
 float speed = 1.0f;
 float delaySetting = 0.0f;
@@ -233,27 +233,27 @@ void MyMenuLayer::onStartupPopup(float dt) {
 }
 
 void MyMenuLayer::onTwitch(CCObject* sender) {
-    CCApplication::sharedApplication()->openURL("https://www.twitch.tv/omgrod1000");
+    GDSFollowLinks::onTwitch();
 }
 
 void MyMenuLayer::onTwitter(CCObject* sender) {
-    CCApplication::sharedApplication()->openURL("https://x.com/0mgrod");
+    GDSFollowLinks::onTwitter();
 }
 
 void MyMenuLayer::onDiscord(CCObject* sender) {
-    CCApplication::sharedApplication()->openURL("https://discord.gg/vK3DuqJwyW");
+    GDSFollowLinks::onDiscord();
 }
 
 void MyMenuLayer::onFacebook(CCObject* sender) {
-    FLAlertLayer::create("nope", "i'm not a boomer", "OK")->show();
+    GDSFollowLinks::onFacebook();
 }
 
 void MyMenuLayer::onRobTop(CCObject* sender) {
-    CCApplication::sharedApplication()->openURL("https://omgrod.me");
+    GDSFollowLinks::onRobTop();
 }
 
 void MyMenuLayer::onYouTube(CCObject* sender) {
-    CCApplication::sharedApplication()->openURL("https://www.youtube.com/@OmgRodYT");
+    GDSFollowLinks::onYouTube();
 }
 
 void MyMenuLayer::onMoreGames(CCObject* sender) {
