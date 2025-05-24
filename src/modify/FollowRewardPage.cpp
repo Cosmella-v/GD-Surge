@@ -123,8 +123,6 @@ void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
 }
 
 void MyFollowRewardPage::onSpecialItemConfirm() {
-    popup->removeFromParent();
-
     auto gm = GameManager::sharedState();
     auto gsm = GameStatsManager::sharedState();
 
