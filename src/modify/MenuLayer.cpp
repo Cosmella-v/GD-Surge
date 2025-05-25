@@ -69,16 +69,16 @@ bool MyMenuLayer::init() {
     if (!downloadStarted) {
         downloadStarted = true;
 
-        auto listURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/master/music/download.txt";
+        static EventListener<web::WebTask> s_listener;
+        auto listURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/refs/heads/master/music/download.txt";
+
         log::debug("Starting fetch of music download list from {}", listURL);
 
         web::WebRequest request;
         auto listTask = request.get(listURL);
 
-        auto listener = std::make_shared<EventListener<web::WebTask>>();
-        listener->setFilter(listTask);
-
-        listener->bind([listener](web::WebTask::Event* e) {
+        s_listener.setFilter(listTask);
+        s_listener.bind([=](web::WebTask::Event* e) {
             if (!e || e->isCancelled()) {
                 log::warn("Music list download task was cancelled or null");
                 geode::Notification::create("Download was cancelled", NotificationIcon::Error)->show();
@@ -104,9 +104,10 @@ bool MyMenuLayer::init() {
                     return;
                 }
 
+                auto baseURL = "https://raw.githubusercontent.com/OmgRod/GD-Surge/refs/heads/master/music/";
                 auto saveDir = mod->getSaveDir();
 
-                log::debug("Parsed download list. Save Dir: {}", saveDir.string());
+                log::debug("Parsed download list. Base URL: {}, Save Dir: {}", baseURL, saveDir.string());
 
                 std::vector<std::string> filesToDownload;
                 while (std::getline(stream, line)) {
@@ -121,35 +122,13 @@ bool MyMenuLayer::init() {
                 auto remaining = std::make_shared<std::atomic<int>>(filesToDownload.size());
 
                 for (const auto& fileLine : filesToDownload) {
-                    // fileLine is a full URL, e.g. "https://raw.githubusercontent.com/.../music/sfx/s6314.ogg"
-                    std::string fullURL = fileLine;
-
-                    // Extract relative path inside 'music/' to preserve folder structure
-                    std::string::size_type pos = fullURL.find("/music/");
-                    if (pos == std::string::npos) {
-                        log::warn("Invalid URL (no /music/ found): {}", fullURL);
-                        if (--(*remaining) == 0) {
-                            geode::Notification::create("All songs downloaded!", NotificationIcon::Success)->show();
-                        }
-                        continue;
-                    }
-
-                    std::string relativePath = fullURL.substr(pos + 7);  // skip "/music/"
-
-                    auto savePath = saveDir / relativePath;
-
-                    if (std::filesystem::exists(savePath)) {
-                        log::info("File already exists, skipping: {}", relativePath);
-                        if (--(*remaining) == 0) {
-                            geode::Notification::create("All songs downloaded!", NotificationIcon::Success)->show();
-                        }
-                        continue;
-                    }
+                    std::string fullURL = baseURL + fileLine;
+                    auto savePath = saveDir / fileLine;
 
                     std::error_code ec;
                     std::filesystem::create_directories(savePath.parent_path(), ec);
                     if (ec) {
-                        log::warn("Failed to create directory for {}: {}", relativePath, ec.message());
+                        log::warn("Failed to create directory for {}: {}", fileLine, ec.message());
                         if (--(*remaining) == 0) {
                             geode::Notification::create("All songs downloaded!", NotificationIcon::Success)->show();
                         }
@@ -162,30 +141,30 @@ bool MyMenuLayer::init() {
                     auto fileListener = std::make_shared<EventListener<web::WebTask>>();
                     fileListener->setFilter(fileTask);
 
-                    fileListener->bind([fileListener, savePath, relativePath, remaining](web::WebTask::Event* fe) {
+                    fileListener->bind([fileListener, savePath, fileLine, remaining](web::WebTask::Event* fe) {
                         if (!fe || fe->isCancelled()) {
-                            log::warn("Download cancelled: {}", relativePath);
+                            log::warn("Download cancelled: {}", fileLine);
                         } else if (web::WebResponse* fres = fe->getValue()) {
-                            log::debug("Download completed for {}. Status: {}", relativePath, fres->code());
+                            log::debug("Download completed for {}. Status: {}", fileLine, fres->code());
 
                             if (fres->code() != 200) {
-                                log::warn("Failed to download {}: status code {}", relativePath, fres->code());
+                                log::warn("Failed to download {}: status code {}", fileLine, fres->code());
                             } else {
                                 auto data = fres->data();
                                 if (!geode::utils::file::writeBinary(savePath, data)) {
                                     log::warn("Failed to write file {}", savePath.string());
                                 } else {
-                                    log::info("Downloaded and saved: {}", relativePath);
+                                    log::info("Downloaded and saved: {}", fileLine);
                                 }
                             }
+                        } else {
+                            log::warn("No response received for file: {}", fileLine);
                         }
 
                         if (--(*remaining) == 0) {
                             geode::Notification::create("All songs downloaded!", NotificationIcon::Success)->show();
                         }
                     });
-
-                    activeListeners->push_back(fileListener);
                 }
 
                 geode::Notification::create("Music and SFX download started!", NotificationIcon::Success)->show();
@@ -194,8 +173,6 @@ bool MyMenuLayer::init() {
                 log::error("List response event had no response value");
             }
         });
-
-        activeListeners->push_back(listener);
     }
 
     startup = true;
