@@ -66,6 +66,8 @@ bool MyMenuLayer::init() {
         this->scheduleOnce(SEL_SCHEDULE(&MyMenuLayer::onStartupPopup), 0.1f);
     }
 
+    /*
+
     if (!downloadStarted) {
         downloadStarted = true;
 
@@ -125,6 +127,15 @@ bool MyMenuLayer::init() {
                     std::string fullURL = baseURL + fileLine;
                     auto savePath = saveDir / fileLine;
 
+                    // Skip if file already exists
+                    if (std::filesystem::exists(savePath)) {
+                        log::info("File already exists, skipping: {}", fileLine);
+                        if (--(*remaining) == 0) {
+                            geode::Notification::create("All songs downloaded!", NotificationIcon::Success)->show();
+                        }
+                        continue;
+                    }
+
                     std::error_code ec;
                     std::filesystem::create_directories(savePath.parent_path(), ec);
                     if (ec) {
@@ -157,8 +168,6 @@ bool MyMenuLayer::init() {
                                     log::info("Downloaded and saved: {}", fileLine);
                                 }
                             }
-                        } else {
-                            log::warn("No response received for file: {}", fileLine);
                         }
 
                         if (--(*remaining) == 0) {
@@ -174,6 +183,9 @@ bool MyMenuLayer::init() {
             }
         });
     }
+
+
+    */
 
     startup = true;
 

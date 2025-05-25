@@ -27,7 +27,11 @@
 			]
 		},
 		"files": [
-			"res/levels/*.txt"
+			"res/levels/*.txt",
+			"music/songs/*.mp3",
+			"music/songs/*.ogg",
+			"music/songs/*.mp3",
+			"music/sfx/*.ogg"
 		],
 		"sprites": [
 			"res/*.png"

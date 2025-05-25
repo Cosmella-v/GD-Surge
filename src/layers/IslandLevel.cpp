@@ -300,7 +300,7 @@ void IslandLevel::onPlay(CCObject* sender) {
     CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
     auto GLM = GameLevelManager::sharedState();
     auto playLayer = PlayLayer::scene(m_level, false, false);
-    FMODAudioEngine::sharedEngine()->playEffect(std::filesystem::path(Mod::get()->getSaveDir() / "sfx" / "playSound_01.ogg").string());
+    FMODAudioEngine::sharedEngine()->playEffect("playSound_01.ogg"_spr /*std::filesystem::path(Mod::get()->getSaveDir() / "sfx" / "playSound_01.ogg").string()*/);
 
     CCDirector::get()->pushScene(CCTransitionFade::create(0.5f, playLayer));
 }
