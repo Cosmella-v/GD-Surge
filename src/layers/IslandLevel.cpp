@@ -308,7 +308,7 @@ void IslandLevel::onPlay(CCObject* sender) {
 void sLOLwshow2(GJGameLevel* level212) {
     if (level212 == nullptr) return;
 
-    if (level212->m_levelID <= 0) {
+    if (level212->m_levelID >= 0) {
         std::string name = level212->m_levelName;
         std::string contentStream =
             "<cy>" + name + "</c>" +
