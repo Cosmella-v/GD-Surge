@@ -14,81 +14,75 @@ bool MyFollowRewardPage::init() {
         }
     }
 
+    m_fields->m_rewardsPage = typeinfo_cast<RewardsPage*>(this->getParent());
+
     return true;
 }
 
 void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
-    auto item = dynamic_cast<CCMenuItemSpriteExtra*>(sender);
-    if (!item) return;
+    auto item = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
+    if (!item) {
+        log::debug("onSpecialItem: Invalid item cast.");
+        return;
+    }
 
     auto gm = GameManager::sharedState();
     auto gsm = GameStatsManager::sharedState();
 
     m_fields->m_specialID = sender->getTag();
+    log::debug("onSpecialItem: Clicked special ID {}", m_fields->m_specialID);
 
     std::string chestTypeStr;
-    std::string serviceName;
     std::string unlockMessage;
     std::string actionButtonText;
-
-    if (m_fields->m_specialID <= 0 || m_fields->m_specialID > 6) {
-        return;
-    }
-
-    GameManager* gameMgr = GameManager::sharedState();
-
     bool isUnlocked = false;
+
     switch (m_fields->m_specialID) {
         case 1:
             chestTypeStr = "YouTube";
-            serviceName = "YouTube";
             unlockMessage = "Subscribe to OmgRod on <cr>YouTube</c> to unlock this chest!";
             actionButtonText = "Sub!";
-            isUnlocked = gameMgr->getUGV("22") != 0;
+            isUnlocked = gm->getUGV("22");
             break;
-
         case 2:
             chestTypeStr = "Twitter";
-            serviceName = "Twitter";
             unlockMessage = "Follow OmgRod on <cj>Twitter</c> to unlock this chest!";
             actionButtonText = "Follow!";
-            isUnlocked = gameMgr->getUGV("24") != 0;
+            isUnlocked = gm->getUGV("24");
             break;
-
         case 3:
             chestTypeStr = "Facebook";
-            serviceName = "Facebook";
             unlockMessage = "Like OmgRod on <cb>Facebook</c> to unlock this chest!";
             actionButtonText = "Like!";
-            isUnlocked = gameMgr->getUGV("23") != 0;
+            isUnlocked = gm->getUGV("23");
             break;
-
         case 4:
             chestTypeStr = "Twitch";
-            serviceName = "Twitch";
             unlockMessage = "Follow OmgRod on <ca>Twitch</c> to unlock this chest!";
             actionButtonText = "Follow!";
-            isUnlocked = gameMgr->getUGV("26") != 0;
+            isUnlocked = gm->getUGV("26");
             break;
-
         case 5:
             chestTypeStr = "Discord";
-            serviceName = "Discord";
             unlockMessage = "Join OmgRod on <ca>Discord</c> to unlock this chest!";
             actionButtonText = "Join!";
-            isUnlocked = gameMgr->getUGV("27") != 0;
+            isUnlocked = gm->getUGV("27");
             break;
-
         case 6:
             chestTypeStr = "Reddit";
-            serviceName = "Reddit";
             unlockMessage = "Join OmgRod on <cr>Reddit</c> to unlock this chest!";
             actionButtonText = "Join!";
-            isUnlocked = gameMgr->getUGV("32") != 0;
+            isUnlocked = gm->getUGV("32");
             break;
+        default:
+            log::debug("onSpecialItem: Invalid special ID {}", m_fields->m_specialID);
+            return;
     }
 
+    log::debug("onSpecialItem: ChestType = {}, isUnlocked = {}", chestTypeStr, isUnlocked);
+
     if (!isUnlocked) {
+        log::debug("onSpecialItem: Chest not unlocked yet. Showing unlock prompt.");
         createQuickPopup(
             chestTypeStr.c_str(),
             unlockMessage,
@@ -101,22 +95,6 @@ void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
                 }
             }
         );
-
-        if (isUnlocked) {
-            switchToOpenedState(item);
-        }
-    } else {
-        GameStatsManager* statsMgr = GameStatsManager::sharedState();
-
-        GJRewardItem* reward = statsMgr->unlockSpecialChest(chestTypeStr);
-
-        if (reward != nullptr) {
-            switchToOpenedState(item);
-
-            RewardUnlockLayer* rewardLayer = RewardUnlockLayer::create(reward->m_uID, typeinfo_cast<RewardsPage*>(this->getParent()));
-            this->addChild(rewardLayer, 100);
-            rewardLayer->showCollectReward(reward);
-        }
     }
 }
 

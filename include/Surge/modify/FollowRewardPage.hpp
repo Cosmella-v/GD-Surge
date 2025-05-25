@@ -8,8 +8,8 @@ public:
     bool init();
     void onSpecialItem(CCObject* sender);
     void onSpecialItemConfirm();
-
     struct Fields {
         int m_specialID;
+        RewardsPage* m_rewardsPage;
     };
 };
