@@ -118,6 +118,7 @@ bool MyMenuLayer::init() {
                 }
 
                 auto remaining = std::make_shared<std::atomic<int>>(filesToDownload.size());
+                static auto activeListeners = std::make_shared<std::vector<std::shared_ptr<EventListener<web::WebTask>>>>();
 
                 for (const auto& fileLine : filesToDownload) {
                     std::string fullURL = baseURL + fileLine;
@@ -146,9 +147,10 @@ bool MyMenuLayer::init() {
                     auto fileTask = fileRequest->get(fullURL);
 
                     auto fileListener = std::make_shared<EventListener<web::WebTask>>();
-                    fileListener->setFilter(fileTask);
+                    activeListeners->push_back(fileListener);
 
-                    fileListener->bind([fileListener, savePath, fileLine, remaining](web::WebTask::Event* fe) {
+                    fileListener->setFilter(fileTask);
+                    fileListener->bind([fileListener, savePath, fileLine, remaining, activeListeners](web::WebTask::Event* fe) {
                         if (!fe || fe->isCancelled()) {
                             log::warn("Download cancelled: {}", fileLine);
                         } else if (web::WebResponse* fres = fe->getValue()) {
