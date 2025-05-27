@@ -15,16 +15,10 @@ bool MyLevelSelectLayer::init(int pageID) {
         if (m_scrollLayer->m_dynamicObjects) {
             m_scrollLayer->m_dynamicObjects->removeAllObjects();
         } else {
-            auto label = CCLabelBMFont::create("no m_dynamicObjects", "bigFont.fnt");
-            auto winSize = CCDirector::sharedDirector()->getWinSize();
-            label->setPosition({ winSize.width / 2, winSize.height / 2 });
-            this->addChild(label, INT_MAX);
+            log::error("m_scrollLayer->m_dynamicObjects is null");
         }
     } else {
-        auto label = CCLabelBMFont::create("no m_scrollLayer", "bigFont.fnt");
-        auto winSize = CCDirector::sharedDirector()->getWinSize();
-        label->setPosition({ winSize.width / 2, winSize.height / 2 });
-        this->addChild(label, INT_MAX);
+        log::error("m_scrollLayer is null");
     }
 
     auto dotsArray = CCArrayExt<CCSprite*>(m_scrollLayer->m_dots);
