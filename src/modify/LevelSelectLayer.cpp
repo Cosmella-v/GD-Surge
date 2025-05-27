@@ -11,7 +11,21 @@ bool MyLevelSelectLayer::init(int pageID) {
     auto GSM = GameStatsManager::sharedState();
     auto GM = GameManager::sharedState();
 
-    m_scrollLayer->m_dynamicObjects->removeAllObjects();
+    if (m_scrollLayer) {
+        if (m_scrollLayer->m_dynamicObjects) {
+            m_scrollLayer->m_dynamicObjects->removeAllObjects();
+        } else {
+            auto label = CCLabelBMFont::create("no m_dynamicObjects", "bigFont.fnt");
+            auto winSize = CCDirector::sharedDirector()->getWinSize();
+            label->setPosition({ winSize.width / 2, winSize.height / 2 });
+            this->addChild(label, INT_MAX);
+        }
+    } else {
+        auto label = CCLabelBMFont::create("no m_scrollLayer", "bigFont.fnt");
+        auto winSize = CCDirector::sharedDirector()->getWinSize();
+        label->setPosition({ winSize.width / 2, winSize.height / 2 });
+        this->addChild(label, INT_MAX);
+    }
 
     auto dotsArray = CCArrayExt<CCSprite*>(m_scrollLayer->m_dots);
 

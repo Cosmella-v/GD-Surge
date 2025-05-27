@@ -12,14 +12,9 @@ bool BasementLayer::init() {
     auto director = CCDirector::sharedDirector();
 	auto winSize = director->getWinSize();
 
-	auto bg = CCSprite::create("GJ_gradientBG.png");
-	auto bgSize = bg->getTextureRect().size;
-	bg->setAnchorPoint({ 0.0f, 0.0f });
-	bg->setScaleX((winSize.width + 10.0f) / bgSize.width);
-	bg->setScaleY((winSize.height + 10.0f) / bgSize.height);
-	bg->setPosition({ -5.0f, -5.0f });
-	bg->setColor({ 60, 0, 60 });
-	this->addChild(bg);
+    auto background = createLayerBG();
+    background->setColor({ 60, 0, 60 });
+    this->addChild(background, -1);
 
 	auto misc = CCMenu::create();
 	this->addChild(misc);

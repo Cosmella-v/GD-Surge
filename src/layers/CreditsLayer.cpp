@@ -1,3 +1,4 @@
+#include "Geode/ui/General.hpp"
 #include <Surge/layers/CreditsLayer.hpp>
 
 void CreditsLayer::keyBackClicked() {
@@ -21,13 +22,10 @@ bool CreditsLayer::init() {
     menu->setAnchorPoint({ 0.f, 0.f });
     this->addChild(menu);
 
-    auto background = CCSprite::create("GJ_gradientBG.png");
-    background->setColor(ccc3(0, 102, 255));
-    background->setScaleX(winSize.width / background->getContentSize().width);
-    background->setScaleY(winSize.height / background->getContentSize().height);
-    background->setPosition(ccp(winSize.width / 2, winSize.height / 2));
-    background->setID("background");
+    auto background = createLayerBG();
     this->addChild(background, -1);
+
+    addSideArt(this, SideArt::Bottom, SideArtStyle::Layer, true);
 
     auto backButton = CCMenuItemSpriteExtra::create(
         CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png"),
