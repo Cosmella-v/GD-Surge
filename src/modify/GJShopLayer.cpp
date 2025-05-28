@@ -6,9 +6,8 @@ using namespace geode::prelude;
 bool MyGJShopLayer::init(ShopType p0) {
 	if (!GJShopLayer::init(ShopType{5}))
 		return false;
-    auto musicPath = (Mod::get()->getSaveDir() / "songs" / "RandomSong03.mp3").string();
-    log::debug("Trying to play: {}", musicPath);
-	FMODAudioEngine::sharedEngine()->playMusic(musicPath, true, 0.1f, 0);
+        
+	FMODAudioEngine::sharedEngine()->playMusic("RandomSong03.mp3"_spr, true, 0.1f, 0);
 	auto extraMenu = CCMenu::create();
 	extraMenu->setPosition({0, 0});
 	this->addChild(extraMenu);

@@ -11,9 +11,7 @@ bool CreditsLayer::init() {
 
     setKeypadEnabled(true);
 
-    auto musicPath = (Mod::get()->getSaveDir() / "songs" / "CreditsTheme.ogg").string();
-    log::debug("Trying to play: {}", musicPath);
-    FMODAudioEngine::sharedEngine()->playMusic(musicPath, false, 0.1f, 0);
+    FMODAudioEngine::sharedEngine()->playMusic("CreditsTheme.ogg"_spr, false, 0.1f, 0);
 
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
@@ -22,9 +20,10 @@ bool CreditsLayer::init() {
     menu->setAnchorPoint({ 0.f, 0.f });
     this->addChild(menu);
 
+    this->setAnchorPoint({ 0.f, 0.f });
+
     auto background = createLayerBG();
     this->addChild(background, -1);
-
     addSideArt(this, SideArt::Bottom, SideArtStyle::Layer, true);
 
     auto backButton = CCMenuItemSpriteExtra::create(

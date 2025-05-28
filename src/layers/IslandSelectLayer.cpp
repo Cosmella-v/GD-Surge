@@ -84,7 +84,6 @@ bool IslandSelectLayer::init(int page) {
     backMenu->setPosition(ccp(CCDirector::sharedDirector()->getScreenLeft() + 25.f, CCDirector::sharedDirector()->getScreenTop() - 22.f));
 
     CCSprite* TheAssembly = CCSprite::createWithSpriteFrameName("islandLabel_01_001.png"_spr);
-    this->m_spinNode = TheAssembly;
 
     // CCSprite* ToxicFactory = CCSprite::createWithSpriteFrameName("islandLabel_02_001.png"_spr);
 
@@ -1506,12 +1505,6 @@ bool IslandSelectLayer::init(int page) {
     // if (level10complete == 1) {
     //     level10->setVisible(false);
     // }
-
-    this->runAction(CCSequence::create(
-        CCDelayTime::create(2.0f),
-        CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::spinCycle)),
-        nullptr
-    ));
 
     return true;
 }
