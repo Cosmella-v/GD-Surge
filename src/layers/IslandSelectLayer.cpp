@@ -296,7 +296,7 @@ bool IslandSelectLayer::init(int page) {
     CCMenuItemSpriteExtra* level3Btn = CCMenuItemSpriteExtra::create(unkspr2, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level3Btn->setTag(32);
-    level3Btn->setPosition(-7, 15);
+    level3Btn->setPosition(-12, 15);
     level3Btn->setVisible(false);
     level3->setPosition({ -10, 10 });
 

@@ -310,12 +310,18 @@ void sLOLwshow2(GJGameLevel* level212) {
 
     if (level212->m_levelID >= 0) {
         std::string name = level212->m_levelName;
-        std::string contentStream =
-            "<cy>" + name + "</c>" +
-            "\n<cg>Total Attempts</c>: " + std::to_string(level212->m_attempts) +
-            "\n<cl>Total Jumps</c>: " + std::to_string(level212->m_jumps) +
-            "\n<cp>Normal</c>: " + std::to_string(level212->m_normalPercent) + "%" +
-            "\n<co>Practice</c>: " + std::to_string(level212->m_practicePercent) + "%";
+        std::string contentStream = fmt::format(
+            "<cy>{}</c>\n"
+            "<cg>Total Attempts</c>: {}\n"
+            "<cl>Total Jumps</c>: {}\n"
+            "<cp>Normal</c>: {}%\n"
+            "<co>Practice</c>: {}%",
+            name,
+            level212->m_attempts,
+            level212->m_jumps,
+            level212->m_normalPercent,
+            level212->m_practicePercent
+        );
 
         FLAlertLayer::create(nullptr, "Level Stats", contentStream, "OK", nullptr, 360)->show();
         return;
