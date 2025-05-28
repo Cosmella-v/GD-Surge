@@ -9,6 +9,13 @@ bool MyGJGarageLayer::init() {
     auto menu = this->getChildByID("top-left-menu");
     menu->getChildByID("shop-button")->getChildByType<CCSprite*>(0)->setDisplayFrame(CCSpriteFrameCache::get()->spriteFrameByName("GDS_shopRope.png"_spr));
 
+    if (auto shardsMenu = this->getChildByID("shards-menu")) {
+        if (auto shardsButton = shardsMenu->getChildByID("shards-button")) {
+            shardsButton->setVisible(false);
+        }
+        shardsMenu->updateLayout();
+    }
+
     return true;
 }
 

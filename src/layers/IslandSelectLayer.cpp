@@ -83,7 +83,8 @@ bool IslandSelectLayer::init(int page) {
 
     backMenu->setPosition(ccp(CCDirector::sharedDirector()->getScreenLeft() + 25.f, CCDirector::sharedDirector()->getScreenTop() - 22.f));
 
-    CCSprite* Dashlands = CCSprite::createWithSpriteFrameName("islandLabel_01_001.png"_spr);
+    CCSprite* TheAssembly = CCSprite::createWithSpriteFrameName("islandLabel_01_001.png"_spr);
+    this->m_spinNode = TheAssembly;
 
     // CCSprite* ToxicFactory = CCSprite::createWithSpriteFrameName("islandLabel_02_001.png"_spr);
 
@@ -1260,7 +1261,7 @@ bool IslandSelectLayer::init(int page) {
     /*node->addChild(dashlandsmenu);*/
     node->addChild(sprite);
     node->addChild(dashlandsmenu);
-    node->addChild(Dashlands);
+    node->addChild(TheAssembly);
     node->setTag(20);
 
     // node2->addChild(sprite2);
@@ -1344,9 +1345,9 @@ bool IslandSelectLayer::init(int page) {
     sprite->setPosition(winSize / 2);
     sprite->setPositionY(sprite->getPositionY() - 30);
 
-    Dashlands->setPositionX(sprite->getPositionX());
-    Dashlands->setPositionY(sprite->getPositionY() + 150);
-    Dashlands->setScale(0.8);
+    TheAssembly->setPositionX(sprite->getPositionX());
+    TheAssembly->setPositionY(sprite->getPositionY() + 150);
+    TheAssembly->setScale(0.8);
 
     sprite2->setPosition(winSize / 2);
     sprite2->setPositionY(sprite2->getPositionY() - 30);
@@ -1505,6 +1506,12 @@ bool IslandSelectLayer::init(int page) {
     // if (level10complete == 1) {
     //     level10->setVisible(false);
     // }
+
+    this->runAction(CCSequence::create(
+        CCDelayTime::create(2.0f),
+        CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::spinCycle)),
+        nullptr
+    ));
 
     return true;
 }

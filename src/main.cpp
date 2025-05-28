@@ -18,7 +18,7 @@ $on_mod(Loaded) {
         GSM->m_usernameForAccountID.insert({accountID, username});
     }
 
-    insertIcons(GSM, UnlockType::Cube, 485, 500, 19081577);
+    insertIcons(GSM, UnlockType::Cube, 486, 490, 19081577);
     insertIcons(GSM, UnlockType::Ship, 170, 180, 19081577);
     insertIcons(GSM, UnlockType::Ball, 119, 130, 19081577);
     insertIcons(GSM, UnlockType::Bird, 150, 151, 19081577);
