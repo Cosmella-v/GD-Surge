@@ -20,11 +20,10 @@ bool CreditsLayer::init() {
     menu->setAnchorPoint({ 0.f, 0.f });
     this->addChild(menu);
 
-    this->setAnchorPoint({ 0.f, 0.f });
-
     auto background = createLayerBG();
+    background->setPosition({ -5.f, -5.f });
     this->addChild(background, -1);
-    addSideArt(this, SideArt::Bottom, SideArtStyle::Layer, true);
+    addSideArt(this, SideArt::Bottom, SideArtStyle::Layer, false);
 
     auto backButton = CCMenuItemSpriteExtra::create(
         CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png"),
@@ -88,7 +87,8 @@ bool CreditsLayer::init() {
         {"Action Theme 07 by Daniel Carl", false},
         {"Stay Inside Me by OcularNebula (credits song)", false},
         {"", false}, {"", false}, {"", false}, {"", false}, {"", false}, {"", false}, {"", false}, {"", false},
-        {"Special thanks to RobTop for creating Geometry Dash!", false}
+        {"Special thanks to RobTop", false},
+        {"for creating Geometry Dash!", false}
     };
 
     float labelY = winSize.height * 0.5f;

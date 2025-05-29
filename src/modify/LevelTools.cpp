@@ -149,65 +149,65 @@ GJGameLevel* MyLevelTools::getLevel(int levelID, bool loaded) {
             level->m_coins = 0;
             break;
         case 2001:
-            setLevelInfo(level, 3, GJDifficulty::Normal, 0);
+            setLevelInfo(level, 2, GJDifficulty::Normal, 0);
             level->m_levelName = "The Factory";
             level->m_audioTrack = -1;
             level->m_coins = 0;
             break;
         case 2002:
-            setLevelInfo(level, 4, GJDifficulty::Normal, 0);
+            setLevelInfo(level, 3, GJDifficulty::Normal, 0);
             level->m_levelName = "The Woods";
             level->m_audioTrack = -1;
             level->m_coins = 0;
             break;
         case 2003:
-            setLevelInfo(level, 5, GJDifficulty::Normal, 0);
+            setLevelInfo(level, 4, GJDifficulty::Normal, 0);
             level->m_levelName = "The Complex";
             level->m_audioTrack = -1;
             level->m_coins = 0;
             break;
         case 2004:
-            setLevelInfo(level, 6, GJDifficulty::Normal, 0);
+            setLevelInfo(level, 5, GJDifficulty::Normal, 0);
             level->m_levelName = "The Storage";
             level->m_audioTrack = -1;
             level->m_coins = 0;
             break;
         case 2005:
-            setLevelInfo(level, 7, GJDifficulty::Normal, 0);
+            setLevelInfo(level, 6, GJDifficulty::Normal, 0);
             level->m_levelName = "The Ship";
             level->m_audioTrack = -1;
             level->m_coins = 0;
             break;
-        // case 2006:
-        //     setLevelInfo(level, 8, GJDifficulty::Normal, 0);
-        //     level->m_levelName = "Level 6";
-        //     level->m_audioTrack = -1;
-        //     level->m_coins = 0;
-        //     break;
-        // case 2007:
-        //     setLevelInfo(level, 9, GJDifficulty::Normal, 0);
-        //     level->m_levelName = "Level 7";
-        //     level->m_audioTrack = -1;
-        //     level->m_coins = 0;
-        //     break;
-        // case 2008:
-        //     setLevelInfo(level, 10, GJDifficulty::Normal, 0);
-        //     level->m_levelName = "Level 8";
-        //     level->m_audioTrack = -1;
-        //     level->m_coins = 0;
-        //     break;
-        // case 2009:
-        //     setLevelInfo(level, 11, GJDifficulty::Normal, 0);
-        //     level->m_levelName = "Level 9";
-        //     level->m_audioTrack = -1;
-        //     level->m_coins = 0;
-        //     break;
-        // case 2010:
-        //     setLevelInfo(level, 12, GJDifficulty::Normal, 0);
-        //     level->m_levelName = "Level 10";
-        //     level->m_audioTrack = -1;
-        //     level->m_coins = 0;
-        //     break;
+        case 2006:
+            setLevelInfo(level, 2, GJDifficulty::Normal, 0);
+            level->m_levelName = "Dockline";
+            level->m_audioTrack = -1;
+            level->m_coins = 0;
+            break;
+        case 2007:
+            setLevelInfo(level, 3, GJDifficulty::Normal, 0);
+            level->m_levelName = "Cargo Bay";
+            level->m_audioTrack = -1;
+            level->m_coins = 0;
+            break;
+        case 2008:
+            setLevelInfo(level, 4, GJDifficulty::Normal, 0);
+            level->m_levelName = "Slipstream";
+            level->m_audioTrack = -1;
+            level->m_coins = 0;
+            break;
+        case 2009:
+            setLevelInfo(level, 5, GJDifficulty::Normal, 0);
+            level->m_levelName = "Overpass";
+            level->m_audioTrack = -1;
+            level->m_coins = 0;
+            break;
+        case 2010:
+            setLevelInfo(level, 6, GJDifficulty::Normal, 0);
+            level->m_levelName = "Terminal Drift";
+            level->m_audioTrack = -1;
+            level->m_coins = 0;
+            break;
     }
     if (!loaded) {
         level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(levelID);

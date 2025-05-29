@@ -7,14 +7,16 @@ protected:
 	CCPoint m_obNext;
 	CCMenu* m_pButtonMenu;
 	bool m_bButtonsEntered;
-
+    
     std::vector<std::pair<CCNode*, CCNode*>> m_vButtonLabelPairs;
     void runSequentialFadeIn();
-
+    
 	void onExit(CCObject*);
 	void addButton(const char* node, const char* text, SEL_MenuHandler callback);
-
+    
 public:
+    size_t m_dialogIndex = 0;
+
     bool init();
     static CCScene* scene();
     static BasementLayer* create();

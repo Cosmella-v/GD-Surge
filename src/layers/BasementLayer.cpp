@@ -141,8 +141,6 @@ void BasementLayer::onCredits(CCObject*) {
     CCDirector::sharedDirector()->pushScene(transition);
 }
 
-static size_t dialogIndex = 0;
-
 void BasementLayer::onScratchDialog(CCObject*) {
     static std::vector<std::pair<std::string, int>> dialogLines = {
         { "Uhh... hello?", 13 },
@@ -162,12 +160,12 @@ void BasementLayer::onScratchDialog(CCObject*) {
         { "Fine, stay if you want... But it's still <cp>my</c> house.", 10 }
     };
 
-    const auto& [line, frame] = dialogLines[dialogIndex];
+    const auto& [line, frame] = dialogLines[m_dialogIndex];
 
     CCArray* objects = CCArray::create();
     objects->addObject(DialogObject::create("Scratch", line.c_str(), frame, 1.0f, false, ccWHITE));
 
-    dialogIndex = (dialogIndex + 1) % dialogLines.size();
+    m_dialogIndex = (m_dialogIndex + 1) % dialogLines.size();
 
     auto dialog = DialogLayer::createWithObjects(objects, 2);
     dialog->addToMainScene();
