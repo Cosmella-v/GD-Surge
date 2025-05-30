@@ -10,4 +10,5 @@ public:
     void updateDynamicPage(GJGameLevel* level);
 
     void onIslands(CCObject* sender);
+    void onPlay(CCObject* sender);
 };

@@ -122,7 +122,7 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
             }
         }
 
-        m_isBusy = level->m_levelID < 0;
+        m_isBusy = (level->m_levelID < 0 && level->m_levelID != -3);
     });
 }
 
@@ -130,4 +130,13 @@ void MyLevelPage::onIslands(CCObject*) {
     auto scene = IslandSelectLayer::scene(0);
     auto transition = CCTransitionFade::create(0.5f, scene);
     CCDirector::sharedDirector()->pushScene(transition);
+}
+
+void MyLevelPage::onPlay(CCObject* sender) {
+    if (m_level->m_levelID == -3) {
+        onIslands(sender);
+        return;
+    }
+
+    LevelPage::onPlay(sender);
 }

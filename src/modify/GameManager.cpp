@@ -101,7 +101,7 @@ int MyGameManager::countForType(IconType icon) {
         case IconType::Wave:
             return 105;
         case IconType::Robot:
-            return 75;
+            return 68;
         case IconType::Spider:
             return 75;
         case IconType::Swing:

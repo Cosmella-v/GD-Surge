@@ -24,6 +24,9 @@
 			],
 			"MiscSheet": [
 				"res/MiscSheet/*.png"
+			],
+			"IconSheet": [
+				"res/IconSheet/*.png"
 			]
 		},
 		"files": [

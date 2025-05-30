@@ -9,7 +9,7 @@ void MyAchievementManager::addManualAchievements() {
 
     AchievementManager::addAchievement("geometry.ach.level02a", "Rising Star", "Completed 'Unstable Geometry' in Practice mode", "Complete 'Unstable Geometry' in Practice mode", "dart_97", 1);
     AchievementManager::addAchievement("geometry.ach.level02b", "Steady Hand", "Completed 'Unstable Geometry' in Normal mode", "Complete 'Unstable Geometry' in Normal mode", "ship_171", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin02", "Ultimate Unstable Geometry", "Collected all 3 Secret Coins on 'Unstable Geometry'", "Collect all 3 Secret Coins on 'Unstable Geometry'", "robot_69", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin02", "Ultimate Unstable Geometry", "Collected all 3 Secret Coins on 'Unstable Geometry'", "Collect all 3 Secret Coins on 'Unstable Geometry'", "ball_122", 1);
 
     AchievementManager::addAchievement("geometry.ach.level03a", "Tomb Raider", "Completed 'Tomb' in Practice mode", "Complete 'Tomb' in Practice mode", "spider_70", 1);
     AchievementManager::addAchievement("geometry.ach.level03b", "Grave Digger", "Completed 'Tomb' in Normal mode", "Complete 'Tomb' in Normal mode", "dart_98", 1);
@@ -17,7 +17,7 @@ void MyAchievementManager::addManualAchievements() {
 
     AchievementManager::addAchievement("geometry.ach.level04a", "Pathfinder", "Completed 'Detour' in Practice mode", "Complete 'Detour' in Practice mode", "ball_120", 1);
     AchievementManager::addAchievement("geometry.ach.level04b", "Road Warrior", "Completed 'Detour' in Normal mode", "Complete 'Detour' in Normal mode", "ship_172", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin04", "Ultimate Detour", "Collected all 3 Secret Coins on 'Detour'", "Collect all 3 Secret Coins on 'Detour'", "robot_70", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin04", "Ultimate Detour", "Collected all 3 Secret Coins on 'Detour'", "Collect all 3 Secret Coins on 'Detour'", "ball_123", 1);
 
     AchievementManager::addAchievement("geometry.ach.level05a", "Time Traveler", "Completed 'Beginning of Time' in Practice mode", "Complete 'Beginning of Time' in Practice mode", "dart_99", 1);
     AchievementManager::addAchievement("geometry.ach.level05b", "Chrono Conqueror", "Completed 'Beginning of Time' in Normal mode", "Complete 'Beginning of Time' in Normal mode", "dart_100", 1);
@@ -25,7 +25,7 @@ void MyAchievementManager::addManualAchievements() {
 
     AchievementManager::addAchievement("geometry.ach.level06a", "Heat Seeker", "Completed 'Thermodynamix' in Practice mode", "Complete 'Thermodynamix' in Practice mode", "ball_121", 1);
     AchievementManager::addAchievement("geometry.ach.level06b", "Thermo Master", "Completed 'Thermodynamix' in Normal mode", "Complete 'Thermodynamix' in Normal mode", "ship_173", 1);
-    AchievementManager::addAchievement("geometry.ach.surge.levelcoin06", "Ultimate Thermodynamix", "Collected all 3 Secret Coins on 'Thermodynamix'", "Collect all 3 Secret Coins on 'Thermodynamix'", "robot_71", 1);
+    AchievementManager::addAchievement("geometry.ach.surge.levelcoin06", "Ultimate Thermodynamix", "Collected all 3 Secret Coins on 'Thermodynamix'", "Collect all 3 Secret Coins on 'Thermodynamix'", "ball_124", 1);
 
     AchievementManager::addAchievement("geometry.ach.surge.vault01", "Why??", "Entered code 'Badland' in The Vault", "A secret is required", "dart_101", 0);
     AchievementManager::addAchievement("geometry.ach.surge.vault02", "I'm not RobTop", "Entered code 'I am RobTop' in The Vault", "A secret is required", "icon_486", 0);
