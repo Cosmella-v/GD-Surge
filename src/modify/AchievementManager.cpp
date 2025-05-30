@@ -11,7 +11,7 @@ void MyAchievementManager::addManualAchievements() {
     AchievementManager::addAchievement("geometry.ach.level02b", "Steady Hand", "Completed 'Unstable Geometry' in Normal mode", "Complete 'Unstable Geometry' in Normal mode", "ship_171", 1);
     AchievementManager::addAchievement("geometry.ach.surge.levelcoin02", "Ultimate Unstable Geometry", "Collected all 3 Secret Coins on 'Unstable Geometry'", "Collect all 3 Secret Coins on 'Unstable Geometry'", "ball_122", 1);
 
-    AchievementManager::addAchievement("geometry.ach.level03a", "Tomb Raider", "Completed 'Tomb' in Practice mode", "Complete 'Tomb' in Practice mode", "spider_70", 1);
+    AchievementManager::addAchievement("geometry.ach.level03a", "Tomb Raider", "Completed 'Tomb' in Practice mode", "Complete 'Tomb' in Practice mode", "swing_48", 1);
     AchievementManager::addAchievement("geometry.ach.level03b", "Grave Digger", "Completed 'Tomb' in Normal mode", "Complete 'Tomb' in Normal mode", "dart_98", 1);
     AchievementManager::addAchievement("geometry.ach.surge.levelcoin03", "Ultimate Tomb", "Collected all 3 Secret Coins on 'Tomb'", "Collect all 3 Secret Coins on 'Tomb'", "swing_44", 1);
 
