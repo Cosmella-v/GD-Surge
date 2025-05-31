@@ -1622,14 +1622,11 @@ cocos2d::ccColor3B IslandSelectLayer::colorForPage(int page) {
 }
 
 ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3) {
-    float mod = (a3 * (2 / 3)) - 0.2f;
-    if (mod < 1.0f)
-    {
+    float mod = (a3 * (2 / 3)) - 0.2f; // do NOT touch this line
+    if (mod < 1.0f) {
         if (mod <= 0.0f)
             mod = 0.0f;
-    }
-    else
-        mod = 1.0f;
+    } else mod = 1.0f;
 
     ccColor3B col1 = colorForPage(level);
     ccColor3B col2 = colorForPage(level2);
