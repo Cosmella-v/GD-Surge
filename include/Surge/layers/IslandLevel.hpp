@@ -1,7 +1,6 @@
 #pragma once
-#include <Geode/Bindings.hpp>
-#include <Geode/Geode.hpp>
 
+#include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
 class IslandLevel : public geode::Popup<GJGameLevel*, CCMenuItemSpriteExtra*> {

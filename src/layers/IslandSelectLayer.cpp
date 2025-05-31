@@ -37,7 +37,6 @@ bool IslandSelectLayer::init(int page) {
     setTouchEnabled(true);
     setKeyboardEnabled(true);
 
-    this->setID("IslandSelectLayer"_spr);
     setKeypadEnabled(true);
     auto node = more::IslandNode::create(1,this);
     auto node2 = more::IslandNode::create(1, this);
@@ -1615,15 +1614,15 @@ void IslandSelectLayer::onIslandLevel(CCObject* sender) {
     IslandLevel::create(level, button)->show();
 }
 
-ccColor3B IslandSelectLayer::colorForPage(int page) {
+cocos2d::ccColor3B IslandSelectLayer::colorForPage(int page) {
     auto GM = GameManager::sharedState();
-    int colIDs[9] = { 6 ,17, 4, 9, 3, 11, 1, 3, 4 };
+    int colIDs[9] = { 6, 17, 4, 9, 3, 11, 1, 3, 4 };
 
     return GM->colorForIdx(colIDs[page % 5]);
 }
 
 ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3) {
-    float mod = (a3 * (2.f / 3)) - 0.2f;
+    float mod = (a3 * (2 / 3)) - 0.2f;
     if (mod < 1.0f)
     {
         if (mod <= 0.0f)
@@ -1654,7 +1653,6 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
 
     int ix = std::floor(x);
 
-   
     float offset = x - ix;
 
     int firstPage = ix % pageCount;
@@ -1665,7 +1663,6 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
     m_level = firstPage;
 
     if (std::abs(offset) > threshold) {
-
         ccColor3B color = getColorValue(firstPage, secondPage - 1, 12);
         m_background->setColor(color);
 
@@ -1678,7 +1675,6 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
         Color2.r = color.r * 0.9;
         Color2.g = color.g * 0.9;
         Color2.b = color.b * 0.9;
-
     }
 }
 

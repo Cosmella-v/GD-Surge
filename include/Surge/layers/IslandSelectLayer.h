@@ -1,7 +1,8 @@
 #pragma once
-#include <Geode/Geode.hpp>
 
+#include <Geode/Geode.hpp>
 using namespace geode::prelude;
+
 class IslandSelectLayer : public CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate {
 public:
     GJGroundLayer* m_ground;
