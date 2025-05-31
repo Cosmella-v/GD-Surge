@@ -4,7 +4,8 @@
 
 ## Features
 
-- 3 <cb>Classic Levels</c> (more coming soon...)
+- 6 <cb>Classic Levels</c>
+- 5 <co>Platformer Levels</c> (5 more coming soon...)
 - New <cr>Vault Codes</c>
 - New <cp>Shopkeeper</c>
 
