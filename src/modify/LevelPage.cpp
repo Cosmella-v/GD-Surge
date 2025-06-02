@@ -43,9 +43,10 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
         if (!layer) return;
 
         auto label = typeinfo_cast<CCLabelBMFont*>(this->getChildByID("coming-soon-label"));
+        bool hasAch = AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04");
 
         if (label) {
-            label->setVisible(false);
+            label->setVisible(m_level->m_levelID == -1 && !hasAch);
         }
 
         if (auto oldNode = this->getChildByID("coming-never-node")) {
@@ -54,8 +55,6 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
 
         switch (level->m_levelID) {
             case -1: {
-                bool hasAch = AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04");
-
                 if (hasAch && Mod::get()->getSettingValue<bool>("shattered-code") && label) {
                     auto comingNeverNode = CCNode::create();
                     comingNeverNode->setID("coming-never-node");
