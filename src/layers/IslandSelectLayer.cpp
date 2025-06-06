@@ -219,7 +219,7 @@ bool IslandSelectLayer::init(int page) {
 
     CCMenuItemSpriteExtra* level1Btn = CCMenuItemSpriteExtra::create(unkspr, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level1Btn->setTag(30);
+    level1Btn->setTag(1);
     level1Btn->setPosition(-189, -15);
 
     //LEVEL 1 POINTS
@@ -255,7 +255,7 @@ bool IslandSelectLayer::init(int page) {
     point5->setScaleX(1);
     CCMenuItemSpriteExtra* level2Btn = CCMenuItemSpriteExtra::create(unkspr1, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level2Btn->setTag(31);
+    level2Btn->setTag(2);
     level2Btn->setPosition(-83, -25);
     level2Btn->setVisible(false);
     level2->setPosition({ -80, -30 });
@@ -515,7 +515,7 @@ bool IslandSelectLayer::init(int page) {
     
     CCMenuItemSpriteExtra* level4Btn = CCMenuItemSpriteExtra::create(unkspr3, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level4Btn->setTag(33);
+    level4Btn->setTag(3);
     level4Btn->setPosition(47, -20);
     level4Btn->setVisible(false);
     level4->setPosition({ 50, -25 });
@@ -616,7 +616,7 @@ bool IslandSelectLayer::init(int page) {
 
     CCMenuItemSpriteExtra* level5Btn = CCMenuItemSpriteExtra::create(unkspr4, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level5Btn->setTag(34);
+    level5Btn->setTag(4);
     level5Btn->setPosition(152, -5);
     level5Btn->setVisible(false);
     level5->setPosition({ 155, -10 });
@@ -686,7 +686,7 @@ bool IslandSelectLayer::init(int page) {
     auto TheInterfaceMenu = CCMenu::create();
     CCMenuItemSpriteExtra* level6Btn = CCMenuItemSpriteExtra::create(unkspr5, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level6Btn->setTag(35);
+    level6Btn->setTag(5);
     level6Btn->setPosition(-175, -12);
     level6Btn->setVisible(false);
     level6->setPosition(level6Btn->getPosition());
@@ -733,7 +733,7 @@ bool IslandSelectLayer::init(int page) {
 
     CCMenuItemSpriteExtra* level7Btn = CCMenuItemSpriteExtra::create(unkspr6, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level7Btn->setTag(36);
+    level7Btn->setTag(6);
     level7Btn->setPosition(-73, -28);
     level7Btn->setVisible(false);
     level7->setPosition(level7Btn->getPosition());
@@ -832,7 +832,7 @@ bool IslandSelectLayer::init(int page) {
     
     CCMenuItemSpriteExtra* level8Btn = CCMenuItemSpriteExtra::create(unkspr7, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level8Btn->setTag(37);
+    level8Btn->setTag(7);
     level8Btn->setPosition(-10, 15);
     level8Btn->setVisible(false);
     level8->setPosition(level8Btn->getPosition());
@@ -960,7 +960,7 @@ bool IslandSelectLayer::init(int page) {
     
     CCMenuItemSpriteExtra* level9Btn = CCMenuItemSpriteExtra::create(unksp8, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level9Btn->setTag(38);
+    level9Btn->setTag(8);
     level9Btn->setPosition(80, -38);
     level9Btn->setVisible(false);
     level9->setPosition(level9Btn->getPosition());
@@ -1084,7 +1084,7 @@ bool IslandSelectLayer::init(int page) {
 
     CCMenuItemSpriteExtra* level10Btn = CCMenuItemSpriteExtra::create(unkspr9, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level10Btn->setTag(39);
+    level10Btn->setTag(9);
     level10Btn->setPosition(170, -10);
 
     level10Btn->setVisible(false);

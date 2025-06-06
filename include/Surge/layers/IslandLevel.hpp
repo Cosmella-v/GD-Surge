@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Geode/Geode.hpp>
+
 using namespace geode::prelude;
 
 class IslandLevel : public geode::Popup<GJGameLevel*, CCMenuItemSpriteExtra*> {
@@ -14,6 +15,7 @@ public:
     bool setup(GJGameLevel* level, CCMenuItemSpriteExtra* button);
     void onPlay(CCObject* sender);
     void onInfo(CCObject*);
+    void onSong(CCObject*);
 
     GJGameLevel* m_level;
 };

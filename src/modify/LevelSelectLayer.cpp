@@ -158,7 +158,7 @@ ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
         5,
         27,
         34,
-        (AchievementManager::sharedState() && Mod::get() && AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04") && Mod::get()->getSettingValue<bool>("shattered-code")) ? 15 : 10
+        10 // 15 = black
     };
 
     if (colIDs[page % 8] == 94)

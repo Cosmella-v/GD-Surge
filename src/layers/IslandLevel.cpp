@@ -1,3 +1,4 @@
+#include <Geode/Geode.hpp>
 #include <Surge/layers/IslandLevel.hpp>
 #include <Surge/layers/IslandSelectLayer.h>
 
@@ -59,50 +60,19 @@ bool IslandLevel::setup(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
 
     m_mainLayer->addChild(m_buttonMenu);
 
-    if (button->getTag() == 30) {
-        m_level = GLM->getMainLevel(2001, true);
-		m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2001);
-    }
-    if (button->getTag() == 31) {
-        m_level = GLM->getMainLevel(2002, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2002);
-    }
-    if (button->getTag() == 32) {
-        m_level = GLM->getMainLevel(2003, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2003);
-    }
-    if (button->getTag() == 33) {
-        m_level = GLM->getMainLevel(2004, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2004);
-      
-    }
-    if (button->getTag() == 34) {
-        m_level = GLM->getMainLevel(2005, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2005);
-      
-    }
-    if (button->getTag() == 35) {
-        m_level = GLM->getMainLevel(2006, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2006);
-       
-    }
-    if (button->getTag() == 36) {
-        m_level = GLM->getMainLevel(2007, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2007);
-       
-    }
-    if (button->getTag() == 37) {
-        m_level = GLM->getMainLevel(2008, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2008);
-    }
-    if (button->getTag() == 38) {
-        m_level = GLM->getMainLevel(2009, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2009);
-    }
-    if (button->getTag() == 39) {
-        m_level = GLM->getMainLevel(2010, true);
-        m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(2010);
-    }
+    int levelID = 2000 + button->getTag();
+    m_level = GLM->getMainLevel(levelID, true);
+    m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(levelID);
+
+    auto songSprite = CCSprite::createWithSpriteFrameName("GJ_playMusicBtn_001.png");
+    songSprite->setScale(0.5f);
+    auto songBtn = CCMenuItemSpriteExtra::create(
+        songSprite,
+        button,
+        menu_selector(IslandLevel::onSong)
+    );
+    songBtn->setPosition({ m_mainLayer->getContentSize().width, m_mainLayer->getContentSize().height });
+    m_buttonMenu->addChild(songBtn);
 
     auto playBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png"), this, menu_selector(IslandLevel::onPlay));
     
@@ -334,4 +304,9 @@ void IslandLevel::onInfo(CCObject* sender) {
     auto GLM = GameLevelManager::sharedState();
     auto level = GLM->getMainLevel(this->m_level->m_levelID, true);
     sLOLwshow2(level);
+}
+
+void IslandLevel::onSong(CCObject* sender) {
+    if (!m_level) return;
+    SongInfoLayer::create(m_level->m_songID)->show();
 }
