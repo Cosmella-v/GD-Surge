@@ -8,13 +8,13 @@ bool MyFollowRewardPage::init() {
     if (!FollowRewardPage::init())
         return false;
 
-    if (auto layer = this->getChildByType<CCLayer*>(0)) {
+    if (auto layer = getChildByType<CCLayer*>(0)) {
         if (auto title = layer->getChildByType<CCLabelBMFont*>(0)) {
             title->setString("Follow OmgRod!");
         }
     }
 
-    m_fields->m_rewardsPage = typeinfo_cast<RewardsPage*>(this->getParent());
+    m_fields->m_rewardsPage = typeinfo_cast<RewardsPage*>(getParent());
 
     return true;
 }
@@ -91,7 +91,7 @@ void MyFollowRewardPage::onSpecialItem(CCObject* sender) {
             360.f,
             [&](auto layer, bool btn2) {
                 if (btn2) {
-                    this->onSpecialItemConfirm();
+                    onSpecialItemConfirm();
                 }
             }
         );

@@ -42,14 +42,14 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
         auto layer = scene->getChildByType<LevelSelectLayer*>(0);
         if (!layer) return;
 
-        auto label = typeinfo_cast<CCLabelBMFont*>(this->getChildByID("coming-soon-label"));
+        auto label = typeinfo_cast<CCLabelBMFont*>(getChildByID("coming-soon-label"));
         bool hasAch = AchievementManager::sharedState()->isAchievementEarned("geometry.ach.surge.vault04");
 
         if (label) {
             label->setVisible(m_level->m_levelID == -1 && !hasAch);
         }
 
-        if (auto oldNode = this->getChildByID("coming-never-node")) {
+        if (auto oldNode = getChildByID("coming-never-node")) {
             oldNode->removeFromParent();
         }
 
@@ -85,13 +85,13 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
                     comingNeverNode->addChild(zigzag1);
                     comingNeverNode->addChild(zigzag2);
 
-                    this->addChild(comingNeverNode);
+                    addChild(comingNeverNode);
                 }
                 break;
             }
 
             case -3: {
-                if (!this->getChildByID("islands-menu"_spr)) {
+                if (!getChildByID("islands-menu"_spr)) {
                     auto logo = CCSprite::createWithSpriteFrameName("islandsLogo.png"_spr);
                     logo->setScale(0.75f);
 
@@ -106,7 +106,7 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
                     menu->addChild(logoBtn);
                     menu->setPosition({ 0, 0 });
                     menu->setID("islands-menu"_spr);
-                    this->addChild(menu);
+                    addChild(menu);
                 }
                 break;
             }
@@ -116,7 +116,7 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
         }
 
         if (level->m_levelID != -3) {
-            if (auto menu = this->getChildByID("islands-menu"_spr)) {
+            if (auto menu = getChildByID("islands-menu"_spr)) {
                 menu->removeFromParent();
             }
         }

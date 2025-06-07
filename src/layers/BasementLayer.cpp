@@ -14,13 +14,13 @@ bool BasementLayer::init() {
 
     auto background = createLayerBG();
     background->setColor({ 60, 0, 60 });
-    this->addChild(background, -1);
+    addChild(background, -1);
 
 	auto misc = CCMenu::create();
-	this->addChild(misc);
+	addChild(misc);
 
 	m_pButtonMenu = CCMenu::create();
-	this->addChild(m_pButtonMenu);
+	addChild(m_pButtonMenu);
 
 	m_obNext = ccp(0.0f, 75.0f);
 
@@ -35,17 +35,17 @@ bool BasementLayer::init() {
 	auto title = CCLabelBMFont::create("The Basement", "goldFont.fnt");
 	title->setPosition(winSize.width / 2, winSize.height / 2 + 130.0f);
 	title->setScale(1.2f);
-	this->addChild(title);
+	addChild(title);
 
-	this->addButton("GDS_playBtn_001.png"_spr, "Secret Level", menu_selector(BasementLayer::onSecretLevel));
-	this->addButton("GDS_homeBtn_001.png"_spr, "Home..?", menu_selector(BasementLayer::onScratchDialog));
-	this->addButton("GDS_questBtn_001.png"_spr, "Credits", menu_selector(BasementLayer::onCredits));
+	addButton("GDS_playBtn_001.png"_spr, "Secret Level", menu_selector(BasementLayer::onSecretLevel));
+	addButton("GDS_homeBtn_001.png"_spr, "Home..?", menu_selector(BasementLayer::onScratchDialog));
+	addButton("GDS_questBtn_001.png"_spr, "Credits", menu_selector(BasementLayer::onCredits));
 
 	m_bButtonsEntered = false;
 
-	this->setKeypadEnabled(true);
+	setKeypadEnabled(true);
 
-	this->runSequentialFadeIn();
+	runSequentialFadeIn();
 
     return true;
 }

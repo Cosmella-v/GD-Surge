@@ -18,11 +18,11 @@ bool CreditsLayer::init() {
     auto menu = CCMenu::create();
     menu->setPosition({ 0.f, 0.f });
     menu->setAnchorPoint({ 0.f, 0.f });
-    this->addChild(menu);
+    addChild(menu);
 
     auto background = createLayerBG();
     background->setPosition({ -5.f, -5.f });
-    this->addChild(background, -1);
+    addChild(background, -1);
     addSideArt(this, SideArt::Bottom, SideArtStyle::Layer, false);
 
     auto backButton = CCMenuItemSpriteExtra::create(
@@ -35,7 +35,7 @@ bool CreditsLayer::init() {
 
     auto containerNode = CCNode::create();
     containerNode->setPosition({ 0.f, 0.f - winSize.height });
-    this->addChild(containerNode);
+    addChild(containerNode);
 
     auto gdLogo = CCSprite::createWithSpriteFrameName("GJ_logo_001.png");
     gdLogo->setPosition({ winSize.width / 2, winSize.height * 0.8f });

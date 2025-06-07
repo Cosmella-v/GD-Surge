@@ -20,7 +20,7 @@ static auto activeListeners = std::make_shared<std::vector<std::shared_ptr<Event
 bool MyMenuLayer::init() {
     if (!MenuLayer::init()) return false;
 
-    auto socialMenu = this->getChildByID("social-media-menu");
+    auto socialMenu = getChildByID("social-media-menu");
     if (socialMenu) {
         auto button = socialMenu->getChildByID("robtop-logo-button");
         if (button) {
@@ -32,7 +32,7 @@ bool MyMenuLayer::init() {
         }
     }
 
-    auto logo = this->getChildByID("main-title");
+    auto logo = getChildByID("main-title");
     auto spriteLogo = typeinfo_cast<CCSprite*>(logo);
     if (spriteLogo && !(Loader::get()->getLoadedMod("ninxout.redash"))) {
         CCSprite* surgeLogo = CCSprite::createWithSpriteFrameName("surgeLogo_001.png"_spr);
@@ -40,7 +40,7 @@ bool MyMenuLayer::init() {
         CCRect logoBounds = spriteLogo->boundingBox();
         surgeLogo->setAnchorPoint({1.0f, 1.0f});
         surgeLogo->setPosition(ccp(logoBounds.getMaxX() - 2.f, logoBounds.getMinY() - 1.5f));
-        this->addChild(surgeLogo);
+        addChild(surgeLogo);
 
         std::string nodeChosenByYAMM = "this-mod-doesnt-assign-node-ids-to-anything-lmfao"_spr;
 
@@ -63,7 +63,7 @@ bool MyMenuLayer::init() {
     }
 
     if (!Mod::get()->getSettingValue<bool>("disable-warning-popup") && !startup) {
-        this->scheduleOnce(SEL_SCHEDULE(&MyMenuLayer::onStartupPopup), 0.1f);
+        scheduleOnce(SEL_SCHEDULE(&MyMenuLayer::onStartupPopup), 0.1f);
     }
 
     /*

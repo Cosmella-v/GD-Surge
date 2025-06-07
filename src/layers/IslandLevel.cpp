@@ -5,8 +5,8 @@
 using namespace geode::prelude;
 
 bool IslandLevel::setup(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
-    this->m_level = level;
-    this->setID("IslandLevel"_spr);
+    m_level = level;
+    setID("IslandLevel"_spr);
 
     auto GLM = GameLevelManager::sharedState();
 
@@ -237,7 +237,7 @@ bool IslandLevel::setup(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
 
     log::debug("Stars: {}", m_level->m_stars);
 
-    this->setTitle(this->m_level->m_levelName);
+    setTitle(m_level->m_levelName);
 
     return true;
 }
@@ -303,7 +303,7 @@ void sLOLwshow2(GJGameLevel* level212) {
 
 void IslandLevel::onInfo(CCObject* sender) {
     auto GLM = GameLevelManager::sharedState();
-    auto level = GLM->getMainLevel(this->m_level->m_levelID, true);
+    auto level = GLM->getMainLevel(m_level->m_levelID, true);
     sLOLwshow2(level);
 }
 

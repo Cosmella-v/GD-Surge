@@ -17,7 +17,7 @@ bool MyLoadingLayer::init(bool fromReload) {
     version->setPosition({5, 5});
     version->setAnchorPoint({0, 0});
     version->setScale(0.5f);
-    this->addChild(version);
+    addChild(version);
 
     auto director = CCDirector::get();
     auto winSize = director->getWinSize();
@@ -37,9 +37,9 @@ bool MyLoadingLayer::init(bool fromReload) {
     surgeLogo->setAnchorPoint({1.0f, 1.0f});
     surgeLogo->setPosition(ccp(logoBounds.getMaxX() - 2.f, logoBounds.getMinY() - 1.5f));
 
-    this->addChild(surgeLogo);
+    addChild(surgeLogo);
 
-    auto robtopLogo = static_cast<CCSprite *>(this->getChildByID("robtop-logo"));
+    auto robtopLogo = static_cast<CCSprite *>(getChildByID("robtop-logo"));
     if (robtopLogo)
     {
         auto teamLogo = CCSprite::createWithSpriteFrameName("omgrodLogo_01.png"_spr);

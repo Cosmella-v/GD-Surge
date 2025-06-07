@@ -10,12 +10,12 @@ bool MyGJShopLayer::init(ShopType p0) {
 	FMODAudioEngine::sharedEngine()->playMusic("RandomSong03.mp3"_spr, true, 0.1f, 0);
 	auto extraMenu = CCMenu::create();
 	extraMenu->setPosition({0, 0});
-	this->addChild(extraMenu);
+	addChild(extraMenu);
 	auto particle = static_cast<CCParticleSystemQuad *>(getChildren()->objectAtIndex(7));
 	particle->setStartColor({193, 122, 5, 255});
 	particle->setEndColor({255, 122, 0, 0});
 
-	auto bg = this->getChildByType<CCSprite*>(0);
+	auto bg = getChildByType<CCSprite*>(0);
 	if (bg) {
 		auto bgFrame = CCSpriteFrameCache::get()->spriteFrameByName("GDS_shopBG.png"_spr);
 		if (bgFrame) {
@@ -25,7 +25,7 @@ bool MyGJShopLayer::init(ShopType p0) {
 		}
 	}
 
-	auto desk = this->getChildByType<CCSprite*>(3);
+	auto desk = getChildByType<CCSprite*>(3);
 	if (desk) {
 		auto deskFrame = CCSpriteFrameCache::get()->spriteFrameByName("GDS_shopDesk.png"_spr);
 		if (deskFrame) {
@@ -35,18 +35,18 @@ bool MyGJShopLayer::init(ShopType p0) {
 		}
 	}
 
-    auto oldShopkeeper = this->getChildByType<AnimatedShopKeeper*>(0);
+    auto oldShopkeeper = getChildByType<AnimatedShopKeeper*>(0);
     if (oldShopkeeper) {
         auto newShopkeeper = AnimatedShopKeeper::create(ShopType{1});
         newShopkeeper->setPosition(oldShopkeeper->getPosition());
         newShopkeeper->setScale(oldShopkeeper->getScale());
         newShopkeeper->setRotation(oldShopkeeper->getRotation());
         newShopkeeper->setAnchorPoint(oldShopkeeper->getAnchorPoint());
-        this->addChild(newShopkeeper);
+        addChild(newShopkeeper);
         oldShopkeeper->removeFromParent();
     }
 
-    auto shopSign = this->getChildByType<CCSprite*>(1);
+    auto shopSign = getChildByType<CCSprite*>(1);
     if (shopSign) {
         auto shopSignFrame = CCSpriteFrameCache::get()->spriteFrameByName("GDS_shopSign.png"_spr);
         if (shopSignFrame) {
@@ -57,7 +57,7 @@ bool MyGJShopLayer::init(ShopType p0) {
     }
 
 	if (!Mod::get()->getSavedValue<bool>("shop-yap")) {
-		this->runAction(
+		runAction(
 			CCSequence::create(
 				CCDelayTime::create(1.5f),
 				CCCallFunc::create(this, callfunc_selector(MyGJShopLayer::showEntryDialog)),

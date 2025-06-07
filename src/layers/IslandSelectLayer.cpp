@@ -887,7 +887,7 @@ bool IslandSelectLayer::init(int page) {
 
     m_background = createLayerBG();
     m_background->setZOrder(-4);
-    this->addChild(m_background);
+    addChild(m_background);
 
     sprite3->setColor(ccBLACK);
     sprite3->setOpacity(40);
@@ -923,7 +923,7 @@ bool IslandSelectLayer::init(int page) {
     pageBtnsMenu->addChild(m_nextPageBtn);
     pageBtnsMenu->addChild(m_prevPageBtn);
 
-    this->addChild(pageBtnsMenu);
+    addChild(pageBtnsMenu);
 
     if (m_iLevels.level2complete == 1) {
         level2->setVisible(false);
@@ -1321,7 +1321,7 @@ bool IslandSelectLayer::init(int page) {
         dl->animateInRandomSide();
         dl->setZOrder(2);
 
-        this->addChild(dl, 3);
+        addChild(dl, 3);
         Mod::get()->setSavedValue("islandlevel10complete", 1);
     }
 
@@ -1436,7 +1436,7 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
     const int pageCount = 3; 
     const float threshold = 0.7f; 
 
-    float x = -point.x / this->m_fWindowWidth;
+    float x = -point.x / m_fWindowWidth;
     while (x < 0.0f) {
         x += pageCount;
     }

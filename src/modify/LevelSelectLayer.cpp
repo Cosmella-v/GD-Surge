@@ -122,17 +122,16 @@ bool MyLevelSelectLayer::init(int pageID) {
         return false;
     }
 
-    this->updatePageWithObject(pageObj, dynObj);
+    updatePageWithObject(pageObj, dynObj);
 
-    if (this->m_scrollLayer)
-        this->m_scrollLayer->repositionPagesLooped();
+    if (m_scrollLayer)
+        m_scrollLayer->repositionPagesLooped();
     else
-        log::error("this->m_scrollLayer is null");
+        log::error("m_scrollLayer is null");
 
     return true;
 }
 
-#ifndef GEODE_IS_IOS
 ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
     if (!m_scrollLayer || !m_scrollLayer->m_dynamicObjects) {
         log::error("m_scrollLayer or m_dynamicObjects is null");
@@ -167,4 +166,3 @@ ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
 
     return GM->colorForIdx(colIDs[page % 8]);
 }
-#endif

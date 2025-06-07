@@ -254,7 +254,7 @@ bool MySecretLayer::init() {
     // layout->setAxisAlignment(AxisAlignment::Center);
     menu->setLayout(layout);
 
-    this->addChild(menu);
+    addChild(menu);
 
     auto basementIcon = CCSprite::createWithSpriteFrameName("secretDoorBtn2_open_001.png");
     basementIcon->setScale(0.5f);
@@ -276,7 +276,7 @@ bool MySecretLayer::init() {
     if (!Mod::get()->getSavedValue<bool>("vault-open-message")) {
         m_searchInput->setTouchEnabled(false);
         m_submitButton->setEnabled(false);
-        this->runAction(
+        runAction(
             CCSequence::create(
                 CCDelayTime::create(1.5f),
                 CCCallFunc::create(this, callfunc_selector(MySecretLayer::showEntryDialog)),
