@@ -37,7 +37,6 @@ bool IslandSelectLayer::init(int page) {
     setTouchEnabled(true);
     setKeyboardEnabled(true);
 
-    setKeypadEnabled(true);
     auto node = IslandNode::create(1,this);
     auto node2 = IslandNode::create(1, this);
     auto node3 = IslandNode::create(1, this);
@@ -45,32 +44,14 @@ bool IslandSelectLayer::init(int page) {
     auto GM = GameManager::sharedState();
     auto GLM = GameLevelManager::sharedState();
    
-    CCString* path = CCString::createWithFormat(
-        "island_%02d.png"_spr,
-        1
-    );
+    CCString* path = CCString::createWithFormat("island_%02d.png"_spr, 1);
+    CCSprite* sprite = CCSprite::createWithSpriteFrameName(path->getCString());
 
-    CCSprite* sprite = CCSprite::createWithSpriteFrameName(
-        path->getCString()
-    );
+    CCString* path2 = CCString::createWithFormat("island_%02d.png"_spr, 2);
+    CCSprite* sprite2 = CCSprite::createWithSpriteFrameName(path2->getCString());
 
-    CCString* path2 = CCString::createWithFormat(
-        "island_%02d.png"_spr,
-        2
-    );
-
-    CCSprite* sprite2 = CCSprite::createWithSpriteFrameName(
-        path2->getCString()
-    );
-
-    CCString* path3 = CCString::createWithFormat(
-        "island_%02d.png"_spr,
-        3
-    );
-
-    CCSprite* sprite3 = CCSprite::createWithSpriteFrameName(
-        path->getCString()
-    );
+    CCString* path3 = CCString::createWithFormat("island_%02d.png"_spr, 3);
+    CCSprite* sprite3 = CCSprite::createWithSpriteFrameName(path->getCString());
 
     CCSprite* backSpr = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
     CCMenuItemSpriteExtra* backBtn = CCMenuItemSpriteExtra::create(backSpr, this, menu_selector(IslandSelectLayer::onClose));
@@ -93,18 +74,6 @@ bool IslandSelectLayer::init(int page) {
     m_fWindowWidth = winSize.width;
 
     CCMenu* dashlandsmenu = CCMenu::create();
-
-    CCSprite* unkspr = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr1 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr2 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr3 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr4 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr5 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr6 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr7 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unksp8 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr9 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-    CCSprite* unkspr10 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
 
     //locked sprites
     CCSprite* level2 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
@@ -214,7 +183,7 @@ bool IslandSelectLayer::init(int page) {
     dashlandsmenu->addChild(level4PathPoint4);
     dashlandsmenu->addChild(level4PathPoint5);
 
-    CCMenuItemSpriteExtra* level1Btn = CCMenuItemSpriteExtra::create(unkspr, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level1Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level1Btn->setTag(1);
     level1Btn->setPosition(-189, -15);
@@ -250,7 +219,7 @@ bool IslandSelectLayer::init(int page) {
     level1PathPoint5->setPositionY(-26);
     level1PathPoint5->setScale(0.5);
     level1PathPoint5->setScaleX(1);
-    CCMenuItemSpriteExtra* level2Btn = CCMenuItemSpriteExtra::create(unkspr1, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level2Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level2Btn->setTag(2);
     level2Btn->setPosition(-83, -25);
@@ -289,7 +258,7 @@ bool IslandSelectLayer::init(int page) {
     level2PathPoint5->setScale(0.5);
     level2PathPoint5->setScaleX(1);
 
-    CCMenuItemSpriteExtra* level3Btn = CCMenuItemSpriteExtra::create(unkspr2, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level3Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level3Btn->setTag(3);
     level3Btn->setPosition(-12, 15);
@@ -469,7 +438,7 @@ bool IslandSelectLayer::init(int page) {
     /*dashlandsmenu->addChild(particles, 2);*/
     // Establecer la escala inicial como 0 para que est�n invisibles
     
-    CCMenuItemSpriteExtra* level4Btn = CCMenuItemSpriteExtra::create(unkspr3, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level4Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level4Btn->setTag(4);
     level4Btn->setPosition(47, -20);
@@ -561,7 +530,7 @@ bool IslandSelectLayer::init(int page) {
         }
     }
     
-    CCMenuItemSpriteExtra* level5Btn = CCMenuItemSpriteExtra::create(unkspr4, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level5Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level5Btn->setTag(5);
     level5Btn->setPosition(152, -5);
@@ -624,7 +593,7 @@ bool IslandSelectLayer::init(int page) {
     }
 
     auto TheInterfaceMenu = CCMenu::create();
-    CCMenuItemSpriteExtra* level6Btn = CCMenuItemSpriteExtra::create(unkspr5, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level6Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level6Btn->setTag(6);
     level6Btn->setPosition(-175, -12);
@@ -669,7 +638,7 @@ bool IslandSelectLayer::init(int page) {
     TheInterfaceMenu->addChild(level6PathPoint4, 2);
     TheInterfaceMenu->addChild(level6PathPoint5, 2);
 
-    CCMenuItemSpriteExtra* level7Btn = CCMenuItemSpriteExtra::create(unkspr6, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level7Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level7Btn->setTag(7);
     level7Btn->setPosition(-73, -28);
@@ -760,7 +729,7 @@ bool IslandSelectLayer::init(int page) {
         }
     }
 
-    CCMenuItemSpriteExtra* level8Btn = CCMenuItemSpriteExtra::create(unkspr7, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level8Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level8Btn->setTag(8);
     level8Btn->setPosition(-10, 15);
@@ -878,7 +847,7 @@ bool IslandSelectLayer::init(int page) {
         }
     }
 
-    CCMenuItemSpriteExtra* level9Btn = CCMenuItemSpriteExtra::create(unksp8, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level9Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level9Btn->setTag(9);
     level9Btn->setPosition(80, -38);
@@ -994,7 +963,7 @@ bool IslandSelectLayer::init(int page) {
         }
     }
 
-    CCMenuItemSpriteExtra* level10Btn = CCMenuItemSpriteExtra::create(unkspr9, this, menu_selector(IslandSelectLayer::onIslandLevel));
+    CCMenuItemSpriteExtra* level10Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
     level10Btn->setTag(10);
     level10Btn->setPosition(170, -10);
