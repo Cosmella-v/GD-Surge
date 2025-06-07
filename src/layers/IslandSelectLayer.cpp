@@ -1308,23 +1308,15 @@ bool IslandSelectLayer::init(int page) {
         level1arrow->runAction(repeatAction);
     }
 
-    m_background = CCSprite::create("GJ_gradientBG.png");
-    m_background->setAnchorPoint({ 0.f, 0.f });
-    addChild(m_background, -4);
-    
-    m_background->setScaleX((winSize.width + 10.f) / m_background->getTextureRect().size.width);
-    m_background->setScaleY((winSize.height + 10.f) / m_background->getTextureRect().size.height);
-    m_background->setPosition(ccp(-5, -5));
-    m_background->setColor(GM->colorForIdx(4));
-    
+    m_background = createLayerBG();
     m_background->setZOrder(-4);
+    this->addChild(m_background);
+
     sprite3->setColor(ccBLACK);
     sprite3->setOpacity(40);
     
     m_background->setColor({ 0, 125, 255 });
-    CCNode* sideArt = createSideArt();
-    
-    addChild(sideArt);
+    addSideArt(this, SideArt::Bottom, false);
     
     auto pageBtnsMenu = CCMenu::create();
     pageBtnsMenu->setPosition({ 0, 0 });
@@ -1464,32 +1456,6 @@ void IslandSelectLayer::runParticle() {
     }
     particles->addChild(circlewave, 2);
     particles->addChild(circlewave2, 2);
-}
-
-CCNode* IslandSelectLayer::createSideArt() {
-    CCNode* sideArt = CCNode::create();
-
-    CCDirector* director = CCDirector::sharedDirector();
-    const float screenLeft = director->getScreenLeft();
-    const float screenRight = director->getScreenRight();
-    const float screenBottom = director->getScreenBottom();
-
-    CCSprite* left = CCSprite::createWithSpriteFrameName(
-        "GJ_sideArt_001.png"
-    );
-    left->setAnchorPoint({ 0.0f, 0.0f });
-    left->setPosition({ screenLeft - 1.0f, screenBottom - 1.0f });
-    sideArt->addChild(left);
-
-    CCSprite* right = CCSprite::createWithSpriteFrameName(
-        "GJ_sideArt_001.png"
-    );
-    right->setAnchorPoint({ 1.0f, 0.0f });
-    right->setPosition({ screenRight + 1.0f, screenBottom - 1.0f });
-    right->setFlipX(true);
-    sideArt->addChild(right);
-
-    return sideArt;
 }
 
 void IslandSelectLayer::keyBackClicked() {

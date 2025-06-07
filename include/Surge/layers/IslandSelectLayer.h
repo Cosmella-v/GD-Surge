@@ -21,14 +21,11 @@ public:
 	void onClose(CCObject*);
 	void onPrev(CCObject*);
 	void onNext(CCObject*);
-	void onDownload(CCObject*);
-	void onSoundtracks(CCObject*);
 	void onBack(CCObject*);
 	void keyBackClicked() override;
 	void onIslandLevel(CCObject* sender);
 	void runParticle();
 	void scrollLayerMoved(CCPoint) override;
-	CCNode* createSideArt();
 	void keyDown(int);
 	void updateColors();
 	static IslandSelectLayer* create(int page);
