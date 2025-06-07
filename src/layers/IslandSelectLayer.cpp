@@ -87,951 +87,909 @@ bool IslandSelectLayer::init(int page) {
     CCSprite* level10 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
 
     //pointers animation 1 (-)
-    CCSprite* level1PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level1PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level1PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level1PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level1PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level1PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level1PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level1PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level1PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level1PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 2 (B)
-    CCSprite* level2PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level2PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level2PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level2PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level2PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level2PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level2PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level2PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level2PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level2PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 3 (M)
-    CCSprite* level3PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level3PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level3PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level3PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level3PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level3PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level3PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level3PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level3PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level3PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 4 (Y)
-    CCSprite* level4PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level4PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level4PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level4PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level4PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level4PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level4PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level4PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level4PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level4PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 5 (F)
-    CCSprite* level5PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level5PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level5PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level5PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level5PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level5PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level5PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level5PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level5PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level5PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 6 (SP)
-    CCSprite* level6PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level6PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level6PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level6PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level6PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level6PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level6PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level6PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level6PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level6PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 7 (S)
-    CCSprite* level7PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level7PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level7PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level7PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level7PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level7PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level7PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level7PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level7PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level7PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 8 (E)
-    CCSprite* level8PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level8PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level8PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level8PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level8PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level8PathPoint6 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level8PathPoint7 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level8PathPoint8 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint6 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint7 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level8PathPoint8 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 9 (R)
-    CCSprite* level9PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level9PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level9PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level9PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level9PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level9PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level9PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level9PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level9PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level9PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
     //pointers animation 10 (MDO)
-    CCSprite* level10PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level10PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level10PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level10PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
-    CCSprite* level10PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level10PathPoint1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level10PathPoint2 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level10PathPoint3 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level10PathPoint4 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
+    m_points.level10PathPoint5 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
 
-    dashlandsmenu->addChild(level1PathPoint1);
-    dashlandsmenu->addChild(level1PathPoint2);
-    dashlandsmenu->addChild(level1PathPoint3);
-    dashlandsmenu->addChild(level1PathPoint4);
-    dashlandsmenu->addChild(level1PathPoint5);
+    dashlandsmenu->addChild(m_points.level1PathPoint1);
+    dashlandsmenu->addChild(m_points.level1PathPoint2);
+    dashlandsmenu->addChild(m_points.level1PathPoint3);
+    dashlandsmenu->addChild(m_points.level1PathPoint4);
+    dashlandsmenu->addChild(m_points.level1PathPoint5);
 
-    dashlandsmenu->addChild(level2PathPoint1);
-    dashlandsmenu->addChild(level2PathPoint2);
-    dashlandsmenu->addChild(level2PathPoint3);
-    dashlandsmenu->addChild(level2PathPoint4);
-    dashlandsmenu->addChild(level2PathPoint5);
+    dashlandsmenu->addChild(m_points.level2PathPoint1);
+    dashlandsmenu->addChild(m_points.level2PathPoint2);
+    dashlandsmenu->addChild(m_points.level2PathPoint3);
+    dashlandsmenu->addChild(m_points.level2PathPoint4);
+    dashlandsmenu->addChild(m_points.level2PathPoint5);
 
-    dashlandsmenu->addChild(level3PathPoint1);
-    dashlandsmenu->addChild(level3PathPoint2);
-    dashlandsmenu->addChild(level3PathPoint3);
-    dashlandsmenu->addChild(level3PathPoint4);
-    dashlandsmenu->addChild(level3PathPoint5);
+    dashlandsmenu->addChild(m_points.level3PathPoint1);
+    dashlandsmenu->addChild(m_points.level3PathPoint2);
+    dashlandsmenu->addChild(m_points.level3PathPoint3);
+    dashlandsmenu->addChild(m_points.level3PathPoint4);
+    dashlandsmenu->addChild(m_points.level3PathPoint5);
 
-    dashlandsmenu->addChild(level4PathPoint1);
-    dashlandsmenu->addChild(level4PathPoint2);
-    dashlandsmenu->addChild(level4PathPoint3);
-    dashlandsmenu->addChild(level4PathPoint4);
-    dashlandsmenu->addChild(level4PathPoint5);
+    dashlandsmenu->addChild(m_points.level4PathPoint1);
+    dashlandsmenu->addChild(m_points.level4PathPoint2);
+    dashlandsmenu->addChild(m_points.level4PathPoint3);
+    dashlandsmenu->addChild(m_points.level4PathPoint4);
+    dashlandsmenu->addChild(m_points.level4PathPoint5);
 
-    CCMenuItemSpriteExtra* level1Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level1Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level1Btn->setTag(1);
-    level1Btn->setPosition(-189, -15);
+    m_iLevels.level1Btn->setTag(1);
+    m_iLevels.level1Btn->setPosition(-189, -15);
 
     //LEVEL 1 POINTS
     //point 1
-    level1PathPoint1->setPosition(level1Btn->getPosition());
-    level1PathPoint1->setPositionX(level1PathPoint1->getPositionX()+20);
-    level1PathPoint1->setPositionY(-20);
-    level1PathPoint1->setScale(0.5);
-    level1PathPoint1->setScaleX(1);
+    m_points.level1PathPoint1->setPosition(m_iLevels.level1Btn->getPosition());
+    m_points.level1PathPoint1->setPositionX(m_points.level1PathPoint1->getPositionX()+20);
+    m_points.level1PathPoint1->setPositionY(-20);
+    m_points.level1PathPoint1->setScale(0.5);
+    m_points.level1PathPoint1->setScaleX(1);
     //point 2
-    level1PathPoint2->setPosition(level1Btn->getPosition());
-    level1PathPoint2->setPositionX(level1PathPoint2->getPositionX()+32);
-    level1PathPoint2->setPositionY(-25);
-    level1PathPoint2->setScale(0.5);
-    level1PathPoint2->setScaleX(1);
+    m_points.level1PathPoint2->setPosition(m_iLevels.level1Btn->getPosition());
+    m_points.level1PathPoint2->setPositionX(m_points.level1PathPoint2->getPositionX()+32);
+    m_points.level1PathPoint2->setPositionY(-25);
+    m_points.level1PathPoint2->setScale(0.5);
+    m_points.level1PathPoint2->setScaleX(1);
     //point 3
-    level1PathPoint3->setPosition(level1Btn->getPosition());
-    level1PathPoint3->setPositionX(level1PathPoint3->getPositionX()+50);
-    level1PathPoint3->setPositionY(-22);
-    level1PathPoint3->setScale(0.5);
-    level1PathPoint3->setScaleX(1);
+    m_points.level1PathPoint3->setPosition(m_iLevels.level1Btn->getPosition());
+    m_points.level1PathPoint3->setPositionX(m_points.level1PathPoint3->getPositionX()+50);
+    m_points.level1PathPoint3->setPositionY(-22);
+    m_points.level1PathPoint3->setScale(0.5);
+    m_points.level1PathPoint3->setScaleX(1);
     //point 4
-    level1PathPoint4->setPosition(level1Btn->getPosition());
-    level1PathPoint4->setPositionX(level1PathPoint4->getPositionX()+77);
-    level1PathPoint4->setPositionY(-22.5);
-    level1PathPoint4->setScale(0.5);
-    level1PathPoint4->setScaleX(1);
+    m_points.level1PathPoint4->setPosition(m_iLevels.level1Btn->getPosition());
+    m_points.level1PathPoint4->setPositionX(m_points.level1PathPoint4->getPositionX()+77);
+    m_points.level1PathPoint4->setPositionY(-22.5);
+    m_points.level1PathPoint4->setScale(0.5);
+    m_points.level1PathPoint4->setScaleX(1);
     //point 5
-    level1PathPoint5->setPosition(level1Btn->getPosition());
-    level1PathPoint5->setPositionX(level1PathPoint5->getPositionX()+89.7);
-    level1PathPoint5->setPositionY(-26);
-    level1PathPoint5->setScale(0.5);
-    level1PathPoint5->setScaleX(1);
-    CCMenuItemSpriteExtra* level2Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_points.level1PathPoint5->setPosition(m_iLevels.level1Btn->getPosition());
+    m_points.level1PathPoint5->setPositionX(m_points.level1PathPoint5->getPositionX()+89.7);
+    m_points.level1PathPoint5->setPositionY(-26);
+    m_points.level1PathPoint5->setScale(0.5);
+    m_points.level1PathPoint5->setScaleX(1);
+    m_iLevels.level2Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level2Btn->setTag(2);
-    level2Btn->setPosition(-83, -25);
-    level2Btn->setVisible(false);
+    m_iLevels.level2Btn->setTag(2);
+    m_iLevels.level2Btn->setPosition(-83, -25);
+    m_iLevels.level2Btn->setVisible(false);
     level2->setPosition({ -80, -30 });
 
     //LEVEL 2 POINTS
     //point 1
-    level2PathPoint1->setPosition(level2Btn->getPosition());
-    level2PathPoint1->setPositionX(level2PathPoint1->getPositionX() + 7);
-    level2PathPoint1->setPositionY(-22);
-    level2PathPoint1->setScale(0.5);
-    level2PathPoint1->setScaleX(1);
+    m_points.level2PathPoint1->setPosition(m_iLevels.level2Btn->getPosition());
+    m_points.level2PathPoint1->setPositionX(m_points.level2PathPoint1->getPositionX() + 7);
+    m_points.level2PathPoint1->setPositionY(-22);
+    m_points.level2PathPoint1->setScale(0.5);
+    m_points.level2PathPoint1->setScaleX(1);
     //point 2
-    level2PathPoint2->setPosition(level2Btn->getPosition());
-    level2PathPoint2->setPositionX(level2PathPoint2->getPositionX() + 13);
-    level2PathPoint2->setPositionY(-15);
-    level2PathPoint2->setScale(0.5);
-    level2PathPoint2->setScaleX(1);
+    m_points.level2PathPoint2->setPosition(m_iLevels.level2Btn->getPosition());
+    m_points.level2PathPoint2->setPositionX(m_points.level2PathPoint2->getPositionX() + 13);
+    m_points.level2PathPoint2->setPositionY(-15);
+    m_points.level2PathPoint2->setScale(0.5);
+    m_points.level2PathPoint2->setScaleX(1);
     //point 3
-    level2PathPoint3->setPosition(level2Btn->getPosition());
-    level2PathPoint3->setPositionX(level2PathPoint3->getPositionX() + 23);
-    level2PathPoint3->setPositionY(-7);
-    level2PathPoint3->setScale(0.5);
-    level2PathPoint3->setScaleX(1);
+    m_points.level2PathPoint3->setPosition(m_iLevels.level2Btn->getPosition());
+    m_points.level2PathPoint3->setPositionX(m_points.level2PathPoint3->getPositionX() + 23);
+    m_points.level2PathPoint3->setPositionY(-7);
+    m_points.level2PathPoint3->setScale(0.5);
+    m_points.level2PathPoint3->setScaleX(1);
     //point 4
-    level2PathPoint4->setPosition(level2Btn->getPosition());
-    level2PathPoint4->setPositionX(level2PathPoint4->getPositionX() + 40);
-    level2PathPoint4->setPositionY(2.5);
-    level2PathPoint4->setScale(0.5);
-    level2PathPoint4->setScaleX(1);
+    m_points.level2PathPoint4->setPosition(m_iLevels.level2Btn->getPosition());
+    m_points.level2PathPoint4->setPositionX(m_points.level2PathPoint4->getPositionX() + 40);
+    m_points.level2PathPoint4->setPositionY(2.5);
+    m_points.level2PathPoint4->setScale(0.5);
+    m_points.level2PathPoint4->setScaleX(1);
     //point 5
-    level2PathPoint5->setPosition(level2Btn->getPosition());
-    level2PathPoint5->setPositionX(level2PathPoint5->getPositionX() + 52);
-    level2PathPoint5->setPositionY(5);
-    level2PathPoint5->setScale(0.5);
-    level2PathPoint5->setScaleX(1);
+    m_points.level2PathPoint5->setPosition(m_iLevels.level2Btn->getPosition());
+    m_points.level2PathPoint5->setPositionX(m_points.level2PathPoint5->getPositionX() + 52);
+    m_points.level2PathPoint5->setPositionY(5);
+    m_points.level2PathPoint5->setScale(0.5);
+    m_points.level2PathPoint5->setScaleX(1);
 
-    CCMenuItemSpriteExtra* level3Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level3Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level3Btn->setTag(3);
-    level3Btn->setPosition(-12, 15);
-    level3Btn->setVisible(false);
+    m_iLevels.level3Btn->setTag(3);
+    m_iLevels.level3Btn->setPosition(-12, 15);
+    m_iLevels.level3Btn->setVisible(false);
     level3->setPosition({ -10, 10 });
 
     //LEVEL 3 POINTS
     //point 1
-    level3PathPoint1->setPosition(level3Btn->getPosition());
-    level3PathPoint1->setPositionX(level3PathPoint1->getPositionX() + 13);
-    level3PathPoint1->setPositionY(2);
-    level3PathPoint1->setScale(0.5);
-    level3PathPoint1->setScaleX(1);
+    m_points.level3PathPoint1->setPosition(m_iLevels.level3Btn->getPosition());
+    m_points.level3PathPoint1->setPositionX(m_points.level3PathPoint1->getPositionX() + 13);
+    m_points.level3PathPoint1->setPositionY(2);
+    m_points.level3PathPoint1->setScale(0.5);
+    m_points.level3PathPoint1->setScaleX(1);
     //point 2
-    level3PathPoint2->setPosition(level3Btn->getPosition());
-    level3PathPoint2->setPositionX(level3PathPoint2->getPositionX() + 17);
-    level3PathPoint2->setPositionY(-11);
-    level3PathPoint2->setScale(0.5);
-    level3PathPoint2->setScaleX(1);
+    m_points.level3PathPoint2->setPosition(m_iLevels.level3Btn->getPosition());
+    m_points.level3PathPoint2->setPositionX(m_points.level3PathPoint2->getPositionX() + 17);
+    m_points.level3PathPoint2->setPositionY(-11);
+    m_points.level3PathPoint2->setScale(0.5);
+    m_points.level3PathPoint2->setScaleX(1);
     //point 3
-    level3PathPoint3->setPosition(level3Btn->getPosition());
-    level3PathPoint3->setPositionX(level3PathPoint3->getPositionX() + 19);
-    level3PathPoint3->setPositionY(-20);
-    level3PathPoint3->setScale(0.5);
-    level3PathPoint3->setScaleX(1);
+    m_points.level3PathPoint3->setPosition(m_iLevels.level3Btn->getPosition());
+    m_points.level3PathPoint3->setPositionX(m_points.level3PathPoint3->getPositionX() + 19);
+    m_points.level3PathPoint3->setPositionY(-20);
+    m_points.level3PathPoint3->setScale(0.5);
+    m_points.level3PathPoint3->setScaleX(1);
     //point 4
-    level3PathPoint4->setPosition(level3Btn->getPosition());
-    level3PathPoint4->setPositionX(level3PathPoint4->getPositionX() + 25);
-    level3PathPoint4->setPositionY(-26);
-    level3PathPoint4->setScale(0.5);
-    level3PathPoint4->setScaleX(1);
+    m_points.level3PathPoint4->setPosition(m_iLevels.level3Btn->getPosition());
+    m_points.level3PathPoint4->setPositionX(m_points.level3PathPoint4->getPositionX() + 25);
+    m_points.level3PathPoint4->setPositionY(-26);
+    m_points.level3PathPoint4->setScale(0.5);
+    m_points.level3PathPoint4->setScaleX(1);
     //point 5
-    level3PathPoint5->setPosition(level3Btn->getPosition());
-    level3PathPoint5->setPositionX(level3PathPoint5->getPositionX() + 42);
-    level3PathPoint5->setPositionY(-28);
-    level3PathPoint5->setScale(0.5);
-    level3PathPoint5->setScaleX(1);
+    m_points.level3PathPoint5->setPosition(m_iLevels.level3Btn->getPosition());
+    m_points.level3PathPoint5->setPositionX(m_points.level3PathPoint5->getPositionX() + 42);
+    m_points.level3PathPoint5->setPositionY(-28);
+    m_points.level3PathPoint5->setScale(0.5);
+    m_points.level3PathPoint5->setScaleX(1);
 
     auto scaleAction = CCScaleTo::create(0.5,1, 0.5);
     auto scaleAction2 = CCScaleTo::create(0.5, 1);
 
-    auto scaleWithBounce = CCEaseBounceOut::create(scaleAction);
-    auto scaleWithBounce2 = CCEaseBounceOut::create(scaleAction2);
+    m_scaleWithBounce = CCEaseBounceOut::create(scaleAction);
+    m_scaleWithBounce2 = CCEaseBounceOut::create(scaleAction2);
 
-    auto wlevel1 = GLM->getMainLevel(2001, false);
-    auto wlevel2 = GLM->getMainLevel(2002, false);
-    auto wlevel3 = GLM->getMainLevel(2003, false);
-    auto wlevel4 = GLM->getMainLevel(2004, false);
-    auto wlevel5 = GLM->getMainLevel(2005, false);
-    auto wlevel6 = GLM->getMainLevel(2006, false);
-    auto wlevel7 = GLM->getMainLevel(2007, false);
-    auto wlevel8 = GLM->getMainLevel(2008, false);
-    auto wlevel9 = GLM->getMainLevel(2009, false);
-    auto wlevel10 = GLM->getMainLevel(2010, false);
+    m_iLevels.iLevel1 = GLM->getMainLevel(2001, false);
+    m_iLevels.iLevel2 = GLM->getMainLevel(2002, false);
+    m_iLevels.iLevel3 = GLM->getMainLevel(2003, false);
+    m_iLevels.iLevel4 = GLM->getMainLevel(2004, false);
+    m_iLevels.iLevel5 = GLM->getMainLevel(2005, false);
+    m_iLevels.iLevel6 = GLM->getMainLevel(2006, false);
+    m_iLevels.iLevel7 = GLM->getMainLevel(2007, false);
+    m_iLevels.iLevel8 = GLM->getMainLevel(2008, false);
+    m_iLevels.iLevel9 = GLM->getMainLevel(2009, false);
+    m_iLevels.iLevel10 = GLM->getMainLevel(2010, false);
 
-    auto level1complete = Mod::get()->getSavedValue<int>("islandlevel1complete");
-    auto level2complete = Mod::get()->getSavedValue<int>("islandlevel2complete");
-    auto level3complete = Mod::get()->getSavedValue<int>("islandlevel3complete");
-    auto level4complete = Mod::get()->getSavedValue<int>("islandlevel4complete");
-    auto level5complete = Mod::get()->getSavedValue<int>("islandlevel5complete");
-    auto level6complete = Mod::get()->getSavedValue<int>("islandlevel6complete");
-    auto level7complete = Mod::get()->getSavedValue<int>("islandlevel7complete");
-    auto level8complete = Mod::get()->getSavedValue<int>("islandlevel8complete");
-    auto level9complete = Mod::get()->getSavedValue<int>("islandlevel9complete");
-    auto level10complete = Mod::get()->getSavedValue<int>("islandlevel10complete");
+    m_iLevels.level1complete = Mod::get()->getSavedValue<int>("islandlevel1complete");
+    m_iLevels.level2complete = Mod::get()->getSavedValue<int>("islandlevel2complete");
+    m_iLevels.level3complete = Mod::get()->getSavedValue<int>("islandlevel3complete");
+    m_iLevels.level4complete = Mod::get()->getSavedValue<int>("islandlevel4complete");
+    m_iLevels.level5complete = Mod::get()->getSavedValue<int>("islandlevel5complete");
+    m_iLevels.level6complete = Mod::get()->getSavedValue<int>("islandlevel6complete");
+    m_iLevels.level7complete = Mod::get()->getSavedValue<int>("islandlevel7complete");
+    m_iLevels.level8complete = Mod::get()->getSavedValue<int>("islandlevel8complete");
+    m_iLevels.level9complete = Mod::get()->getSavedValue<int>("islandlevel9complete");
+    m_iLevels.level10complete = Mod::get()->getSavedValue<int>("islandlevel10complete");
 
     //level 1 to level 2 animation
-    if (wlevel1->m_normalPercent != 100) {
+    if (m_iLevels.iLevel1->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel1complete", 0);
     }
-    if (wlevel1->m_normalPercent == 100 && wlevel2->m_normalPercent == 0 && level1complete == 0) {
-        level1PathPoint1->setScaleY(1.2);
-        level1PathPoint2->setScaleY(1.2);
-        level1PathPoint3->setScaleY(1.2);
-        level1PathPoint4->setScaleY(1.2);
-        level1PathPoint5->setScaleY(1.2);
-
-        level1PathPoint1->setScaleX(2);
-        level1PathPoint2->setScaleX(2);
-        level1PathPoint3->setScaleX(2);
-        level1PathPoint4->setScaleX(2);
-        level1PathPoint5->setScaleX(2);
-        //opacty
-        level1PathPoint1->setOpacity(0);
-        level1PathPoint2->setOpacity(0);
-        level1PathPoint3->setOpacity(0);
-        level1PathPoint4->setOpacity(0);
-        level1PathPoint5->setOpacity(0);
-        level2Btn->setOpacity(0);
     
-        level1PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level1PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level1PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level1PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level1PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        
-        level2Btn->setScale(1.5);
-        level2Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("wlevelunlocked", 1);
-        level2Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.8),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
-            nullptr
-        ));
-
-        Mod::get()->setSavedValue("islandlevel1complete", 1);
+    if (m_iLevels.iLevel1->m_normalPercent == 100) {
+        m_iLevels.level2Btn->setVisible(true);
     } else {
-        if (wlevel1->m_normalPercent == 100)
-        {
-            level2Btn->setVisible(true);
-        } else {
-            level1PathPoint1->setOpacity(0);
-            level1PathPoint2->setOpacity(0);
-            level1PathPoint3->setOpacity(0);
-            level1PathPoint4->setOpacity(0);
-            level1PathPoint5->setOpacity(0);
-        }
-       
+        m_points.level1PathPoint1->setOpacity(0);
+        m_points.level1PathPoint2->setOpacity(0);
+        m_points.level1PathPoint3->setOpacity(0);
+        m_points.level1PathPoint4->setOpacity(0);
+        m_points.level1PathPoint5->setOpacity(0);
     }
 
-    if (wlevel2->m_normalPercent != 100) {
+    if (m_iLevels.iLevel2->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel2complete", 0);
     }
-    if (wlevel2->m_normalPercent == 100 && wlevel3->m_normalPercent == 0 && level2complete == 0) {
+    if (m_iLevels.iLevel2->m_normalPercent == 100 && m_iLevels.iLevel3->m_normalPercent == 0 && m_iLevels.level2complete == 0) {
         //level 2 to level 3 animation
-        level2PathPoint1->setScaleY(1.2);
-        level2PathPoint2->setScaleY(1.2);
-        level2PathPoint3->setScaleY(1.2);
-        level2PathPoint4->setScaleY(1.2);
-        level2PathPoint5->setScaleY(1.2);
+        m_points.level2PathPoint1->setScaleY(1.2);
+        m_points.level2PathPoint2->setScaleY(1.2);
+        m_points.level2PathPoint3->setScaleY(1.2);
+        m_points.level2PathPoint4->setScaleY(1.2);
+        m_points.level2PathPoint5->setScaleY(1.2);
 
-        level2PathPoint1->setScaleX(2);
-        level2PathPoint2->setScaleX(2);
-        level2PathPoint3->setScaleX(2);
-        level2PathPoint4->setScaleX(2);
-        level2PathPoint5->setScaleX(2);
+        m_points.level2PathPoint1->setScaleX(2);
+        m_points.level2PathPoint2->setScaleX(2);
+        m_points.level2PathPoint3->setScaleX(2);
+        m_points.level2PathPoint4->setScaleX(2);
+        m_points.level2PathPoint5->setScaleX(2);
         //opacty
-        level2PathPoint1->setOpacity(0);
-        level2PathPoint2->setOpacity(0);
-        level2PathPoint3->setOpacity(0);
-        level2PathPoint4->setOpacity(0);
-        level2PathPoint5->setOpacity(0);
-        level3Btn->setOpacity(0);
+        m_points.level2PathPoint1->setOpacity(0);
+        m_points.level2PathPoint2->setOpacity(0);
+        m_points.level2PathPoint3->setOpacity(0);
+        m_points.level2PathPoint4->setOpacity(0);
+        m_points.level2PathPoint5->setOpacity(0);
+        m_iLevels.level3Btn->setOpacity(0);
 
-        level2PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level2PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level2PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level2PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level2PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
+        m_points.level2PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
 
-        level3Btn->setScale(1.5);
-        level3Btn->setVisible(true);
+        m_iLevels.level3Btn->setScale(1.5);
+        m_iLevels.level3Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 2);
-        level3Btn->runAction(CCSequence::create(
+        Mod::get()->setSavedValue("iLevelUnlocked", 2);
+        m_iLevels.level3Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.8),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel2complete", 1);
     } else {
-        if (wlevel2->m_normalPercent == 100) {
-            level3Btn->setVisible(true);
+        if (m_iLevels.iLevel2->m_normalPercent == 100) {
+            m_iLevels.level3Btn->setVisible(true);
         } else {
-            level2PathPoint1->setOpacity(0);
-            level2PathPoint2->setOpacity(0);
-            level2PathPoint3->setOpacity(0);
-            level2PathPoint4->setOpacity(0);
-            level2PathPoint5->setOpacity(0);
+            m_points.level2PathPoint1->setOpacity(0);
+            m_points.level2PathPoint2->setOpacity(0);
+            m_points.level2PathPoint3->setOpacity(0);
+            m_points.level2PathPoint4->setOpacity(0);
+            m_points.level2PathPoint5->setOpacity(0);
         }
     }
     /*dashlandsmenu->addChild(particles, 2);*/
     // Establecer la escala inicial como 0 para que est�n invisibles
     
-    CCMenuItemSpriteExtra* level4Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level4Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level4Btn->setTag(4);
-    level4Btn->setPosition(47, -20);
-    level4Btn->setVisible(false);
+    m_iLevels.level4Btn->setTag(4);
+    m_iLevels.level4Btn->setPosition(47, -20);
+    m_iLevels.level4Btn->setVisible(false);
     level4->setPosition({ 50, -25 });
 
     //LEVEL 4 POINTS
     //point 1
-    level4PathPoint1->setPosition(level4Btn->getPosition());
-    level4PathPoint1->setPositionX(level4PathPoint1->getPositionX() + 20);
-    level4PathPoint1->setPositionY(-24);
-    level4PathPoint1->setScale(0.5);
-    level4PathPoint1->setScaleX(1);
+    m_points.level4PathPoint1->setPosition(m_iLevels.level4Btn->getPosition());
+    m_points.level4PathPoint1->setPositionX(m_points.level4PathPoint1->getPositionX() + 20);
+    m_points.level4PathPoint1->setPositionY(-24);
+    m_points.level4PathPoint1->setScale(0.5);
+    m_points.level4PathPoint1->setScaleX(1);
     //point 2
-    level4PathPoint2->setPosition(level4Btn->getPosition());
-    level4PathPoint2->setPositionX(level4PathPoint2->getPositionX() + 36);
-    level4PathPoint2->setScale(0.5);
-    level4PathPoint2->setScaleX(1);
+    m_points.level4PathPoint2->setPosition(m_iLevels.level4Btn->getPosition());
+    m_points.level4PathPoint2->setPositionX(m_points.level4PathPoint2->getPositionX() + 36);
+    m_points.level4PathPoint2->setScale(0.5);
+    m_points.level4PathPoint2->setScaleX(1);
     //point 3
-    level4PathPoint3->setPosition(level4Btn->getPosition());
-    level4PathPoint3->setPositionX(level4PathPoint3->getPositionX() + 51);
-    level4PathPoint3->setPositionY(-22.5);
-    level4PathPoint3->setScale(0.5);
-    level4PathPoint3->setScaleX(1);
+    m_points.level4PathPoint3->setPosition(m_iLevels.level4Btn->getPosition());
+    m_points.level4PathPoint3->setPositionX(m_points.level4PathPoint3->getPositionX() + 51);
+    m_points.level4PathPoint3->setPositionY(-22.5);
+    m_points.level4PathPoint3->setScale(0.5);
+    m_points.level4PathPoint3->setScaleX(1);
     //point 4
-    level4PathPoint4->setPosition(level4Btn->getPosition());
-    level4PathPoint4->setPositionX(level4PathPoint4->getPositionX() + 72);
-    level4PathPoint4->setPositionY(-25.5);
-    level4PathPoint4->setScale(0.5);
-    level4PathPoint4->setScaleX(1);
+    m_points.level4PathPoint4->setPosition(m_iLevels.level4Btn->getPosition());
+    m_points.level4PathPoint4->setPositionX(m_points.level4PathPoint4->getPositionX() + 72);
+    m_points.level4PathPoint4->setPositionY(-25.5);
+    m_points.level4PathPoint4->setScale(0.5);
+    m_points.level4PathPoint4->setScaleX(1);
     //point 5
-    level4PathPoint5->setPosition(level4Btn->getPosition());
-    level4PathPoint5->setPositionX(level4PathPoint5->getPositionX() + 88);
-    level4PathPoint5->setPositionY(-20.5);
-    level4PathPoint5->setScale(0.5);
-    level4PathPoint5->setScaleX(1);
+    m_points.level4PathPoint5->setPosition(m_iLevels.level4Btn->getPosition());
+    m_points.level4PathPoint5->setPositionX(m_points.level4PathPoint5->getPositionX() + 88);
+    m_points.level4PathPoint5->setPositionY(-20.5);
+    m_points.level4PathPoint5->setScale(0.5);
+    m_points.level4PathPoint5->setScaleX(1);
 
-    if (wlevel3->m_normalPercent != 100) {
+    if (m_iLevels.iLevel3->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel3complete", 0);
     }
     //level 3 to level 4 animation
-    if (wlevel3->m_normalPercent == 100 && wlevel4->m_normalPercent == 0 && level3complete == 0) {
-        level3PathPoint1->setScaleY(1.2);
-        level3PathPoint2->setScaleY(1.2);
-        level3PathPoint3->setScaleY(1.2);
-        level3PathPoint4->setScaleY(1.2);
-        level3PathPoint5->setScaleY(1.2);
+    if (m_iLevels.iLevel3->m_normalPercent == 100 && m_iLevels.iLevel4->m_normalPercent == 0 && m_iLevels.level3complete == 0) {
+        m_points.level3PathPoint1->setScaleY(1.2);
+        m_points.level3PathPoint2->setScaleY(1.2);
+        m_points.level3PathPoint3->setScaleY(1.2);
+        m_points.level3PathPoint4->setScaleY(1.2);
+        m_points.level3PathPoint5->setScaleY(1.2);
 
-        level3PathPoint1->setScaleX(2);
-        level3PathPoint2->setScaleX(2);
-        level3PathPoint3->setScaleX(2);
-        level3PathPoint4->setScaleX(2);
-        level3PathPoint5->setScaleX(2);
+        m_points.level3PathPoint1->setScaleX(2);
+        m_points.level3PathPoint2->setScaleX(2);
+        m_points.level3PathPoint3->setScaleX(2);
+        m_points.level3PathPoint4->setScaleX(2);
+        m_points.level3PathPoint5->setScaleX(2);
         //opacty
-        level3PathPoint1->setOpacity(0);
-        level3PathPoint2->setOpacity(0);
-        level3PathPoint3->setOpacity(0);
-        level3PathPoint4->setOpacity(0);
-        level3PathPoint5->setOpacity(0);
-        level4Btn->setOpacity(0);
+        m_points.level3PathPoint1->setOpacity(0);
+        m_points.level3PathPoint2->setOpacity(0);
+        m_points.level3PathPoint3->setOpacity(0);
+        m_points.level3PathPoint4->setOpacity(0);
+        m_points.level3PathPoint5->setOpacity(0);
+        m_iLevels.level4Btn->setOpacity(0);
 
-        level3PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level3PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level3PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level3PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level3PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
+        m_points.level3PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
 
-        level4Btn->setScale(1.5);
-        level4Btn->setVisible(true);
+        m_iLevels.level4Btn->setScale(1.5);
+        m_iLevels.level4Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 3);
-        level4Btn->runAction(CCSequence::create(
+        Mod::get()->setSavedValue("iLevelUnlocked", 3);
+        m_iLevels.level4Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.8),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel3complete", 1);
     } else {
-        if (wlevel3->m_normalPercent == 100) {
-            level4Btn->setVisible(true);
+        if (m_iLevels.iLevel3->m_normalPercent == 100) {
+            m_iLevels.level4Btn->setVisible(true);
         } else {
-            level3PathPoint1->setOpacity(0);
-            level3PathPoint2->setOpacity(0);
-            level3PathPoint3->setOpacity(0);
-            level3PathPoint4->setOpacity(0);
-            level3PathPoint5->setOpacity(0);
+            m_points.level3PathPoint1->setOpacity(0);
+            m_points.level3PathPoint2->setOpacity(0);
+            m_points.level3PathPoint3->setOpacity(0);
+            m_points.level3PathPoint4->setOpacity(0);
+            m_points.level3PathPoint5->setOpacity(0);
         }
     }
     
-    CCMenuItemSpriteExtra* level5Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level5Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level5Btn->setTag(5);
-    level5Btn->setPosition(152, -5);
-    level5Btn->setVisible(false);
+    m_iLevels.level5Btn->setTag(5);
+    m_iLevels.level5Btn->setPosition(152, -5);
+    m_iLevels.level5Btn->setVisible(false);
     level5->setPosition({ 155, -10 });
 
 
-    if (wlevel4->m_normalPercent != 100) {
+    if (m_iLevels.iLevel4->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel4complete", 0);
     }
     //level 4 to level 5 animation
-    if (wlevel4->m_normalPercent == 100 && wlevel5->m_normalPercent == 0 && level4complete == 0) {
-        level4PathPoint1->setScaleY(1.2);
-        level4PathPoint2->setScaleY(1.2);
-        level4PathPoint3->setScaleY(1.2);
-        level4PathPoint4->setScaleY(1.2);
-        level4PathPoint5->setScaleY(1.2);
+    if (m_iLevels.iLevel4->m_normalPercent == 100 && m_iLevels.iLevel5->m_normalPercent == 0 && m_iLevels.level4complete == 0) {
+        m_points.level4PathPoint1->setScaleY(1.2);
+        m_points.level4PathPoint2->setScaleY(1.2);
+        m_points.level4PathPoint3->setScaleY(1.2);
+        m_points.level4PathPoint4->setScaleY(1.2);
+        m_points.level4PathPoint5->setScaleY(1.2);
 
-        level4PathPoint1->setScaleX(2);
-        level4PathPoint2->setScaleX(2);
-        level4PathPoint3->setScaleX(2);
-        level4PathPoint4->setScaleX(2);
-        level4PathPoint5->setScaleX(2);
+        m_points.level4PathPoint1->setScaleX(2);
+        m_points.level4PathPoint2->setScaleX(2);
+        m_points.level4PathPoint3->setScaleX(2);
+        m_points.level4PathPoint4->setScaleX(2);
+        m_points.level4PathPoint5->setScaleX(2);
         //opacty
-        level4PathPoint1->setOpacity(0);
-        level4PathPoint2->setOpacity(0);
-        level4PathPoint3->setOpacity(0);
-        level4PathPoint4->setOpacity(0);
-        level4PathPoint5->setOpacity(0);
-        level5Btn->setOpacity(0);
+        m_points.level4PathPoint1->setOpacity(0);
+        m_points.level4PathPoint2->setOpacity(0);
+        m_points.level4PathPoint3->setOpacity(0);
+        m_points.level4PathPoint4->setOpacity(0);
+        m_points.level4PathPoint5->setOpacity(0);
+        m_iLevels.level5Btn->setOpacity(0);
 
-        level4PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level4PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level4PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level4PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level4PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
+        m_points.level4PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
 
-        level5Btn->setScale(1.5);
-        level5Btn->setVisible(true);
+        m_iLevels.level5Btn->setScale(1.5);
+        m_iLevels.level5Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 4);
-        level5Btn->runAction(CCSequence::create(
+        Mod::get()->setSavedValue("iLevelUnlocked", 4);
+        m_iLevels.level5Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.8),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel4complete", 1);
     } else {
-        if (wlevel4->m_normalPercent == 100) {
-            level5Btn->setVisible(true);
+        if (m_iLevels.iLevel4->m_normalPercent == 100) {
+            m_iLevels.level5Btn->setVisible(true);
         } else {
-            level4PathPoint1->setOpacity(0);
-            level4PathPoint2->setOpacity(0);
-            level4PathPoint3->setOpacity(0);
-            level4PathPoint4->setOpacity(0);
-            level4PathPoint5->setOpacity(0);
+            m_points.level4PathPoint1->setOpacity(0);
+            m_points.level4PathPoint2->setOpacity(0);
+            m_points.level4PathPoint3->setOpacity(0);
+            m_points.level4PathPoint4->setOpacity(0);
+            m_points.level4PathPoint5->setOpacity(0);
         }
     }
 
     auto TheInterfaceMenu = CCMenu::create();
-    CCMenuItemSpriteExtra* level6Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level6Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level6Btn->setTag(6);
-    level6Btn->setPosition(-175, -12);
-    level6Btn->setVisible(false);
-    level6->setPosition(level6Btn->getPosition());
+    m_iLevels.level6Btn->setTag(6);
+    m_iLevels.level6Btn->setPosition(-175, -12);
+    m_iLevels.level6Btn->setVisible(false);
+    level6->setPosition(m_iLevels.level6Btn->getPosition());
 
     //LEVEL 6 POINTS
     // point 1
-    level6PathPoint1->setPosition(level6Btn->getPosition());
-    level6PathPoint1->setPositionX(level6PathPoint1->getPositionX() + 20);
-    level6PathPoint1->setPositionY(-16);
-    level6PathPoint1->setScale(0.5);
-    level6PathPoint1->setScaleX(1);
+    m_points.level6PathPoint1->setPosition(m_iLevels.level6Btn->getPosition());
+    m_points.level6PathPoint1->setPositionX(m_points.level6PathPoint1->getPositionX() + 20);
+    m_points.level6PathPoint1->setPositionY(-16);
+    m_points.level6PathPoint1->setScale(0.5);
+    m_points.level6PathPoint1->setScaleX(1);
     //point 2
-    level6PathPoint2->setPosition(level6Btn->getPosition());
-    level6PathPoint2->setPositionX(level6PathPoint2->getPositionX() + 38);
-    level6PathPoint2->setPositionY(-16.5);
-    level6PathPoint2->setScale(0.5);
-    level6PathPoint2->setScaleX(1);
+    m_points.level6PathPoint2->setPosition(m_iLevels.level6Btn->getPosition());
+    m_points.level6PathPoint2->setPositionX(m_points.level6PathPoint2->getPositionX() + 38);
+    m_points.level6PathPoint2->setPositionY(-16.5);
+    m_points.level6PathPoint2->setScale(0.5);
+    m_points.level6PathPoint2->setScaleX(1);
     //point 3
-    level6PathPoint3->setPosition(level6Btn->getPosition());
-    level6PathPoint3->setPositionX(level6PathPoint3->getPositionX() + 55);
-    level6PathPoint3->setPositionY(-11);
-    level6PathPoint3->setScale(0.5);
-    level6PathPoint3->setScaleX(1);
+    m_points.level6PathPoint3->setPosition(m_iLevels.level6Btn->getPosition());
+    m_points.level6PathPoint3->setPositionX(m_points.level6PathPoint3->getPositionX() + 55);
+    m_points.level6PathPoint3->setPositionY(-11);
+    m_points.level6PathPoint3->setScale(0.5);
+    m_points.level6PathPoint3->setScaleX(1);
     //point 4
-    level6PathPoint4->setPosition(level6Btn->getPosition());
-    level6PathPoint4->setPositionX(level6PathPoint4->getPositionX() + 72);
-    level6PathPoint4->setPositionY(-12);
-    level6PathPoint4->setScale(0.5);
-    level6PathPoint4->setScaleX(1);
+    m_points.level6PathPoint4->setPosition(m_iLevels.level6Btn->getPosition());
+    m_points.level6PathPoint4->setPositionX(m_points.level6PathPoint4->getPositionX() + 72);
+    m_points.level6PathPoint4->setPositionY(-12);
+    m_points.level6PathPoint4->setScale(0.5);
+    m_points.level6PathPoint4->setScaleX(1);
     //point 5
-    level6PathPoint5->setPosition(level6Btn->getPosition());
-    level6PathPoint5->setPositionX(level6PathPoint5->getPositionX() + 85);
-    level6PathPoint5->setPositionY(-19.5);
-    level6PathPoint5->setScale(0.5);
-    level6PathPoint5->setScaleX(1);
+    m_points.level6PathPoint5->setPosition(m_iLevels.level6Btn->getPosition());
+    m_points.level6PathPoint5->setPositionX(m_points.level6PathPoint5->getPositionX() + 85);
+    m_points.level6PathPoint5->setPositionY(-19.5);
+    m_points.level6PathPoint5->setScale(0.5);
+    m_points.level6PathPoint5->setScaleX(1);
 
-    TheInterfaceMenu->addChild(level6PathPoint1,2);
-    TheInterfaceMenu->addChild(level6PathPoint2, 2);
-    TheInterfaceMenu->addChild(level6PathPoint3, 2);
-    TheInterfaceMenu->addChild(level6PathPoint4, 2);
-    TheInterfaceMenu->addChild(level6PathPoint5, 2);
+    TheInterfaceMenu->addChild(m_points.level6PathPoint1,2);
+    TheInterfaceMenu->addChild(m_points.level6PathPoint2, 2);
+    TheInterfaceMenu->addChild(m_points.level6PathPoint3, 2);
+    TheInterfaceMenu->addChild(m_points.level6PathPoint4, 2);
+    TheInterfaceMenu->addChild(m_points.level6PathPoint5, 2);
 
-    CCMenuItemSpriteExtra* level7Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level7Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level7Btn->setTag(7);
-    level7Btn->setPosition(-73, -28);
-    level7Btn->setVisible(false);
-    level7->setPosition(level7Btn->getPosition());
+    m_iLevels.level7Btn->setTag(7);
+    m_iLevels.level7Btn->setPosition(-73, -28);
+    m_iLevels.level7Btn->setVisible(false);
+    level7->setPosition(m_iLevels.level7Btn->getPosition());
 
     //LEVEL 7 POINTS
     // point 1
-    level7PathPoint1->setPosition(level7Btn->getPosition());
-    level7PathPoint1->setPositionX(level7PathPoint1->getPositionX() + 10);
-    level7PathPoint1->setPositionY(-8);
-    level7PathPoint1->setScale(0.5);
-    level7PathPoint1->setScaleX(1);
+    m_points.level7PathPoint1->setPosition(m_iLevels.level7Btn->getPosition());
+    m_points.level7PathPoint1->setPositionX(m_points.level7PathPoint1->getPositionX() + 10);
+    m_points.level7PathPoint1->setPositionY(-8);
+    m_points.level7PathPoint1->setScale(0.5);
+    m_points.level7PathPoint1->setScaleX(1);
     //point 2
-    level7PathPoint2->setPosition(level7Btn->getPosition());
-    level7PathPoint2->setPositionX(level7PathPoint2->getPositionX() + 15);
-    level7PathPoint2->setPositionY(0);
-    level7PathPoint2->setScale(0.5);
-    level7PathPoint2->setScaleX(1);
+    m_points.level7PathPoint2->setPosition(m_iLevels.level7Btn->getPosition());
+    m_points.level7PathPoint2->setPositionX(m_points.level7PathPoint2->getPositionX() + 15);
+    m_points.level7PathPoint2->setPositionY(0);
+    m_points.level7PathPoint2->setScale(0.5);
+    m_points.level7PathPoint2->setScaleX(1);
     //point 3
-    level7PathPoint3->setPosition(level7Btn->getPosition());
-    level7PathPoint3->setPositionX(level7PathPoint3->getPositionX() + 30);
-    level7PathPoint3->setPositionY(7);
-    level7PathPoint3->setScale(0.5);
-    level7PathPoint3->setScaleX(1);
+    m_points.level7PathPoint3->setPosition(m_iLevels.level7Btn->getPosition());
+    m_points.level7PathPoint3->setPositionX(m_points.level7PathPoint3->getPositionX() + 30);
+    m_points.level7PathPoint3->setPositionY(7);
+    m_points.level7PathPoint3->setScale(0.5);
+    m_points.level7PathPoint3->setScaleX(1);
     //point 4
-    level7PathPoint4->setPosition(level7Btn->getPosition());
-    level7PathPoint4->setPositionX(level7PathPoint4->getPositionX() + 44);
-    level7PathPoint4->setPositionY(9.5);
-    level7PathPoint4->setScale(0.5);
-    level7PathPoint4->setScaleX(1);
+    m_points.level7PathPoint4->setPosition(m_iLevels.level7Btn->getPosition());
+    m_points.level7PathPoint4->setPositionX(m_points.level7PathPoint4->getPositionX() + 44);
+    m_points.level7PathPoint4->setPositionY(9.5);
+    m_points.level7PathPoint4->setScale(0.5);
+    m_points.level7PathPoint4->setScaleX(1);
 
-    TheInterfaceMenu->addChild(level7PathPoint1, 2);
-    TheInterfaceMenu->addChild(level7PathPoint2, 2);
-    TheInterfaceMenu->addChild(level7PathPoint3, 2);
-    TheInterfaceMenu->addChild(level7PathPoint4, 2);
+    TheInterfaceMenu->addChild(m_points.level7PathPoint1, 2);
+    TheInterfaceMenu->addChild(m_points.level7PathPoint2, 2);
+    TheInterfaceMenu->addChild(m_points.level7PathPoint3, 2);
+    TheInterfaceMenu->addChild(m_points.level7PathPoint4, 2);
 
-    if (wlevel6->m_normalPercent != 100) {
+    if (m_iLevels.iLevel6->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel6complete", 0);
     }
-    if (wlevel6->m_normalPercent == 100 && wlevel7->m_normalPercent == 0 && level6complete == 0) {
-        level6PathPoint1->setScaleY(1.2);
-        level6PathPoint2->setScaleY(1.2);
-        level6PathPoint3->setScaleY(1.2);
-        level6PathPoint4->setScaleY(1.2);
-        level6PathPoint5->setScaleY(1.2);
+    if (m_iLevels.iLevel6->m_normalPercent == 100 && m_iLevels.iLevel7->m_normalPercent == 0 && m_iLevels.level6complete == 0) {
+        m_points.level6PathPoint1->setScaleY(1.2);
+        m_points.level6PathPoint2->setScaleY(1.2);
+        m_points.level6PathPoint3->setScaleY(1.2);
+        m_points.level6PathPoint4->setScaleY(1.2);
+        m_points.level6PathPoint5->setScaleY(1.2);
 
-        level6PathPoint1->setScaleX(2);
-        level6PathPoint2->setScaleX(2);
-        level6PathPoint3->setScaleX(2);
-        level6PathPoint4->setScaleX(2);
-        level6PathPoint5->setScaleX(2);
+        m_points.level6PathPoint1->setScaleX(2);
+        m_points.level6PathPoint2->setScaleX(2);
+        m_points.level6PathPoint3->setScaleX(2);
+        m_points.level6PathPoint4->setScaleX(2);
+        m_points.level6PathPoint5->setScaleX(2);
         //opacty
-        level6PathPoint1->setOpacity(0);
-        level6PathPoint2->setOpacity(0);
-        level6PathPoint3->setOpacity(0);
-        level6PathPoint4->setOpacity(0);
-        level6PathPoint5->setOpacity(0);
-        level7Btn->setOpacity(0);
+        m_points.level6PathPoint1->setOpacity(0);
+        m_points.level6PathPoint2->setOpacity(0);
+        m_points.level6PathPoint3->setOpacity(0);
+        m_points.level6PathPoint4->setOpacity(0);
+        m_points.level6PathPoint5->setOpacity(0);
+        m_iLevels.level7Btn->setOpacity(0);
 
-        level6PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level6PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level6PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level6PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level6PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
+        m_points.level6PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
 
-        level7Btn->setScale(1.5);
-        level7Btn->setVisible(true);
+        m_iLevels.level7Btn->setScale(1.5);
+        m_iLevels.level7Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 6);
-        level7Btn->runAction(CCSequence::create(
+        Mod::get()->setSavedValue("iLevelUnlocked", 6);
+        m_iLevels.level7Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.8),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel6complete", 1);
     } else {
-        if (wlevel6->m_normalPercent == 100) {
-            level7Btn->setVisible(true);
+        if (m_iLevels.iLevel6->m_normalPercent == 100) {
+            m_iLevels.level7Btn->setVisible(true);
         } else {
-            level6PathPoint1->setOpacity(0);
-            level6PathPoint2->setOpacity(0);
-            level6PathPoint3->setOpacity(0);
-            level6PathPoint4->setOpacity(0);
-            level6PathPoint5->setOpacity(0);
+            m_points.level6PathPoint1->setOpacity(0);
+            m_points.level6PathPoint2->setOpacity(0);
+            m_points.level6PathPoint3->setOpacity(0);
+            m_points.level6PathPoint4->setOpacity(0);
+            m_points.level6PathPoint5->setOpacity(0);
         }
     }
 
-    CCMenuItemSpriteExtra* level8Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level8Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level8Btn->setTag(8);
-    level8Btn->setPosition(-10, 15);
-    level8Btn->setVisible(false);
-    level8->setPosition(level8Btn->getPosition());
+    m_iLevels.level8Btn->setTag(8);
+    m_iLevels.level8Btn->setPosition(-10, 15);
+    m_iLevels.level8Btn->setVisible(false);
+    level8->setPosition(m_iLevels.level8Btn->getPosition());
 
     //LEVEL 8 POINTS
     //point 1
-    level8PathPoint1->setPosition(level8Btn->getPosition());
-    level8PathPoint1->setPositionX(level8PathPoint1->getPositionX() + 10);
-    level8PathPoint1->setPositionY(3);
-    level8PathPoint1->setScale(0.5);
-    level8PathPoint1->setScaleX(1);
+    m_points.level8PathPoint1->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint1->setPositionX(m_points.level8PathPoint1->getPositionX() + 10);
+    m_points.level8PathPoint1->setPositionY(3);
+    m_points.level8PathPoint1->setScale(0.5);
+    m_points.level8PathPoint1->setScaleX(1);
     //point 2
-    level8PathPoint2->setPosition(level8Btn->getPosition());
-    level8PathPoint2->setPositionX(level8PathPoint2->getPositionX());
-    level8PathPoint2->setPositionY(-7);
-    level8PathPoint2->setScale(0.5);
-    level8PathPoint2->setScaleX(1);
+    m_points.level8PathPoint2->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint2->setPositionX(m_points.level8PathPoint2->getPositionX());
+    m_points.level8PathPoint2->setPositionY(-7);
+    m_points.level8PathPoint2->setScale(0.5);
+    m_points.level8PathPoint2->setScaleX(1);
     //point 3
-    level8PathPoint3->setPosition(level8Btn->getPosition());
-    level8PathPoint3->setPositionX(level8PathPoint3->getPositionX() - 10);
-    level8PathPoint3->setPositionY(-11);
-    level8PathPoint3->setScale(0.5);
-    level8PathPoint3->setScaleX(1);
+    m_points.level8PathPoint3->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint3->setPositionX(m_points.level8PathPoint3->getPositionX() - 10);
+    m_points.level8PathPoint3->setPositionY(-11);
+    m_points.level8PathPoint3->setScale(0.5);
+    m_points.level8PathPoint3->setScaleX(1);
     //point 4
-    level8PathPoint4->setPosition(level8Btn->getPosition());
-    level8PathPoint4->setPositionX(level8PathPoint4->getPositionX() - 15 );
-    level8PathPoint4->setPositionY(-20);
-    level8PathPoint4->setScale(0.5);
-    level8PathPoint4->setScaleX(1);
+    m_points.level8PathPoint4->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint4->setPositionX(m_points.level8PathPoint4->getPositionX() - 15 );
+    m_points.level8PathPoint4->setPositionY(-20);
+    m_points.level8PathPoint4->setScale(0.5);
+    m_points.level8PathPoint4->setScaleX(1);
     //point 5
-    level8PathPoint5->setPosition(level8Btn->getPosition());
-    level8PathPoint5->setPositionX(level8PathPoint5->getPositionX() - 5);
-    level8PathPoint5->setPositionY(-32);
-    level8PathPoint5->setScale(0.5);
-    level8PathPoint5->setScaleX(1);
+    m_points.level8PathPoint5->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint5->setPositionX(m_points.level8PathPoint5->getPositionX() - 5);
+    m_points.level8PathPoint5->setPositionY(-32);
+    m_points.level8PathPoint5->setScale(0.5);
+    m_points.level8PathPoint5->setScaleX(1);
     //point 6
-    level8PathPoint6->setPosition(level8Btn->getPosition());
-    level8PathPoint6->setPositionX(level8PathPoint6->getPositionX() + 17);
-    level8PathPoint6->setPositionY(-36.5);
-    level8PathPoint6->setScale(0.5);
-    level8PathPoint6->setScaleX(1);
+    m_points.level8PathPoint6->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint6->setPositionX(m_points.level8PathPoint6->getPositionX() + 17);
+    m_points.level8PathPoint6->setPositionY(-36.5);
+    m_points.level8PathPoint6->setScale(0.5);
+    m_points.level8PathPoint6->setScaleX(1);
     //point 7
-    level8PathPoint7->setPosition(level8Btn->getPosition());
-    level8PathPoint7->setPositionX(level8PathPoint7->getPositionX() + 41);
-    level8PathPoint7->setPositionY(-40);
-    level8PathPoint7->setScale(0.5);
-    level8PathPoint7->setScaleX(1);
+    m_points.level8PathPoint7->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint7->setPositionX(m_points.level8PathPoint7->getPositionX() + 41);
+    m_points.level8PathPoint7->setPositionY(-40);
+    m_points.level8PathPoint7->setScale(0.5);
+    m_points.level8PathPoint7->setScaleX(1);
     //point 8
-    level8PathPoint8->setPosition(level8Btn->getPosition());
-    level8PathPoint8->setPositionX(level8PathPoint8->getPositionX() + 63);
-    level8PathPoint8->setPositionY(-40.5);
-    level8PathPoint8->setScale(0.5);
-    level8PathPoint8->setScaleX(1);
+    m_points.level8PathPoint8->setPosition(m_iLevels.level8Btn->getPosition());
+    m_points.level8PathPoint8->setPositionX(m_points.level8PathPoint8->getPositionX() + 63);
+    m_points.level8PathPoint8->setPositionY(-40.5);
+    m_points.level8PathPoint8->setScale(0.5);
+    m_points.level8PathPoint8->setScaleX(1);
 
-    TheInterfaceMenu->addChild(level8PathPoint1, 2);
-    TheInterfaceMenu->addChild(level8PathPoint2, 2);
-    TheInterfaceMenu->addChild(level8PathPoint3, 2);
-    TheInterfaceMenu->addChild(level8PathPoint4, 2);
-    TheInterfaceMenu->addChild(level8PathPoint5, 2);
-    TheInterfaceMenu->addChild(level8PathPoint6, 2);
-    TheInterfaceMenu->addChild(level8PathPoint7, 2);
-    TheInterfaceMenu->addChild(level8PathPoint8, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint1, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint2, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint3, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint4, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint5, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint6, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint7, 2);
+    TheInterfaceMenu->addChild(m_points.level8PathPoint8, 2);
 
-    if (wlevel7->m_normalPercent != 100) {
+    if (m_iLevels.iLevel7->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel7complete", 0);
     }
     ////level 7 to level 8 animation
-    if (wlevel7->m_normalPercent == 100 && wlevel8->m_normalPercent == 0 && level7complete == 0) {
-        level7PathPoint1->setScaleY(1.2);
-        level7PathPoint2->setScaleY(1.2);
-        level7PathPoint3->setScaleY(1.2);
-        level7PathPoint4->setScaleY(1.2);
+    if (m_iLevels.iLevel7->m_normalPercent == 100 && m_iLevels.iLevel8->m_normalPercent == 0 && m_iLevels.level7complete == 0) {
+        m_points.level7PathPoint1->setScaleY(1.2);
+        m_points.level7PathPoint2->setScaleY(1.2);
+        m_points.level7PathPoint3->setScaleY(1.2);
+        m_points.level7PathPoint4->setScaleY(1.2);
     
-        level7PathPoint1->setScaleX(2);
-        level7PathPoint2->setScaleX(2);
-        level7PathPoint3->setScaleX(2);
-        level7PathPoint4->setScaleX(2);
+        m_points.level7PathPoint1->setScaleX(2);
+        m_points.level7PathPoint2->setScaleX(2);
+        m_points.level7PathPoint3->setScaleX(2);
+        m_points.level7PathPoint4->setScaleX(2);
 
         //opacty
-        level7PathPoint1->setOpacity(0);
-        level7PathPoint2->setOpacity(0);
-        level7PathPoint3->setOpacity(0);
-        level7PathPoint4->setOpacity(0);
+        m_points.level7PathPoint1->setOpacity(0);
+        m_points.level7PathPoint2->setOpacity(0);
+        m_points.level7PathPoint3->setOpacity(0);
+        m_points.level7PathPoint4->setOpacity(0);
 
-        level8Btn->setOpacity(0);
+        m_iLevels.level8Btn->setOpacity(0);
 
-        level7PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level7PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level7PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level7PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
+        m_points.level7PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level7PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level7PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level7PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
 
-        level8Btn->setScale(1.5);
-        level8Btn->setVisible(true);
+        m_iLevels.level8Btn->setScale(1.5);
+        m_iLevels.level8Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 7);
-        level8Btn->runAction(CCSequence::create(
+        Mod::get()->setSavedValue("iLevelUnlocked", 7);
+        m_iLevels.level8Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.5),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel7complete", 1);
     } else {
-        if (wlevel7->m_normalPercent == 100) {
-            level8Btn->setVisible(true);
+        if (m_iLevels.iLevel7->m_normalPercent == 100) {
+            m_iLevels.level8Btn->setVisible(true);
         } else {
-            level7PathPoint1->setOpacity(0);
-            level7PathPoint2->setOpacity(0);
-            level7PathPoint3->setOpacity(0);
-            level7PathPoint4->setOpacity(0);
-            level7PathPoint5->setOpacity(0);
+            m_points.level7PathPoint1->setOpacity(0);
+            m_points.level7PathPoint2->setOpacity(0);
+            m_points.level7PathPoint3->setOpacity(0);
+            m_points.level7PathPoint4->setOpacity(0);
+            m_points.level7PathPoint5->setOpacity(0);
         }
     }
 
-    CCMenuItemSpriteExtra* level9Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level9Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level9Btn->setTag(9);
-    level9Btn->setPosition(80, -38);
-    level9Btn->setVisible(false);
-    level9->setPosition(level9Btn->getPosition());
+    m_iLevels.level9Btn->setTag(9);
+    m_iLevels.level9Btn->setPosition(80, -38);
+    m_iLevels.level9Btn->setVisible(false);
+    level9->setPosition(m_iLevels.level9Btn->getPosition());
 
     //LEVEL 9 POINTS
     //point 1
-    level9PathPoint1->setPosition(level9Btn->getPosition());
-    level9PathPoint1->setPositionX(level9PathPoint1->getPositionX() + 16);
-    level9PathPoint1->setPositionY(-34);
-    level9PathPoint1->setScale(0.5);
-    level9PathPoint1->setScaleX(1);
+    m_points.level9PathPoint1->setPosition(m_iLevels.level9Btn->getPosition());
+    m_points.level9PathPoint1->setPositionX(m_points.level9PathPoint1->getPositionX() + 16);
+    m_points.level9PathPoint1->setPositionY(-34);
+    m_points.level9PathPoint1->setScale(0.5);
+    m_points.level9PathPoint1->setScaleX(1);
     //point 2
-    level9PathPoint2->setPosition(level9Btn->getPosition());
-    level9PathPoint2->setPositionX(level9PathPoint2->getPositionX() + 25);
-    level9PathPoint2->setPositionY(-27);
-    level9PathPoint2->setScale(0.5);
-    level9PathPoint2->setScaleX(1);
+    m_points.level9PathPoint2->setPosition(m_iLevels.level9Btn->getPosition());
+    m_points.level9PathPoint2->setPositionX(m_points.level9PathPoint2->getPositionX() + 25);
+    m_points.level9PathPoint2->setPositionY(-27);
+    m_points.level9PathPoint2->setScale(0.5);
+    m_points.level9PathPoint2->setScaleX(1);
     //point 3
-    level9PathPoint3->setPosition(level9Btn->getPosition());
-    level9PathPoint3->setPositionX(level9PathPoint3->getPositionX() + 34);
-    level9PathPoint3->setPositionY(-20.5);
-    level9PathPoint3->setScale(0.5);
-    level9PathPoint3->setScaleX(1);
+    m_points.level9PathPoint3->setPosition(m_iLevels.level9Btn->getPosition());
+    m_points.level9PathPoint3->setPositionX(m_points.level9PathPoint3->getPositionX() + 34);
+    m_points.level9PathPoint3->setPositionY(-20.5);
+    m_points.level9PathPoint3->setScale(0.5);
+    m_points.level9PathPoint3->setScaleX(1);
     //point 4
-    level9PathPoint4->setPosition(level9Btn->getPosition());
-    level9PathPoint4->setPositionX(level9PathPoint4->getPositionX() + 45);
-    level9PathPoint4->setPositionY(-16);
-    level9PathPoint4->setScale(0.5);
-    level9PathPoint4->setScaleX(1);
+    m_points.level9PathPoint4->setPosition(m_iLevels.level9Btn->getPosition());
+    m_points.level9PathPoint4->setPositionX(m_points.level9PathPoint4->getPositionX() + 45);
+    m_points.level9PathPoint4->setPositionY(-16);
+    m_points.level9PathPoint4->setScale(0.5);
+    m_points.level9PathPoint4->setScaleX(1);
     //point 5
-    level9PathPoint5->setPosition(level9Btn->getPosition());
-    level9PathPoint5->setPositionX(level9PathPoint5->getPositionX() + 67);
-    level9PathPoint5->setPositionY(-12);
-    level9PathPoint5->setScale(0.5);
-    level9PathPoint5->setScaleX(1);
+    m_points.level9PathPoint5->setPosition(m_iLevels.level9Btn->getPosition());
+    m_points.level9PathPoint5->setPositionX(m_points.level9PathPoint5->getPositionX() + 67);
+    m_points.level9PathPoint5->setPositionY(-12);
+    m_points.level9PathPoint5->setScale(0.5);
+    m_points.level9PathPoint5->setScaleX(1);
 
-    TheInterfaceMenu->addChild(level9PathPoint1, 2);
-    TheInterfaceMenu->addChild(level9PathPoint2, 2);
-    TheInterfaceMenu->addChild(level9PathPoint3, 2);
-    TheInterfaceMenu->addChild(level9PathPoint4, 2);
-    TheInterfaceMenu->addChild(level9PathPoint5, 2);
+    TheInterfaceMenu->addChild(m_points.level9PathPoint1, 2);
+    TheInterfaceMenu->addChild(m_points.level9PathPoint2, 2);
+    TheInterfaceMenu->addChild(m_points.level9PathPoint3, 2);
+    TheInterfaceMenu->addChild(m_points.level9PathPoint4, 2);
+    TheInterfaceMenu->addChild(m_points.level9PathPoint5, 2);
 
-    if (wlevel8->m_normalPercent != 100) {
+    if (m_iLevels.iLevel8->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel8complete", 0);
     }
     //level 8 to level 9 animation
-    if (wlevel8->m_normalPercent == 100 && wlevel9->m_normalPercent == 0 && level8complete == 0) {
-        level8PathPoint1->setScaleY(1.2);
-        level8PathPoint2->setScaleY(1.2);
-        level8PathPoint3->setScaleY(1.2);
-        level8PathPoint4->setScaleY(1.2);
-        level8PathPoint5->setScaleY(1.2);
-        level8PathPoint6->setScaleY(1.2);
-        level8PathPoint7->setScaleY(1.2);
-        level8PathPoint8->setScaleY(1.2);
+    if (m_iLevels.iLevel8->m_normalPercent == 100 && m_iLevels.iLevel9->m_normalPercent == 0 && m_iLevels.level8complete == 0) {
+        m_points.level8PathPoint1->setScaleY(1.2);
+        m_points.level8PathPoint2->setScaleY(1.2);
+        m_points.level8PathPoint3->setScaleY(1.2);
+        m_points.level8PathPoint4->setScaleY(1.2);
+        m_points.level8PathPoint5->setScaleY(1.2);
+        m_points.level8PathPoint6->setScaleY(1.2);
+        m_points.level8PathPoint7->setScaleY(1.2);
+        m_points.level8PathPoint8->setScaleY(1.2);
 
-        level8PathPoint1->setScaleX(2);
-        level8PathPoint2->setScaleX(2);
-        level8PathPoint3->setScaleX(2);
-        level8PathPoint4->setScaleX(2);
-        level8PathPoint5->setScaleX(2);
-        level8PathPoint6->setScaleX(2);
-        level8PathPoint7->setScaleX(2);
-        level8PathPoint8->setScaleX(2);
+        m_points.level8PathPoint1->setScaleX(2);
+        m_points.level8PathPoint2->setScaleX(2);
+        m_points.level8PathPoint3->setScaleX(2);
+        m_points.level8PathPoint4->setScaleX(2);
+        m_points.level8PathPoint5->setScaleX(2);
+        m_points.level8PathPoint6->setScaleX(2);
+        m_points.level8PathPoint7->setScaleX(2);
+        m_points.level8PathPoint8->setScaleX(2);
         //opacty
-        level8PathPoint1->setOpacity(0);
-        level8PathPoint2->setOpacity(0);
-        level8PathPoint3->setOpacity(0);
-        level8PathPoint4->setOpacity(0);
-        level8PathPoint5->setOpacity(0);
-        level8PathPoint6->setOpacity(0);
-        level8PathPoint7->setOpacity(0);
-        level8PathPoint8->setOpacity(0);
+        m_points.level8PathPoint1->setOpacity(0);
+        m_points.level8PathPoint2->setOpacity(0);
+        m_points.level8PathPoint3->setOpacity(0);
+        m_points.level8PathPoint4->setOpacity(0);
+        m_points.level8PathPoint5->setOpacity(0);
+        m_points.level8PathPoint6->setOpacity(0);
+        m_points.level8PathPoint7->setOpacity(0);
+        m_points.level8PathPoint8->setOpacity(0);
       
 
-        level9Btn->setOpacity(0);
+        m_iLevels.level9Btn->setOpacity(0);
 
-        level8PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level8PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level8PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level8PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level8PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level8PathPoint6->runAction(CCSequence::create(CCDelayTime::create(1.8), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level8PathPoint7->runAction(CCSequence::create(CCDelayTime::create(2.1), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level8PathPoint8->runAction(CCSequence::create(CCDelayTime::create(2.4), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
+        m_points.level8PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint6->runAction(CCSequence::create(CCDelayTime::create(1.8), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint7->runAction(CCSequence::create(CCDelayTime::create(2.1), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint8->runAction(CCSequence::create(CCDelayTime::create(2.4), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
 
-        level9Btn->setScale(1.5);
-        level9Btn->setVisible(true);
+        m_iLevels.level9Btn->setScale(1.5);
+        m_iLevels.level9Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 8);
-        level9Btn->runAction(CCSequence::create(
+        Mod::get()->setSavedValue("iLevelUnlocked", 8);
+        m_iLevels.level9Btn->runAction(CCSequence::create(
             CCDelayTime::create(2.7),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel8complete", 1);
     } else {
-        if (wlevel8->m_normalPercent == 100) {
-            level9Btn->setVisible(true);
+        if (m_iLevels.iLevel8->m_normalPercent == 100) {
+            m_iLevels.level9Btn->setVisible(true);
         } else {
-            level8PathPoint1->setOpacity(0);
-            level8PathPoint2->setOpacity(0);
-            level8PathPoint3->setOpacity(0);
-            level8PathPoint4->setOpacity(0);
-            level8PathPoint5->setOpacity(0);
-            level8PathPoint6->setOpacity(0);
-            level8PathPoint7->setOpacity(0);
-            level8PathPoint8->setOpacity(0);
+            m_points.level8PathPoint1->setOpacity(0);
+            m_points.level8PathPoint2->setOpacity(0);
+            m_points.level8PathPoint3->setOpacity(0);
+            m_points.level8PathPoint4->setOpacity(0);
+            m_points.level8PathPoint5->setOpacity(0);
+            m_points.level8PathPoint6->setOpacity(0);
+            m_points.level8PathPoint7->setOpacity(0);
+            m_points.level8PathPoint8->setOpacity(0);
         }
     }
 
-    CCMenuItemSpriteExtra* level10Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
+    m_iLevels.level10Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level10Btn->setTag(10);
-    level10Btn->setPosition(170, -10);
+    m_iLevels.level10Btn->setTag(10);
+    m_iLevels.level10Btn->setPosition(170, -10);
 
-    level10Btn->setVisible(false);
-    level10->setPosition(level10Btn->getPosition());
+    m_iLevels.level10Btn->setVisible(false);
+    level10->setPosition(m_iLevels.level10Btn->getPosition());
 
-    if (wlevel9->m_normalPercent != 100) {
+    if (m_iLevels.iLevel9->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel9complete", 0);
     }
     // level 9 to level 10 animation
-    if (wlevel9->m_normalPercent == 100 && wlevel10->m_normalPercent == 0 && level9complete == 0) {
-        level9PathPoint1->setScaleY(1.2);
-        level9PathPoint2->setScaleY(1.2);
-        level9PathPoint3->setScaleY(1.2);
-        level9PathPoint4->setScaleY(1.2);
-        level9PathPoint5->setScaleY(1.2);
+    if (m_iLevels.iLevel9->m_normalPercent == 100 && m_iLevels.iLevel10->m_normalPercent == 0 && m_iLevels.level9complete == 0) {
+        m_points.level9PathPoint1->setScaleY(1.2);
+        m_points.level9PathPoint2->setScaleY(1.2);
+        m_points.level9PathPoint3->setScaleY(1.2);
+        m_points.level9PathPoint4->setScaleY(1.2);
+        m_points.level9PathPoint5->setScaleY(1.2);
 
-        level9PathPoint1->setScaleX(2);
-        level9PathPoint2->setScaleX(2);
-        level9PathPoint3->setScaleX(2);
-        level9PathPoint4->setScaleX(2);
-        level9PathPoint5->setScaleX(2);
+        m_points.level9PathPoint1->setScaleX(2);
+        m_points.level9PathPoint2->setScaleX(2);
+        m_points.level9PathPoint3->setScaleX(2);
+        m_points.level9PathPoint4->setScaleX(2);
+        m_points.level9PathPoint5->setScaleX(2);
 
         //opacty
-        level9PathPoint1->setOpacity(0);
-        level9PathPoint2->setOpacity(0);
-        level9PathPoint3->setOpacity(0);
-        level9PathPoint4->setOpacity(0);
-        level9PathPoint5->setOpacity(0);
+        m_points.level9PathPoint1->setOpacity(0);
+        m_points.level9PathPoint2->setOpacity(0);
+        m_points.level9PathPoint3->setOpacity(0);
+        m_points.level9PathPoint4->setOpacity(0);
+        m_points.level9PathPoint5->setOpacity(0);
 
-        level10Btn->setOpacity(0);
+        m_iLevels.level10Btn->setOpacity(0);
 
-        level9PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level9PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level9PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level9PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-        level9PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
+        m_points.level9PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
 
-        level10Btn->setScale(1.5);
-        level10Btn->setVisible(true);
+        m_iLevels.level10Btn->setScale(1.5);
+        m_iLevels.level10Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 9);
-        level10Btn->runAction(CCSequence::create(
+        Mod::get()->setSavedValue("iLevelUnlocked", 9);
+        m_iLevels.level10Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.8),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel9complete", 1);
     } else {
-        if (wlevel9->m_normalPercent == 100) {
-            level10Btn->setVisible(true);
+        if (m_iLevels.iLevel9->m_normalPercent == 100) {
+            m_iLevels.level10Btn->setVisible(true);
         } else {
-            level9PathPoint1->setOpacity(0);
-            level9PathPoint2->setOpacity(0);
-            level9PathPoint3->setOpacity(0);
-            level9PathPoint4->setOpacity(0);
-            level9PathPoint5->setOpacity(0);
+            m_points.level9PathPoint1->setOpacity(0);
+            m_points.level9PathPoint2->setOpacity(0);
+            m_points.level9PathPoint3->setOpacity(0);
+            m_points.level9PathPoint4->setOpacity(0);
+            m_points.level9PathPoint5->setOpacity(0);
         }
     }
 
-    if (wlevel10->m_normalPercent != 100) {
+    if (m_iLevels.iLevel10->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel10complete", 0);
     }
 
-    /*if (wlevel10->m_normalPercent == 100 && level10complete == 0) {
+    /*if (iLevel10->m_normalPercent == 100 && level10complete == 0) {
         CCArray* arr = CCArray::create();
         int colour = 2;
 
@@ -1055,16 +1013,16 @@ bool IslandSelectLayer::init(int page) {
         this->addChild(dl, 3);
         Mod::get()->setSavedValue("islandlevel10complete", 1);
     } else {
-        if (wlevel10->m_normalPercent == 100) {
+        if (iLevel10->m_normalPercent == 100) {
             level10Btn->setVisible(true);
         }
     }*/
 
-    TheInterfaceMenu->addChild(level6Btn,2);
-    TheInterfaceMenu->addChild(level7Btn, 2);
-    TheInterfaceMenu->addChild(level8Btn,2);
-    TheInterfaceMenu->addChild(level9Btn, 2);
-    TheInterfaceMenu->addChild(level10Btn,2);
+    TheInterfaceMenu->addChild(m_iLevels.level6Btn,2);
+    TheInterfaceMenu->addChild(m_iLevels.level7Btn, 2);
+    TheInterfaceMenu->addChild(m_iLevels.level8Btn,2);
+    TheInterfaceMenu->addChild(m_iLevels.level9Btn, 2);
+    TheInterfaceMenu->addChild(m_iLevels.level10Btn,2);
 
     TheInterfaceMenu->addChild(level6);
     TheInterfaceMenu->addChild(level7);
@@ -1074,44 +1032,44 @@ bool IslandSelectLayer::init(int page) {
     
     //LEVEL 5 POINTS
     //point 1
-    level10PathPoint1->setPosition(level5Btn->getPosition());
-    level10PathPoint1->setPositionX(level10PathPoint1->getPositionX() + 20);
-    level10PathPoint1->setPositionY(-20);
-    level10PathPoint1->setScale(0.5);
-    level10PathPoint1->setScaleX(1);
+    m_points.level10PathPoint1->setPosition(m_iLevels.level5Btn->getPosition());
+    m_points.level10PathPoint1->setPositionX(m_points.level10PathPoint1->getPositionX() + 20);
+    m_points.level10PathPoint1->setPositionY(-20);
+    m_points.level10PathPoint1->setScale(0.5);
+    m_points.level10PathPoint1->setScaleX(1);
     //point 2
-    level10PathPoint2->setPosition(level5Btn->getPosition());
-    level10PathPoint2->setPositionX(level10PathPoint2->getPositionX() + 32);
-    level10PathPoint2->setPositionY(-25);
-    level10PathPoint2->setScale(0.5);
-    level10PathPoint2->setScaleX(1);
+    m_points.level10PathPoint2->setPosition(m_iLevels.level5Btn->getPosition());
+    m_points.level10PathPoint2->setPositionX(m_points.level10PathPoint2->getPositionX() + 32);
+    m_points.level10PathPoint2->setPositionY(-25);
+    m_points.level10PathPoint2->setScale(0.5);
+    m_points.level10PathPoint2->setScaleX(1);
     //point 3
-    level10PathPoint3->setPosition(level5Btn->getPosition());
-    level10PathPoint3->setPositionX(level10PathPoint3->getPositionX() + 50);
-    level10PathPoint3->setPositionY(-22);
-    level10PathPoint3->setScale(0.5);
-    level10PathPoint3->setScaleX(1);
+    m_points.level10PathPoint3->setPosition(m_iLevels.level5Btn->getPosition());
+    m_points.level10PathPoint3->setPositionX(m_points.level10PathPoint3->getPositionX() + 50);
+    m_points.level10PathPoint3->setPositionY(-22);
+    m_points.level10PathPoint3->setScale(0.5);
+    m_points.level10PathPoint3->setScaleX(1);
     //point 4
-    level10PathPoint4->setPosition(level5Btn->getPosition());
-    level10PathPoint4->setPositionX(level10PathPoint4->getPositionX() + 77);
-    level10PathPoint4->setPositionY(-22.5);
-    level10PathPoint4->setScale(0.5);
-    level10PathPoint4->setScaleX(1);
+    m_points.level10PathPoint4->setPosition(m_iLevels.level5Btn->getPosition());
+    m_points.level10PathPoint4->setPositionX(m_points.level10PathPoint4->getPositionX() + 77);
+    m_points.level10PathPoint4->setPositionY(-22.5);
+    m_points.level10PathPoint4->setScale(0.5);
+    m_points.level10PathPoint4->setScaleX(1);
     //point 5
-    level10PathPoint5->setPosition(level5Btn->getPosition());
-    level10PathPoint5->setPositionX(level10PathPoint5->getPositionX() + 89.7);
-    level10PathPoint5->setPositionY(-26);
-    level10PathPoint5->setScale(0.5);
-    level10PathPoint5->setScaleX(1);
+    m_points.level10PathPoint5->setPosition(m_iLevels.level5Btn->getPosition());
+    m_points.level10PathPoint5->setPositionX(m_points.level10PathPoint5->getPositionX() + 89.7);
+    m_points.level10PathPoint5->setPositionY(-26);
+    m_points.level10PathPoint5->setScale(0.5);
+    m_points.level10PathPoint5->setScaleX(1);
 
     dashlandsmenu->setPosition(winSize / 2);
     dashlandsmenu->setPositionY(dashlandsmenu->getPositionY());
     //button levels
-    dashlandsmenu->addChild(level1Btn);
-    dashlandsmenu->addChild(level2Btn,1);
-    dashlandsmenu->addChild(level3Btn,1);
-    dashlandsmenu->addChild(level4Btn,1);
-    dashlandsmenu->addChild(level5Btn,1);
+    dashlandsmenu->addChild(m_iLevels.level1Btn);
+    dashlandsmenu->addChild(m_iLevels.level2Btn,1);
+    dashlandsmenu->addChild(m_iLevels.level3Btn,1);
+    dashlandsmenu->addChild(m_iLevels.level4Btn,1);
+    dashlandsmenu->addChild(m_iLevels.level5Btn,1);
 
     //skull - locked levels
     dashlandsmenu->addChild(level2);
@@ -1161,37 +1119,37 @@ bool IslandSelectLayer::init(int page) {
     addChild(m_scrollLayer);
 
     //level 5 to level 6 animation
-    if (wlevel5->m_normalPercent != 100) {
+    if (m_iLevels.iLevel5->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel5complete", 0);
     }
-    if (wlevel5->m_normalPercent == 100 && wlevel6->m_normalPercent == 0 && level5complete == 0) {
-        level6Btn->setOpacity(0);
+    if (m_iLevels.iLevel5->m_normalPercent == 100 && m_iLevels.iLevel6->m_normalPercent == 0 && m_iLevels.level5complete == 0) {
+        m_iLevels.level6Btn->setOpacity(0);
 
-        level6Btn->setScale(1.5);
-        level6Btn->setVisible(true);
+        m_iLevels.level6Btn->setScale(1.5);
+        m_iLevels.level6Btn->setVisible(true);
 
-        Mod::get()->setSavedValue("wlevelunlocked", 5);
+        Mod::get()->setSavedValue("iLevelUnlocked", 5);
 
         m_scrollLayer->moveToPage(1);
-        level6Btn->runAction(CCSequence::create(
+        m_iLevels.level6Btn->runAction(CCSequence::create(
             CCDelayTime::create(1.2),
             CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
             CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(scaleWithBounce2),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
             nullptr
         ));
 
         Mod::get()->setSavedValue("islandlevel5complete", 1);
     } else {
-        if (wlevel5->m_normalPercent == 100) {
-            level6Btn->setVisible(true);
+        if (m_iLevels.iLevel5->m_normalPercent == 100) {
+            m_iLevels.level6Btn->setVisible(true);
         }
         else {
-            level5PathPoint1->setOpacity(0);
-            level5PathPoint2->setOpacity(0);
-            level5PathPoint3->setOpacity(0);
-            level5PathPoint4->setOpacity(0);
-            level5PathPoint5->setOpacity(0);
+            m_points.level5PathPoint1->setOpacity(0);
+            m_points.level5PathPoint2->setOpacity(0);
+            m_points.level5PathPoint3->setOpacity(0);
+            m_points.level5PathPoint4->setOpacity(0);
+            m_points.level5PathPoint5->setOpacity(0);
         }
     }
 
@@ -1262,10 +1220,10 @@ bool IslandSelectLayer::init(int page) {
     node->runAction(repeatAction21);
     node2->runAction(repeatAction2);
 
-    if (wlevel1->m_normalPercent != 100) {
+    if (m_iLevels.iLevel1->m_normalPercent != 100) {
         auto level1arrow = CCSprite::createWithSpriteFrameName("GJ_arrow_02_001.png");
 
-        level1arrow->setPosition(level1Btn->getPosition());
+        level1arrow->setPosition(m_iLevels.level1Btn->getPosition());
 
         level1arrow->setPositionY(level1arrow->getPositionY() + 40);
         level1arrow->setRotation(-90);
@@ -1314,31 +1272,31 @@ bool IslandSelectLayer::init(int page) {
 
     this->addChild(pageBtnsMenu);
 
-    if (level2complete == 1) {
+    if (m_iLevels.level2complete == 1) {
         level2->setVisible(false);
     }
-    if (level3complete == 1) {
+    if (m_iLevels.level3complete == 1) {
         level3->setVisible(false);
     }
-    if (level4complete == 1) {
+    if (m_iLevels.level4complete == 1) {
         level4->setVisible(false);
     }
-    if (level5complete == 1) {
+    if (m_iLevels.level5complete == 1) {
         level5->setVisible(false);
     }
-    if (level6complete == 1) {
+    if (m_iLevels.level6complete == 1) {
         level6->setVisible(false);
     }
-    if (level7complete == 1) {
+    if (m_iLevels.level7complete == 1) {
         level7->setVisible(false);
     }
-    if (level8complete == 1) {
+    if (m_iLevels.level8complete == 1) {
         level8->setVisible(false);
     }
-    if (level9complete == 1) {
+    if (m_iLevels.level9complete == 1) {
         level9->setVisible(false);
     }
-    if (level10complete == 1) {
+    if (m_iLevels.level10complete == 1) {
         level10->setVisible(false);
     }
 
@@ -1349,7 +1307,7 @@ void IslandSelectLayer::runParticle() {
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     auto particles = CCParticleSystemQuad::create("coinPickupEffect.plist", 1);
 
-    auto levelunlocked = Mod::get()->getSavedValue<int>("wlevelunlocked");
+    auto levelunlocked = Mod::get()->getSavedValue<int>("iLevelUnlocked");
 
     auto extendedLayer = (ExtendedLayer*)m_scrollLayer->getChildren()->objectAtIndex(0);
 
@@ -1524,7 +1482,46 @@ void IslandSelectLayer::onPrev(CCObject*) {
 
 void IslandSelectLayer::onEnterTransitionDidFinish() {
     CCLayer::onEnterTransitionDidFinish();
+    if (m_iLevels.iLevel1->m_normalPercent == 100 && m_iLevels.iLevel2->m_normalPercent == 0 && m_iLevels.level1complete == 0) {
+        m_points.level1PathPoint1->setScaleY(1.2);
+        m_points.level1PathPoint2->setScaleY(1.2);
+        m_points.level1PathPoint3->setScaleY(1.2);
+        m_points.level1PathPoint4->setScaleY(1.2);
+        m_points.level1PathPoint5->setScaleY(1.2);
 
+        m_points.level1PathPoint1->setScaleX(2);
+        m_points.level1PathPoint2->setScaleX(2);
+        m_points.level1PathPoint3->setScaleX(2);
+        m_points.level1PathPoint4->setScaleX(2);
+        m_points.level1PathPoint5->setScaleX(2);
+        //opacty
+        m_points.level1PathPoint1->setOpacity(0);
+        m_points.level1PathPoint2->setOpacity(0);
+        m_points.level1PathPoint3->setOpacity(0);
+        m_points.level1PathPoint4->setOpacity(0);
+        m_points.level1PathPoint5->setOpacity(0);
+        m_iLevels.level2Btn->setOpacity(0);
+    
+        m_points.level1PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level1PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level1PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level1PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level1PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        
+        m_iLevels.level2Btn->setScale(1.5);
+        m_iLevels.level2Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 1);
+        m_iLevels.level2Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.8),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+
+        Mod::get()->setSavedValue("islandlevel1complete", 1);
+    }
 }
 
 void IslandSelectLayer::updatePageButtons() {
