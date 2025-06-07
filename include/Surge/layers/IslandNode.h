@@ -5,8 +5,6 @@
 
 using namespace geode::prelude;
 
-namespace more {
-
 class IslandNode : public CCNode {
 public:
     static IslandNode* create(
@@ -24,5 +22,3 @@ public:
     int m_index;
     IslandSelectLayer* m_islandSelectLayer;
 };
-
-} // namespace more

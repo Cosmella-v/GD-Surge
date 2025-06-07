@@ -12,6 +12,8 @@ public:
     BoomScrollLayer* m_scrollLayer;
 	float m_fWindowWidth;
     int m_level;
+	CCMenuItemSpriteExtra* m_nextPageBtn;
+	CCMenuItemSpriteExtra* m_prevPageBtn;
 	GJGameLevel* level;
 	ccColor3B colorForPage(int);
 	ccColor3B getColorValue(int, int, float);
@@ -32,4 +34,6 @@ public:
 	static IslandSelectLayer* create(int page);
 	static CCScene* scene(int page);
 	void updatePageWithObject(CCObject* page, CCObject* object) override;
+	void onEnterTransitionDidFinish() override;
+	void updatePageButtons();
 };

@@ -65,20 +65,21 @@ bool IslandLevel::setup(GJGameLevel* level, CCMenuItemSpriteExtra* button) {
     m_level->m_levelString = LocalLevelManager::sharedState()->getMainLevelString(levelID);
 
     auto songSprite = CCSprite::createWithSpriteFrameName("GJ_playMusicBtn_001.png");
-    songSprite->setScale(0.5f);
+    songSprite->setScale(0.75f);
     auto songBtn = CCMenuItemSpriteExtra::create(
         songSprite,
         button,
         menu_selector(IslandLevel::onSong)
     );
-    songBtn->setPosition({ m_mainLayer->getContentSize().width, m_mainLayer->getContentSize().height });
+    songBtn->setPosition({ 300.f, 0.f });
     m_buttonMenu->addChild(songBtn);
 
     auto playBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png"), this, menu_selector(IslandLevel::onPlay));
-    
+    playBtn->setPosition({ BG->getPositionX(), BG->getPositionY() + 35.f });
+
     m_buttonMenu->addChild(playBtn);
-    m_buttonMenu->setPositionX(BG->getPositionX());
-    m_buttonMenu->setPositionY(BG->getPositionY()+35);
+    m_buttonMenu->setPositionX(0.f);
+    m_buttonMenu->setPositionY(0.f);
 
     //Normal mode progress bar
     int per = 100;
@@ -307,6 +308,7 @@ void IslandLevel::onInfo(CCObject* sender) {
 }
 
 void IslandLevel::onSong(CCObject* sender) {
-    if (!m_level) return;
-    SongInfoLayer::create(m_level->m_songID)->show();
+    // if (!m_level) return;
+    // SongInfoLayer::create(m_level->m_songID)->show();
+    SongInfoLayer::create(1)->show();
 }

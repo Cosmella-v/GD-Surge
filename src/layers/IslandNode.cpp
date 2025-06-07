@@ -2,12 +2,7 @@
 
 using namespace geode::prelude;
 
-namespace more {
-
-IslandNode* IslandNode::create(
-    int index,
-    IslandSelectLayer* islandSelectLayer
-) {
+IslandNode* IslandNode::create(int index, IslandSelectLayer* islandSelectLayer) {
     IslandNode* ret = new IslandNode();
 
     if (ret && ret->init(index, islandSelectLayer)) {
@@ -19,20 +14,15 @@ IslandNode* IslandNode::create(
     return ret;
 }
 
-bool IslandNode::init(
-    int index,
-    IslandSelectLayer* islandSelectLayer
-) {
+bool IslandNode::init(int index, IslandSelectLayer* islandSelectLayer) {
     if (!CCNode::init()) {
         return false;
     }
-
+    
     m_index = index;
 
-  /*  std::cout << index << std::endl;*/
     m_islandSelectLayer = islandSelectLayer;
-   
-
+    
     return true;
 }
 
@@ -48,5 +38,3 @@ CCSprite* IslandNode::createIsland() {
 
     return sprite;
 }
-
-} // namespace more

@@ -38,9 +38,9 @@ bool IslandSelectLayer::init(int page) {
     setKeyboardEnabled(true);
 
     setKeypadEnabled(true);
-    auto node = more::IslandNode::create(1,this);
-    auto node2 = more::IslandNode::create(1, this);
-    auto node3 = more::IslandNode::create(1, this);
+    auto node = IslandNode::create(1,this);
+    auto node2 = IslandNode::create(1, this);
+    auto node3 = IslandNode::create(1, this);
 
     auto GM = GameManager::sharedState();
     auto GLM = GameLevelManager::sharedState();
@@ -62,7 +62,6 @@ bool IslandSelectLayer::init(int page) {
     CCSprite* sprite2 = CCSprite::createWithSpriteFrameName(
         path2->getCString()
     );
-
 
     CCString* path3 = CCString::createWithFormat(
         "island_%02d.png"_spr,
@@ -101,7 +100,6 @@ bool IslandSelectLayer::init(int page) {
     CCSprite* unkspr3 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
     CCSprite* unkspr4 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
     CCSprite* unkspr5 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
-
     CCSprite* unkspr6 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
     CCSprite* unkspr7 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
     CCSprite* unksp8 = CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr);
@@ -118,7 +116,6 @@ bool IslandSelectLayer::init(int page) {
     CCSprite* level8 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
     CCSprite* level9 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
     CCSprite* level10 = CCSprite::createWithSpriteFrameName("islandLevelBtn_locked_001.png"_spr);
-
 
     //pointers animation 1
     CCSprite* point1 = CCSprite::createWithSpriteFrameName("uiDot_001.png");
@@ -294,7 +291,7 @@ bool IslandSelectLayer::init(int page) {
 
     CCMenuItemSpriteExtra* level3Btn = CCMenuItemSpriteExtra::create(unkspr2, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level3Btn->setTag(32);
+    level3Btn->setTag(3);
     level3Btn->setPosition(-12, 15);
     level3Btn->setVisible(false);
     level3->setPosition({ -10, 10 });
@@ -338,62 +335,32 @@ bool IslandSelectLayer::init(int page) {
     auto scaleWithBounce2 = CCEaseBounceOut::create(scaleAction2);
 
     auto wlevel1 = GLM->getMainLevel(2001, false);
-
-
     auto wlevel2 = GLM->getMainLevel(2002, false);
-
-
     auto wlevel3 = GLM->getMainLevel(2003, false);
-
-
     auto wlevel4 = GLM->getMainLevel(2004, false);
-
-
     auto wlevel5 = GLM->getMainLevel(2005, false);
-
-
     auto wlevel6 = GLM->getMainLevel(2006, false);
-
-
     auto wlevel7 = GLM->getMainLevel(2007, false);
-
-
     auto wlevel8 = GLM->getMainLevel(2008, false);
-
-
     auto wlevel9 = GLM->getMainLevel(2009, false);
-
-
     auto wlevel10 = GLM->getMainLevel(2010, false);
 
     auto level1complete = Mod::get()->getSavedValue<int>("islandlevel1complete");
-
     auto level2complete = Mod::get()->getSavedValue<int>("islandlevel2complete");
-
     auto level3complete = Mod::get()->getSavedValue<int>("islandlevel3complete");
-
     auto level4complete = Mod::get()->getSavedValue<int>("islandlevel4complete");
-
     auto level5complete = Mod::get()->getSavedValue<int>("islandlevel5complete");
-
     auto level6complete = Mod::get()->getSavedValue<int>("islandlevel6complete");
-
     auto level7complete = Mod::get()->getSavedValue<int>("islandlevel7complete");
-
     auto level8complete = Mod::get()->getSavedValue<int>("islandlevel8complete");
-
     auto level9complete = Mod::get()->getSavedValue<int>("islandlevel9complete");
-    
     auto level10complete = Mod::get()->getSavedValue<int>("islandlevel10complete");
 
-
     //level 1 to level 2 animation
-    if (wlevel1->m_normalPercent != 100)
-    {
+    if (wlevel1->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel1complete", 0);
     }
-    if (wlevel1->m_normalPercent == 100 && wlevel2->m_normalPercent == 0 && level1complete == 0)
-    {
+    if (wlevel1->m_normalPercent == 100 && wlevel2->m_normalPercent == 0 && level1complete == 0) {
         point1->setScaleY(1.2);
         point2->setScaleY(1.2);
         point3->setScaleY(1.2);
@@ -432,15 +399,11 @@ bool IslandSelectLayer::init(int page) {
         ));
 
         Mod::get()->setSavedValue("islandlevel1complete", 1);
-    }
-    else
-    {
+    } else {
         if (wlevel1->m_normalPercent == 100)
         {
             level2Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             point1->setOpacity(0);
             point2->setOpacity(0);
             point3->setOpacity(0);
@@ -450,12 +413,10 @@ bool IslandSelectLayer::init(int page) {
        
     }
 
-    if (wlevel2->m_normalPercent != 100)
-    {
+    if (wlevel2->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel2complete", 0);
     }
-    if (wlevel2->m_normalPercent == 100 && wlevel3->m_normalPercent == 0 && level2complete == 0)
-    {
+    if (wlevel2->m_normalPercent == 100 && wlevel3->m_normalPercent == 0 && level2complete == 0) {
         //level 2 to level 3 animation
         Bpoint1->setScaleY(1.2);
         Bpoint2->setScaleY(1.2);
@@ -494,15 +455,10 @@ bool IslandSelectLayer::init(int page) {
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel2complete", 1);
-    }
-    else
-    {
-        if (wlevel2->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel2->m_normalPercent == 100) {
             level3Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             Bpoint1->setOpacity(0);
             Bpoint2->setOpacity(0);
             Bpoint3->setOpacity(0);
@@ -515,7 +471,7 @@ bool IslandSelectLayer::init(int page) {
     
     CCMenuItemSpriteExtra* level4Btn = CCMenuItemSpriteExtra::create(unkspr3, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level4Btn->setTag(3);
+    level4Btn->setTag(4);
     level4Btn->setPosition(47, -20);
     level4Btn->setVisible(false);
     level4->setPosition({ 50, -25 });
@@ -551,14 +507,11 @@ bool IslandSelectLayer::init(int page) {
     Ypoint5->setScale(0.5);
     Ypoint5->setScaleX(1);
 
-
-    if (wlevel3->m_normalPercent != 100)
-    {
+    if (wlevel3->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel3complete", 0);
     }
     //level 3 to level 4 animation
-    if (wlevel3->m_normalPercent == 100 && wlevel4->m_normalPercent == 0 && level3complete == 0)
-    {
+    if (wlevel3->m_normalPercent == 100 && wlevel4->m_normalPercent == 0 && level3complete == 0) {
         Mpoint1->setScaleY(1.2);
         Mpoint2->setScaleY(1.2);
         Mpoint3->setScaleY(1.2);
@@ -596,15 +549,10 @@ bool IslandSelectLayer::init(int page) {
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel3complete", 1);
-    }
-    else
-    {
-        if (wlevel3->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel3->m_normalPercent == 100) {
             level4Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             Mpoint1->setOpacity(0);
             Mpoint2->setOpacity(0);
             Mpoint3->setOpacity(0);
@@ -613,22 +561,19 @@ bool IslandSelectLayer::init(int page) {
         }
     }
     
-
     CCMenuItemSpriteExtra* level5Btn = CCMenuItemSpriteExtra::create(unkspr4, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level5Btn->setTag(4);
+    level5Btn->setTag(5);
     level5Btn->setPosition(152, -5);
     level5Btn->setVisible(false);
     level5->setPosition({ 155, -10 });
 
 
-    if (wlevel4->m_normalPercent != 100)
-    {
+    if (wlevel4->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel4complete", 0);
     }
     //level 4 to level 5 animation
-    if (wlevel4->m_normalPercent == 100 && wlevel5->m_normalPercent == 0 && level4complete == 0)
-    {
+    if (wlevel4->m_normalPercent == 100 && wlevel5->m_normalPercent == 0 && level4complete == 0) {
         Ypoint1->setScaleY(1.2);
         Ypoint2->setScaleY(1.2);
         Ypoint3->setScaleY(1.2);
@@ -666,15 +611,10 @@ bool IslandSelectLayer::init(int page) {
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel4complete", 1);
-    }
-    else
-    {
-        if (wlevel4->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel4->m_normalPercent == 100) {
             level5Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             Ypoint1->setOpacity(0);
             Ypoint2->setOpacity(0);
             Ypoint3->setOpacity(0);
@@ -686,7 +626,7 @@ bool IslandSelectLayer::init(int page) {
     auto TheInterfaceMenu = CCMenu::create();
     CCMenuItemSpriteExtra* level6Btn = CCMenuItemSpriteExtra::create(unkspr5, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level6Btn->setTag(5);
+    level6Btn->setTag(6);
     level6Btn->setPosition(-175, -12);
     level6Btn->setVisible(false);
     level6->setPosition(level6Btn->getPosition());
@@ -723,17 +663,15 @@ bool IslandSelectLayer::init(int page) {
     SPpoint5->setScale(0.5);
     SPpoint5->setScaleX(1);
 
-
     TheInterfaceMenu->addChild(SPpoint1,2);
     TheInterfaceMenu->addChild(SPpoint2, 2);
     TheInterfaceMenu->addChild(SPpoint3, 2);
     TheInterfaceMenu->addChild(SPpoint4, 2);
     TheInterfaceMenu->addChild(SPpoint5, 2);
 
-
     CCMenuItemSpriteExtra* level7Btn = CCMenuItemSpriteExtra::create(unkspr6, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level7Btn->setTag(6);
+    level7Btn->setTag(7);
     level7Btn->setPosition(-73, -28);
     level7Btn->setVisible(false);
     level7->setPosition(level7Btn->getPosition());
@@ -769,12 +707,10 @@ bool IslandSelectLayer::init(int page) {
     TheInterfaceMenu->addChild(Spoint3, 2);
     TheInterfaceMenu->addChild(Spoint4, 2);
 
-    if (wlevel6->m_normalPercent != 100)
-    {
+    if (wlevel6->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel6complete", 0);
     }
-    if (wlevel6->m_normalPercent == 100 && wlevel7->m_normalPercent == 0 && level6complete == 0)
-    {
+    if (wlevel6->m_normalPercent == 100 && wlevel7->m_normalPercent == 0 && level6complete == 0) {
         SPpoint1->setScaleY(1.2);
         SPpoint2->setScaleY(1.2);
         SPpoint3->setScaleY(1.2);
@@ -812,15 +748,10 @@ bool IslandSelectLayer::init(int page) {
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel6complete", 1);
-    }
-    else
-    {
-        if (wlevel6->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel6->m_normalPercent == 100) {
             level7Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             SPpoint1->setOpacity(0);
             SPpoint2->setOpacity(0);
             SPpoint3->setOpacity(0);
@@ -829,10 +760,9 @@ bool IslandSelectLayer::init(int page) {
         }
     }
 
-    
     CCMenuItemSpriteExtra* level8Btn = CCMenuItemSpriteExtra::create(unkspr7, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level8Btn->setTag(7);
+    level8Btn->setTag(8);
     level8Btn->setPosition(-10, 15);
     level8Btn->setVisible(false);
     level8->setPosition(level8Btn->getPosition());
@@ -887,28 +817,25 @@ bool IslandSelectLayer::init(int page) {
     Epoint8->setScale(0.5);
     Epoint8->setScaleX(1);
 
+    TheInterfaceMenu->addChild(Epoint1, 2);
+    TheInterfaceMenu->addChild(Epoint2, 2);
+    TheInterfaceMenu->addChild(Epoint3, 2);
+    TheInterfaceMenu->addChild(Epoint4, 2);
+    TheInterfaceMenu->addChild(Epoint5, 2);
+    TheInterfaceMenu->addChild(Epoint6, 2);
+    TheInterfaceMenu->addChild(Epoint7, 2);
+    TheInterfaceMenu->addChild(Epoint8, 2);
 
-    // TheInterfaceMenu->addChild(Epoint1, 2);
-    // TheInterfaceMenu->addChild(Epoint2, 2);
-    // TheInterfaceMenu->addChild(Epoint3, 2);
-    // TheInterfaceMenu->addChild(Epoint4, 2);
-    // TheInterfaceMenu->addChild(Epoint5, 2);
-    // TheInterfaceMenu->addChild(Epoint6, 2);
-    // TheInterfaceMenu->addChild(Epoint7, 2);
-    // TheInterfaceMenu->addChild(Epoint8, 2);
-    if (wlevel7->m_normalPercent != 100)
-    {
+    if (wlevel7->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel7complete", 0);
     }
     ////level 7 to level 8 animation
-    if (wlevel7->m_normalPercent == 100 && wlevel8->m_normalPercent == 0 && level7complete == 0)
-    {
+    if (wlevel7->m_normalPercent == 100 && wlevel8->m_normalPercent == 0 && level7complete == 0) {
         Spoint1->setScaleY(1.2);
         Spoint2->setScaleY(1.2);
         Spoint3->setScaleY(1.2);
         Spoint4->setScaleY(1.2);
     
-
         Spoint1->setScaleX(2);
         Spoint2->setScaleX(2);
         Spoint3->setScaleX(2);
@@ -926,7 +853,6 @@ bool IslandSelectLayer::init(int page) {
         Spoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
         Spoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
         Spoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(scaleWithBounce), nullptr));
-      
 
         level8Btn->setScale(1.5);
         level8Btn->setVisible(true);
@@ -940,15 +866,10 @@ bool IslandSelectLayer::init(int page) {
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel7complete", 1);
-    }
-    else
-    {
-        if (wlevel7->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel7->m_normalPercent == 100) {
             level8Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             Spoint1->setOpacity(0);
             Spoint2->setOpacity(0);
             Spoint3->setOpacity(0);
@@ -957,10 +878,9 @@ bool IslandSelectLayer::init(int page) {
         }
     }
 
-    
     CCMenuItemSpriteExtra* level9Btn = CCMenuItemSpriteExtra::create(unksp8, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level9Btn->setTag(8);
+    level9Btn->setTag(9);
     level9Btn->setPosition(80, -38);
     level9Btn->setVisible(false);
     level9->setPosition(level9Btn->getPosition());
@@ -997,20 +917,17 @@ bool IslandSelectLayer::init(int page) {
     Rpoint5->setScale(0.5);
     Rpoint5->setScaleX(1);
 
+    TheInterfaceMenu->addChild(Rpoint1, 2);
+    TheInterfaceMenu->addChild(Rpoint2, 2);
+    TheInterfaceMenu->addChild(Rpoint3, 2);
+    TheInterfaceMenu->addChild(Rpoint4, 2);
+    TheInterfaceMenu->addChild(Rpoint5, 2);
 
-    // TheInterfaceMenu->addChild(Rpoint1, 2);
-    // TheInterfaceMenu->addChild(Rpoint2, 2);
-    // TheInterfaceMenu->addChild(Rpoint3, 2);
-    // TheInterfaceMenu->addChild(Rpoint4, 2);
-    // TheInterfaceMenu->addChild(Rpoint5, 2);
-
-    if (wlevel8->m_normalPercent != 100)
-    {
+    if (wlevel8->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel8complete", 0);
     }
     //level 8 to level 9 animation
-    if (wlevel8->m_normalPercent == 100 && wlevel9->m_normalPercent == 0 && level8complete == 0)
-    {
+    if (wlevel8->m_normalPercent == 100 && wlevel9->m_normalPercent == 0 && level8complete == 0) {
         Epoint1->setScaleY(1.2);
         Epoint2->setScaleY(1.2);
         Epoint3->setScaleY(1.2);
@@ -1062,15 +979,10 @@ bool IslandSelectLayer::init(int page) {
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel8complete", 1);
-    }
-    else
-    {
-        if (wlevel8->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel8->m_normalPercent == 100) {
             level9Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             Epoint1->setOpacity(0);
             Epoint2->setOpacity(0);
             Epoint3->setOpacity(0);
@@ -1084,19 +996,17 @@ bool IslandSelectLayer::init(int page) {
 
     CCMenuItemSpriteExtra* level10Btn = CCMenuItemSpriteExtra::create(unkspr9, this, menu_selector(IslandSelectLayer::onIslandLevel));
 
-    level10Btn->setTag(9);
+    level10Btn->setTag(10);
     level10Btn->setPosition(170, -10);
 
     level10Btn->setVisible(false);
     level10->setPosition(level10Btn->getPosition());
 
-    if (wlevel9->m_normalPercent != 100)
-    {
+    if (wlevel9->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel9complete", 0);
     }
-    ////level 9 to level 10 animation
-    if (wlevel9->m_normalPercent == 100 && wlevel10->m_normalPercent == 0 && level9complete == 0)
-    {
+    // level 9 to level 10 animation
+    if (wlevel9->m_normalPercent == 100 && wlevel10->m_normalPercent == 0 && level9complete == 0) {
         Rpoint1->setScaleY(1.2);
         Rpoint2->setScaleY(1.2);
         Rpoint3->setScaleY(1.2);
@@ -1136,15 +1046,10 @@ bool IslandSelectLayer::init(int page) {
             nullptr
         ));
         Mod::get()->setSavedValue("islandlevel9complete", 1);
-    }
-    else
-    {
-        if (wlevel9->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel9->m_normalPercent == 100) {
             level10Btn->setVisible(true);
-        }
-        else
-        {
+        } else {
             Rpoint1->setOpacity(0);
             Rpoint2->setOpacity(0);
             Rpoint3->setOpacity(0);
@@ -1157,7 +1062,7 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("islandlevel10complete", 0);
     }
 
-    if (wlevel10->m_normalPercent == 100 && level10complete == 0) {
+    /*if (wlevel10->m_normalPercent == 100 && level10complete == 0) {
         CCArray* arr = CCArray::create();
         int colour = 2;
 
@@ -1168,16 +1073,11 @@ bool IslandSelectLayer::init(int page) {
         auto dialog3 = DialogObject::create("The Keymaster", "Or maybe, if you were in <cy>Geometry Dash Island game</c>, LOL.", 2, 1, false, { 255,255,255 });
 
         auto dialog4 = DialogObject::create("The Keymaster", "<cl>Let's see what more you can do<d010>.<d010>.<d010>.</c>", 2, 1, false, { 255,255,255 });
+
         arr->addObject(dialog1);
-
         arr->addObject(dialog2);
-
         arr->addObject(dialog3);
-
         arr->addObject(dialog4);
-
-
-
 
         auto dl = DialogLayer::createDialogLayer(nullptr, arr, colour);
         dl->animateInRandomSide();
@@ -1185,15 +1085,12 @@ bool IslandSelectLayer::init(int page) {
 
         this->addChild(dl, 3);
         Mod::get()->setSavedValue("islandlevel10complete", 1);
-    }
-    else
-    {
-        if (wlevel10->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel10->m_normalPercent == 100) {
             level10Btn->setVisible(true);
         }
-      
-    }
+    }*/
+
     TheInterfaceMenu->addChild(level6Btn,2);
     TheInterfaceMenu->addChild(level7Btn, 2);
     TheInterfaceMenu->addChild(level8Btn,2);
@@ -1281,12 +1178,10 @@ bool IslandSelectLayer::init(int page) {
     m_levelPages->addObject(node3);
 
     m_scrollLayer = BoomScrollLayer::create(m_levelPages, 0, false, nullptr, static_cast<DynamicScrollDelegate*>(this));
-
     m_scrollLayer->m_extendedLayer->m_delegate = static_cast<BoomScrollLayerDelegate*>(this);
 
     if (page) {
-        if (page == 21)
-            m_scrollLayer->instantMoveToPage(20);
+        if (page == 21) m_scrollLayer->instantMoveToPage(20);
         m_scrollLayer->instantMoveToPage(page);
     } else {
         scrollLayerMoved(m_scrollLayer->m_extendedLayer->getPosition()); //
@@ -1318,25 +1213,19 @@ bool IslandSelectLayer::init(int page) {
         ));
 
         Mod::get()->setSavedValue("islandlevel5complete", 1);
-    }
-    else
-    {
-        if (wlevel5->m_normalPercent == 100)
-        {
+    } else {
+        if (wlevel5->m_normalPercent == 100) {
             level6Btn->setVisible(true);
         }
-        else
-        {
+        else {
             Fpoint1->setOpacity(0);
             Fpoint2->setOpacity(0);
             Fpoint3->setOpacity(0);
             Fpoint4->setOpacity(0);
             Fpoint5->setOpacity(0);
         }
-
     }
 
-    
     sprite->setPosition(winSize / 2);
     sprite->setPositionY(sprite->getPositionY() - 30);
 
@@ -1407,8 +1296,7 @@ bool IslandSelectLayer::init(int page) {
 
 
     
-    if (wlevel1->m_normalPercent != 100)
-    {
+    if (wlevel1->m_normalPercent != 100) {
         auto level1arrow = CCSprite::createWithSpriteFrameName("GJ_arrow_02_001.png");
 
         level1arrow->setPosition(level1Btn->getPosition());
@@ -1445,25 +1333,26 @@ bool IslandSelectLayer::init(int page) {
     auto nextPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
     nextPageIcon->setFlipX(false);
     
-    auto nextPageBtn = CCMenuItemSpriteExtra::create(
+    m_nextPageBtn = CCMenuItemSpriteExtra::create(
         nextPageIcon,
         this,
         menu_selector(IslandSelectLayer::onNext)
     );
-    nextPageBtn->setPosition({ winSize.width * 0.95f, winSize.height * 0.5f });
+    m_nextPageBtn->setPosition({ winSize.width * 0.95f, winSize.height * 0.5f });
 
     auto prevPageIcon = CCSprite::createWithSpriteFrameName("navArrowBtn_001.png");
     prevPageIcon->setFlipX(true);
     
-    auto prevPageBtn = CCMenuItemSpriteExtra::create(
+    m_prevPageBtn = CCMenuItemSpriteExtra::create(
         prevPageIcon,
         this,
         menu_selector(IslandSelectLayer::onPrev)
     );
-    prevPageBtn->setPosition({ winSize.width * 0.05f, winSize.height * 0.5f });
+    m_prevPageBtn->setPosition({ winSize.width * 0.05f, winSize.height * 0.5f });
+    m_prevPageBtn->setVisible(false);
 
-    pageBtnsMenu->addChild(nextPageBtn);
-    pageBtnsMenu->addChild(prevPageBtn);
+    pageBtnsMenu->addChild(m_nextPageBtn);
+    pageBtnsMenu->addChild(m_prevPageBtn);
 
     this->addChild(pageBtnsMenu);
 
@@ -1505,8 +1394,7 @@ bool IslandSelectLayer::init(int page) {
     return true;
 }
 
-void IslandSelectLayer::runParticle()
-{
+void IslandSelectLayer::runParticle() {
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     auto particles = CCParticleSystemQuad::create("coinPickupEffect.plist", 1);
 
@@ -1514,11 +1402,11 @@ void IslandSelectLayer::runParticle()
 
     auto extendedLayer = (ExtendedLayer*)m_scrollLayer->getChildren()->objectAtIndex(0);
 
-    auto levelsnode1 = (more::IslandNode*)extendedLayer->getChildren()->objectAtIndex(0);
+    auto levelsnode1 = (IslandNode*)extendedLayer->getChildren()->objectAtIndex(0);
 
     auto levelsmenu1 = (CCMenu*)levelsnode1->getChildren()->objectAtIndex(2);
 
-    auto levelsnode2 = (more::IslandNode*)extendedLayer->getChildren()->objectAtIndex(1);
+    auto levelsnode2 = (IslandNode*)extendedLayer->getChildren()->objectAtIndex(1);
 
     auto levelsmenu2 = (CCMenu*)levelsnode2->getChildren()->objectAtIndex(2);
 
@@ -1536,10 +1424,10 @@ void IslandSelectLayer::runParticle()
     circlewave2->setAnchorPoint({ 0.5f, 0.5f });
     circlewave2->setScale(0.5f);
     circlewave->setZOrder(3);
+
     if (levelunlocked == 1) {
         particles->setPosition({ -80, -30 });
     }
-
     if (levelunlocked == 2) {
         particles->setPosition({ -10, 10 });
     }
@@ -1673,6 +1561,8 @@ void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
         Color2.g = color.g * 0.9;
         Color2.b = color.b * 0.9;
     }
+
+    updatePageButtons();
 }
 
 void IslandSelectLayer::onClose(CCObject*) {
@@ -1699,9 +1589,35 @@ void IslandSelectLayer::updatePageWithObject(CCObject* page, CCObject* object) {
 void IslandSelectLayer::onNext(CCObject*) {
     m_scrollLayer->quickUpdate();
     m_scrollLayer->moveToPage(m_level + 1);
+
+    updatePageButtons();
 }
 
 void IslandSelectLayer::onPrev(CCObject*) {
     m_scrollLayer->quickUpdate();
     m_scrollLayer->moveToPage(m_level - 1);
+
+    updatePageButtons();
+}
+
+void IslandSelectLayer::onEnterTransitionDidFinish() {
+    // fix animation stuff here pls (from @OmgRod)
+}
+
+void IslandSelectLayer::updatePageButtons() {
+    if (m_nextPageBtn) {
+        if (m_scrollLayer->m_page >= m_scrollLayer->m_pages->count() - 1) {
+            m_nextPageBtn->setVisible(false);
+        } else {
+            m_nextPageBtn->setVisible(true);
+        }
+    }
+
+    if (m_prevPageBtn) {
+        if (m_scrollLayer->m_page <= 0) {
+            m_prevPageBtn->setVisible(false);
+        } else {
+            m_prevPageBtn->setVisible(true);
+        }
+    }
 }
