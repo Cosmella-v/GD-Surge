@@ -118,8 +118,8 @@ public:
 	GJGameLevel* level;
 	LevelPoints m_points;
 	GDSIslandLevel m_iLevels;
-	CCEaseBounceOut* m_scaleWithBounce;
-	CCEaseBounceOut* m_scaleWithBounce2;
+	CCEaseBounceOut* m_scaleWithBounce = CCEaseBounceOut::create(CCScaleTo::create(0.5,1, 0.5));
+	CCEaseBounceOut* m_scaleWithBounce2 = CCEaseBounceOut::create(CCScaleTo::create(0.5, 1));
 
 	ccColor3B colorForPage(int);
 	ccColor3B getColorValue(int, int, float);

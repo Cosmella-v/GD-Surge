@@ -297,12 +297,6 @@ bool IslandSelectLayer::init(int page) {
     m_points.level3PathPoint5->setScale(0.5);
     m_points.level3PathPoint5->setScaleX(1);
 
-    auto scaleAction = CCScaleTo::create(0.5,1, 0.5);
-    auto scaleAction2 = CCScaleTo::create(0.5, 1);
-
-    m_scaleWithBounce = CCEaseBounceOut::create(scaleAction);
-    m_scaleWithBounce2 = CCEaseBounceOut::create(scaleAction2);
-
     m_iLevels.iLevel1 = GLM->getMainLevel(2001, false);
     m_iLevels.iLevel2 = GLM->getMainLevel(2002, false);
     m_iLevels.iLevel3 = GLM->getMainLevel(2003, false);
@@ -343,55 +337,14 @@ bool IslandSelectLayer::init(int page) {
     if (m_iLevels.iLevel2->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel2complete", 0);
     }
-    if (m_iLevels.iLevel2->m_normalPercent == 100 && m_iLevels.iLevel3->m_normalPercent == 0 && m_iLevels.level2complete == 0) {
-        //level 2 to level 3 animation
-        m_points.level2PathPoint1->setScaleY(1.2);
-        m_points.level2PathPoint2->setScaleY(1.2);
-        m_points.level2PathPoint3->setScaleY(1.2);
-        m_points.level2PathPoint4->setScaleY(1.2);
-        m_points.level2PathPoint5->setScaleY(1.2);
-
-        m_points.level2PathPoint1->setScaleX(2);
-        m_points.level2PathPoint2->setScaleX(2);
-        m_points.level2PathPoint3->setScaleX(2);
-        m_points.level2PathPoint4->setScaleX(2);
-        m_points.level2PathPoint5->setScaleX(2);
-        //opacty
+    if (m_iLevels.iLevel2->m_normalPercent == 100) {
+        m_iLevels.level3Btn->setVisible(true);
+    } else {
         m_points.level2PathPoint1->setOpacity(0);
         m_points.level2PathPoint2->setOpacity(0);
         m_points.level2PathPoint3->setOpacity(0);
         m_points.level2PathPoint4->setOpacity(0);
         m_points.level2PathPoint5->setOpacity(0);
-        m_iLevels.level3Btn->setOpacity(0);
-
-        m_points.level2PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level2PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level2PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level2PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level2PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-
-        m_iLevels.level3Btn->setScale(1.5);
-        m_iLevels.level3Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 2);
-        m_iLevels.level3Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.8),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-        Mod::get()->setSavedValue("islandlevel2complete", 1);
-    } else {
-        if (m_iLevels.iLevel2->m_normalPercent == 100) {
-            m_iLevels.level3Btn->setVisible(true);
-        } else {
-            m_points.level2PathPoint1->setOpacity(0);
-            m_points.level2PathPoint2->setOpacity(0);
-            m_points.level2PathPoint3->setOpacity(0);
-            m_points.level2PathPoint4->setOpacity(0);
-            m_points.level2PathPoint5->setOpacity(0);
-        }
     }
     /*dashlandsmenu->addChild(particles, 2);*/
     // Establecer la escala inicial como 0 para que est�n invisibles
@@ -438,54 +391,14 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("islandlevel3complete", 0);
     }
     //level 3 to level 4 animation
-    if (m_iLevels.iLevel3->m_normalPercent == 100 && m_iLevels.iLevel4->m_normalPercent == 0 && m_iLevels.level3complete == 0) {
-        m_points.level3PathPoint1->setScaleY(1.2);
-        m_points.level3PathPoint2->setScaleY(1.2);
-        m_points.level3PathPoint3->setScaleY(1.2);
-        m_points.level3PathPoint4->setScaleY(1.2);
-        m_points.level3PathPoint5->setScaleY(1.2);
-
-        m_points.level3PathPoint1->setScaleX(2);
-        m_points.level3PathPoint2->setScaleX(2);
-        m_points.level3PathPoint3->setScaleX(2);
-        m_points.level3PathPoint4->setScaleX(2);
-        m_points.level3PathPoint5->setScaleX(2);
-        //opacty
+    if (m_iLevels.iLevel3->m_normalPercent == 100) {
+        m_iLevels.level4Btn->setVisible(true);
+    } else {
         m_points.level3PathPoint1->setOpacity(0);
         m_points.level3PathPoint2->setOpacity(0);
         m_points.level3PathPoint3->setOpacity(0);
         m_points.level3PathPoint4->setOpacity(0);
         m_points.level3PathPoint5->setOpacity(0);
-        m_iLevels.level4Btn->setOpacity(0);
-
-        m_points.level3PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level3PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level3PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level3PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level3PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-
-        m_iLevels.level4Btn->setScale(1.5);
-        m_iLevels.level4Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 3);
-        m_iLevels.level4Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.8),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-        Mod::get()->setSavedValue("islandlevel3complete", 1);
-    } else {
-        if (m_iLevels.iLevel3->m_normalPercent == 100) {
-            m_iLevels.level4Btn->setVisible(true);
-        } else {
-            m_points.level3PathPoint1->setOpacity(0);
-            m_points.level3PathPoint2->setOpacity(0);
-            m_points.level3PathPoint3->setOpacity(0);
-            m_points.level3PathPoint4->setOpacity(0);
-            m_points.level3PathPoint5->setOpacity(0);
-        }
     }
     
     m_iLevels.level5Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
@@ -500,54 +413,14 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("islandlevel4complete", 0);
     }
     //level 4 to level 5 animation
-    if (m_iLevels.iLevel4->m_normalPercent == 100 && m_iLevels.iLevel5->m_normalPercent == 0 && m_iLevels.level4complete == 0) {
-        m_points.level4PathPoint1->setScaleY(1.2);
-        m_points.level4PathPoint2->setScaleY(1.2);
-        m_points.level4PathPoint3->setScaleY(1.2);
-        m_points.level4PathPoint4->setScaleY(1.2);
-        m_points.level4PathPoint5->setScaleY(1.2);
-
-        m_points.level4PathPoint1->setScaleX(2);
-        m_points.level4PathPoint2->setScaleX(2);
-        m_points.level4PathPoint3->setScaleX(2);
-        m_points.level4PathPoint4->setScaleX(2);
-        m_points.level4PathPoint5->setScaleX(2);
-        //opacty
+    if (m_iLevels.iLevel4->m_normalPercent == 100) {
+        m_iLevels.level5Btn->setVisible(true);
+    } else {
         m_points.level4PathPoint1->setOpacity(0);
         m_points.level4PathPoint2->setOpacity(0);
         m_points.level4PathPoint3->setOpacity(0);
         m_points.level4PathPoint4->setOpacity(0);
         m_points.level4PathPoint5->setOpacity(0);
-        m_iLevels.level5Btn->setOpacity(0);
-
-        m_points.level4PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level4PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level4PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level4PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level4PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-
-        m_iLevels.level5Btn->setScale(1.5);
-        m_iLevels.level5Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 4);
-        m_iLevels.level5Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.8),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-        Mod::get()->setSavedValue("islandlevel4complete", 1);
-    } else {
-        if (m_iLevels.iLevel4->m_normalPercent == 100) {
-            m_iLevels.level5Btn->setVisible(true);
-        } else {
-            m_points.level4PathPoint1->setOpacity(0);
-            m_points.level4PathPoint2->setOpacity(0);
-            m_points.level4PathPoint3->setOpacity(0);
-            m_points.level4PathPoint4->setOpacity(0);
-            m_points.level4PathPoint5->setOpacity(0);
-        }
     }
 
     auto TheInterfaceMenu = CCMenu::create();
@@ -637,54 +510,14 @@ bool IslandSelectLayer::init(int page) {
     if (m_iLevels.iLevel6->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel6complete", 0);
     }
-    if (m_iLevels.iLevel6->m_normalPercent == 100 && m_iLevels.iLevel7->m_normalPercent == 0 && m_iLevels.level6complete == 0) {
-        m_points.level6PathPoint1->setScaleY(1.2);
-        m_points.level6PathPoint2->setScaleY(1.2);
-        m_points.level6PathPoint3->setScaleY(1.2);
-        m_points.level6PathPoint4->setScaleY(1.2);
-        m_points.level6PathPoint5->setScaleY(1.2);
-
-        m_points.level6PathPoint1->setScaleX(2);
-        m_points.level6PathPoint2->setScaleX(2);
-        m_points.level6PathPoint3->setScaleX(2);
-        m_points.level6PathPoint4->setScaleX(2);
-        m_points.level6PathPoint5->setScaleX(2);
-        //opacty
+    if (m_iLevels.iLevel6->m_normalPercent == 100) {
+        m_iLevels.level7Btn->setVisible(true);
+    } else {
         m_points.level6PathPoint1->setOpacity(0);
         m_points.level6PathPoint2->setOpacity(0);
         m_points.level6PathPoint3->setOpacity(0);
         m_points.level6PathPoint4->setOpacity(0);
         m_points.level6PathPoint5->setOpacity(0);
-        m_iLevels.level7Btn->setOpacity(0);
-
-        m_points.level6PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level6PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level6PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level6PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level6PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-
-        m_iLevels.level7Btn->setScale(1.5);
-        m_iLevels.level7Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 6);
-        m_iLevels.level7Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.8),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-        Mod::get()->setSavedValue("islandlevel6complete", 1);
-    } else {
-        if (m_iLevels.iLevel6->m_normalPercent == 100) {
-            m_iLevels.level7Btn->setVisible(true);
-        } else {
-            m_points.level6PathPoint1->setOpacity(0);
-            m_points.level6PathPoint2->setOpacity(0);
-            m_points.level6PathPoint3->setOpacity(0);
-            m_points.level6PathPoint4->setOpacity(0);
-            m_points.level6PathPoint5->setOpacity(0);
-        }
     }
 
     m_iLevels.level8Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
@@ -757,52 +590,14 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("islandlevel7complete", 0);
     }
     ////level 7 to level 8 animation
-    if (m_iLevels.iLevel7->m_normalPercent == 100 && m_iLevels.iLevel8->m_normalPercent == 0 && m_iLevels.level7complete == 0) {
-        m_points.level7PathPoint1->setScaleY(1.2);
-        m_points.level7PathPoint2->setScaleY(1.2);
-        m_points.level7PathPoint3->setScaleY(1.2);
-        m_points.level7PathPoint4->setScaleY(1.2);
-    
-        m_points.level7PathPoint1->setScaleX(2);
-        m_points.level7PathPoint2->setScaleX(2);
-        m_points.level7PathPoint3->setScaleX(2);
-        m_points.level7PathPoint4->setScaleX(2);
-
-        //opacty
+    if (m_iLevels.iLevel7->m_normalPercent == 100) {
+        m_iLevels.level8Btn->setVisible(true);
+    } else {
         m_points.level7PathPoint1->setOpacity(0);
         m_points.level7PathPoint2->setOpacity(0);
         m_points.level7PathPoint3->setOpacity(0);
         m_points.level7PathPoint4->setOpacity(0);
-
-        m_iLevels.level8Btn->setOpacity(0);
-
-        m_points.level7PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level7PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level7PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level7PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-
-        m_iLevels.level8Btn->setScale(1.5);
-        m_iLevels.level8Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 7);
-        m_iLevels.level8Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.5),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-        Mod::get()->setSavedValue("islandlevel7complete", 1);
-    } else {
-        if (m_iLevels.iLevel7->m_normalPercent == 100) {
-            m_iLevels.level8Btn->setVisible(true);
-        } else {
-            m_points.level7PathPoint1->setOpacity(0);
-            m_points.level7PathPoint2->setOpacity(0);
-            m_points.level7PathPoint3->setOpacity(0);
-            m_points.level7PathPoint4->setOpacity(0);
-            m_points.level7PathPoint5->setOpacity(0);
-        }
+        m_points.level7PathPoint5->setOpacity(0);
     }
 
     m_iLevels.level9Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
@@ -854,25 +649,9 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("islandlevel8complete", 0);
     }
     //level 8 to level 9 animation
-    if (m_iLevels.iLevel8->m_normalPercent == 100 && m_iLevels.iLevel9->m_normalPercent == 0 && m_iLevels.level8complete == 0) {
-        m_points.level8PathPoint1->setScaleY(1.2);
-        m_points.level8PathPoint2->setScaleY(1.2);
-        m_points.level8PathPoint3->setScaleY(1.2);
-        m_points.level8PathPoint4->setScaleY(1.2);
-        m_points.level8PathPoint5->setScaleY(1.2);
-        m_points.level8PathPoint6->setScaleY(1.2);
-        m_points.level8PathPoint7->setScaleY(1.2);
-        m_points.level8PathPoint8->setScaleY(1.2);
-
-        m_points.level8PathPoint1->setScaleX(2);
-        m_points.level8PathPoint2->setScaleX(2);
-        m_points.level8PathPoint3->setScaleX(2);
-        m_points.level8PathPoint4->setScaleX(2);
-        m_points.level8PathPoint5->setScaleX(2);
-        m_points.level8PathPoint6->setScaleX(2);
-        m_points.level8PathPoint7->setScaleX(2);
-        m_points.level8PathPoint8->setScaleX(2);
-        //opacty
+    if (m_iLevels.iLevel8->m_normalPercent == 100) {
+        m_iLevels.level9Btn->setVisible(true);
+    } else {
         m_points.level8PathPoint1->setOpacity(0);
         m_points.level8PathPoint2->setOpacity(0);
         m_points.level8PathPoint3->setOpacity(0);
@@ -881,44 +660,6 @@ bool IslandSelectLayer::init(int page) {
         m_points.level8PathPoint6->setOpacity(0);
         m_points.level8PathPoint7->setOpacity(0);
         m_points.level8PathPoint8->setOpacity(0);
-      
-
-        m_iLevels.level9Btn->setOpacity(0);
-
-        m_points.level8PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level8PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level8PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level8PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level8PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level8PathPoint6->runAction(CCSequence::create(CCDelayTime::create(1.8), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level8PathPoint7->runAction(CCSequence::create(CCDelayTime::create(2.1), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level8PathPoint8->runAction(CCSequence::create(CCDelayTime::create(2.4), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-
-        m_iLevels.level9Btn->setScale(1.5);
-        m_iLevels.level9Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 8);
-        m_iLevels.level9Btn->runAction(CCSequence::create(
-            CCDelayTime::create(2.7),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-        Mod::get()->setSavedValue("islandlevel8complete", 1);
-    } else {
-        if (m_iLevels.iLevel8->m_normalPercent == 100) {
-            m_iLevels.level9Btn->setVisible(true);
-        } else {
-            m_points.level8PathPoint1->setOpacity(0);
-            m_points.level8PathPoint2->setOpacity(0);
-            m_points.level8PathPoint3->setOpacity(0);
-            m_points.level8PathPoint4->setOpacity(0);
-            m_points.level8PathPoint5->setOpacity(0);
-            m_points.level8PathPoint6->setOpacity(0);
-            m_points.level8PathPoint7->setOpacity(0);
-            m_points.level8PathPoint8->setOpacity(0);
-        }
     }
 
     m_iLevels.level10Btn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("islandLevelBtn_001.png"_spr), this, menu_selector(IslandSelectLayer::onIslandLevel));
@@ -933,90 +674,22 @@ bool IslandSelectLayer::init(int page) {
         Mod::get()->setSavedValue("islandlevel9complete", 0);
     }
     // level 9 to level 10 animation
-    if (m_iLevels.iLevel9->m_normalPercent == 100 && m_iLevels.iLevel10->m_normalPercent == 0 && m_iLevels.level9complete == 0) {
-        m_points.level9PathPoint1->setScaleY(1.2);
-        m_points.level9PathPoint2->setScaleY(1.2);
-        m_points.level9PathPoint3->setScaleY(1.2);
-        m_points.level9PathPoint4->setScaleY(1.2);
-        m_points.level9PathPoint5->setScaleY(1.2);
-
-        m_points.level9PathPoint1->setScaleX(2);
-        m_points.level9PathPoint2->setScaleX(2);
-        m_points.level9PathPoint3->setScaleX(2);
-        m_points.level9PathPoint4->setScaleX(2);
-        m_points.level9PathPoint5->setScaleX(2);
-
-        //opacty
+    if (m_iLevels.iLevel9->m_normalPercent == 100) {
+        m_iLevels.level10Btn->setVisible(true);
+    } else {
         m_points.level9PathPoint1->setOpacity(0);
         m_points.level9PathPoint2->setOpacity(0);
         m_points.level9PathPoint3->setOpacity(0);
         m_points.level9PathPoint4->setOpacity(0);
         m_points.level9PathPoint5->setOpacity(0);
-
-        m_iLevels.level10Btn->setOpacity(0);
-
-        m_points.level9PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level9PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level9PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level9PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-        m_points.level9PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
-
-        m_iLevels.level10Btn->setScale(1.5);
-        m_iLevels.level10Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 9);
-        m_iLevels.level10Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.8),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-        Mod::get()->setSavedValue("islandlevel9complete", 1);
-    } else {
-        if (m_iLevels.iLevel9->m_normalPercent == 100) {
-            m_iLevels.level10Btn->setVisible(true);
-        } else {
-            m_points.level9PathPoint1->setOpacity(0);
-            m_points.level9PathPoint2->setOpacity(0);
-            m_points.level9PathPoint3->setOpacity(0);
-            m_points.level9PathPoint4->setOpacity(0);
-            m_points.level9PathPoint5->setOpacity(0);
-        }
     }
 
     if (m_iLevels.iLevel10->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel10complete", 0);
     }
-
-    /*if (iLevel10->m_normalPercent == 100 && level10complete == 0) {
-        CCArray* arr = CCArray::create();
-        int colour = 2;
-
-        auto dialog1 = DialogObject::create("The Keymaster", "Well, well, well...<d020> I see you have <cg>completed</c> the <cl>first two</c> islands.", 2, 1, false, { 255,255,255 });
-
-        auto dialog2 = DialogObject::create("The Keymaster", "Not bad,<d030> not bad at all.\n<d030>I have <co>unlocked</c> <cg>online levels</c> for you.", 2, 1, false, { 255,255,255 });
-
-        auto dialog3 = DialogObject::create("The Keymaster", "Or maybe, if you were in <cy>Geometry Dash Island game</c>, LOL.", 2, 1, false, { 255,255,255 });
-
-        auto dialog4 = DialogObject::create("The Keymaster", "<cl>Let's see what more you can do<d010>.<d010>.<d010>.</c>", 2, 1, false, { 255,255,255 });
-
-        arr->addObject(dialog1);
-        arr->addObject(dialog2);
-        arr->addObject(dialog3);
-        arr->addObject(dialog4);
-
-        auto dl = DialogLayer::createDialogLayer(nullptr, arr, colour);
-        dl->animateInRandomSide();
-        dl->setZOrder(2);
-
-        this->addChild(dl, 3);
-        Mod::get()->setSavedValue("islandlevel10complete", 1);
-    } else {
-        if (iLevel10->m_normalPercent == 100) {
-            level10Btn->setVisible(true);
-        }
-    }*/
+    if (m_iLevels.iLevel10->m_normalPercent == 100) {
+        m_iLevels.level10Btn->setVisible(true);
+    }
 
     TheInterfaceMenu->addChild(m_iLevels.level6Btn,2);
     TheInterfaceMenu->addChild(m_iLevels.level7Btn, 2);
@@ -1122,35 +795,15 @@ bool IslandSelectLayer::init(int page) {
     if (m_iLevels.iLevel5->m_normalPercent != 100) {
         Mod::get()->setSavedValue("islandlevel5complete", 0);
     }
-    if (m_iLevels.iLevel5->m_normalPercent == 100 && m_iLevels.iLevel6->m_normalPercent == 0 && m_iLevels.level5complete == 0) {
-        m_iLevels.level6Btn->setOpacity(0);
-
-        m_iLevels.level6Btn->setScale(1.5);
+    if (m_iLevels.iLevel5->m_normalPercent == 100) {
         m_iLevels.level6Btn->setVisible(true);
-
-        Mod::get()->setSavedValue("iLevelUnlocked", 5);
-
-        m_scrollLayer->moveToPage(1);
-        m_iLevels.level6Btn->runAction(CCSequence::create(
-            CCDelayTime::create(1.2),
-            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
-            CCFadeIn::create(0.1),
-            CCEaseBounceOut::create(m_scaleWithBounce2),
-            nullptr
-        ));
-
-        Mod::get()->setSavedValue("islandlevel5complete", 1);
-    } else {
-        if (m_iLevels.iLevel5->m_normalPercent == 100) {
-            m_iLevels.level6Btn->setVisible(true);
-        }
-        else {
-            m_points.level5PathPoint1->setOpacity(0);
-            m_points.level5PathPoint2->setOpacity(0);
-            m_points.level5PathPoint3->setOpacity(0);
-            m_points.level5PathPoint4->setOpacity(0);
-            m_points.level5PathPoint5->setOpacity(0);
-        }
+    }
+    else {
+        m_points.level5PathPoint1->setOpacity(0);
+        m_points.level5PathPoint2->setOpacity(0);
+        m_points.level5PathPoint3->setOpacity(0);
+        m_points.level5PathPoint4->setOpacity(0);
+        m_points.level5PathPoint5->setOpacity(0);
     }
 
     sprite->setPosition(winSize / 2);
@@ -1482,6 +1135,14 @@ void IslandSelectLayer::onPrev(CCObject*) {
 
 void IslandSelectLayer::onEnterTransitionDidFinish() {
     CCLayer::onEnterTransitionDidFinish();
+
+    if (!m_scaleWithBounce) {
+        m_scaleWithBounce = CCEaseBounceOut::create(CCScaleTo::create(0.5,1, 0.5));
+    }
+    if (!m_scaleWithBounce2) {
+        m_scaleWithBounce2 = CCEaseBounceOut::create(CCScaleTo::create(0.5,1));
+    }
+
     if (m_iLevels.iLevel1->m_normalPercent == 100 && m_iLevels.iLevel2->m_normalPercent == 0 && m_iLevels.level1complete == 0) {
         m_points.level1PathPoint1->setScaleY(1.2);
         m_points.level1PathPoint2->setScaleY(1.2);
@@ -1521,6 +1182,337 @@ void IslandSelectLayer::onEnterTransitionDidFinish() {
         ));
 
         Mod::get()->setSavedValue("islandlevel1complete", 1);
+    }
+    if (m_iLevels.iLevel2->m_normalPercent == 100 && m_iLevels.iLevel3->m_normalPercent == 0 && m_iLevels.level2complete == 0) {
+        //level 2 to level 3 animation
+        m_points.level2PathPoint1->setScaleY(1.2);
+        m_points.level2PathPoint2->setScaleY(1.2);
+        m_points.level2PathPoint3->setScaleY(1.2);
+        m_points.level2PathPoint4->setScaleY(1.2);
+        m_points.level2PathPoint5->setScaleY(1.2);
+
+        m_points.level2PathPoint1->setScaleX(2);
+        m_points.level2PathPoint2->setScaleX(2);
+        m_points.level2PathPoint3->setScaleX(2);
+        m_points.level2PathPoint4->setScaleX(2);
+        m_points.level2PathPoint5->setScaleX(2);
+        //opacty
+        m_points.level2PathPoint1->setOpacity(0);
+        m_points.level2PathPoint2->setOpacity(0);
+        m_points.level2PathPoint3->setOpacity(0);
+        m_points.level2PathPoint4->setOpacity(0);
+        m_points.level2PathPoint5->setOpacity(0);
+        m_iLevels.level3Btn->setOpacity(0);
+
+        m_points.level2PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level2PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+
+        m_iLevels.level3Btn->setScale(1.5);
+        m_iLevels.level3Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 2);
+        m_iLevels.level3Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.8),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+        Mod::get()->setSavedValue("islandlevel2complete", 1);
+    }
+    if (m_iLevels.iLevel3->m_normalPercent == 100 && m_iLevels.iLevel4->m_normalPercent == 0 && m_iLevels.level3complete == 0) {
+        m_points.level3PathPoint1->setScaleY(1.2);
+        m_points.level3PathPoint2->setScaleY(1.2);
+        m_points.level3PathPoint3->setScaleY(1.2);
+        m_points.level3PathPoint4->setScaleY(1.2);
+        m_points.level3PathPoint5->setScaleY(1.2);
+
+        m_points.level3PathPoint1->setScaleX(2);
+        m_points.level3PathPoint2->setScaleX(2);
+        m_points.level3PathPoint3->setScaleX(2);
+        m_points.level3PathPoint4->setScaleX(2);
+        m_points.level3PathPoint5->setScaleX(2);
+        //opacty
+        m_points.level3PathPoint1->setOpacity(0);
+        m_points.level3PathPoint2->setOpacity(0);
+        m_points.level3PathPoint3->setOpacity(0);
+        m_points.level3PathPoint4->setOpacity(0);
+        m_points.level3PathPoint5->setOpacity(0);
+        m_iLevels.level4Btn->setOpacity(0);
+
+        m_points.level3PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level3PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+
+        m_iLevels.level4Btn->setScale(1.5);
+        m_iLevels.level4Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 3);
+        m_iLevels.level4Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.8),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+        Mod::get()->setSavedValue("islandlevel3complete", 1);
+    }
+    if (m_iLevels.iLevel4->m_normalPercent == 100 && m_iLevels.iLevel5->m_normalPercent == 0 && m_iLevels.level4complete == 0) {
+        m_points.level4PathPoint1->setScaleY(1.2);
+        m_points.level4PathPoint2->setScaleY(1.2);
+        m_points.level4PathPoint3->setScaleY(1.2);
+        m_points.level4PathPoint4->setScaleY(1.2);
+        m_points.level4PathPoint5->setScaleY(1.2);
+
+        m_points.level4PathPoint1->setScaleX(2);
+        m_points.level4PathPoint2->setScaleX(2);
+        m_points.level4PathPoint3->setScaleX(2);
+        m_points.level4PathPoint4->setScaleX(2);
+        m_points.level4PathPoint5->setScaleX(2);
+        //opacty
+        m_points.level4PathPoint1->setOpacity(0);
+        m_points.level4PathPoint2->setOpacity(0);
+        m_points.level4PathPoint3->setOpacity(0);
+        m_points.level4PathPoint4->setOpacity(0);
+        m_points.level4PathPoint5->setOpacity(0);
+        m_iLevels.level5Btn->setOpacity(0);
+
+        m_points.level4PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level4PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+
+        m_iLevels.level5Btn->setScale(1.5);
+        m_iLevels.level5Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 4);
+        m_iLevels.level5Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.8),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+        Mod::get()->setSavedValue("islandlevel4complete", 1);
+    }
+    if (m_iLevels.iLevel5->m_normalPercent == 100 && m_iLevels.iLevel6->m_normalPercent == 0 && m_iLevels.level5complete == 0) {
+        m_iLevels.level6Btn->setOpacity(0);
+
+        m_iLevels.level6Btn->setScale(1.5);
+        m_iLevels.level6Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 5);
+
+        m_scrollLayer->moveToPage(1);
+        m_iLevels.level6Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.2),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+
+        Mod::get()->setSavedValue("islandlevel5complete", 1);
+    }
+    if (m_iLevels.iLevel6->m_normalPercent == 100 && m_iLevels.iLevel7->m_normalPercent == 0 && m_iLevels.level6complete == 0) {
+        m_points.level6PathPoint1->setScaleY(1.2);
+        m_points.level6PathPoint2->setScaleY(1.2);
+        m_points.level6PathPoint3->setScaleY(1.2);
+        m_points.level6PathPoint4->setScaleY(1.2);
+        m_points.level6PathPoint5->setScaleY(1.2);
+
+        m_points.level6PathPoint1->setScaleX(2);
+        m_points.level6PathPoint2->setScaleX(2);
+        m_points.level6PathPoint3->setScaleX(2);
+        m_points.level6PathPoint4->setScaleX(2);
+        m_points.level6PathPoint5->setScaleX(2);
+        //opacty
+        m_points.level6PathPoint1->setOpacity(0);
+        m_points.level6PathPoint2->setOpacity(0);
+        m_points.level6PathPoint3->setOpacity(0);
+        m_points.level6PathPoint4->setOpacity(0);
+        m_points.level6PathPoint5->setOpacity(0);
+        m_iLevels.level7Btn->setOpacity(0);
+
+        m_points.level6PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level6PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+
+        m_iLevels.level7Btn->setScale(1.5);
+        m_iLevels.level7Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 6);
+        m_iLevels.level7Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.8),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+        Mod::get()->setSavedValue("islandlevel6complete", 1);
+    }
+    if (m_iLevels.iLevel7->m_normalPercent == 100 && m_iLevels.iLevel8->m_normalPercent == 0 && m_iLevels.level7complete == 0) {
+        m_points.level7PathPoint1->setScaleY(1.2);
+        m_points.level7PathPoint2->setScaleY(1.2);
+        m_points.level7PathPoint3->setScaleY(1.2);
+        m_points.level7PathPoint4->setScaleY(1.2);
+    
+        m_points.level7PathPoint1->setScaleX(2);
+        m_points.level7PathPoint2->setScaleX(2);
+        m_points.level7PathPoint3->setScaleX(2);
+        m_points.level7PathPoint4->setScaleX(2);
+
+        //opacty
+        m_points.level7PathPoint1->setOpacity(0);
+        m_points.level7PathPoint2->setOpacity(0);
+        m_points.level7PathPoint3->setOpacity(0);
+        m_points.level7PathPoint4->setOpacity(0);
+
+        m_iLevels.level8Btn->setOpacity(0);
+
+        m_points.level7PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level7PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level7PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level7PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+
+        m_iLevels.level8Btn->setScale(1.5);
+        m_iLevels.level8Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 7);
+        m_iLevels.level8Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.5),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+        Mod::get()->setSavedValue("islandlevel7complete", 1);
+    }
+    if (m_iLevels.iLevel8->m_normalPercent == 100 && m_iLevels.iLevel9->m_normalPercent == 0 && m_iLevels.level8complete == 0) {
+        m_points.level8PathPoint1->setScaleY(1.2);
+        m_points.level8PathPoint2->setScaleY(1.2);
+        m_points.level8PathPoint3->setScaleY(1.2);
+        m_points.level8PathPoint4->setScaleY(1.2);
+        m_points.level8PathPoint5->setScaleY(1.2);
+        m_points.level8PathPoint6->setScaleY(1.2);
+        m_points.level8PathPoint7->setScaleY(1.2);
+        m_points.level8PathPoint8->setScaleY(1.2);
+
+        m_points.level8PathPoint1->setScaleX(2);
+        m_points.level8PathPoint2->setScaleX(2);
+        m_points.level8PathPoint3->setScaleX(2);
+        m_points.level8PathPoint4->setScaleX(2);
+        m_points.level8PathPoint5->setScaleX(2);
+        m_points.level8PathPoint6->setScaleX(2);
+        m_points.level8PathPoint7->setScaleX(2);
+        m_points.level8PathPoint8->setScaleX(2);
+        //opacty
+        m_points.level8PathPoint1->setOpacity(0);
+        m_points.level8PathPoint2->setOpacity(0);
+        m_points.level8PathPoint3->setOpacity(0);
+        m_points.level8PathPoint4->setOpacity(0);
+        m_points.level8PathPoint5->setOpacity(0);
+        m_points.level8PathPoint6->setOpacity(0);
+        m_points.level8PathPoint7->setOpacity(0);
+        m_points.level8PathPoint8->setOpacity(0);
+      
+
+        m_iLevels.level9Btn->setOpacity(0);
+
+        m_points.level8PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint6->runAction(CCSequence::create(CCDelayTime::create(1.8), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint7->runAction(CCSequence::create(CCDelayTime::create(2.1), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level8PathPoint8->runAction(CCSequence::create(CCDelayTime::create(2.4), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+
+        m_iLevels.level9Btn->setScale(1.5);
+        m_iLevels.level9Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 8);
+        m_iLevels.level9Btn->runAction(CCSequence::create(
+            CCDelayTime::create(2.7),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+        Mod::get()->setSavedValue("islandlevel8complete", 1);
+    }
+    if (m_iLevels.iLevel9->m_normalPercent == 100 && m_iLevels.iLevel10->m_normalPercent == 0 && m_iLevels.level9complete == 0) {
+        m_points.level9PathPoint1->setScaleY(1.2);
+        m_points.level9PathPoint2->setScaleY(1.2);
+        m_points.level9PathPoint3->setScaleY(1.2);
+        m_points.level9PathPoint4->setScaleY(1.2);
+        m_points.level9PathPoint5->setScaleY(1.2);
+
+        m_points.level9PathPoint1->setScaleX(2);
+        m_points.level9PathPoint2->setScaleX(2);
+        m_points.level9PathPoint3->setScaleX(2);
+        m_points.level9PathPoint4->setScaleX(2);
+        m_points.level9PathPoint5->setScaleX(2);
+
+        //opacty
+        m_points.level9PathPoint1->setOpacity(0);
+        m_points.level9PathPoint2->setOpacity(0);
+        m_points.level9PathPoint3->setOpacity(0);
+        m_points.level9PathPoint4->setOpacity(0);
+        m_points.level9PathPoint5->setOpacity(0);
+
+        m_iLevels.level10Btn->setOpacity(0);
+
+        m_points.level9PathPoint1->runAction(CCSequence::create(CCDelayTime::create(0.3), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint2->runAction(CCSequence::create(CCDelayTime::create(0.6), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint3->runAction(CCSequence::create(CCDelayTime::create(0.9), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint4->runAction(CCSequence::create(CCDelayTime::create(1.2), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+        m_points.level9PathPoint5->runAction(CCSequence::create(CCDelayTime::create(1.5), CCFadeIn::create(0.1), CCEaseBounceOut::create(m_scaleWithBounce), nullptr));
+
+        m_iLevels.level10Btn->setScale(1.5);
+        m_iLevels.level10Btn->setVisible(true);
+
+        Mod::get()->setSavedValue("iLevelUnlocked", 9);
+        m_iLevels.level10Btn->runAction(CCSequence::create(
+            CCDelayTime::create(1.8),
+            CCCallFunc::create(this, callfunc_selector(IslandSelectLayer::runParticle)),
+            CCFadeIn::create(0.1),
+            CCEaseBounceOut::create(m_scaleWithBounce2),
+            nullptr
+        ));
+        Mod::get()->setSavedValue("islandlevel9complete", 1);
+    }
+    if (m_iLevels.iLevel10->m_normalPercent == 100 && m_iLevels.level10complete == 0) {
+        CCArray* arr = CCArray::create();
+        int colour = 2;
+
+        auto dialog1 = DialogObject::create("The Keymaster", "Well, well, well...<d020> I see you have <cg>completed</c> the <cl>first two</c> islands.", 2, 1, false, { 255,255,255 });
+
+        auto dialog2 = DialogObject::create("The Keymaster", "Not bad,<d030> not bad at all.\n<d030>I have <co>unlocked</c> <cg>online levels</c> for you.", 2, 1, false, { 255,255,255 });
+
+        auto dialog3 = DialogObject::create("The Keymaster", "Or maybe, if you were in <cy>Geometry Dash Island game</c>, LOL.", 2, 1, false, { 255,255,255 });
+
+        auto dialog4 = DialogObject::create("The Keymaster", "<cl>Let's see what more you can do<d010>.<d010>.<d010>.</c>", 2, 1, false, { 255,255,255 });
+
+        arr->addObject(dialog1);
+        arr->addObject(dialog2);
+        arr->addObject(dialog3);
+        arr->addObject(dialog4);
+
+        auto dl = DialogLayer::createDialogLayer(nullptr, arr, colour);
+        dl->animateInRandomSide();
+        dl->setZOrder(2);
+
+        this->addChild(dl, 3);
+        Mod::get()->setSavedValue("islandlevel10complete", 1);
     }
 }
 
