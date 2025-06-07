@@ -132,6 +132,7 @@ bool MyLevelSelectLayer::init(int pageID) {
     return true;
 }
 
+#ifdef GEODE_IS_IOS
 ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
     if (!m_scrollLayer || !m_scrollLayer->m_dynamicObjects) {
         log::error("m_scrollLayer or m_dynamicObjects is null");
@@ -166,3 +167,4 @@ ccColor3B MyLevelSelectLayer::colorForPage(int pageID) {
 
     return GM->colorForIdx(colIDs[page % 8]);
 }
+#endif
