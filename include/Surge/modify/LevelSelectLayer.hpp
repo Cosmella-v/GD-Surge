@@ -10,5 +10,7 @@ public:
     bool init(int pageID);
 
     $override
+    #ifndef GEODE_IS_IOS
     ccColor3B colorForPage(int pageID);
+    #endif
 };
