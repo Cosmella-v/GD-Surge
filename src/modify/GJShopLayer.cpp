@@ -56,7 +56,7 @@ bool MyGJShopLayer::init(ShopType p0) {
         }
     }
 
-	if (Mod::get()->getSettingValue<bool>("shop-yap")) {
+	if (!Mod::get()->getSavedValue<bool>("shop-yap")) {
 		this->runAction(
 			CCSequence::create(
 				CCDelayTime::create(1.5f),

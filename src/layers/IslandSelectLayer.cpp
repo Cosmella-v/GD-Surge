@@ -953,196 +953,6 @@ bool IslandSelectLayer::init(int page) {
         level10->setVisible(false);
     }
 
-    return true;
-}
-
-void IslandSelectLayer::runParticle() {
-    auto winSize = CCDirector::sharedDirector()->getWinSize();
-    auto particles = CCParticleSystemQuad::create("coinPickupEffect.plist", 1);
-
-    auto levelunlocked = Mod::get()->getSavedValue<int>("iLevelUnlocked");
-
-    auto extendedLayer = (ExtendedLayer*)m_scrollLayer->getChildren()->objectAtIndex(0);
-
-    auto levelsnode1 = (IslandNode*)extendedLayer->getChildren()->objectAtIndex(0);
-    auto levelsmenu1 = (CCMenu*)levelsnode1->getChildren()->objectAtIndex(2);
-
-    auto levelsnode2 = (IslandNode*)extendedLayer->getChildren()->objectAtIndex(1);
-    auto levelsmenu2 = (CCMenu*)levelsnode2->getChildren()->objectAtIndex(2);
-
-    particles->setAnchorPoint({ 0.5f, 0.5f });
-    particles->setScale(0.5f);
-    particles->setZOrder(3);
-  
-    auto circlewave = CCCircleWave::create(16.0, 30, 0.3, 0,1);
-    circlewave->setAnchorPoint({ 0.5f, 0.5f });
-    circlewave->setScale(0.5f);
-    circlewave->setZOrder(3);
-
-    auto circlewave2 = CCCircleWave::create(16, 80, 0.3, 1, 1);
-    circlewave2->setAnchorPoint({ 0.5f, 0.5f });
-    circlewave2->setScale(0.5f);
-    circlewave->setZOrder(3);
-
-    if (levelunlocked == 1) {
-        particles->setPosition({ -80, -30 });
-    }
-    if (levelunlocked == 2) {
-        particles->setPosition({ -10, 10 });
-    }
-    if (levelunlocked == 3) {
-        particles->setPosition({ 50, -25 });
-    }
-    if (levelunlocked == 4) {
-        particles->setPosition({ 155, -10 });
-    }
-    if (levelunlocked == 5) {
-        particles->setPosition({ -175, -12 });
-    }
-    if (levelunlocked == 6) {
-        particles->setPosition({ -73, -28 });
-    }
-    if (levelunlocked == 7) {
-        particles->setPosition({ -10, 15 });
-    }
-    if (levelunlocked == 8) {
-        particles->setPosition({ 80, -38 });
-    }
-    if (levelunlocked == 9) {
-        particles->setPosition({ 170, -10 });
-    }
-
-    particles->init();
-
-    if (levelunlocked >= 1 && levelunlocked <= 4) {
-        levelsmenu1->addChild(particles, 2);
-   
-    }
-    else if (levelunlocked >= 5 && levelunlocked <= 9) {
-        levelsmenu2->addChild(particles, 2);
-    }
-    particles->addChild(circlewave, 2);
-    particles->addChild(circlewave2, 2);
-}
-
-void IslandSelectLayer::keyBackClicked() {
-    CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
-}
-
-void IslandSelectLayer::onIslandLevel(CCObject* sender) {
-    CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
-    auto GLM = GameLevelManager::sharedState();
-    IslandLevel::create(level, button)->show();
-}
-
-cocos2d::ccColor3B IslandSelectLayer::colorForPage(int page) {
-    auto GM = GameManager::sharedState();
-    int colIDs[9] = { 6, 17, 4, 9, 3, 11, 1, 3, 4 };
-
-    return GM->colorForIdx(colIDs[page % 5]);
-}
-
-ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3) {
-    float mod = (a3 * (2 / 3)) - 0.2f; // do NOT touch this line
-    if (mod < 1.0f) {
-        if (mod <= 0.0f)
-            mod = 0.0f;
-    } else mod = 1.0f;
-
-    ccColor3B col1 = colorForPage(level);
-    ccColor3B col2 = colorForPage(level2);
-
-    ccColor3B col3 = {
-    static_cast<GLubyte>((col2.r * mod) + col1.r * (1.0f - mod)),
-    static_cast<GLubyte>((col2.g * mod) + col1.g * (1.0f - mod)),
-    static_cast<GLubyte>((col2.b * mod) + col1.b * (1.0f - mod))
-    };
-    return col3;
-}
-
-void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
-    const int pageCount = 3; 
-    const float threshold = 0.7f; 
-
-    float x = -point.x / this->m_fWindowWidth;
-    while (x < 0.0f) {
-        x += pageCount;
-    }
-
-    int ix = std::floor(x);
-
-    float offset = x - ix;
-
-    int firstPage = ix % pageCount;
-
-    int lmao = firstPage + 1;
-    int secondPage = lmao % pageCount;
-
-    m_level = firstPage;
-
-    if (std::abs(offset) > threshold) {
-        ccColor3B color = getColorValue(firstPage, secondPage - 1, 12);
-        m_background->setColor(color);
-
-        ccColor3B Color1 = color;
-        Color1.r = color.r * 0.8;
-        Color1.g = color.g * 0.8;
-        Color1.b = color.b * 0.8;
-
-        ccColor3B Color2 = color;
-        Color2.r = color.r * 0.9;
-        Color2.g = color.g * 0.9;
-        Color2.b = color.b * 0.9;
-    }
-
-    updatePageButtons();
-}
-
-void IslandSelectLayer::onClose(CCObject*) {
-    keyBackClicked();
-}
-
-void IslandSelectLayer::updatePageWithObject(CCObject* page, CCObject* object) {
-    if (!page || !object) {
-        return;
-    }
-
-    GJGameLevel* level = static_cast<GJGameLevel*>(object);
-  
-    LevelPage* levelPage = typeinfo_cast<LevelPage*>(page);
-
-    if (!levelPage) {
-        return;
-    }
-
-    levelPage->updateDynamicPage(level);
-
-}
-
-void IslandSelectLayer::onNext(CCObject*) {
-    m_scrollLayer->quickUpdate();
-    m_scrollLayer->moveToPage(m_level + 1);
-
-    updatePageButtons();
-}
-
-void IslandSelectLayer::onPrev(CCObject*) {
-    m_scrollLayer->quickUpdate();
-    m_scrollLayer->moveToPage(m_level - 1);
-
-    updatePageButtons();
-}
-
-void IslandSelectLayer::onEnterTransitionDidFinish() {
-    CCLayer::onEnterTransitionDidFinish();
-
-    if (!m_scaleWithBounce) {
-        m_scaleWithBounce = CCEaseBounceOut::create(CCScaleTo::create(0.5,1, 0.5));
-    }
-    if (!m_scaleWithBounce2) {
-        m_scaleWithBounce2 = CCEaseBounceOut::create(CCScaleTo::create(0.5,1));
-    }
-
     if (m_iLevels.iLevel1->m_normalPercent == 100 && m_iLevels.iLevel2->m_normalPercent == 0 && m_iLevels.level1complete == 0) {
         m_points.level1PathPoint1->setScaleY(1.2);
         m_points.level1PathPoint2->setScaleY(1.2);
@@ -1514,6 +1324,198 @@ void IslandSelectLayer::onEnterTransitionDidFinish() {
         this->addChild(dl, 3);
         Mod::get()->setSavedValue("islandlevel10complete", 1);
     }
+
+    return true;
+}
+
+void IslandSelectLayer::runParticle() {
+    auto winSize = CCDirector::sharedDirector()->getWinSize();
+    auto particles = CCParticleSystemQuad::create("coinPickupEffect.plist", 1);
+
+    auto levelunlocked = Mod::get()->getSavedValue<int>("iLevelUnlocked");
+
+    auto extendedLayer = (ExtendedLayer*)m_scrollLayer->getChildren()->objectAtIndex(0);
+
+    auto levelsnode1 = (IslandNode*)extendedLayer->getChildren()->objectAtIndex(0);
+    auto levelsmenu1 = (CCMenu*)levelsnode1->getChildren()->objectAtIndex(2);
+
+    auto levelsnode2 = (IslandNode*)extendedLayer->getChildren()->objectAtIndex(1);
+    auto levelsmenu2 = (CCMenu*)levelsnode2->getChildren()->objectAtIndex(2);
+
+    particles->setAnchorPoint({ 0.5f, 0.5f });
+    particles->setScale(0.5f);
+    particles->setZOrder(3);
+  
+    auto circlewave = CCCircleWave::create(16.0, 30, 0.3, 0,1);
+    circlewave->setAnchorPoint({ 0.5f, 0.5f });
+    circlewave->setScale(0.5f);
+    circlewave->setZOrder(3);
+
+    auto circlewave2 = CCCircleWave::create(16, 80, 0.3, 1, 1);
+    circlewave2->setAnchorPoint({ 0.5f, 0.5f });
+    circlewave2->setScale(0.5f);
+    circlewave->setZOrder(3);
+
+    if (levelunlocked == 1) {
+        particles->setPosition({ -80, -30 });
+    }
+    if (levelunlocked == 2) {
+        particles->setPosition({ -10, 10 });
+    }
+    if (levelunlocked == 3) {
+        particles->setPosition({ 50, -25 });
+    }
+    if (levelunlocked == 4) {
+        particles->setPosition({ 155, -10 });
+    }
+    if (levelunlocked == 5) {
+        particles->setPosition({ -175, -12 });
+    }
+    if (levelunlocked == 6) {
+        particles->setPosition({ -73, -28 });
+    }
+    if (levelunlocked == 7) {
+        particles->setPosition({ -10, 15 });
+    }
+    if (levelunlocked == 8) {
+        particles->setPosition({ 80, -38 });
+    }
+    if (levelunlocked == 9) {
+        particles->setPosition({ 170, -10 });
+    }
+
+    particles->init();
+
+    if (levelunlocked >= 1 && levelunlocked <= 4) {
+        levelsmenu1->addChild(particles, 2);
+   
+    }
+    else if (levelunlocked >= 5 && levelunlocked <= 9) {
+        levelsmenu2->addChild(particles, 2);
+    }
+    particles->addChild(circlewave, 2);
+    particles->addChild(circlewave2, 2);
+}
+
+void IslandSelectLayer::keyBackClicked() {
+    CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
+}
+
+void IslandSelectLayer::onIslandLevel(CCObject* sender) {
+    CCMenuItemSpriteExtra* button = typeinfo_cast<CCMenuItemSpriteExtra*>(sender);
+    auto GLM = GameLevelManager::sharedState();
+    IslandLevel::create(level, button)->show();
+}
+
+cocos2d::ccColor3B IslandSelectLayer::colorForPage(int page) {
+    auto GM = GameManager::sharedState();
+    int colIDs[9] = { 6, 17, 4, 9, 3, 11, 1, 3, 4 };
+
+    return GM->colorForIdx(colIDs[page % 5]);
+}
+
+ccColor3B IslandSelectLayer::getColorValue(int level, int level2, float a3) {
+    float mod = (a3 * (2 / 3)) - 0.2f; // do NOT touch this line
+    if (mod < 1.0f) {
+        if (mod <= 0.0f)
+            mod = 0.0f;
+    } else mod = 1.0f;
+
+    ccColor3B col1 = colorForPage(level);
+    ccColor3B col2 = colorForPage(level2);
+
+    ccColor3B col3 = {
+    static_cast<GLubyte>((col2.r * mod) + col1.r * (1.0f - mod)),
+    static_cast<GLubyte>((col2.g * mod) + col1.g * (1.0f - mod)),
+    static_cast<GLubyte>((col2.b * mod) + col1.b * (1.0f - mod))
+    };
+    return col3;
+}
+
+void IslandSelectLayer::scrollLayerMoved(CCPoint point) {
+    const int pageCount = 3; 
+    const float threshold = 0.7f; 
+
+    float x = -point.x / this->m_fWindowWidth;
+    while (x < 0.0f) {
+        x += pageCount;
+    }
+
+    int ix = std::floor(x);
+
+    float offset = x - ix;
+
+    int firstPage = ix % pageCount;
+
+    int lmao = firstPage + 1;
+    int secondPage = lmao % pageCount;
+
+    m_level = firstPage;
+
+    if (std::abs(offset) > threshold) {
+        ccColor3B color = getColorValue(firstPage, secondPage - 1, 12);
+        m_background->setColor(color);
+
+        ccColor3B Color1 = color;
+        Color1.r = color.r * 0.8;
+        Color1.g = color.g * 0.8;
+        Color1.b = color.b * 0.8;
+
+        ccColor3B Color2 = color;
+        Color2.r = color.r * 0.9;
+        Color2.g = color.g * 0.9;
+        Color2.b = color.b * 0.9;
+    }
+
+    updatePageButtons();
+}
+
+void IslandSelectLayer::onClose(CCObject*) {
+    keyBackClicked();
+}
+
+void IslandSelectLayer::updatePageWithObject(CCObject* page, CCObject* object) {
+    if (!page || !object) {
+        return;
+    }
+
+    GJGameLevel* level = static_cast<GJGameLevel*>(object);
+  
+    LevelPage* levelPage = typeinfo_cast<LevelPage*>(page);
+
+    if (!levelPage) {
+        return;
+    }
+
+    levelPage->updateDynamicPage(level);
+
+}
+
+void IslandSelectLayer::onNext(CCObject*) {
+    m_scrollLayer->quickUpdate();
+    m_scrollLayer->moveToPage(m_level + 1);
+
+    updatePageButtons();
+}
+
+void IslandSelectLayer::onPrev(CCObject*) {
+    m_scrollLayer->quickUpdate();
+    m_scrollLayer->moveToPage(m_level - 1);
+
+    updatePageButtons();
+}
+
+void IslandSelectLayer::onEnterTransitionDidFinish() {
+    CCLayer::onEnterTransitionDidFinish();
+
+    if (!m_scaleWithBounce) {
+        m_scaleWithBounce = CCEaseBounceOut::create(CCScaleTo::create(0.5,1, 0.5));
+    }
+    if (!m_scaleWithBounce2) {
+        m_scaleWithBounce2 = CCEaseBounceOut::create(CCScaleTo::create(0.5,1));
+    }
+
+    // gonna look into it later
 }
 
 void IslandSelectLayer::updatePageButtons() {
