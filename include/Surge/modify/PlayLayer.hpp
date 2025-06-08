@@ -8,4 +8,5 @@ class $modify(MyPlayLayer, PlayLayer) {
     $override
     void levelComplete();
     // void onQuit();
+    void showHint();
 };

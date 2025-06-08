@@ -56,9 +56,17 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
         switch (level->m_levelID) {
             case -1: {
                 if (hasAch && Mod::get()->getSettingValue<bool>("shattered-code") && label) {
-                    auto comingNeverNode = CCNode::create();
+                    auto comingNeverNode = CCMenu::create();
                     comingNeverNode->setID("coming-never-node");
                     comingNeverNode->setPosition(label->getPosition());
+
+                    auto bg = createLayerBG();
+                    bg->setZOrder(-1);
+                    bg->setColor({ 0, 0, 0 });
+                    bg->setScaleX(winSize.width / bg->getContentSize().width);
+                    bg->setScaleY(winSize.height / bg->getContentSize().height);
+                    bg->setPosition(-comingNeverNode->getPosition());
+                    comingNeverNode->addChild(bg);
 
                     auto comingText = CCLabelBMFont::create("Coming", "bigFont.fnt");
                     comingText->setPosition({ -winSize.width * 0.3f, 0.f });
@@ -71,7 +79,7 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
                     float scale1 = winSize.height / zigzag1->getContentSize().height;
                     zigzag1->setScale(scale1);
                     float zigzag1X = comingText->getPositionX() + (zigzag1->getContentSize().width * scale1) / 2.f;
-                    zigzag1->setPosition({ zigzag1X + 40.f, 0.f });
+                    zigzag1->setPosition({ zigzag1X + 60.f, 0.f });
 
                     auto zigzag2 = CCSprite::createWithSpriteFrameName("GDS_zigzag.png"_spr);
                     float scale2 = winSize.height / zigzag2->getContentSize().height;
@@ -80,6 +88,32 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
                     float zigzag2X = neverText->getPositionX() - (zigzag2->getContentSize().width * scale2) / 2.f;
                     zigzag2->setPosition({ zigzag2X - 40.f, 0.f });
 
+                    auto diffFace = CCSprite::createWithSpriteFrameName("difficulty_00_btn_001.png");
+                    diffFace->setPosition({ 0, 0 });
+
+                    auto star = CCSprite::createWithSpriteFrameName("star_small01_001.png");
+                    star->setPosition({ -5.f, -30.f });
+
+                    auto starCount = CCCounterLabel::create(3, "bigFont.fnt", FormatterType::Integer);
+                    starCount->setScale(0.4);
+                    starCount->setAnchorPoint({ 0.f, 0.5f });
+                    starCount->setPosition({ 2.5f, -30.f });
+
+                    auto playBtn2Spr = CCSprite::createWithSpriteFrameName("GJ_playBtn2_001.png");
+                    auto playBtn = CCMenuItemSpriteExtra::create(
+                        playBtn2Spr,
+                        this,
+                        menu_selector(LevelPage::onPlay)
+                    );
+                    playBtn->setTag(1);
+                    playBtn->setPosition({ 0.f, -75.f });
+                    
+                    this->addChild(playBtn);
+
+                    comingNeverNode->addChild(diffFace);
+                    comingNeverNode->addChild(star);
+                    comingNeverNode->addChild(starCount);
+                    comingNeverNode->addChild(playBtn);
                     comingNeverNode->addChild(comingText);
                     comingNeverNode->addChild(neverText);
                     comingNeverNode->addChild(zigzag1);
@@ -121,7 +155,7 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
             }
         }
 
-        m_isBusy = (level->m_levelID < 0 && level->m_levelID != -3);
+        m_isBusy = (level->m_levelID < 0 && (level->m_levelID != -3 || level->m_levelID != -1));
     });
 }
 
@@ -135,6 +169,11 @@ void MyLevelPage::onPlay(CCObject* sender) {
     if (m_level->m_levelID == -3) {
         onIslands(sender);
         return;
+    } else if (m_level->m_levelID == -1) {
+        auto level = LevelTools::getLevel(m_level->m_levelID, false);
+        auto scene = PlayLayer::scene(level, false, false);
+        auto transition = CCTransitionFade::create(0.5f, scene);
+        CCDirector::sharedDirector()->pushScene(transition);
     }
 
     LevelPage::onPlay(sender);
