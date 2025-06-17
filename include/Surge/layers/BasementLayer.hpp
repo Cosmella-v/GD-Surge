@@ -1,7 +1,7 @@
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
-class BasementLayer : public CCLayer {
+class GDSBasementLayer : public CCLayer {
 protected:
 	CCPoint m_obNext;
 	CCMenu* m_pButtonMenu;
@@ -18,7 +18,7 @@ public:
 
     bool init();
     static CCScene* scene();
-    static BasementLayer* create();
+    static GDSBasementLayer* create();
     void keyBackClicked();
     void backWrapper(CCObject* sender);
 

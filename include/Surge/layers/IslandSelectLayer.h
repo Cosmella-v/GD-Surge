@@ -104,7 +104,7 @@ struct GDSIslandLevel {
 	int level10complete;
 };
 
-class IslandSelectLayer : public CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate {
+class GDSIslandSelectLayer : public CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate {
 public:
     GJGroundLayer* m_ground;
     CCSprite* m_background;
@@ -134,7 +134,7 @@ public:
 	void scrollLayerMoved(CCPoint) override;
 	void keyDown(int);
 	void updateColors();
-	static IslandSelectLayer* create(int page);
+	static GDSIslandSelectLayer* create(int page);
 	static CCScene* scene(int page);
 	void updatePageWithObject(CCObject* page, CCObject* object) override;
 	void onEnterTransitionDidFinish() override;

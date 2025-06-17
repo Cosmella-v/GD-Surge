@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Geode/Geode.hpp>
-#include "IslandSelectLayer.h"
+#include "GDSIslandSelectLayer.h"
 
 using namespace geode::prelude;
 
@@ -9,16 +9,16 @@ class IslandNode : public CCNode {
 public:
     static IslandNode* create(
         int index,
-        IslandSelectLayer* islandSelectLayer
+        GDSIslandSelectLayer* islandSelectLayer
     );
     
     bool init(
         int index,
-        IslandSelectLayer* islandSelectlayer
+        GDSIslandSelectLayer* islandSelectlayer
     );
 
     CCSprite* createIsland();
 
     int m_index;
-    IslandSelectLayer* m_islandSelectLayer;
+    GDSIslandSelectLayer* m_islandSelectLayer;
 };

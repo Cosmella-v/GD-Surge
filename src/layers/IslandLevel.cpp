@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 #include <Surge/layers/IslandLevel.hpp>
-#include <Surge/layers/IslandSelectLayer.h>
+#include <Surge/layers/GDSIslandSelectLayer.h>
 
 using namespace geode::prelude;
 

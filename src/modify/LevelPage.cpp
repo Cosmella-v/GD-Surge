@@ -1,4 +1,4 @@
-#include <Surge/layers/IslandSelectLayer.h>
+#include <Surge/layers/GDSIslandSelectLayer.h>
 #include <Surge/modify/LevelPage.hpp>
 
 using namespace geode::prelude;
@@ -160,7 +160,7 @@ void MyLevelPage::updateDynamicPage(GJGameLevel* level) {
 }
 
 void MyLevelPage::onIslands(CCObject*) {
-    auto scene = IslandSelectLayer::scene(0);
+    auto scene = GDSIslandSelectLayer::scene(0);
     auto transition = CCTransitionFade::create(0.5f, scene);
     CCDirector::sharedDirector()->pushScene(transition);
 }

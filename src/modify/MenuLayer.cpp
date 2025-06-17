@@ -2,7 +2,7 @@
 #include <Geode/utils/file.hpp>
 #include <Geode/utils/web.hpp>
 #include <Geode/loader/Event.hpp>
-#include <Surge/layers/CreditsLayer.hpp>
+#include <Surge/layers/GDSCreditsLayer.hpp>
 #include <Utils.hpp>
 
 float speed = 1.0f;
@@ -264,7 +264,7 @@ void MyMenuLayer::onYouTube(CCObject* sender) {
 }
 
 // void MyMenuLayer::onMoreGames(CCObject* sender) {
-//     auto scene = CreditsLayer::scene();
+//     auto scene = GDSCreditsLayer::scene();
 //     auto transition = CCTransitionFade::create(0.5f, scene);
 //     CCDirector::sharedDirector()->pushScene(transition);
 // }

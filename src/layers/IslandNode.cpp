@@ -2,7 +2,7 @@
 
 using namespace geode::prelude;
 
-IslandNode* IslandNode::create(int index, IslandSelectLayer* islandSelectLayer) {
+IslandNode* IslandNode::create(int index, GDSIslandSelectLayer* islandSelectLayer) {
     IslandNode* ret = new IslandNode();
 
     if (ret && ret->init(index, islandSelectLayer)) {
@@ -14,7 +14,7 @@ IslandNode* IslandNode::create(int index, IslandSelectLayer* islandSelectLayer) 
     return ret;
 }
 
-bool IslandNode::init(int index, IslandSelectLayer* islandSelectLayer) {
+bool IslandNode::init(int index, GDSIslandSelectLayer* islandSelectLayer) {
     if (!CCNode::init()) {
         return false;
     }
