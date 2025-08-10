@@ -1515,7 +1515,8 @@ void GDSIslandSelectLayer::onEnterTransitionDidFinish() {
         m_scaleWithBounce2 = CCEaseBounceOut::create(CCScaleTo::create(0.5,1));
     }
 
-    // gonna look into it later
+    // Update progression status when layer becomes active again
+    updateProgressionStatus();
 }
 
 void GDSIslandSelectLayer::updatePageButtons() {
@@ -1533,5 +1534,90 @@ void GDSIslandSelectLayer::updatePageButtons() {
         } else {
             m_prevPageBtn->setVisible(true);
         }
+    }
+}
+
+void GDSIslandSelectLayer::updateProgressionStatus() {
+    // Reload completion status from saved values
+    m_iLevels.level1complete = Mod::get()->getSavedValue<int>("islandlevel1complete");
+    m_iLevels.level2complete = Mod::get()->getSavedValue<int>("islandlevel2complete");
+    m_iLevels.level3complete = Mod::get()->getSavedValue<int>("islandlevel3complete");
+    m_iLevels.level4complete = Mod::get()->getSavedValue<int>("islandlevel4complete");
+    m_iLevels.level5complete = Mod::get()->getSavedValue<int>("islandlevel5complete");
+    m_iLevels.level6complete = Mod::get()->getSavedValue<int>("islandlevel6complete");
+    m_iLevels.level7complete = Mod::get()->getSavedValue<int>("islandlevel7complete");
+    m_iLevels.level8complete = Mod::get()->getSavedValue<int>("islandlevel8complete");
+    m_iLevels.level9complete = Mod::get()->getSavedValue<int>("islandlevel9complete");
+    m_iLevels.level10complete = Mod::get()->getSavedValue<int>("islandlevel10complete");
+
+    // Update level completion status based on current progress
+    if (m_iLevels.iLevel1->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel1complete", 0);
+    }
+    if (m_iLevels.iLevel1->m_normalPercent == 100) {
+        m_iLevels.level2Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel2->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel2complete", 0);
+    }
+    if (m_iLevels.iLevel2->m_normalPercent == 100) {
+        m_iLevels.level3Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel3->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel3complete", 0);
+    }
+    if (m_iLevels.iLevel3->m_normalPercent == 100) {
+        m_iLevels.level4Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel4->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel4complete", 0);
+    }
+    if (m_iLevels.iLevel4->m_normalPercent == 100) {
+        m_iLevels.level5Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel5->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel5complete", 0);
+    }
+    if (m_iLevels.iLevel5->m_normalPercent == 100) {
+        m_iLevels.level6Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel6->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel6complete", 0);
+    }
+    if (m_iLevels.iLevel6->m_normalPercent == 100) {
+        m_iLevels.level7Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel7->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel7complete", 0);
+    }
+    if (m_iLevels.iLevel7->m_normalPercent == 100) {
+        m_iLevels.level8Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel8->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel8complete", 0);
+    }
+    if (m_iLevels.iLevel8->m_normalPercent == 100) {
+        m_iLevels.level9Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel9->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel9complete", 0);
+    }
+    if (m_iLevels.iLevel9->m_normalPercent == 100) {
+        m_iLevels.level10Btn->setVisible(true);
+    }
+
+    if (m_iLevels.iLevel10->m_normalPercent != 100) {
+        Mod::get()->setSavedValue("islandlevel10complete", 0);
+    }
+    if (m_iLevels.iLevel10->m_normalPercent == 100) {
+        m_iLevels.level10Btn->setVisible(true);
     }
 }
